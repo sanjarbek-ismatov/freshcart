@@ -95,6 +95,49 @@
                 $data['message'] = "There are no all required datas";
                 $data['code'] = 404;
             }
+        } else if($method == 'signup'){
+            if(isset($_REQUEST['name']) 
+                && isset($_REQUEST['username']) 
+                && isset($_REQUEST['phone']) 
+                && isset($_REQUEST['password'])){
+                    $name = $_REQUEST['name'];
+                    $username = $_REQUEST['username'];
+                    $phone = $_REQUEST['phone'];
+                    $pass = $_REQUEST['password'];
+                    $token = bin2hex(random_bytes(32));
+                    // check db for username and phone
+                    $slt = $db->selectWhere('users',
+                    [
+                        'phone'=>$phone,
+                        'cn'=>'='
+                    ],
+                    [
+                        'username'=>$username,
+                        'cn'=>'='
+                    ]);
+                    if(mysqli_num_rows($slt)>0){
+                        $pass = md5($pass);
+                        $ins = $db->insertInto('users',[
+                            'name'=>$name,
+                            'username'=>$username,
+                            'phone'=>$phone,
+                            'password'=>$pass,
+                            'temporary_token'=>$token
+                        ]);
+                        if($ins){
+                            $data['ok'] = true;
+                            $data['code'] = 200;
+                            $data['message'] = "User successfully registered";
+                            $data['result'][] = $token;
+                        } else {
+                            $data['code'] = 503;
+                            $data['message'] = "Service Unavailable | Something wrong wnt try again later";
+                        }
+                    }else {
+                        $data['code'] = 406;
+                        $data['message'] = "username or phone is already token";
+                    }
+                }
         }
     }
 
