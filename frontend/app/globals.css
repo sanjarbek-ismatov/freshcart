@@ -1,0 +1,10 @@
+.nav-link {
+  padding: 6px 12px;
+}
+.btn-primary {
+  background-color: #0aad0a;
+  border: none;
+}
+.btn-primary:hover {
+  background-color: #0ba30b;
+}

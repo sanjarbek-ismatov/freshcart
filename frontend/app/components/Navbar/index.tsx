@@ -7,7 +7,7 @@ const Index = () => {
       <div className="col">
         <Image src={Logo} alt="Brand logo" />
       </div>
-      <div className="col-6">
+      <div className="col-xl-6 col-lg-6">
         <div className="input-group align-items-center">
           <input
             className="form-control"
@@ -22,7 +22,7 @@ const Index = () => {
           </div>
         </div>
       </div>
-      <div className="col-3">
+      <div className="col-xl-3 col-lg-2">
         <button className="btn btn-outline-secondary">Joylashuv</button>
       </div>
       <div className="col">
