@@ -1,6 +1,10 @@
-"use client";
-import { Button } from "react-bootstrap";
-
+import Navbar from "./components/Navbar";
+import Menu from "./components/Menu";
 export default function Home() {
-  return <Button variant="primary">Button</Button>;
+  return (
+    <div className="container">
+      <Navbar />
+      <Menu />
+    </div>
+  );
 }
