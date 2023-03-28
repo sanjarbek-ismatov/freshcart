@@ -1,0 +1,4 @@
+.hover-button:hover + .item {
+  opacity: 1;
+  transform: translateY(0px);
+}
