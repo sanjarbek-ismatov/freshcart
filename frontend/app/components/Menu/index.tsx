@@ -3,10 +3,10 @@ import "./Menu.css";
 function Menu() {
   return (
     <>
-      <div className="flex items-center">
+      <div className="flex items-center mb-5">
         <div className="relative">
           <button className="hover-button py-3 px-4 bg-green-500 rounded-md text-white">
-            Barchasi
+            <i className="fa-regular fa-square-plus"></i> Barchasi
           </button>
           <ul className="absolute item transition-all translate-y-2 ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white">
             <li className="py-1">

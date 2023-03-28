@@ -14,8 +14,8 @@ function Navbar() {
             className="w-8/12 outline-none px-3 py-2 border-slate-300 border rounded-sm"
             placeholder="Maxsulotlarni qidiring"
           />
-          <button className="mx-4 py-3 px-5 text-slate-500 rounded-md bg-slate-200">
-            Hudud
+          <button className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200">
+            <i className="fa-solid fa-location-dot mr-2"></i> Hudud
           </button>
         </div>
         <div className="w-32">
