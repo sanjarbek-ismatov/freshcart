@@ -1,96 +1,36 @@
-"use client";
-import { Dropdown } from "react-bootstrap";
-import React from "react";
-
-const Menu = () => {
+import Link from "next/link";
+import "./Menu.css";
+function Menu() {
   return (
-    <div className="d-flex my-4">
-      <div className="">
-        <Dropdown>
-          <Dropdown.Toggle>Barcha ro`yhatlar</Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item href="#">Page 1</Dropdown.Item>
-            <Dropdown.Item href="#">Page 2</Dropdown.Item>
-            <Dropdown.Item href="#">Page 3</Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+    <>
+      <div className="flex items-center">
+        <div className="relative group ">
+          <button className="py-3 px-4 bg-green-500 rounded-md text-white">
+            Barchasi
+          </button>
+          <ul className="absolute transition-all translate-y-2 ease-in duration-300 group-hover:opacity-100 group-hover:translate-y-[0px] opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md">
+            <li className="py-1">
+              <Link href="/">Maishiy texnika</Link>
+            </li>
+            <li className="py-1">
+              <Link href="/">Sport anjomlari</Link>
+            </li>
+            <li className="py-1">
+              <Link href="/">Oziq-ovqat</Link>
+            </li>
+          </ul>
+        </div>
+        <Link href="/" className="mx-3 text-slate-600 font-medium">
+          Uy
+        </Link>
+        <Link href="/" className="mx-3 text-slate-600 font-medium">
+          Maxsulotlar
+        </Link>
+        <Link href="/" className="mx-3 text-slate-600 font-medium">
+          Do`konlar
+        </Link>
       </div>
-      <div className="nav">
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Uy
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Maxsulotlar
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Do`konlar
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Sahifalar
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Hisob
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-        <div className="nav-item">
-          <Dropdown>
-            <Dropdown.Toggle as="a" className="nav-link text-secondary">
-              Dashboard
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item href="#">Page 1</Dropdown.Item>
-              <Dropdown.Item href="#">Page 2</Dropdown.Item>
-              <Dropdown.Item href="#">Page 3</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-      </div>
-    </div>
+    </>
   );
-};
-
+}
 export default Menu;
