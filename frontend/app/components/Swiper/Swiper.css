@@ -1,0 +1,9 @@
+.daily-banner {
+  background-size: cover;
+}
+.daily-banner-1 {
+  background-image: url("../../../public/images/slider/slide-1.jpg");
+}
+.daily-banner-2 {
+  background-image: url("../../../public/images/slider/slider-2.jpg");
+}
