@@ -14,7 +14,6 @@
             if(isset($_REQUEST['productName'])
                 && isset($_REQUEST['token'])
                 && isset($_REQUEST['cost'])
-                && isset($_REQUEST['productOwner'])
                 && isset($_FILES['img1'])
                 && isset($_FILES['img2'])
                 && isset($_FILES['img3'])
@@ -30,7 +29,6 @@
                 if(mysqli_num_rows($slt)>0){
                     // user found start writing datas to db
                     $name = $_REQUEST['productName'];
-                    $owner = $_REQUEST['productOwner'];
                     $category = $_REQUEST['category'];
                     $about = $_REQUEST['description'];
                     $weight = $_REQUEST['weight'];
@@ -59,7 +57,7 @@
                         // write datas to db and download media
                         $ins = $db->insertInto('products',[
                             'product_name'=>$name,
-                            'product_owner'=>$owner,
+                            'product_owner'=>$token,
                             'about_product'=>$about,
                             'product_category'=>$category,
                             'weight'=>$weight,
@@ -235,6 +233,40 @@
                 } else {
                     $data['code'] = 404;
                     $data['message'] = "User not found | Please redirect to login page!!!";
+                }
+            }
+        }
+        else if($method == 'getProductsByUser'){
+            if(isset($_REQUEST['token'])) {
+                $token = $db->escapeString($_REQUEST['token']);
+//                check db(users) for token
+                $check = $db->selectWhere('users',
+                    [
+                        'token'=>$token,
+                        'cn'=>'='
+                    ]
+                );
+                if($check->num_rows > 0){
+                    $check = $db->selectWhere('products',
+                        [
+                            'product_owner'=>$token,
+                            'cn'=>'='
+                        ]
+                    );
+                    if($check->num_rows>0){
+                        $data['ok'] = true;
+                        $data['code'] = 200;
+                        $data['message'] = "Product found for this user";
+                        foreach ($check as $key => $val){
+                            $data['result'][] = $val;
+                        }
+                    } else {
+                        $data['code'] = 404;
+                        $data['message'] = "This user doesn't have any product";
+                    }
+                } else {
+                    $data['code'] = 403;
+                    $data['message'] = "This user doesn't found in db | Redirect it to login page!!!";
                 }
             }
         }
