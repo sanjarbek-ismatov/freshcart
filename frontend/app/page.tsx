@@ -2,8 +2,10 @@ import {
   Swiper,
   Menu,
   Navbar,
-  Catergories,
+  Categories,
   PopularProducts,
+  About,
+  Footer,
 } from "./components";
 export default function Home() {
   return (
@@ -11,8 +13,10 @@ export default function Home() {
       <Navbar />
       <Menu />
       <Swiper />
-      <Catergories />
+      <Categories />
       <PopularProducts />
+      <About />
+      <Footer />
     </div>
   );
 }

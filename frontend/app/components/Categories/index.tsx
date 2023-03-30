@@ -23,7 +23,7 @@ function Catergories() {
         {data.map((e, i) => (
           <SwiperSlide
             key={i}
-            className="w-72 border border-gray-300 p-5 flex justify-center flex-col items-center"
+            className="w-72 border group border-gray-300 p-5 flex justify-center flex-col items-center rounded-md hover:border-green-500"
           >
             <Link href={e.path}>
               <Image
@@ -34,7 +34,9 @@ function Catergories() {
                 loader={() => e.image}
                 unoptimized
               />
-              <p className="my-3 font-medium text-slate-700">{e.name}</p>
+              <p className="my-3 group-hover:text-green-500 font-medium text-slate-700">
+                {e.name}
+              </p>
             </Link>
           </SwiperSlide>
         ))}
