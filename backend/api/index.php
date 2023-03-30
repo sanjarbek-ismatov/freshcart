@@ -270,6 +270,73 @@
                 }
             }
         }
+        else if($method == 'deleteProduct'){
+            if(isset($_REQUEST['token']) && isset($_REQUEST['product_id'])){
+                $token = $_REQUEST['token'];
+                $product_id = $_REQUEST['product_id'];
+//                check users table for user
+                $slt = $db->selectWhere('users',[
+                    [
+                        'temporary_token'=>$token,
+                        'cn'=>'='
+                    ],
+                ]);
+                if($slt->num_rows > 0) {
+                    $slt = $db->selectWhere('products',[
+                        [
+                            'product_owner'=>$token,
+                            'cn'=>'='
+                        ],
+                    ]);
+                    if($slt->num_rows > 0) {
+                        $data['ok'] = true;
+                        $data['code'] = 200;
+                        $data['message'] = "Product deleted";
+                    } else {
+                        $data['code'] = 404;
+                        $data['message'] = "Product not found";
+                    }
+                } else {
+                    $data['code'] = 403;
+                    $data['message'] = "User not found | redirect user to login page";
+                }
+            }
+        }
+        else if ($method == 'deleteAccount'){
+            if(isset($_REQUEST['token'])){
+                $token = $_REQUEST['token'];
+                $check = $db->selectWhere('users',[
+                    [
+                        'temporary_token'=>$token,
+                        'cn'=>'='
+                    ]
+                ]);
+                if($check->num_rows>0){
+                    $del = $db->deleteWhere('users',[
+                        [
+                            'temporary_token'=>$token,
+                            'cn'=>'='
+                        ]
+                    ]);
+                    if($del){
+                        $data['code'] = 200;
+                        $data['message'] = "User deleted";
+                        $db->deleteWhere('products',[
+                            [
+                                'product_owner'=>$token,
+                                'cn'=>'='
+                            ]
+                        ]);
+                    } else {
+                        $data['code'] = 503;
+                        $data['message'] = "Service unenviable | Please try again later";
+                    }
+                } else {
+                    $data['code'] = 404;
+                    $data['message'] = "User not found";
+                }
+            }
+        }
     }
 
     print_r(json_encode($data));
