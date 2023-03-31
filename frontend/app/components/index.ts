@@ -6,3 +6,4 @@ export { default as PopularProducts } from "./PopularProducts";
 export { default as About } from "./About";
 export { default as Footer } from "./Footer";
 export {default as ErrorBoundary} from "./ErrorBoundary";
+export {default as Modal} from "./Modal";

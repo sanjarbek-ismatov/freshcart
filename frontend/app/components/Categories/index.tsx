@@ -25,7 +25,7 @@ function Catergories() {
             key={i}
             className="w-72 border group border-gray-300 p-5 flex justify-center flex-col items-center rounded-md hover:border-green-500"
           >
-            <Link href={e.path}>
+            <Link href={e.path || "/"}>
               <Image
                 src={e.image}
                 width={100}
