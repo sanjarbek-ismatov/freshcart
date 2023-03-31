@@ -239,7 +239,7 @@
         else if($method == 'getProductsByUser'){
             if(isset($_REQUEST['token'])) {
                 $token = $db->escapeString($_REQUEST['token']);
-//                check db(users) for token
+                //check db(users) for token
                 $check = $db->selectWhere('users',
                     [
                         'token'=>$token,
@@ -274,7 +274,7 @@
             if(isset($_REQUEST['token']) && isset($_REQUEST['product_id'])){
                 $token = $_REQUEST['token'];
                 $product_id = $_REQUEST['product_id'];
-//                check users table for user
+                // check users table for user
                 $slt = $db->selectWhere('users',[
                     [
                         'temporary_token'=>$token,
@@ -334,6 +334,29 @@
                 } else {
                     $data['code'] = 404;
                     $data['message'] = "User not found";
+                }
+            }
+        }
+        else if($method == 'search'){
+            if(isset($_REQUEST['query'])){
+                $query = $_REQUEST['query'];
+
+                $search = $db->selectWhere('products',[
+                    [
+                        'product_name'=>$query,
+                        'cn'=>'%'
+                    ]
+                ]);
+                if($search->num_rows > 0){
+                    $data['ok'] = true;
+                    $data['code'] = 200;
+                    $data['message'] = "Products by search query";
+                    foreach ($search as $key => $val){
+                        $data['result'][] = $val;
+                    }
+                } else {
+                    $data['code'] = 404;
+                    $data['message'] = "Products not found";
                 }
             }
         }
