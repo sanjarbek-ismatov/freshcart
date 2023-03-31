@@ -103,18 +103,19 @@
                 $pass = $db->escapeString($_REQUEST['password']);
                 $token = bin2hex(random_bytes(32));
                 // check db for username and phone
-                $slt = $db->selectWhere('users',
-                    [
-                        'username'=>$username,
-                        'cn'=>'='
-                    ],
-                    [
-                        'phone'=>$phone,
-                        'cn'=>'='
-                    ],
-                    [
-                        'email'=>$email,
-                        'cn'=>'='
+                $slt = $db->selectWhere('users',[
+                        [
+                            'username'=>$username,
+                            'cn'=>'='
+                        ],
+                        [
+                            'phone'=>$phone,
+                            'cn'=>'='
+                        ],
+                        [
+                            'email'=>$email,
+                            'cn'=>'='
+                        ],
                     ]
                 );
                 if(!$slt->num_rows>0){
@@ -154,12 +155,14 @@
                 // check db for user
                 $check = $db->selectWhere('users',
                     [
-                        'password'=>$password,
-                        'cn'=>'=',
-                    ],
-                    [
-                        'email'=>$email,
-                        'cn'=>'='
+                        [
+                            'password'=>$password,
+                            'cn'=>'=',
+                        ],
+                        [
+                            'email'=>$email,
+                            'cn'=>'='
+                        ]
                     ]
                 );
                 if($check->num_rows>0){
@@ -197,8 +200,10 @@
                 $id = $db->escapeString($_REQUEST['id']);
                 $info = $db->selectWhere('products',
                     [
-                        'id'=>$id,
-                        'cn'=>'='
+                        [
+                            'id'=>$id,
+                            'cn'=>'='
+                        ]
                     ]
                 );
                 if($info->num_rows > 0){
@@ -219,8 +224,10 @@
                 $token = $db->escapeString($_REQUEST['token']);
                 $getinfo = $db->selectWhere('users',
                     [
-                        'temporary_token'=>$token,
-                        'cn'=>'='
+                        [
+                            'temporary_token'=>$token,
+                            'cn'=>'='
+                        ]
                     ]
                 );
                 if($getinfo->num_rows > 0){
@@ -242,16 +249,20 @@
                 //check db(users) for token
                 $check = $db->selectWhere('users',
                     [
-                        'token'=>$token,
-                        'cn'=>'='
+                        [
+                            'token'=>$token,
+                            'cn'=>'='
+                        ]
                     ]
                 );
                 if($check->num_rows > 0){
                     $check = $db->selectWhere('products',
-                        [
-                            'product_owner'=>$token,
-                            'cn'=>'='
-                        ]
+                       [
+                           [
+                               'product_owner'=>$token,
+                               'cn'=>'='
+                           ]
+                       ]
                     );
                     if($check->num_rows>0){
                         $data['ok'] = true;
