@@ -95,7 +95,7 @@
             }
         }
         else if($method == 'signup'){
-            if(isset($_REQUEST['name']) && isset($_REQUEST['username']) && isset($_REQUEST['phone']) && isset($_REQUEST['email']) && isset($_REQUEST['password'])){
+            if(isset($_REQUEST['name']) && isset($_REQUEST['username']) &&  isset($_REQUEST['phone']) && isset($_REQUEST['email']) && isset($_REQUEST['password'])){
                 $name = $db->escapeString($_REQUEST['name']);
                 $username = $db->escapeString($_REQUEST['username']);
                 $phone = $db->escapeString($_REQUEST['phone']);
@@ -352,12 +352,7 @@
             if(isset($_REQUEST['query'])){
                 $query = $_REQUEST['query'];
 
-                $search = $db->selectWhere('products',[
-                    [
-                        'product_name'=>$query,
-                        'cn'=>'%'
-                    ]
-                ]);
+                $search = $db->withSqlQuery("SELECT * FROM `products` WHERE `product_name` = LIKE %".$query."%");
                 if($search->num_rows > 0){
                     $data['ok'] = true;
                     $data['code'] = 200;
