@@ -9,6 +9,8 @@ import {
   About,
   Footer,
   Modal,
+  SidePanel,
+  Button,
 } from "./components";
 export default function Home() {
   const [show, setShow] = useState(false);
@@ -34,6 +36,7 @@ export default function Home() {
       <PopularProducts />
       <About />
       <Footer />
+      <SidePanel />
       {show && (
         <Modal ref={closeRef} title="Hisob yaratish">
           <div className="w-full py-1">
@@ -103,9 +106,7 @@ export default function Home() {
             />
           </div>
           <div className="w-full py-4 text-center">
-            <button className="p-3 bg-green-500 border-4 active:border-green-300 text-white rounded-md">
-              Hisob yaratish
-            </button>
+            <Button>Hisob yaratish</Button>
           </div>
         </Modal>
       )}
