@@ -366,6 +366,63 @@
                 }
             }
         }
+        else if($method == 'updateProfile'){
+            if(isset($_REQUEST['name'])
+                && isset($_REQUEST['username'])
+                && isset($_REQUEST['password'])
+                && isset($_REQUEST['city'])
+                && isset($_REQUEST['phone'])
+                && isset($_REQUEST['token'])
+                && isset($_REQUEST['email'])){
+
+                $name = $db->escapeString($_REQUEST['name']);
+                $username = $db->escapeString($_REQUEST['username']);
+                $phone = $db->escapeString($_REQUEST['phone']);
+                $city = $db->escapeString($_REQUEST['city']);
+                $email = $db->escapeString($_REQUEST['email']);
+                $password = $db->escapeString($_REQUEST['password']);
+                $token = $db->escapeString($_REQUEST['token']);
+                #check db for user
+                $check = $db->selectWhere('users',[
+                    [
+                        'token'=>$token,
+                        'cn'=>'='
+                    ],
+                ]);
+                if($check->num_rows > 0){
+                    #update users' data
+                    $upd = $db->updateWhere('users',
+                        [
+                            'username'=>$username,
+                            'password'=>$password,
+                            'name'=>$name,
+                            'city'=>$city,
+                            'phone'=>$phone,
+                            'email'=>$email
+                        ],
+                        [
+                            'token'=>$token,
+                            'cn'=>'='
+                        ]
+                    );
+                    if($upd){
+                        $data['ok'] = true;
+                        $data['code'] = 200;
+                        $data['message'] = "User's datas updated";
+                    } else {
+                        $data['code'] = 503;
+                        $data['message'] = "Service unavailable please try again later";
+                    }
+                } else {
+                    $data['code'] = 404;
+                    $data['message'] = "User not found | redirect to login page";
+                }
+            }
+            else {
+                $data['code'] = 403;
+                $data['message'] = "Forbidden!!!";
+            }
+        }
     }
 
     print_r(json_encode($data));
