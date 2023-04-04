@@ -7,3 +7,8 @@ export { default as About } from "./About";
 export { default as Footer } from "./Footer";
 export {default as ErrorBoundary} from "./ErrorBoundary";
 export {default as Modal} from "./Modal";
+export {default as SidePanel} from "./SidePanel";
+export {default as SearchInput} from "./SearchInput";
+export {default as Button} from "./Button";
+export {default as ModalForm} from "./ModalForm";
+export {default as Input} from "./Input";
