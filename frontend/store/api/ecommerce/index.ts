@@ -10,7 +10,10 @@ export const eCommerceApi = createApi({
           return {
             url: "signup",
             method: "POST",
-            body,
+            body: JSON.stringify(body),
+            headers: {
+              "Content-Type": "application/json",
+            },
           };
         },
       }),

@@ -15,13 +15,14 @@ function ModalForm() {
       password: "",
     },
     onSubmit(values, formikHelpers) {
+      console.log(values);
       signUp(values)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
     },
   });
   return (
-    <form onSubmit={handleSubmit}>
+    <form encType="multipart/form-data" onSubmit={handleSubmit}>
       <div className="w-full py-1">
         <label className="text-sm text-slate-800" htmlFor="name">
           Ism
