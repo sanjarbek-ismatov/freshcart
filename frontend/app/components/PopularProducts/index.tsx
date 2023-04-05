@@ -7,7 +7,7 @@ function PopularProducts() {
     <>
       <div className="my-6">
         <h1 className="text-3xl font-bold text-slate-900">Popular Products</h1>
-        <div className="my-5 grid sm:grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-rows-2">
+        <div className="my-5 grid sm:grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 lg:grid-cols-5 grid-rows-2">
           {products.map((e, i) => (
             <div
               className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md"
@@ -23,6 +23,7 @@ function PopularProducts() {
                   src={e.image}
                   loader={() => e.image}
                   alt="Product image"
+                  unoptimized
                 />
                 <div className="absolute  opacity-0 group-hover:opacity-100">
                   <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-eye"></i>
