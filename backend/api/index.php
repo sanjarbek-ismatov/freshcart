@@ -8,36 +8,31 @@
     // get api method
     $url = explode("/", $_SERVER['QUERY_STRING']);
     $method = $url[1];
-    // cors
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-    header("Access-Control-Allow-Credentials: true");
-    header("Access-Control-Max-Age: 3600");
+
     if($method){
         if($method == 'addProduct'){
-            if(isset($_REQUEST['productName'])
-                && isset($_REQUEST['token'])
-                && isset($_REQUEST['cost'])
+            if(isset($_POST['productName'])
+                && isset($_POST['token'])
+                && isset($_POST['cost'])
                 && isset($_FILES['img1'])
                 && isset($_FILES['img2'])
                 && isset($_FILES['img3'])
-                && isset($_REQUEST['description'])
-                && isset($_REQUEST['category'])
-                && isset($_REQUEST['weight'])){
+                && isset($_POST['description'])
+                && isset($_POST['category'])
+                && isset($_POST['weight'])){
                 //check owner in db
-                $token = $_REQUEST['token'];
+                $token = $_POST['token'];
                 $slt = $db->selectWhere('users',[
                     'temporary_token'=>$token,
                     'cn'=>'='
                 ]);
                 if(mysqli_num_rows($slt)>0){
                     // user found start writing datas to db
-                    $name = $_REQUEST['productName'];
-                    $category = $_REQUEST['category'];
-                    $about = $_REQUEST['description'];
-                    $weight = $_REQUEST['weight'];
-                    $cost= $_REQUEST['cost'];
+                    $name = $_POST['productName'];
+                    $category = $_POST['category'];
+                    $about = $_POST['description'];
+                    $weight = $_POST['weight'];
+                    $cost= $_POST['cost'];
                     $img1 = $db->escapeString($_FILES['img1']['name']);
                     $img2 = $db->escapeString($_FILES['img2']['name']);
                     $img3 = $db->escapeString($_FILES['img3']['name']);
@@ -100,61 +95,63 @@
             }
         }
         else if($method == 'signup'){
-            if(isset($_REQUEST['name']) && isset($_REQUEST['username']) &&  isset($_REQUEST['phone']) && isset($_REQUEST['email']) && isset($_REQUEST['password'])){
-                $name = $db->escapeString($_REQUEST['name']);
-                $username = $db->escapeString($_REQUEST['username']);
-                $phone = $db->escapeString($_REQUEST['phone']);
-                $email = $db->escapeString($_REQUEST['email']);
-                $pass = $db->escapeString($_REQUEST['password']);
-                $token = bin2hex(random_bytes(32));
-                // check db for username and phone
-                $slt = $db->selectWhere('users',[
-                        [
+            if(isset($_POST['name']) && isset($_POST['username']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['password'])){
+                    $name = $db->escapeString($_POST['name']);
+                    $username = $db->escapeString($_POST['username']);
+                    $phone = $db->escapeString($_POST['phone']);
+                    $email = $db->escapeString($_POST['email']);
+                    $pass = $db->escapeString($_POST['password']);
+                    $token = bin2hex(random_bytes(32));
+                    // check db for username and phone
+                    $slt = $db->selectWhere('users',[
+                            [
+                                'username'=>$username,
+                                'cn'=>'='
+                            ],
+                            [
+                                'phone'=>$phone,
+                                'cn'=>'='
+                            ],
+                            [
+                                'email'=>$email,
+                                'cn'=>'='
+                            ],
+                        ]
+                    );
+                    if(!$slt->num_rows>0){
+                        $pass = md5($pass);
+                        $ins = $db->insertInto('users',[
+                            'name'=>$name,
                             'username'=>$username,
-                            'cn'=>'='
-                        ],
-                        [
                             'phone'=>$phone,
-                            'cn'=>'='
-                        ],
-                        [
                             'email'=>$email,
-                            'cn'=>'='
-                        ],
-                    ]
-                );
-                if(!$slt->num_rows>0){
-                    $pass = md5($pass);
-                    $ins = $db->insertInto('users',[
-                        'name'=>$name,
-                        'username'=>$username,
-                        'phone'=>$phone,
-                        'email'=>$email,
-                        'password'=>$pass,
-                        'temporary_token'=>$token
-                    ]);
-                    if($ins){
-                        $data['ok'] = true;
-                        $data['code'] = 200;
-                        $data['message'] = "User successfully registered";
-                        $data['result'][] = $token;
-                    } else {
-                        $data['code'] = 503;
-                        $data['message'] = "Service Unavailable | Something wrong wnt try again later";
+                            'password'=>$pass,
+                            'temporary_token'=>$token
+                        ]);
+                        if($ins){
+                            $data['ok'] = true;
+                            $data['code'] = 200;
+                            $data['message'] = "User successfully registered";
+                            $data['result'][] = $token;
+                        } else {
+                            $data['code'] = 503;
+                            $data['message'] = "Service Unavailable | Something wrong wnt try again later";
+                        }
                     }
-                }else {
-                    $data['code'] = 406;
-                    $data['message'] = "username or phone is already token";
-                }
-            } else {
+                    else {
+                        $data['code'] = 406;
+                        $data['message'] = "username or phone is already token";
+                    }
+            }
+            else {
                 $data['code'] = 404;
                 $data['message'] = "There are not all reqired datas";
             }
         }
         else if($method == 'login') {
-            if(isset($_REQUEST['email']) && isset($_REQUEST['password'])){
-                $email = $db->escapeString($_REQUEST['email']);
-                $password = $db->escapeString($_REQUEST['password']);
+            if(isset($_POST['email']) && isset($_POST['password'])){
+                $email = $db->escapeString($_POST['email']);
+                $password = $db->escapeString($_POST['password']);
                 $password = md5($password);
 
                 // check db for user
@@ -201,8 +198,8 @@
             }
         }
         else if($method == 'getInfoProduct'){
-            if(isset($_REQUEST['id'])){
-                $id = $db->escapeString($_REQUEST['id']);
+            if(isset($_POST['id'])){
+                $id = $db->escapeString($_POST['id']);
                 $info = $db->selectWhere('products',
                     [
                         [
@@ -225,8 +222,8 @@
             }
         }
         else if($method == 'getProfileInfo'){
-            if(isset($_REQUEST['token'])){
-                $token = $db->escapeString($_REQUEST['token']);
+            if(isset($_POST['token'])){
+                $token = $db->escapeString($_POST['token']);
                 $getinfo = $db->selectWhere('users',
                     [
                         [
@@ -249,8 +246,8 @@
             }
         }
         else if($method == 'getProductsByUser'){
-            if(isset($_REQUEST['token'])) {
-                $token = $db->escapeString($_REQUEST['token']);
+            if(isset($_POST['token'])) {
+                $token = $db->escapeString($_POST['token']);
                 //check db(users) for token
                 $check = $db->selectWhere('users',
                     [
@@ -287,9 +284,9 @@
             }
         }
         else if($method == 'deleteProduct'){
-            if(isset($_REQUEST['token']) && isset($_REQUEST['product_id'])){
-                $token = $_REQUEST['token'];
-                $product_id = $_REQUEST['product_id'];
+            if(isset($_POST['token']) && isset($_POST['product_id'])){
+                $token = $_POST['token'];
+                $product_id = $_POST['product_id'];
                 // check users table for user
                 $slt = $db->selectWhere('users',[
                     [
@@ -319,8 +316,8 @@
             }
         }
         else if ($method == 'deleteAccount'){
-            if(isset($_REQUEST['token'])){
-                $token = $_REQUEST['token'];
+            if(isset($_POST['token'])){
+                $token = $_POST['token'];
                 $check = $db->selectWhere('users',[
                     [
                         'temporary_token'=>$token,
@@ -354,8 +351,8 @@
             }
         }
         else if($method == 'search'){
-            if(isset($_REQUEST['query'])){
-                $query = $_REQUEST['query'];
+            if(isset($_POST['query'])){
+                $query = $_POST['query'];
 
                 $search = $db->withSqlQuery("SELECT * FROM `products` WHERE `product_name` = LIKE %".$query."%");
                 if($search->num_rows > 0){
@@ -372,21 +369,21 @@
             }
         }
         else if($method == 'updateProfile'){
-            if(isset($_REQUEST['name'])
-                && isset($_REQUEST['username'])
-                && isset($_REQUEST['password'])
-                && isset($_REQUEST['city'])
-                && isset($_REQUEST['phone'])
-                && isset($_REQUEST['token'])
-                && isset($_REQUEST['email'])){
+            if(isset($_POST['name'])
+                && isset($_POST['username'])
+                && isset($_POST['password'])
+                && isset($_POST['city'])
+                && isset($_POST['phone'])
+                && isset($_POST['token'])
+                && isset($_POST['email'])){
 
-                $name = $db->escapeString($_REQUEST['name']);
-                $username = $db->escapeString($_REQUEST['username']);
-                $phone = $db->escapeString($_REQUEST['phone']);
-                $city = $db->escapeString($_REQUEST['city']);
-                $email = $db->escapeString($_REQUEST['email']);
-                $password = $db->escapeString($_REQUEST['password']);
-                $token = $db->escapeString($_REQUEST['token']);
+                $name = $db->escapeString($_POST['name']);
+                $username = $db->escapeString($_POST['username']);
+                $phone = $db->escapeString($_POST['phone']);
+                $city = $db->escapeString($_POST['city']);
+                $email = $db->escapeString($_POST['email']);
+                $password = $db->escapeString($_POST['password']);
+                $token = $db->escapeString($_POST['token']);
                 #check db for user
                 $check = $db->selectWhere('users',[
                     [
