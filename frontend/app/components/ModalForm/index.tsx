@@ -3,7 +3,9 @@ import { Button } from "..";
 import { useFormik } from "formik";
 import Input from "../Input";
 import "./ModalForm.css";
+import { useSignUpMutation } from "@/store/api/ecommerce";
 function ModalForm() {
+  const [signUp] = useSignUpMutation();
   const { values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: "",
@@ -12,7 +14,11 @@ function ModalForm() {
       email: "",
       password: "",
     },
-    onSubmit(values, formikHelpers) {},
+    onSubmit(values, formikHelpers) {
+      signUp(values)
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err));
+    },
   });
   return (
     <form onSubmit={handleSubmit}>
@@ -88,6 +94,7 @@ function ModalForm() {
           id="password"
           type="password"
           name="password"
+          pattern="\w{8,}"
           value={values.password}
           onChange={handleChange}
           placeholder="Parol"

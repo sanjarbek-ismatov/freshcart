@@ -8,7 +8,12 @@
     // get api method
     $url = explode("/", $_SERVER['QUERY_STRING']);
     $method = $url[1];
-
+    // cors
+    header("Access-Control-Allow-Origin: *");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
+    header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Max-Age: 3600");
     if($method){
         if($method == 'addProduct'){
             if(isset($_REQUEST['productName'])
