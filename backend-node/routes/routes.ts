@@ -4,6 +4,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import { authRouter } from "./auth.routes";
 import morgan from "morgan";
+import error from "../middleware/error.middleware";
 export default function (app: Express) {
   app.use(
     cors({
@@ -20,4 +21,5 @@ export default function (app: Express) {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(morgan("tiny"));
   app.use("/api/auth", authRouter);
+  app.use(error);
 }
