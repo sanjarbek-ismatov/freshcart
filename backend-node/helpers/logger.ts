@@ -1,9 +1,6 @@
 // this file is for handling the error
 // we use winston for handling the error
-// we use express-async-errors for handling the error in async function
 // we use process.on for handling the error in promise
-
-import "express-async-errors";
 import winston from "winston";
 // this is for handling the error in console
 winston.add(new winston.transports.Console({ level: "error" }));

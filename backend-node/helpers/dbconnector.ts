@@ -1,4 +1,7 @@
 import mongoose from "mongoose";
-export async function dbConnect(){
-    await mongoose.connect(process.env.MONGO_URL || '')
+export function dbConnect() {
+  mongoose
+    .connect(process.env.MONGO_URL || "")
+    .then(() => console.log("db connected"))
+    .catch((err) => console.log(err));
 }
