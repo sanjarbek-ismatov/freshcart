@@ -13,7 +13,7 @@ function Button({
       {...rest}
       className={`${
         full && "w-full"
-      } px-4 py-2 bg-green-500 border-4 active:border-green-300 text-white rounded-md`}
+      } px-4 py-2 bg-green-500 border-4 active:border-green-300 text-white rounded-md inline`}
     >
       {children}
     </button>

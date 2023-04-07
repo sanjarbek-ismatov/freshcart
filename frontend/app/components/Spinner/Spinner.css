@@ -1,0 +1,16 @@
+.spinner-1,
+.spinner-2,
+.spinner-3 {
+  animation: rotate 1s infinite ease;
+}
+.spinner-2 {
+  animation-delay: 0.1s;
+}
+.spinner-3 {
+  animation-delay: 0.2s;
+}
+@keyframes rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}

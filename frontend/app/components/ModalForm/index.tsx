@@ -95,7 +95,6 @@ function ModalForm() {
           id="password"
           type="password"
           name="password"
-          pattern="\w{8,}"
           value={values.password}
           onChange={handleChange}
           placeholder="Parol"
