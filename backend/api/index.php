@@ -1,4 +1,5 @@
 <?php
+    header('Access-Control-Allow-Origin: http://localhost:3000');
     $data = ['ok'=>false,'code'=>null,'message'=>null,'result'=>[]];
     $allowed_media = ['jpg','png','jpeg','svg'];
     // call db config
