@@ -1,12 +1,5 @@
 "use client";
-import {
-  HTMLAttributes,
-  InputHTMLAttributes,
-  useCallback,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Swiper,
   Menu,
@@ -18,22 +11,23 @@ import {
   Modal,
   SidePanel,
   Button,
-  ModalForm,
+  ModalFormRegister,
+  ModalFormLogin,
 } from "./components";
 export default function Home() {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState<"login" | "register" | "">("");
   const closeRef = useRef<HTMLElement>(null);
   const openRef = useRef<HTMLElement>(null);
-  const handleShow = useCallback(() => setShow(!show), [show]);
+  const handleShowRegister = useCallback(() => setShow("register"), []);
   useEffect(() => {
-    closeRef.current?.addEventListener("click", handleShow);
-    openRef.current?.addEventListener("click", handleShow);
+    closeRef.current?.addEventListener("click", handleShowRegister);
+    openRef.current?.addEventListener("click", handleShowRegister);
 
     return () => {
-      closeRef.current?.removeEventListener("click", handleShow);
-      openRef.current?.removeEventListener("click", handleShow);
+      closeRef.current?.removeEventListener("click", handleShowRegister);
+      openRef.current?.removeEventListener("click", handleShowRegister);
     };
-  }, [handleShow]);
+  }, [handleShowRegister]);
 
   return (
     <div className="container max-w-[1300px] mx-auto">
@@ -45,9 +39,14 @@ export default function Home() {
       <About />
       <Footer />
       <SidePanel />
-      {show && (
+      {show === "register" && (
         <Modal ref={closeRef} title="Hisob yaratish">
-          <ModalForm />
+          <ModalFormRegister />
+        </Modal>
+      )}
+      {show === "login" && (
+        <Modal ref={closeRef} title="Hisob yaratish">
+          <ModalFormLogin />
         </Modal>
       )}
     </div>
