@@ -1,10 +1,9 @@
 <?php
 	// cors
 	header("Access-Control-Allow-Origin: *");
-	header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
-	header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
-	header("Access-Control-Allow-Credentials: true");
-	header("Access-Control-Max-Age: 3600");
+	header("Access-Control-Allow-Methods: POST, GET, OPTIONS");
+	header("Access-Control-Allow-Headers: Content-Type, Authorization");
+
 
 	ini_set('display_errors',0);
 	class DB_CONFIG
