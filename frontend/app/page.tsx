@@ -16,22 +16,27 @@ import {
 } from "./components";
 export default function Home() {
   const [show, setShow] = useState<"login" | "register" | "">("");
-  const closeRef = useRef<HTMLElement>(null);
-  const openRef = useRef<HTMLElement>(null);
+  const closeRegisterRef = useRef<HTMLElement>(null);
+  const openRegisterRef = useRef<HTMLElement>(null);
+  const closeLoginRef = useRef<HTMLElement>(null);
+  const openLoginRef = useRef<HTMLElement>(null);
   const handleShowRegister = useCallback(() => setShow("register"), []);
   useEffect(() => {
-    closeRef.current?.addEventListener("click", handleShowRegister);
-    openRef.current?.addEventListener("click", handleShowRegister);
+    closeRegisterRef.current?.addEventListener("click", handleShowRegister);
+    openRegisterRef.current?.addEventListener("click", handleShowRegister);
 
     return () => {
-      closeRef.current?.removeEventListener("click", handleShowRegister);
-      openRef.current?.removeEventListener("click", handleShowRegister);
+      closeRegisterRef.current?.removeEventListener(
+        "click",
+        handleShowRegister
+      );
+      openRegisterRef.current?.removeEventListener("click", handleShowRegister);
     };
   }, [handleShowRegister]);
 
   return (
     <div className="container max-w-[1300px] mx-auto">
-      <Navbar ref={openRef} />
+      <Navbar ref={openRegisterRef} />
       <Menu />
       <Swiper />
       <Categories />
@@ -40,12 +45,12 @@ export default function Home() {
       <Footer />
       <SidePanel />
       {show === "register" && (
-        <Modal ref={closeRef} title="Hisob yaratish">
+        <Modal ref={closeRegisterRef} title="Hisob yaratish">
           <ModalFormRegister />
         </Modal>
       )}
       {show === "login" && (
-        <Modal ref={closeRef} title="Hisob yaratish">
+        <Modal ref={closeLoginRef} title="Hisob yaratish">
           <ModalFormLogin />
         </Modal>
       )}

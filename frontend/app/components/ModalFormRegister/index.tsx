@@ -34,7 +34,7 @@ const ModalForm = forwardRef<HTMLParagraphElement>(function ModalForm(
           </div>
         </Modal>
       )}
-      <form encType="multipart/form-data" onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <div className="w-full py-1">
           <label className="text-sm text-slate-800" htmlFor="name">
             Ism
