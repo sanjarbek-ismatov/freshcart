@@ -20,19 +20,27 @@ export default function Home() {
   const openRegisterRef = useRef<HTMLElement>(null);
   const closeLoginRef = useRef<HTMLElement>(null);
   const openLoginRef = useRef<HTMLElement>(null);
-  const handleShowRegister = useCallback(() => setShow("register"), []);
+  const handleShowRegister = useCallback(
+    () => setShow(show === "" ? "register" : ""),
+    [show]
+  );
+  const handleShowLogin = useCallback(
+    () => setShow(show === "login" ? "" : "login"),
+    [show]
+  );
   useEffect(() => {
     closeRegisterRef.current?.addEventListener("click", handleShowRegister);
     openRegisterRef.current?.addEventListener("click", handleShowRegister);
-
+    openLoginRef.current?.addEventListener("click", handleShowLogin);
     return () => {
       closeRegisterRef.current?.removeEventListener(
         "click",
         handleShowRegister
       );
       openRegisterRef.current?.removeEventListener("click", handleShowRegister);
+      closeLoginRef.current?.removeEventListener("click", handleShowLogin);
     };
-  }, [handleShowRegister]);
+  }, [handleShowLogin, handleShowRegister]);
 
   return (
     <div className="container max-w-[1300px] mx-auto">
@@ -50,7 +58,7 @@ export default function Home() {
         </Modal>
       )}
       {show === "login" && (
-        <Modal ref={closeLoginRef} title="Hisob yaratish">
+        <Modal ref={closeLoginRef} title="Kirish">
           <ModalFormLogin />
         </Modal>
       )}
