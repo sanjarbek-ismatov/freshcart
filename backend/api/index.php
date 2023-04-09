@@ -100,7 +100,7 @@
             }
         }
         else if($method == 'signup'){
-            if(isset($params['name']) && isset($params['username']) && isset($params['phone']) && isset($params['email']) && isset($params['password'])){
+            if($params['name'] && $params['username'] && $params['phone'] && $params['email'] && $params['password']){
                     $name = $db->escapeString($params['name']);
                     $username = $db->escapeString($params['username']);
                     $phone = $db->escapeString($params['phone']);
