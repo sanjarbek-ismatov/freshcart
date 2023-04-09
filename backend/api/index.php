@@ -9,6 +9,10 @@
     // get api method
     $url = explode("/", $_SERVER['QUERY_STRING']);
     $method = $url[1];
+    // url encode
+    $data_url = urldecode(file_get_contents('php://input'));
+    parse_str($data_url, $params);
+
 
     if($method){
         if($method == 'addProduct'){
@@ -96,12 +100,12 @@
             }
         }
         else if($method == 'signup'){
-            if(isset($_POST['name']) && isset($_POST['username']) && isset($_POST['phone']) && isset($_POST['email']) && isset($_POST['password'])){
-                    $name = $db->escapeString($_POST['name']);
-                    $username = $db->escapeString($_POST['username']);
-                    $phone = $db->escapeString($_POST['phone']);
-                    $email = $db->escapeString($_POST['email']);
-                    $pass = $db->escapeString($_POST['password']);
+            if(isset($params['name']) && isset($params['username']) && isset($params['phone']) && isset($params['email']) && isset($params['password'])){
+                    $name = $db->escapeString($params['name']);
+                    $username = $db->escapeString($params['username']);
+                    $phone = $db->escapeString($params['phone']);
+                    $email = $db->escapeString($params['email']);
+                    $pass = $db->escapeString($params['password']);
                     $token = bin2hex(random_bytes(32));
                     // check db for username and phone
                     $slt = $db->selectWhere('users',[
