@@ -98,14 +98,14 @@ if ($method) {
             $data['code'] = 404;
         }
     } else if ($method == 'signup') {
-        $data_url = file_get_contents('php://input');
-        parse_str($data_url, $params);
-        if ($params['name'] && $params['username'] && $params['phone'] && $params['email'] && $params['password']) {
-            $name = $db->escapeString($params['name']);
-            $username = $db->escapeString($params['username']);
-            $phone = $db->escapeString($params['phone']);
-            $email = $db->escapeString($params['email']);
-            $pass = $db->escapeString($params['password']);
+        $request_body = file_get_contents('php://input');
+        $data_body = json_decode($request_body, true);
+        if ($data_body['name'] && $data_body['username'] && $data_body['phone'] && $data_body['email'] && $data_body['password']) {
+            $name = $db->escapeString($data_body['name']);
+            $username = $db->escapeString($data_body['username']);
+            $phone = $db->escapeString($data_body['phone']);
+            $email = $db->escapeString($data_body['email']);
+            $pass = $db->escapeString($data_body['password']);
             $token = bin2hex(random_bytes(32));
             // check db for username and phone
             $slt = $db->selectWhere(
