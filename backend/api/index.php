@@ -96,7 +96,7 @@
             }
         }
         else if($method == 'signup'){
-            $data_url = file_get_contents('php://input');
+            $data_url = urldecode(file_get_contents('php://input'));
             parse_str($data_url, $params);
             if($params['name'] && $params['username'] && $params['phone'] && $params['email'] && $params['password']){
                     $name = $db->escapeString($params['name']);
