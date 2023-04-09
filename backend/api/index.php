@@ -10,10 +10,6 @@
     $url = explode("/", $_SERVER['QUERY_STRING']);
     $method = $url[1];
     // url encode
-    $data_url = urldecode(file_get_contents('php://input'));
-    parse_str($data_url, $params);
-
-
     if($method){
         if($method == 'addProduct'){
             if(isset($_POST['productName'])
@@ -100,6 +96,8 @@
             }
         }
         else if($method == 'signup'){
+            $data_url = file_get_contents('php://input');
+            parse_str($data_url, $params);
             if($params['name'] && $params['username'] && $params['phone'] && $params['email'] && $params['password']){
                     $name = $db->escapeString($params['name']);
                     $username = $db->escapeString($params['username']);
