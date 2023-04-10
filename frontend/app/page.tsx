@@ -19,7 +19,7 @@ export default function Home() {
   const closeRegisterRef = useRef<HTMLElement>(null);
   const openRegisterRef = useRef<HTMLElement>(null);
   const closeLoginRef = useRef<HTMLElement>(null);
-  const openLoginRef = useRef<HTMLElement>(null);
+  const openLoginRef = useRef<HTMLParagraphElement>(null);
   const handleShowRegister = useCallback(
     () => setShow(show === "" ? "register" : ""),
     [show]
@@ -32,6 +32,7 @@ export default function Home() {
     closeRegisterRef.current?.addEventListener("click", handleShowRegister);
     openRegisterRef.current?.addEventListener("click", handleShowRegister);
     openLoginRef.current?.addEventListener("click", handleShowLogin);
+    closeLoginRef.current?.addEventListener("click", handleShowLogin);
     return () => {
       closeRegisterRef.current?.removeEventListener(
         "click",
@@ -54,7 +55,7 @@ export default function Home() {
       <SidePanel />
       {show === "register" && (
         <Modal ref={closeRegisterRef} title="Hisob yaratish">
-          <ModalFormRegister />
+          <ModalFormRegister ref={openLoginRef} />
         </Modal>
       )}
       {show === "login" && (

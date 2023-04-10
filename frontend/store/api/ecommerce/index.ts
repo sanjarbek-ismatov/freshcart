@@ -1,4 +1,9 @@
-import { RequestForm, ServerResponse } from "@/types";
+import {
+  RequestRegisterForm,
+  RequestLoginForm,
+  ServerResponse,
+  User,
+} from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
@@ -7,7 +12,7 @@ export const eCommerceApi = createApi({
   }),
   endpoints(build) {
     return {
-      signUp: build.mutation<ServerResponse<any>, RequestForm>({
+      signUp: build.mutation<ServerResponse<any>, RequestRegisterForm>({
         query(body) {
           return {
             url: "signup",
@@ -19,7 +24,19 @@ export const eCommerceApi = createApi({
           };
         },
       }),
+      login: build.mutation<ServerResponse<User[]>, RequestLoginForm>({
+        query(body) {
+          return {
+            url: "login",
+            method: "POST",
+            body,
+            headers: {
+              "Content-Type": "application/json",
+            },
+          };
+        },
+      }),
     };
   },
 });
-export const { useSignUpMutation } = eCommerceApi;
+export const { useSignUpMutation, useLoginMutation } = eCommerceApi;

@@ -5,11 +5,27 @@ interface ServerResponse<T> {
   code: number;
 }
 
-interface RequestForm {
+interface RequestRegisterForm {
   name: string;
   phone: string;
   email: string;
   username: string;
   password: string;
 }
-export type { ServerResponse, RequestForm };
+interface RequestLoginForm {
+  email: string;
+  password: string;
+}
+
+interface User {
+  city: string | null;
+  email: string;
+  id: string;
+  name: string;
+  password: string;
+  phone: string;
+  temporary_token: string;
+  username: string;
+}
+
+export type { ServerResponse, RequestRegisterForm, RequestLoginForm, User };
