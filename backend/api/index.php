@@ -506,6 +506,19 @@
                     $data['message'] = "Forbidden | Redirect to login page";
                 }
             }
+        } else if($method = 'getCAtegory'){
+            $all = $db->selectAll('category');
+            if ($all->num_rows > 0) {
+                $data['ok'] = true;
+                $data['code'] = 200;
+                $data['message'] = "Category found";
+                foreach ($all as $key => $val) {
+                    $data['result'] = $val;
+                }
+            } else {
+                $data['code'] = 404;
+                $data['message'] = "Category not found";
+            }
         }
     }
 
