@@ -10,20 +10,20 @@ import {
   Footer,
   Modal,
   SidePanel,
-  Button,
   ModalFormRegister,
   ModalFormLogin,
 } from "./components";
+import { useAuth } from "./hooks/useAuth";
 export default function Home() {
-  const [show, setShow] = useState<"login" | "register" | "">("");
+  const auth = useAuth();
+  const [show, setShow] = useState<"login" | "register" | "" | "setting">("");
   const closeRegisterRef = useRef<HTMLElement>(null);
   const openRegisterRef = useRef<HTMLElement>(null);
   const closeLoginRef = useRef<HTMLElement>(null);
   const openLoginRef = useRef<HTMLParagraphElement>(null);
-  const handleShowRegister = useCallback(
-    () => setShow(show === "" ? "register" : ""),
-    [show]
-  );
+  const handleShowRegister = useCallback(() => {
+    if (!auth) setShow(show === "" ? "register" : "");
+  }, [auth, show]);
   const handleShowLogin = useCallback(
     () => setShow(show === "login" ? "" : "login"),
     [show]

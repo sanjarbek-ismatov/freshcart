@@ -1,9 +1,16 @@
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
-import { forwardRef } from "react";
+import { forwardRef, useCallback, useState } from "react";
 import "./Navbar.css";
 import { SearchInput } from "..";
+import Link from "next/link";
+import { useAuth } from "@/app/hooks/useAuth";
 const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
+  const auth = useAuth();
+  const [show, setShow] = useState(false);
+  const handleShow = useCallback(() => {
+    if (auth) setShow(!show);
+  }, [auth, show]);
   return (
     <>
       <div className="flex md:justify-center justify-between py-5 items-center">
@@ -26,10 +33,28 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
               </span>
             </span>
             <span className="relative mx-3">
-              <i
-                ref={ref}
-                className="fa-regular cursor-pointer fa-user text-xl"
-              ></i>
+              {
+                <>
+                  <i
+                    ref={ref}
+                    onClick={handleShow}
+                    className="fa-regular cursor-pointer fa-user text-xl"
+                  ></i>
+                  {show && (
+                    <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
+                      <li className="py-1">
+                        <Link href="/">Hisob</Link>
+                      </li>
+                      <li className="py-1">
+                        <Link href="/">Yordam</Link>
+                      </li>
+                      <li className="py-1 text-red-500">
+                        <Link href="/">chiqish</Link>
+                      </li>
+                    </ul>
+                  )}
+                </>
+              }
             </span>
             <span className="relative">
               <i className="cursor-pointer fa-regular fa-bookmark text-xl"></i>
