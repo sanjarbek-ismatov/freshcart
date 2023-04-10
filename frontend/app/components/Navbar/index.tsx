@@ -11,6 +11,10 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const handleShow = useCallback(() => {
     if (auth) setShow(!show);
   }, [auth, show]);
+  const logOut = useCallback(() => {
+    localStorage.removeItem("token");
+    window.location.reload();
+  }, []);
   return (
     <>
       <div className="flex md:justify-center justify-between py-5 items-center">
@@ -49,7 +53,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                         <Link href="/">Yordam</Link>
                       </li>
                       <li className="py-1 text-red-500">
-                        <Link href="/">chiqish</Link>
+                        <button onClick={logOut}>chiqish</button>
                       </li>
                     </ul>
                   )}
