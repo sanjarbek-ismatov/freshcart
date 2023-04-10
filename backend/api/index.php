@@ -427,6 +427,85 @@
                 $data['code'] = 403;
                 $data['message'] = "Forbidden!!!";
             }
+        } else if($method == "loginAdmin"){
+            if(isset($data_body['login']) && isset($data_body['password'])){
+                $login = $db->escapeString($data_body['login']);
+                $password = $db->escapeString($data_body['password']);
+
+                // check db
+                $slt = $db->selectWhere('admins',[
+                    [
+                        'login'=>$login,
+                        'cn'=>'='
+                    ],
+                    [
+                        'password'=>md5($password),
+                        'cn'=>'='
+                    ]
+                ]);
+
+                if($slt->num_rows > 0){
+                    foreach ($$slt as $key => $value) {
+                        $data['result'][] = $value;
+                    } 
+                    $data['ok'] = true;
+                    $data['code'] = 200;
+                    $data['message'] = "Welcome!!!";
+                } else {
+                    $data['code'] = 404;
+                    $data['message'] = "Login or password is wrong";
+                }
+            } else {
+                $data['code'] = 404;
+                $data['message'] = "Login and password required";
+            }
+        } else if($method == "addCategory"){
+            if(isset($data_body['token']) && isset($data_body['category_name']) && isset($data_body['slug'])){
+                $token = $db->escapeString($data_body['token']);
+                $name = $db->escapeString($data_body['category_name']);
+                $slug = $db->escapeString($data_body['slug']);
+
+                  // check db for does user real admin
+                $slt = $db->selectWhere('admins',[
+                    [
+                        'token'=>$token,
+                        'cn'=>'='
+                    ],
+                ]);
+
+                if($slt->num_rows > 0){ 
+                    // check category db for name is already token or no
+                    $slt = $db->selectWhere('category',[
+                        [
+                            'name'=>$name,
+                            'cn'=>'='
+                        ],
+                    ]);
+                    if(!$slt->num_rows > 0){
+                        $ins = $db->insertInto('category',[
+                            [
+                                'name'=>$name,
+                                'slug'=>$slug
+                            ]
+                        ]);
+                        if($ins){
+                            $data['ok'] = true;
+                            $data['code'] = 200;
+                            $data['message'] = "Categro successfully added";
+                        } else {
+                            $data['code'] = 503;
+                            $data['message'] = "Service unaviable please trya agin later";
+                        }
+                    } else {
+                        $data['code'] = 403;
+                        $data['message'] = "Forbidden | Category name already exsist";
+                    }
+                   
+                } else {
+                    $data['code'] = 403;
+                    $data['message'] = "Forbidden | Redirect to login page";
+                }
+            }
         }
     }
 
