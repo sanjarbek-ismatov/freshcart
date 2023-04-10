@@ -101,6 +101,7 @@
             }
         } else if ($method == 'signup') {
             if ($data_body['name'] && $data_body['username'] && $data_body['phone'] && $data_body['email'] && $data_body['password']) {
+                
                 $name = $db->escapeString($data_body['name']);
                 $username = $db->escapeString($data_body['username']);
                 $phone = $db->escapeString($data_body['phone']);
@@ -506,7 +507,7 @@
                     $data['message'] = "Forbidden | Redirect to login page";
                 }
             }
-        } else if($method = 'getCAtegory'){
+        } else if($method = 'getCategory'){
             $all = $db->selectAll('category');
             if ($all->num_rows > 0) {
                 $data['ok'] = true;
