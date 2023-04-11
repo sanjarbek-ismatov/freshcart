@@ -110,5 +110,5 @@ maishiy-texnika
 >if category name is "Maishiy texnika" you must give it as slug like above
 
 
-#getCategory
+# getCategory
 To get category send /getCategory
