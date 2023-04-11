@@ -2,7 +2,7 @@
 import "./globals.css";
 import { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ErrorBoundary } from "./components";
+import { ErrorBoundary, Menu, Navbar } from "./components";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
@@ -24,7 +24,11 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
-          <Provider store={store}>{children}</Provider>
+          <Provider store={store}>
+            <Navbar />
+            <Menu />
+            {children}
+          </Provider>
         </ErrorBoundary>
       </body>
     </html>

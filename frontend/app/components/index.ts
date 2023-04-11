@@ -14,3 +14,4 @@ export { default as Input } from "./Input";
 export { default as Spinner } from "./Spinner";
 export { default as ModalFormLogin } from "./ModalFormLogin";
 export { default as ModalFormRegister } from "./ModalFormRegister";
+export {default as BreadCrumb} from "./BreadCrumb";

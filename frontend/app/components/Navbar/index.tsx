@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
 import { forwardRef, useCallback, useState } from "react";
@@ -17,7 +18,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   }, []);
   return (
     <>
-      <div className="flex md:justify-center justify-between py-5 items-center">
+      <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
         <div className="sm:w-56 w-40 mr-12">
           <Image src={LogoImage} alt="Logo image" />
         </div>

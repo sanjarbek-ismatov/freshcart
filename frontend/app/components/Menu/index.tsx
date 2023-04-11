@@ -3,7 +3,7 @@ import "./Menu.css";
 function Menu() {
   return (
     <>
-      <div className="flex items-center mb-5">
+      <div className="flex items-center mb-5 max-w-[1300px] mx-auto">
         <div className="relative">
           <button className="hover-button py-3 px-4 bg-green-500 rounded-md text-white">
             <i className="fa-regular fa-square-plus"></i> Barchasi
