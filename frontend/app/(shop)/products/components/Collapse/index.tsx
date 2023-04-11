@@ -10,10 +10,14 @@ function Collapse() {
     <>
       <div
         onClick={handleShow}
-        className="w-full cursor-pointer hover:bg-gray-100 p-3 border-b flex items-center justify-between my-1"
+        className="w-full cursor-pointer hover:bg-gray-100 px-3 py-1 border-b flex items-center justify-between my-1"
       >
         <p className="text-sm">Oziq Ovqat</p>{" "}
-        <i className="fa-solid fa-chevron-right"></i>
+        <i
+          className={`fa-solid ${
+            show ? "fa-chevron-down" : "fa-chevron-right"
+          }`}
+        ></i>
       </div>
       <div className={`${show ? "h-auto" : "h-0"} overflow-hidden`}>
         <ul>

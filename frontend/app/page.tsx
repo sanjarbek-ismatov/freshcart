@@ -45,7 +45,6 @@ export default function Home() {
 
   return (
     <div className="container max-w-[1300px] mx-auto">
-      <Menu />
       <Swiper />
       <Categories />
       <PopularProducts />
