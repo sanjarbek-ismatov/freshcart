@@ -5,7 +5,7 @@ How to request to backend?
 
 Methods
 
-#addProduct 
+# addProduct 
 
 To add product you need to send
 - productName
@@ -22,7 +22,7 @@ To add product you need to send
 >if there is any problem tell us aout it
 
 
-#signup
+# signup
 To sign up you need to send
 - name
 - username
@@ -31,7 +31,7 @@ To sign up you need to send
 - password
 
 
-#login
+# login
 We need
 - email
 - password
@@ -39,36 +39,36 @@ We need
 to login user 
 
 
-#getAllProducts
+# getAllProducts
 For this just send /getAllProducts and you'll reach result
 
 
-#getInfoProduct
+# getInfoProduct
 To get info about product we need 
 - id (Product id)
 
 
-#getProfileInfo 
+# getProfileInfo 
 For this we need
 - token
 that we gave during login or signup
 
 
-#getProductsByUser
+# getProductsByUser
 For this we need
 - token
 that we gave during login or signup
 
 
-#deleteProduct
+# deleteProduct
 For this we need
 - product id
 - token(user's token)
 
 
-#deleteAccount
+# deleteAccount
 For this we need 
--token
+- token
 
 
 #search
@@ -76,28 +76,28 @@ To search product you have to send
 - query
 
 
-#updateProfile
+# updateProfile
 To update profile you've to send
--name
--username
--password
--token
--email
--city
--phone
+- name
+- username
+- password
+- token
+- email
+- city
+- phone
 
 
-#loginAdmin
+# loginAdmin
 To login admin panel you need to send
 - login
 - password
 
 
-#addCategory
+# addCategory
 To add category you have to send
--token
--category name
--slug
+- token
+- category name
+- slug
 
 
 >Only admin can add new categories so that
