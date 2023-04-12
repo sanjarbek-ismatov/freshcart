@@ -28,4 +28,18 @@ interface User {
   username: string;
 }
 
-export type { ServerResponse, RequestRegisterForm, RequestLoginForm, User };
+interface Product {
+  title: string;
+  category: string[];
+  stars: number;
+  cost: string;
+  bought: string;
+  image: string;
+}
+export type {
+  ServerResponse,
+  RequestRegisterForm,
+  RequestLoginForm,
+  User,
+  Product,
+};
