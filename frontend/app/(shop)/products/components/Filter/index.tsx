@@ -1,4 +1,6 @@
 import Collapse from "../Collapse";
+import Price from "../Price";
+import Stars from "../Stars";
 import Stores from "../Stores";
 import "./Filter.css";
 function Filter() {
@@ -15,6 +17,8 @@ function Filter() {
         <Collapse />
         <Collapse />
         <Stores />
+        <Price />
+        <Stars />
       </div>
     </>
   );

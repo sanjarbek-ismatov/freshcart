@@ -1,5 +1,12 @@
+import { ReactNode } from "react";
 import "./Checkbox.css";
-function Checkbox({ checked }: { checked: boolean }) {
+function Checkbox({
+  checked,
+  children,
+}: {
+  checked: boolean;
+  children: ReactNode;
+}) {
   return (
     <>
       <label className="inline-flex items-center">
@@ -13,7 +20,7 @@ function Checkbox({ checked }: { checked: boolean }) {
             <i className="fa-solid fa-check text-white text-sm m-[1px]"></i>
           )}
         </span>
-        <span className="ml-2 select-none text-gray-700">Checkbox Label</span>
+        {children}
       </label>
     </>
   );
