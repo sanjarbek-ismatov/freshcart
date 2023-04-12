@@ -5,7 +5,7 @@ import {
   Menu,
   Navbar,
   Categories,
-  PopularProducts,
+  ProductGrid,
   About,
   Footer,
   Modal,
@@ -47,7 +47,7 @@ export default function Home() {
     <div className="container max-w-[1300px] mx-auto">
       <Swiper />
       <Categories />
-      <PopularProducts />
+      <ProductGrid title="Mashhur maxsulotlar" />
       <About />
       <Footer />
       <SidePanel />

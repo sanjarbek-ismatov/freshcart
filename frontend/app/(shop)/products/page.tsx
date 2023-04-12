@@ -13,7 +13,7 @@ const Index = () => {
             { title: "Maxsulotlar", path: "/products" },
           ]}
         />
-        <div className="grid grid-cols-2">
+        <div className="flex">
           <Filter />
           <Products />
         </div>
