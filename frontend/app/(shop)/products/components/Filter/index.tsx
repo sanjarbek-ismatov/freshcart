@@ -6,8 +6,8 @@ import "./Filter.css";
 function Filter() {
   return (
     <>
-      <div className="w-72">
-        <h1>Kategorialar</h1>
+      <div className="w-72 p-2 leading-6 mr-5">
+        <h1 className={`font-semibold text-lg`}>Kategorialar</h1>
         <Collapse />
         <Collapse />
         <Collapse />

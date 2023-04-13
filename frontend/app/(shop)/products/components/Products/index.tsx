@@ -1,4 +1,5 @@
 import FilterTop from "../FilterTop";
+import Panigation from "../Panigation";
 import "./Products.css";
 import { ProductGrid } from "@/app/components";
 function Products() {
@@ -6,6 +7,7 @@ function Products() {
     <div className="w-full">
       <FilterTop />
       <ProductGrid title="Dynamic" />
+      <Panigation />
     </div>
   );
 }

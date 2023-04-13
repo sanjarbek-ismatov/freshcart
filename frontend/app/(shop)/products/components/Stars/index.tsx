@@ -13,7 +13,7 @@ function Starts() {
   }, []);
   return (
     <>
-      <div className="block">
+      <div className="my-3">
         <Checkbox checked>
           <i className="fa-solid fa-star text-yellow-400"></i>
           <i className="fa-solid fa-star text-yellow-400"></i>

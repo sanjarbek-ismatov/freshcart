@@ -14,7 +14,7 @@ function Checkbox({
         <span
           className={`${
             checked ? "bg-green-500" : "bg-white border"
-          } w-5 h-5 flex justify-center items-center rounded-sm`}
+          } w-5 h-5 flex justify-center items-center rounded-sm mx-2`}
         >
           {checked && (
             <i className="fa-solid fa-check text-white text-sm m-[1px]"></i>
