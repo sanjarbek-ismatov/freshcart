@@ -26,7 +26,7 @@ function Menu() {
         <Link href="/products" className="mx-3 text-slate-600 font-medium">
           Maxsulotlar
         </Link>
-        <Link href="/" className="mx-3 text-slate-600 font-medium">
+        <Link href="/stores" className="mx-3 text-slate-600 font-medium">
           Do`konlar
         </Link>
       </div>
