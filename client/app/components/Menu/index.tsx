@@ -1,14 +1,26 @@
 import Link from "next/link";
 import "./Menu.css";
+import { useCallback, useState } from "react";
 function Menu() {
+  const [show, setShow] = useState(false);
+  const toggle = useCallback(() => {
+    setShow(!show);
+  }, [show]);
   return (
     <>
       <div className="flex items-center mb-5 max-w-[1300px] mx-auto">
         <div className="relative">
-          <button className="hover-button py-3 px-4 bg-green-500 rounded-md text-white">
+          <button
+            onClick={toggle}
+            className=" py-3 px-4 bg-green-500 rounded-md text-white"
+          >
             <i className="fa-regular fa-square-plus"></i> Barchasi
           </button>
-          <ul className="absolute item transition-all translate-y-2 ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white">
+          <ul
+            className={`absolute transition-all translate-y-2 ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white ${
+              show ? "opacity-100 translate-y-0" : ""
+            }`}
+          >
             <li className="py-1">
               <Link href="/">Maishiy texnika</Link>
             </li>

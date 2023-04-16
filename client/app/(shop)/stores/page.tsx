@@ -1,6 +1,11 @@
-import { Header } from "./components";
+import { Header, StoresGrid } from "./components";
 
 function Stores() {
-  return <Header />;
+  return (
+    <>
+      <Header />
+      <StoresGrid />
+    </>
+  );
 }
 export default Stores;
