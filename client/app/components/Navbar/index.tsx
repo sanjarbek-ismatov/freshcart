@@ -61,12 +61,12 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                 </>
               }
             </span>
-            <span className="relative">
+            <Link href="/account/wishlist" className="relative">
               <i className="cursor-pointer fa-regular fa-bookmark text-xl"></i>
               <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
                 1
               </span>
-            </span>
+            </Link>
           </div>
           <div className="md:hidden block mx-3">
             <span>

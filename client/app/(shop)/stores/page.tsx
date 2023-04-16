@@ -1,3 +1,5 @@
+"use client";
+import { Footer } from "@/app/components";
 import { Header, StoresGrid } from "./components";
 
 function Stores() {
@@ -5,6 +7,7 @@ function Stores() {
     <>
       <Header />
       <StoresGrid />
+      <Footer />
     </>
   );
 }

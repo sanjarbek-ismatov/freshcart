@@ -2,8 +2,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
   Swiper,
-  Menu,
-  Navbar,
   Categories,
   ProductGrid,
   About,
