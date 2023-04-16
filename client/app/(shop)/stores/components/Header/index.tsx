@@ -1,9 +1,12 @@
-import './Header.css'
+import Image from "next/image";
+import StoreImage from "public/images/svg-graphics/store-graphics.svg";
+import "./Header.css";
 function Header() {
   return (
-    <>
-      <p>Hello, Header</p>
-    </>
+    <div>
+      <h1>Do`konlar</h1>
+      <Image src={StoreImage} alt={""} />
+    </div>
   );
 }
 export default Header;

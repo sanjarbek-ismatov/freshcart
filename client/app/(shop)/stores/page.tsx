@@ -1,4 +1,6 @@
+import { Header } from "./components";
+
 function Stores() {
-  return <p>Hello</p>;
+  return <Header />;
 }
 export default Stores;
