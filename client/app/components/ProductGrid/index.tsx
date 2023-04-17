@@ -1,8 +1,13 @@
-"use client";
 import products from "data/products.json";
 import "./PopularProducts.css";
 import ProductCard from "../Product";
+async function getProducts() {
+  const res = await fetch("http://localhost/api/getAllProducts");
+  const data = await res.json();
+  return data;
+}
 function PopularProducts({ title }: { title: string }) {
+  // const products = await getProducts()
   return (
     <>
       <div className="my-6">

@@ -1,16 +1,54 @@
 "use client";
 import "./globals.css";
-import { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ErrorBoundary, Menu, Navbar } from "./components";
+import {
+  ErrorBoundary,
+  Menu,
+  Modal,
+  ModalFormLogin,
+  ModalFormRegister,
+  Navbar,
+} from "./components";
 import { Provider } from "react-redux";
 import { store } from "../store/store";
+import { useAuth } from "./hooks/useAuth";
+import { useCallback, useEffect, useRef, useState } from "react";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const auth = useAuth();
+  const [show, setShow] = useState<"login" | "register" | "" | "setting">("");
+  const closeRegisterRef = useRef<HTMLElement>(null);
+  const openRegisterRef = useRef<HTMLElement>(null);
+  const closeLoginRef = useRef<HTMLElement>(null);
+  const openLoginRef = useRef<HTMLParagraphElement>(null);
+  const handleShowRegister = useCallback(() => {
+    if (!auth) setShow(show === "" ? "register" : "");
+  }, [auth, show]);
+  const handleShowLogin = useCallback(
+    () => setShow(show === "login" ? "" : "login"),
+    [show]
+  );
+  useEffect(() => {
+    console.log(show);
+  }, [show]);
+  useEffect(() => {
+    closeRegisterRef.current?.addEventListener("click", handleShowRegister);
+    openRegisterRef.current?.addEventListener("click", handleShowRegister);
+    openLoginRef.current?.addEventListener("click", handleShowLogin);
+    closeLoginRef.current?.addEventListener("click", handleShowLogin);
+    return () => {
+      closeRegisterRef.current?.removeEventListener(
+        "click",
+        handleShowRegister
+      );
+      openRegisterRef.current?.removeEventListener("click", handleShowRegister);
+      closeLoginRef.current?.removeEventListener("click", handleShowLogin);
+    };
+  }, [handleShowLogin, handleShowRegister]);
   return (
     <html lang="uz">
       <head>
@@ -25,9 +63,19 @@ export default function RootLayout({
       <body className={inter.className}>
         <ErrorBoundary>
           <Provider store={store}>
-            <Navbar />
+            <Navbar ref={openRegisterRef} />
             <Menu />
             {children}
+            {show === "register" && (
+              <Modal ref={closeRegisterRef} title="Hisob yaratish">
+                <ModalFormRegister ref={openLoginRef} />
+              </Modal>
+            )}
+            {show === "login" && (
+              <Modal ref={closeLoginRef} title="Kirish">
+                <ModalFormLogin />
+              </Modal>
+            )}
           </Provider>
         </ErrorBoundary>
       </body>
