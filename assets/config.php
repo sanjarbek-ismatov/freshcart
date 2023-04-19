@@ -10,8 +10,8 @@
 	{
 		// Baza ma'lumotlari
 		private const HOSTNAME = 'localhost';
-		private const USERNAME = 'root';
-		private const PASSWORD = '';
+		private const USERNAME = 'abdullajonov';
+		private const PASSWORD = '0880';
 		private const DATABASE_NAME = 'eCommerce';
 
 		protected $conn;
