@@ -6,6 +6,7 @@ import { authRouter } from "./auth.routes";
 import morgan from "morgan";
 import error from "../middleware/error.middleware";
 import adminRouter from "./admin.routes";
+import categoryRouter from "./category.router";
 export default function (app: Express) {
   app.use(
     cors({
@@ -22,6 +23,7 @@ export default function (app: Express) {
   app.use(bodyParser.urlencoded({ extended: true }));
   app.use(morgan("tiny"));
   app.use("/api/auth", authRouter);
-  app.use('/admin', adminRouter);
+  app.use('/api/admin', adminRouter);
+  app.use('/api/category', categoryRouter);
   app.use(error);
 }
