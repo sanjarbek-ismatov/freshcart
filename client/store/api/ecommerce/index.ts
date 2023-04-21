@@ -8,14 +8,14 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost/api",
+    baseUrl: "http://localhost:4000/api",
   }),
   endpoints(build) {
     return {
       signUp: build.mutation<ServerResponse<any>, RequestRegisterForm>({
         query(body) {
           return {
-            url: "signup",
+            url: "auth/signup",
             method: "POST",
             body: JSON.stringify(body),
             headers: {
@@ -27,7 +27,7 @@ export const eCommerceApi = createApi({
       login: build.mutation<ServerResponse<User[]>, RequestLoginForm>({
         query(body) {
           return {
-            url: "login",
+            url: "auth/login",
             method: "POST",
             body,
             headers: {
