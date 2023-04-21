@@ -5,10 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="767ff948-9d53-4190-a660-574daea98f3e" name="Changes" comment="admin role">
-      <change afterPath="$PROJECT_DIR$/node/controllers/category.controller.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node/models/category.model.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/node/routes/category.router.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/node/types/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/client/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/controllers/category.controller.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node/controllers/category.controller.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/helpers/validator.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node/helpers/validator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/models/category.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node/models/category.model.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/node/routes/category.router.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node/routes/category.routes.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/node/routes/routes.ts" beforeDir="false" afterPath="$PROJECT_DIR$/node/routes/routes.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,7 +67,7 @@
     ]
   }
 }</component>
-  <component name="RunManager" selected="npm.client">
+  <component name="RunManager" selected="npm.server">
     <configuration name="client" type="js.build_tools.npm">
       <package-json value="$PROJECT_DIR$/client/package.json" />
       <command value="run" />
@@ -115,6 +119,13 @@
       <workItem from="1682056651852" duration="193000" />
       <workItem from="1682056859279" duration="1723000" />
       <workItem from="1682058611447" duration="2057000" />
+      <workItem from="1682068755755" duration="426000" />
+      <workItem from="1682083769888" duration="183000" />
+      <workItem from="1682083968010" duration="92000" />
+      <workItem from="1682084077105" duration="51000" />
+      <workItem from="1682084146372" duration="54000" />
+      <workItem from="1682084212435" duration="161000" />
+      <workItem from="1682084386471" duration="2645000" />
     </task>
     <task id="LOCAL-00001" summary="auth">
       <created>1682058004028</created>
