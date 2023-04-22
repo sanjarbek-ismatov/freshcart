@@ -112,3 +112,27 @@ maishiy-texnika
 
 # getCategory
 To get category send /getCategory
+
+# additionalCategory
+> This is for add new category inside category e.g: 
+```
+|-Gadjetlar
+|-->Telefon
+|-->Kompyuter
+```
+
+For this we need
+- admin token
+- parent category name
+- category name
+- slug
+
+# getCategoryByParentCategory
+> to get category name from parent category
+```
+|-Gadjetlar
+|-->Telefon
+|-->Kompyuter
+```
+For this we need
+- parentCategory
