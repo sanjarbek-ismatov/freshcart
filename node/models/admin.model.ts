@@ -1,9 +1,10 @@
-import mongoose from "mongoose";
+import mongoose, {Schema} from "mongoose";
+import {AdminType} from "../types";
 
-const adminSchema = new mongoose.Schema({
+const adminSchema: Schema<AdminType> = new mongoose.Schema({
     login: {type: String, unique: true},
     password: String
 })
-const Admin = mongoose.model('Admin', adminSchema)
+const Admin = mongoose.model<AdminType>('Admin', adminSchema)
 
 export default Admin

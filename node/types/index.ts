@@ -19,4 +19,8 @@ interface ProductType {
     expirationData: string;
     dateOfManufacture: string;
 }
-export type {CategoryType, ProductType}
+interface AdminType {
+    login: string;
+    password: string;
+}
+export type {CategoryType, ProductType, AdminType}
