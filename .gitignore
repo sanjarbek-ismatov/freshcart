@@ -1,2 +1,4 @@
-
-backend-node
+.idea
+node/dist
+.vscode
+.hintrc
