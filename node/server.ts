@@ -1,9 +1,11 @@
 import "express-async-errors";
-import "./helpers/logger";
 import { config } from "dotenv";
 config();
+import "./helpers/logger";
 import express from "express";
 import routes from "./routes/routes";
+
+
 
 import { dbConnect } from "./helpers/dbconnector";
 const app = express();
