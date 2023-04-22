@@ -1,6 +1,6 @@
 import Joi from "joi";
 import JoiPasswordComplexity from "joi-password-complexity";
-import {Category} from "../types";
+import {CategoryType} from "../types";
 export const registerValidator = (body: {
     name: string;
     username: string;
@@ -33,7 +33,7 @@ export const registerValidator = (body: {
 
 
 
-export const categoryValidator = (body: Category) => {
+export const categoryValidator = (body: CategoryType) => {
     const validator = Joi.object({
         name: Joi.string().required(),
         slug: Joi.string().required().lowercase(),
