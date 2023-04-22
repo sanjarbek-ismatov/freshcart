@@ -22,4 +22,4 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
     expirationData: String,
     dateOfManufacture: String
 })
-const Product = mongoose.model('Product', productSchema)
+export const Product = mongoose.model('Product', productSchema)
