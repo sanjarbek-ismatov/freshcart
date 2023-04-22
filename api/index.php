@@ -520,11 +520,11 @@
                 $data['code'] = 404;
                 $data['message'] = "Category not found";
             }
-        } else {
-            $data['code'] = 404;
-            $data['message'] = "Method not found";
         }
-    } 
+    } else {
+        $data['code'] = 404;
+        $data['message'] = "Method not found";
+    }
 
     print_r(json_encode($data));
 ?>
