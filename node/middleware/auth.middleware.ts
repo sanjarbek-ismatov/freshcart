@@ -1,5 +1,5 @@
 import {NodeRequest} from "../types";
-import {NextFunction, Response, Request} from "express";
+import {NextFunction, Response} from "express";
 import {User} from "../models/user.model";
 import {tokenParser} from "../helpers/tokengenerator";
 
