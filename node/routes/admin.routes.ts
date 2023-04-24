@@ -1,8 +1,7 @@
 import express from "express";
+import adminController from "../controllers/admin.controller";
 
 const adminRouter = express.Router();
-adminRouter.post("/create");
-adminRouter.post("/createcategory", async (req, res) => {
-  res.send("create category");
-});
+adminRouter.post("/create", adminController.createAdmin);
+
 export default adminRouter;
