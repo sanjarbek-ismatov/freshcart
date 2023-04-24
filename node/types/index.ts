@@ -26,8 +26,8 @@ interface AdminType {
   password: string;
 }
 interface NodeRequest extends Request  {
-  user?: string;
+  user?: any;
   vendor?: string;
   admin?: boolean;
-};
+}
 export type { CategoryType, ProductType, AdminType, NodeRequest };

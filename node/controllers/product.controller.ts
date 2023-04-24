@@ -18,8 +18,8 @@ async function create(req: NodeRequest, res: Response) {
     newProduct.shop = req.vendor;
   }
   if (Array.isArray(req.files)) {
-    const images = req.files?.map((e: Express.Multer.File) => e.filename);
-    newProduct.images = images;
+
+    newProduct.images =  req.files?.map((e: Express.Multer.File) => e.filename);
   }
   console.log(newProduct);
     await newProduct.save();

@@ -1,8 +1,8 @@
 import Admin from "../models/admin.model";
 import { NodeRequest } from "../types";
-import { Response, Request } from "express";
+import { Response } from "express";
 import {passwordGenerator} from "../helpers/passwordmanager";
-async function createAdmin(req: Request, res: Response) {
+async function createAdmin(req: NodeRequest, res: Response) {
   const { key, password, login } = req.query;
   if(!(key && typeof password === 'string' && login)) return res.status(400).send({code: 400, message: "To'liq form emas"})
   if (key !== process.env.KEY)

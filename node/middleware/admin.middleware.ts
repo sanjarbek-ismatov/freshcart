@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from "express";
+import {Response, NextFunction} from "express";
 import Admin from "../models/admin.model";
 import {passwordChecker} from "../helpers/passwordmanager";
 import {NodeRequest} from "../types";
