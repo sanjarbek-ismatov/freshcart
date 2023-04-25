@@ -1,4 +1,5 @@
 import { Request } from "express";
+import {Document} from "mongoose";
 
 interface CategoryType {
   name: string;
@@ -26,8 +27,26 @@ interface AdminType {
   password: string;
 }
 interface NodeRequest extends Request  {
-  user?: any;
+  user?: UserType;
   vendor?: string;
   admin?: boolean;
 }
-export type { CategoryType, ProductType, AdminType, NodeRequest };
+interface UserType extends Document {
+  name: string;
+  email: string;
+  phone: string;
+  image: string;
+  username: string;
+  password: string;
+}
+interface VendorType {
+  name:     string;
+  slug:     string;
+  category: string[];
+  sells:    number;
+  stars:    number;
+  phone: string;
+  email: string;
+  products: ProductType[]
+}
+export type { CategoryType, ProductType, AdminType, NodeRequest, UserType, VendorType };

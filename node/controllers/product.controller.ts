@@ -3,10 +3,12 @@ import { Product } from "../models/product.model";
 import { productValidator } from "../helpers/validator";
 import {NodeRequest} from "../types";
 async function getAll(req: NodeRequest, res: Response) {
+  console.log(req?.user)
   const products = await Product.find();
   res.status(200).send(products);
 }
 async function create(req: NodeRequest, res: Response) {
+
   const { error } = productValidator(req.body);
 
   if (error)
