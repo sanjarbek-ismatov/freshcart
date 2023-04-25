@@ -506,6 +506,8 @@
                     $data['code'] = 403;
                     $data['message'] = "Forbidden | Redirect to login page";
                 }
+            } else {
+                $data['message'] = "token, name, slug required";
             }
         } else if($method = 'getCategory'){
             $all = $db->selectAll('category');
@@ -520,11 +522,97 @@
                 $data['code'] = 404;
                 $data['message'] = "Category not found";
             }
-        } else {
-            $data['code'] = 404;
-            $data['message'] = "Method not found";
+        } else if ($method == 'additionalCategory'){
+            if(isset($data_body['token']) && isset($data_body['category_name']) && isset($data_body['slug']) && isset($data_body['parentCategory'])){
+                $tokenAdmin = $db->escapeString($data_body['token']);
+                $categoryName = $db->escapeString($data_body['category_name']);
+                $parentCategory = $db->escapeString($data_body['parentCategory']);
+                $slug = $db->escapeString($data_body['slug']);
+
+                // check admin token
+                $check = $db->selectWhere('admins', [
+                    [
+                        'token'=>$tokenAdmin,
+                        'cn'=> '='
+                    ]
+                ]);
+                if($check->num_rows > 0){
+                    // check parent category name
+                    $check = $db->selectWhere('category', [
+                        [
+                            'name'=>$parentCategory,
+                            'cn'=> '='
+                        ]
+                    ]);
+                    if($check->num_rows > 0){
+                        // check for currect category name
+                        $check = $db->selectWhere('category', [
+                            [
+                                'slug'=>$slug,
+                                'cn'=> '='
+                            ]
+                        ]);
+                        if($check->num_rows > 0){
+                            // insert new category
+                            $ins = $db->insertInto('additionalCategory',[
+                                [
+                                    'name'=>$categoryName,
+                                    'slug'=>$slug,
+                                    'parentCategory'=>$parentCategory,
+                                ]
+                            ]);
+                            if($ins){
+                                $data['ok'] = true;
+                                $data['code'] = 200;
+                                $data['message'] = "Category name added";
+                            } else {
+                                $data['code'] = 503;
+                            $data['message'] = "Someting wrong went";
+                            }
+                        } else {
+                            $data['code'] = 409;
+                            $data['message'] = "Conflict || category slug already exsist";
+                        }
+                    } else {
+                        $data['code'] = 404;
+                        $data['message'] = "Parent category name not found";
+                    }
+                } else {
+                    $data['code'] = 403;
+                    $data['message'] = "Forbidden || Admin token not match";
+                }
+            } else {
+                $data['message'] = "token, name, slug required";
+            }
+        } else if($method == 'getCategoryByParentCategory'){
+            if(isset($data_body['parentCategory'])){
+                $parentCategory = $db->escapeString($data_body['parentCategory']);
+                $slt = $db->selectWhere('additionalCategory',[
+                    [
+                        'parentCategory'=>$parentCategory,
+                        'cn'=>'='
+                    ]
+                ]);
+                if($slt->num_rows > 0){
+                    foreach ($slt as $key => $value) {
+                        $data['result'][] = $value;  
+                    }
+                    $data['code'] = 200;
+                    $data['ok'] = true;
+                    $data['message'] = "Category found";
+                } else {
+                    $data['code'] = 404;
+                    $data['message'] = "Category not found";
+                }
+            } else {    
+                $data['code'] = 404;
+                $data['message'] = "Parent category name not found";
+            }
         }
-    } 
+    } else {
+        $data['code'] = 404;
+        $data['message'] = "Method not found";
+    }
 
     print_r(json_encode($data));
 ?>

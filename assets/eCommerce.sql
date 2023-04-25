@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 10, 2023 at 09:09 PM
+-- Generation Time: Apr 22, 2023 at 04:40 PM
 -- Server version: 10.1.48-MariaDB
 -- PHP Version: 7.2.34
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `eCommerce`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `additionalCategory`
+--
+
+CREATE TABLE `additionalCategory` (
+  `id` int(11) NOT NULL,
+  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `parentCategory` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `slug` text COLLATE utf8mb4_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -88,6 +101,12 @@ CREATE TABLE `users` (
 --
 
 --
+-- Indexes for table `additionalCategory`
+--
+ALTER TABLE `additionalCategory`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admins`
 --
 ALTER TABLE `admins`
@@ -114,6 +133,12 @@ ALTER TABLE `users`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `additionalCategory`
+--
+ALTER TABLE `additionalCategory`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `admins`
