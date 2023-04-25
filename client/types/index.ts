@@ -18,7 +18,7 @@ interface RequestLoginForm {
 }
 
 interface User {
-  city: string | null;
+  city?: string;
   email: string;
   id: string;
   name: string;

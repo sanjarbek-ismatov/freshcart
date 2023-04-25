@@ -1,10 +1,14 @@
 import jwt from 'jsonwebtoken'
 
 export  function tokenGenerator(email: string){
-	const token =  jwt.sign({email}, process.env.JWT_SECRET || '')
-	return token
+	return jwt.sign({email}, process.env.KEY || '')
+
 }
 export function tokenParser(token: string){
-	const decoded = jwt.verify(token, process.env.JWT_SECRET || '')
-	return decoded
+	try {
+		return  jwt.verify(token, process.env.KEY || '') as any
+
+	} catch (e) {
+		return
+	}
 }

@@ -1,7 +1,7 @@
-import express from 'express'
+import express from "express";
+import adminController from "../controllers/admin.controller";
 
-const adminRouter = express.Router()
-adminRouter.post('/createcategory', async (req, res) => {
-    res.send('create category')
-})
-export default adminRouter
+const adminRouter = express.Router();
+adminRouter.post("/create", adminController.createAdmin);
+
+export default adminRouter;
