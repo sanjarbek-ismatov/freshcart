@@ -1,6 +1,5 @@
 import { Request } from "express";
 import {Document} from "mongoose";
-import {Multer} from "multer";
 interface CategoryType {
   name: string;
   slug: string;
@@ -17,7 +16,7 @@ interface ProductType {
   reviews: string[];
   weight: number;
   count: number;
-  shop: string;
+  vendor: VendorType;
   guarantee: number;
   expirationData: string;
   dateOfManufacture: string;
@@ -28,7 +27,7 @@ interface AdminType {
 }
 interface NodeRequest extends Request  {
   user?: UserType;
-  vendor?: string;
+  vendor?: VendorType;
   admin?: boolean;
 }
 interface UserType extends Document {
@@ -39,7 +38,7 @@ interface UserType extends Document {
   username: string;
   password: string;
 }
-interface VendorType {
+interface VendorType extends Document{
   name:     string;
   slug:     string;
   category: string[];
