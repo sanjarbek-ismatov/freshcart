@@ -8,7 +8,7 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   category: [String],
   description: String,
   rating: Number,
-  images: [mongoose.SchemaTypes.ObjectId],
+  images: [String],
   reviews: [
     {
       type: [mongoose.SchemaTypes.ObjectId],
@@ -17,7 +17,7 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   ],
   weight: Number,
   count: Number,
-  shop: mongoose.SchemaTypes.ObjectId,
+  vendor: mongoose.SchemaTypes.ObjectId,
   guarantee: Number,
   expirationData: String,
   dateOfManufacture: String,

@@ -1,7 +1,6 @@
 import Joi from "joi";
 import JoiPasswordComplexity from "joi-password-complexity";
 import {CategoryType, ProductType, VendorType} from "../types";
-import VendorRoutes from "../routes/vendor.routes";
 export const registerValidator = (body: {
   name: string;
   username: string;
@@ -47,14 +46,13 @@ export const productValidator = (body: ProductType) => {
     name: Joi.string().required(),
     slug: Joi.string().required(),
     price: Joi.number().required(),
-    category: Joi.array().items(Joi.string()).required(),
+    category: Joi.string().required(),
     description: Joi.string(),
     rating: Joi.number(),
     images: Joi.array().items(Joi.string()),
     reviews: Joi.array().items(Joi.string()),
     weight: Joi.number(),
     count: Joi.number(),
-    shop: Joi.string().required(),
     guarantee: Joi.number(),
     expirationData: Joi.string(),
     dateOfManufacture: Joi.string(),

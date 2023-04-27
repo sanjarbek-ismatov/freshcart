@@ -16,14 +16,13 @@ async function create(req: NodeRequest, res: Response) {
       .status(400)
       .send({ code: 400, message: error.details[0].message });
   const newProduct = await Product.create(req.body);
+  newProduct.category = req.body.category.split(/\s*,\s*/g)
   if (req.vendor) {
-    newProduct.shop = req.vendor;
+    newProduct.vendor = req.vendor;
   }
   if (Array.isArray(req.files)) {
-
     newProduct.images =  req.files?.map((e: Express.Multer.File) => e.filename);
   }
-  console.log(newProduct);
     await newProduct.save();
   res.status(201).send({ code: 201, message: "Yaratildi!" });
 }
