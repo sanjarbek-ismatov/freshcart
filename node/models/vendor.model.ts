@@ -3,7 +3,7 @@ import {VendorType} from "../types";
 const vendorSchema: Schema<VendorType> = new mongoose.Schema({
     name: String,
     slug: String,
-    category: String,
+    category: [String],
     sells: Number,
     stars: Number,
     phone: String,

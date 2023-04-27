@@ -7,10 +7,15 @@ import {Multer} from "multer";
 async function register(req: NodeRequest, res: Response){
     const {error} = vendorValidator(req.body)
     if(error) return res.status(400).send({code: 400, message: error.details[0].message})
+    const checkVendor = await Vendor.findOne({slug: req.body.slug})
+    if(checkVendor) return res.status(400).send({code: 400, message: 'Nom allaqachon mavjud'})
     const newVendor = await Vendor.create(req.body)
+    const files = req.files as  {[fieldname: string]: Express.Multer.File[]}
+    newVendor.category = req.body.category.split(/\s*,\s*/g)
+    newVendor.image = files['image'][0].filename
+    newVendor.banner = files['banner'][0].filename
 
-   console.log(req.files['image'][0])
-    // await newVendor.save()
+    await newVendor.save()
     res.status(201).send({code: 201, message: 'Yaratildi'})
 }
 async function login(req: NodeRequest, res: Response){
