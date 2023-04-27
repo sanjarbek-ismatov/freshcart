@@ -1,6 +1,6 @@
 import { Request } from "express";
 import {Document} from "mongoose";
-
+import {Multer} from "multer";
 interface CategoryType {
   name: string;
   slug: string;
@@ -47,6 +47,9 @@ interface VendorType {
   stars:    number;
   phone: string;
   email: string;
+  password: string;
+  image: string;
+  banner: string;
   products: ProductType[]
 }
 export type { CategoryType, ProductType, AdminType, NodeRequest, UserType, VendorType };

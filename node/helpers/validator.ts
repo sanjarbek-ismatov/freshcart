@@ -65,12 +65,13 @@ export const vendorValidator = (body: VendorType) => {
   const validator = Joi.object({
     name: Joi.string().required(),
     slug: Joi.string().required(),
-    category: Joi.array().items(Joi.string()),
+    category: Joi.string(),
     sells: Joi.number().integer().min(0),
     stars: Joi.number().min(0).max(5),
     phone: Joi.string().pattern(/^\+[0-9]+$/),
     email: Joi.string().email(),
-    products: Joi.array().items(Joi.string())
+    products: Joi.array().items(Joi.string()),
+    password: Joi.string().required()
   })
   return validator.validate(body)
 }

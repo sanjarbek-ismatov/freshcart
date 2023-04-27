@@ -8,6 +8,9 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
     stars: Number,
     phone: String,
     email: String,
+    password: String,
+    image: String,
+    banner: String,
     products: [{
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'products'
