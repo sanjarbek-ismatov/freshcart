@@ -22,8 +22,7 @@ async function register(req: NodeRequest, res: Response){
 async function login(req: NodeRequest, res: Response){
     const checkVendor = await Vendor.findOne({email: req.body.email})
     if(!checkVendor) return res.status(404).send({code: 404, message: 'Topilmadi'})
-    const checkedPassword = passwordChecker(checkVendor.password, req.body.password)
-    console.log(checkedPassword, checkVendor.password, req.body.password)
+    const checkedPassword = passwordChecker(req.body.password, checkVendor.password)
     if(!checkedPassword) return res.status(401).send({code: 401, message: 'Xato parol'})
     const token = tokenGenerator(checkVendor.email)
     res.status(200).setHeader('x-vendor-token', token).send({code: 200, message: 'Bajarildi'})
