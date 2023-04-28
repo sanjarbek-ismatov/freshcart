@@ -5,6 +5,7 @@ import {
   User,
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import {BaseQueryResult} from "@reduxjs/toolkit/src/query/baseQueryTypes";
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
@@ -35,6 +36,9 @@ export const eCommerceApi = createApi({
             },
           };
         },
+        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, arg){
+          return {...baseQueryResult, token: meta?.response?.headers.get('x-token')}
+        }
       }),
     };
   },

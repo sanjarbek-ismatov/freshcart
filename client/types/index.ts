@@ -1,8 +1,9 @@
 interface ServerResponse<T> {
-  ok: boolean;
+  // ok: boolean;
   message: string;
-  result: T;
+  // result: T;
   code: number;
+  token?: string
 }
 
 interface RequestRegisterForm {
