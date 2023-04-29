@@ -1,13 +1,9 @@
 import "./PopularProducts.css";
 import ProductCard from "../Product";
 import {Product} from "@/types";
-const getProducts = async () => {
-  const res = await fetch('http://localhost:4000/api/product/all')
-  const data: Product[] = await res.json()
-  return data
-}
-async function PopularProducts({ title }: { title: string }) {
-  const products = await getProducts()
+
+function PopularProducts({ title, products }: { title: string; products: Product[] }) {
+
   return (
     <>
       <div className="my-6">
