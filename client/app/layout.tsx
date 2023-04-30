@@ -9,8 +9,7 @@ import {
   ModalFormRegister,
   Navbar,
 } from "./components";
-import { Provider } from "react-redux";
-import { store } from "../store/store";
+import Provider from "@/store/provider";
 import { useAuth } from "./hooks/useAuth";
 import { useCallback, useEffect, useRef, useState } from "react";
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
@@ -62,7 +61,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
-          {/*<Provider store={store}>*/}
+          <Provider>
             <Navbar ref={openRegisterRef} />
             <Menu />
             {children}
@@ -76,7 +75,7 @@ export default function RootLayout({
                 <ModalFormLogin />
               </Modal>
             )}
-          {/*</Provider>*/}
+          </Provider>
         </ErrorBoundary>
       </body>
     </html>
