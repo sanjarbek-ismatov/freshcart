@@ -58,6 +58,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <title>Freshcart</title>
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
