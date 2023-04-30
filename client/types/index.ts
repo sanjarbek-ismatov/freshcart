@@ -35,7 +35,7 @@ interface Product {
   stars: number;
   cost: string;
   bought: string;
-  image: string;
+  images: string[];
 }
 export type {
   ServerResponse,

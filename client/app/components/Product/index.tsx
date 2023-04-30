@@ -1,6 +1,7 @@
 import { Product } from "@/types";
 import Image from "next/image";
 function ProductCard({ details }: { details: Product }) {
+
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
@@ -10,8 +11,8 @@ function ProductCard({ details }: { details: Product }) {
         <Image
           width={250}
           height={0}
-          src={details.image}
-          loader={() => details.image}
+          src={`http://localhost:4000/api/files/image/640440970e1790fd21eefaa38c6ffe2b.png`}
+          // loader={() => `http://localhost:4000/api/files/image/${details.image}`}
           alt="Product image"
           unoptimized
         />

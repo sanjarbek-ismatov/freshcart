@@ -1,3 +1,4 @@
+"use client"
 import { useFormik } from "formik";
 import Button from "../Button";
 import Input from "../Input";

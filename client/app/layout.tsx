@@ -62,7 +62,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
-          <Provider store={store}>
+          {/*<Provider store={store}>*/}
             <Navbar ref={openRegisterRef} />
             <Menu />
             {children}
@@ -76,7 +76,7 @@ export default function RootLayout({
                 <ModalFormLogin />
               </Modal>
             )}
-          </Provider>
+          {/*</Provider>*/}
         </ErrorBoundary>
       </body>
     </html>

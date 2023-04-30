@@ -1,14 +1,14 @@
 import express from "express";
 import mongoose from "mongoose";
 const fileRoute = express.Router()
-import { GridFSBucket } from 'mongodb';
+// import { GridFSBucket } from 'mongodb';
 
-let gfb: GridFSBucket;
+let gfb: any;
 
 const connection = mongoose.connection;
 
 connection.once('open', () => {
-    gfb = new GridFSBucket(connection.db as any, { bucketName: 'uploads' });
+    gfb = new mongoose.mongo.GridFSBucket(connection.db as any, { bucketName: 'uploads' });
 });
 
 fileRoute.get('/all', async (req, res) => {
@@ -28,12 +28,10 @@ fileRoute.get('/image/:filename', async (req, res) => {
         readStream.on('error', () => {
             res.status(500).json({ code: 500, message: 'Server error' });
         });
-        readStream.pipe(res);
+        readStream.pipe(res.contentType(file[0].contentType));
     } else {
         res.status(404).json({ code: 404, message: 'File is not an image' });
     }
-
-    res.end();
 })
 
 export default fileRoute
