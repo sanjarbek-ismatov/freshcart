@@ -1,5 +1,4 @@
-"use client";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {Suspense, useCallback, useEffect, useRef, useState} from "react";
 import {
   Swiper,
   Categories,
@@ -11,13 +10,21 @@ import {
   ModalFormRegister,
   ModalFormLogin,
 } from "./components";
-import { useAuth } from "./hooks/useAuth";
-export default function Home() {
+const getProducts = async () => {
+    const res = await fetch('http://localhost:4000/api/product/all')
+    const data: Product[] = await res.json()
+    return data
+}
+import {Product} from "@/types";
+export  default async function Home() {
+    const products = await getProducts()
   return (
     <div className="container max-w-[1300px] mx-auto">
       <Swiper />
       <Categories />
-      <ProductGrid title="Mashhur maxsulotlar" />
+
+      <ProductGrid products={products} title="Mashhur maxsulotlar" />
+
       <About />
       <Footer />
       <SidePanel />

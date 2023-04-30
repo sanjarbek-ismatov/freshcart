@@ -1,8 +1,9 @@
 interface ServerResponse<T> {
-  ok: boolean;
+  // ok: boolean;
   message: string;
-  result: T;
+  // result: T;
   code: number;
+  token?: string
 }
 
 interface RequestRegisterForm {
@@ -34,7 +35,7 @@ interface Product {
   stars: number;
   cost: string;
   bought: string;
-  image: string;
+  images: string[];
 }
 export type {
   ServerResponse,

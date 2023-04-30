@@ -1,3 +1,4 @@
+"use client"
 import { useFormik } from "formik";
 import Button from "../Button";
 import Input from "../Input";
@@ -15,7 +16,7 @@ function ModalFormLogin() {
     onSubmit(values, formikHelpers) {
       login(values).then((data) => {
         if ("data" in data) {
-          localStorage.setItem("token", data.data.result[0].temporary_token);
+          localStorage.setItem("token", data.data.token as any);
           window.location.reload();
         }
       });

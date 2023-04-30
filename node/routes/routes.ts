@@ -9,6 +9,7 @@ import adminRouter from "./admin.routes";
 import categoryRoutes from "./category.routes";
 import productRoute from "./product.routes";
 import vendorRoute from "./vendor.routes";
+import fileRoute from "./files.routes";
 export default function (app: Express) {
   app.use(
     cors({
@@ -29,5 +30,6 @@ export default function (app: Express) {
   app.use("/api/category", categoryRoutes);
   app.use("/api/product", productRoute);
   app.use('/api/vendor', vendorRoute)
+  app.use('/api/files', fileRoute)
   app.use(error);
 }
