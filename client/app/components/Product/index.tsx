@@ -1,7 +1,7 @@
-import { Product } from "@/types";
+import { ProductType } from "@/types";
 import Image from "next/image";
-function ProductCard({ details }: { details: Product }) {
-
+function ProductCard({ details }: { details: ProductType }) {
+    console.log(details.images[0])
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
@@ -11,8 +11,7 @@ function ProductCard({ details }: { details: Product }) {
         <Image
           width={250}
           height={0}
-          src={`http://localhost:4000/api/files/image/640440970e1790fd21eefaa38c6ffe2b.png`}
-          // loader={() => `http://localhost:4000/api/files/image/${details.image}`}
+          src={`http://localhost:4000/api/files/image/${details.images[0]}`}
           alt="Product image"
           unoptimized
         />
@@ -22,26 +21,26 @@ function ProductCard({ details }: { details: Product }) {
         </div>
       </div>
       <p className="text-slate-500 text-sm">{details.category.join(", ")}</p>
-      <p className="text-lg font-medium">{details.title}</p>
+      <p className="text-lg font-medium">{details.name}</p>
       <div className="leading-7">
-        {/*{Array.from(new Array(Math.floor(details.stars)), (v, k) => k + 1).map(*/}
-        {/*  (e, i) => (*/}
-        {/*    <i key={i} className="fa-solid text-sm text-yellow-500 fa-star"></i>*/}
-        {/*  )*/}
-        {/*)}*/}
-        {details.stars === 5 ? (
+        {Array.from(new Array(Math.floor(details.rating)), (v, k) => k + 1).map(
+          (e, i) => (
+            <i key={i} className="fa-solid text-sm text-yellow-500 fa-star"></i>
+          )
+        )}
+        {details.rating === 5 ? (
           <i className="fa-solid text-sm text-yellow-500 fa-star"></i>
-        ) : Math.ceil(details.stars) > details.stars ? (
+        ) : Math.ceil(details.rating) > details.rating ? (
           <i className="fa-regular text-sm text-yellow-500 fa-star-half-stroke"></i>
         ) : (
           ""
         )}
         <span className="ml-2 text-slate-600">
-          {details.stars} ({details.bought})
+          {details.rating} ({details.reviews.length})
         </span>
       </div>
       <div className="flex justify-between mt-4">
-        <span>${details.cost}</span>{" "}
+        <span>${details.price}</span>{" "}
         <button className="p-1 bg-green-500 text-white rounded-md">
           +Savat
         </button>

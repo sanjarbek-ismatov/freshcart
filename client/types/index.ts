@@ -28,19 +28,39 @@ interface User {
   temporary_token: string;
   username: string;
 }
-
-interface Product {
-  title: string;
+interface VendorType{
+  name:     string;
+  slug:     string;
   category: string[];
-  stars: number;
-  cost: string;
-  bought: string;
+  sells:    number;
+  stars:    number;
+  phone: string;
+  email: string;
+  password: string;
+  image: string;
+  banner: string;
+  products: ProductType[]
+}
+interface ProductType {
+  name: string;
+  slug: string;
+  price: number;
+  category: string[];
+  description: string;
+  rating: number;
   images: string[];
+  reviews: string[];
+  weight: number;
+  count: number;
+  vendor: VendorType;
+  guarantee: number;
+  expirationData: string;
+  dateOfManufacture: string;
 }
 export type {
   ServerResponse,
   RequestRegisterForm,
   RequestLoginForm,
   User,
-  Product,
+  ProductType,
 };
