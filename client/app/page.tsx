@@ -1,4 +1,4 @@
-import {Suspense, useCallback, useEffect, useRef, useState} from "react";
+import {Suspense, useCallback} from "react";
 import {
   Swiper,
   Categories,
@@ -11,11 +11,11 @@ import {
   ModalFormLogin,
 } from "./components";
 const getProducts = async () => {
-    const res = await fetch('http://localhost:4000/api/product/all')
-    const data: Product[] = await res.json()
+    const res = await fetch('http://localhost:4000/api/product/all', {cache: 'no-store'})
+    const data: ProductType[] = await res.json()
     return data
 }
-import {Product} from "@/types";
+import {ProductType} from "@/types";
 export  default async function Home() {
     const products = await getProducts()
   return (

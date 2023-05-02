@@ -3,6 +3,8 @@ import "./Footer.css";
 import categories from "data/categories.json";
 import { categorySplitter } from "@/app/utils/categorysplitter";
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+
 function Footer() {
   const [splitted, setSplitted] = useState<string[][]>();
   const splitter = useCallback(() => categorySplitter(10, categories), []);
@@ -51,9 +53,21 @@ function Footer() {
           <h4 className="font-semibold text-slate-900 text-lg my-3">
             Sotuvchiga aylaning
           </h4>
-          <p className="text-slate-600 text-md leading-8">Imkoniyatlar</p>
-          <p className="text-slate-600 text-md leading-8">
-            Sotuvchiga aylaning
+          <p>
+            <Link
+              href="/vendor/auth"
+              className="text-slate-600 text-md leading-8"
+            >
+              Ro`yhatdan o`tish
+            </Link>
+          </p>
+          <p>
+            <Link
+              href="/vendor/home"
+              className="text-slate-600 text-md leading-8"
+            >
+              Sahifa
+            </Link>
           </p>
           <p className="text-slate-600 text-md leading-8">Daromad</p>
           <p className="text-slate-600 text-md leading-8">

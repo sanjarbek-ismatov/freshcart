@@ -1,8 +1,8 @@
 import "./PopularProducts.css";
 import ProductCard from "../Product";
-import {Product} from "@/types";
+import {ProductType} from "@/types";
 
-function PopularProducts({ title, products }: { title: string; products: Product[] }) {
+function PopularProducts({ title, products }: { title: string; products: ProductType[] }) {
 
   return (
     <>

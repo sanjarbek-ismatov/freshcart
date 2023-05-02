@@ -19,6 +19,8 @@ async function create(req: NodeRequest, res: Response) {
   newProduct.category = req.body.category.split(/\s*,\s*/g)
   if (req.vendor) {
     newProduct.vendor = req.vendor;
+    req.vendor.products.push(newProduct)
+    await req.vendor.save()
   }
   if (Array.isArray(req.files)) {
     newProduct.images =  req.files?.map((e: Express.Multer.File) => e.filename);

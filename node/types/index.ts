@@ -1,5 +1,5 @@
 import { Request } from "express";
-import {Document} from "mongoose";
+import {Document, Types} from "mongoose";
 interface CategoryType {
   name: string;
   slug: string;
@@ -16,7 +16,7 @@ interface ProductType {
   reviews: string[];
   weight: number;
   count: number;
-  vendor: VendorType;
+  vendor: Document<unknown, {}, VendorType> & Omit<VendorType & {_id: Types.ObjectId}, never>;
   guarantee: number;
   expirationData: string;
   dateOfManufacture: string;
@@ -27,7 +27,7 @@ interface AdminType {
 }
 interface NodeRequest extends Request  {
   user?: UserType;
-  vendor?: VendorType;
+  vendor?: Document<unknown, {}, VendorType> & Omit<VendorType & {_id: Types.ObjectId}, never>;
   admin?: boolean;
 }
 interface UserType extends Document {

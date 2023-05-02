@@ -1,11 +1,11 @@
-"use client";
-import React from "react";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Metadata } from "next";
 import { BreadCrumb } from "@/app/components";
+
 export const metadata: Metadata = {
   title: "Do'konlar",
 };
+
 function StoresLayout({ children }: { children: ReactNode }) {
   return (
     <div className="mx-auto max-w-[1300px] container">
@@ -19,4 +19,5 @@ function StoresLayout({ children }: { children: ReactNode }) {
     </div>
   );
 }
+
 export default StoresLayout;
