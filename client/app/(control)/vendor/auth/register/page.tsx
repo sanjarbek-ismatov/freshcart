@@ -14,10 +14,11 @@ function VendorRegisterPage() {
       phone: "",
       email: "",
       password: "",
-      image: null,
-      banner: null,
+      image: undefined,
+      banner: undefined,
     },
     onSubmit(values, helpers) {
+      console.log(values);
       register(values);
     },
   });
