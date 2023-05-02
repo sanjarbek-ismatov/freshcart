@@ -1,11 +1,12 @@
 import {
-  RequestRegisterForm,
   RequestLoginForm,
+  RequestRegisterForm,
   ServerResponse,
   User,
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {BaseQueryResult} from "@reduxjs/toolkit/src/query/baseQueryTypes";
+import { BaseQueryResult } from "@reduxjs/toolkit/src/query/baseQueryTypes";
+
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
@@ -36,11 +37,29 @@ export const eCommerceApi = createApi({
             },
           };
         },
-        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, arg){
-          return {...baseQueryResult, token: meta?.response?.headers.get('x-token')}
-        }
+        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, arg) {
+          return {
+            ...baseQueryResult,
+            token: meta?.response?.headers.get("x-token"),
+          };
+        },
+      }),
+      vendorRegister: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          url: "/vendor/register",
+          method: "POST",
+          body,
+        }),
+      }),
+      vendorLogin: build.mutation<ServerResponse<any>, FormData>({
+        query: (body) => ({ url: "/vendor/login", method: "POST", body }),
       }),
     };
   },
 });
-export const { useSignUpMutation, useLoginMutation } = eCommerceApi;
+export const {
+  useSignUpMutation,
+  useLoginMutation,
+  useVendorLoginMutation,
+  useVendorRegisterMutation,
+} = eCommerceApi;

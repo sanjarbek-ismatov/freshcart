@@ -12,6 +12,7 @@ import {
 import Provider from "@/store/provider";
 import { useAuth } from "./hooks/useAuth";
 import { useCallback, useEffect, useRef, useState } from "react";
+
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
   children,
@@ -65,7 +66,7 @@ export default function RootLayout({
           <Provider>
             <Navbar ref={openRegisterRef} />
             <Menu />
-            {children}
+            <div className="mx-auto max-w-[1300px] container">{children}</div>
             {show === "register" && (
               <Modal ref={closeRegisterRef} title="Hisob yaratish">
                 <ModalFormRegister ref={openLoginRef} />
