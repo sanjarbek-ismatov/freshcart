@@ -1,6 +1,16 @@
+import { MutationTrigger } from "@reduxjs/toolkit/src/query/react/buildHooks";
+import { MutationDefinition } from "@reduxjs/toolkit/query";
+
 class FormParser {
   private form?: any;
   private formData = new FormData();
+  private mutation: MutationTrigger<MutationDefinition<any, any, any, any>>;
+
+  constructor(
+    mutation: MutationTrigger<MutationDefinition<any, any, any, any>>
+  ) {
+    this.mutation = mutation;
+  }
 
   public setForm(form: any) {
     this.form = form;
@@ -19,8 +29,11 @@ class FormParser {
   }
 
   public get getData() {
-    console.log(this.formData);
     return this.formData;
+  }
+
+  public sendForm() {
+    this.mutation(this.formData);
   }
 }
 

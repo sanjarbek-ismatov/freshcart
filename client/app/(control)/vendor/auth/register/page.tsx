@@ -7,7 +7,8 @@ import FormParser from "@/app/utils/formParser";
 function VendorRegisterPage() {
   const [register, { isLoading }] = useVendorRegisterMutation();
   const [form, setForm] = useState<FormEvent>();
-  const formParser = new FormParser();
+  const formParser = new FormParser(register);
+
   return (
     <div>
       <BreadCrumb
@@ -22,7 +23,7 @@ function VendorRegisterPage() {
         onSubmit={(e) => {
           e.preventDefault();
           formParser.setForm(e);
-          console.log(formParser.getData);
+          formParser.sendForm();
         }}
         className="w-96"
         encType="multipart/form-data"
