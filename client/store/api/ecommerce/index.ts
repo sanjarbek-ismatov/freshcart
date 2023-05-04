@@ -49,9 +49,6 @@ export const eCommerceApi = createApi({
           url: "/vendor/register",
           method: "POST",
           body,
-          headers: {
-            "Content-Type": "",
-          },
         }),
       }),
       vendorLogin: build.mutation<ServerResponse<any>, FormData>({
