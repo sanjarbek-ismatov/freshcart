@@ -45,7 +45,6 @@ export const categoryValidator = (body: CategoryType) => {
 export const productValidator = (body: ProductType) => {
   const validator = Joi.object({
     name: Joi.string().required(),
-    slug: Joi.string().required(),
     price: Joi.number().required(),
     category: Joi.string().required(),
     description: Joi.string(),
@@ -54,7 +53,7 @@ export const productValidator = (body: ProductType) => {
     reviews: Joi.array().items(Joi.string()),
     weight: Joi.number(),
     count: Joi.number(),
-    guarantee: Joi.number(),
+    guarantee: Joi.string(),
     expirationData: Joi.string(),
     dateOfManufacture: Joi.string(),
   });
@@ -76,4 +75,3 @@ export const vendorValidator = (body: VendorType) => {
   });
   return validator.validate(body);
 };
-
