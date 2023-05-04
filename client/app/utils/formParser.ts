@@ -15,16 +15,17 @@ class FormParser {
   public setForm(form: any) {
     this.form = form;
     for (let i = 0; i < form.target.length; i++) {
-      if (this.form.target[i].type === "file")
+      if (this.form.target[i].type === "file") {
         this.formData.append(
           this.form.target[i].name,
           this.form.target[i].files[0]
         );
-      else
+      } else if (this.form.target[i].type !== "submit") {
         this.formData.append(
           this.form.target[i].name,
           this.form.target[i].value
         );
+      }
     }
   }
 
@@ -33,7 +34,7 @@ class FormParser {
   }
 
   public sendForm() {
-    this.mutation(this.formData);
+    return this.mutation(this.formData);
   }
 }
 
