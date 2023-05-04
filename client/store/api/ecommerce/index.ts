@@ -6,6 +6,7 @@ import {
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { BaseQueryResult } from "@reduxjs/toolkit/src/query/baseQueryTypes";
+import { gettoken } from "@/app/utils/gettoken";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
@@ -51,8 +52,24 @@ export const eCommerceApi = createApi({
           body,
         }),
       }),
-      vendorLogin: build.mutation<ServerResponse<any>, FormData>({
+      vendorLogin: build.mutation<ServerResponse<any>, RequestLoginForm>({
         query: (body) => ({ url: "/vendor/login", method: "POST", body }),
+        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, args) {
+          return {
+            ...baseQueryResult,
+            token: meta?.response?.headers.get("x-vendor-token"),
+          };
+        },
+      }),
+      addProduct: build.mutation<ServerResponse<any>, {}>({
+        query: (body) => ({
+          url: "/product/create",
+          method: "POST",
+          body,
+          headers: {
+            "x-vendor-token": gettoken("x-vendor-token"),
+          },
+        }),
       }),
     };
   },
@@ -62,4 +79,5 @@ export const {
   useLoginMutation,
   useVendorLoginMutation,
   useVendorRegisterMutation,
+  useAddProductMutation,
 } = eCommerceApi;

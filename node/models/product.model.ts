@@ -18,7 +18,7 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   weight: Number,
   count: Number,
   vendor: mongoose.SchemaTypes.ObjectId,
-  guarantee: Number,
+  guarantee: String,
   expirationData: String,
   dateOfManufacture: String,
 });

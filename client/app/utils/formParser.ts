@@ -14,19 +14,25 @@ class FormParser {
 
   public setForm(form: any) {
     this.form = form;
-    for (let i = 0; i < form.target.length; i++) {
-      if (this.form.target[i].type === "file") {
-        this.formData.append(
-          this.form.target[i].name,
-          this.form.target[i].files[0]
-        );
-      } else if (this.form.target[i].type !== "submit") {
-        this.formData.append(
-          this.form.target[i].name,
-          this.form.target[i].value
-        );
+    const obj: Record<string, any> = {};
+    const { target } = form;
+    for (let i = 0; i < target.length; i++) {
+      const { type, name, value, files } = target[i];
+
+      if (type === "file") {
+        obj[name] = [];
+        for (const image of files) {
+          this.formData.append(name, image);
+          obj[name].push(image);
+        }
+      } else if (type !== "submit") {
+        const key = name || "category";
+        this.formData.append(key, value);
+        obj[key] = value;
       }
     }
+
+    console.log(obj);
   }
 
   public get getData() {
