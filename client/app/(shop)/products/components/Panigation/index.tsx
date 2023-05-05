@@ -1,18 +1,15 @@
-import { useEffect, useMemo } from "react";
 import "./Panigation.css";
 import Link from "next/link";
+
 function Panigation() {
-  const pageCount = useMemo(() => {
+  const pageCount = () => {
     const pageListWithNumber = [...Array.from(new Array(10), (v, k) => ++k)];
     const result = pageListWithNumber.map((e, i) => ({
       path: `/products?page=${e}`,
       title: e,
     }));
     return result;
-  }, []);
-  useEffect(() => {
-    console.log(pageCount);
-  }, [pageCount]);
+  };
   return (
     <>
       <div className="flex">
@@ -21,7 +18,7 @@ function Panigation() {
             <i className="fa-solid fa-chevron-left"></i>
           </div>
         </Link>
-        {pageCount.map((e, i) => (
+        {pageCount().map((e, i) => (
           <Link key={i} href={e.path}>
             <div className="w-10 h-10 mx-1 rounded-md text-white bg-green-500 flex justify-center items-center">
               {e.title}
@@ -37,4 +34,5 @@ function Panigation() {
     </>
   );
 }
+
 export default Panigation;

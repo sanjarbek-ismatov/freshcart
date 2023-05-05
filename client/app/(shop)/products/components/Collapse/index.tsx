@@ -1,6 +1,8 @@
+"use client";
 import { useCallback, useState } from "react";
 import "./Collapse.css";
 import Link from "next/link";
+
 function Collapse() {
   const [show, setShow] = useState(false);
   const handleShow = useCallback(() => {
@@ -36,4 +38,5 @@ function Collapse() {
     </>
   );
 }
+
 export default Collapse;
