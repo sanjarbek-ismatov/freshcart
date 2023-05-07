@@ -1,7 +1,15 @@
-import { ChangeEvent, useCallback, useEffect, useState } from "react";
+"use client";
+import React, { ChangeEvent, useCallback, useEffect } from "react";
 import "./FilterTop.css";
-function FilterTop() {
-  const [filter, setFilter] = useState({ count: 10, sortBy: "date" });
+import { Sort } from "@/types";
+
+function FilterTop({
+  filter,
+  setFilter,
+}: {
+  filter?: Sort;
+  setFilter: React.Dispatch<React.SetStateAction<any>>;
+}) {
   const changePageCount = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
       setFilter({ ...filter, count: +e.target.value });
@@ -24,7 +32,7 @@ function FilterTop() {
         <div className="">
           <select
             onChange={changePageCount}
-            defaultValue={filter.count}
+            defaultValue={filter?.count}
             className="p-2 border-green-500 border mx-2 rounded-md outline-none cursor-pointer"
           >
             <option value="10">10</option>
@@ -34,7 +42,7 @@ function FilterTop() {
           </select>
           <select
             onChange={changeSortList}
-            defaultValue={filter.sortBy}
+            defaultValue={filter?.sortBy}
             className="p-2 border-green-500 border mx-2 rounded-md outline-none cursor-pointer"
           >
             <option value="date">Sanasi bo`yicha</option>
@@ -47,4 +55,5 @@ function FilterTop() {
     </>
   );
 }
+
 export default FilterTop;

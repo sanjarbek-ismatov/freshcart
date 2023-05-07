@@ -3,7 +3,7 @@ interface ServerResponse<T> {
   message: string;
   // result: T;
   code: number;
-  token?: string
+  token?: string;
 }
 
 interface RequestRegisterForm {
@@ -13,6 +13,7 @@ interface RequestRegisterForm {
   username: string;
   password: string;
 }
+
 interface RequestLoginForm {
   email: string;
   password: string;
@@ -28,19 +29,21 @@ interface User {
   temporary_token: string;
   username: string;
 }
-interface VendorType{
-  name:     string;
-  slug:     string;
+
+interface VendorType {
+  name: string;
+  slug: string;
   category: string[];
-  sells:    number;
-  stars:    number;
+  sells: number;
+  stars: number;
   phone: string;
   email: string;
   password: string;
   image: string;
   banner: string;
-  products: ProductType[]
+  products: ProductType[];
 }
+
 interface ProductType {
   name: string;
   slug: string;
@@ -57,10 +60,17 @@ interface ProductType {
   expirationData: string;
   dateOfManufacture: string;
 }
+
+interface Sort {
+  count: number;
+  sortBy: string;
+}
+
 export type {
   ServerResponse,
   RequestRegisterForm,
   RequestLoginForm,
   User,
   ProductType,
+  Sort,
 };

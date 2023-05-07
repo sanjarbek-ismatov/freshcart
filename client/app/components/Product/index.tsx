@@ -1,7 +1,8 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
+
 function ProductCard({ details }: { details: ProductType }) {
-    console.log(details.images[0])
+  console.log(details.images[0]);
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
@@ -23,11 +24,12 @@ function ProductCard({ details }: { details: ProductType }) {
       <p className="text-slate-500 text-sm">{details.category.join(", ")}</p>
       <p className="text-lg font-medium">{details.name}</p>
       <div className="leading-7">
-        {Array.from(new Array(Math.floor(details.rating)), (v, k) => k + 1).map(
-          (e, i) => (
-            <i key={i} className="fa-solid text-sm text-yellow-500 fa-star"></i>
-          )
-        )}
+        {Array.from(
+          new Array(Math.floor(details.rating || 0)),
+          (v, k) => k + 1
+        ).map((e, i) => (
+          <i key={i} className="fa-solid text-sm text-yellow-500 fa-star"></i>
+        ))}
         {details.rating === 5 ? (
           <i className="fa-solid text-sm text-yellow-500 fa-star"></i>
         ) : Math.ceil(details.rating) > details.rating ? (
@@ -48,4 +50,5 @@ function ProductCard({ details }: { details: ProductType }) {
     </div>
   );
 }
+
 export default ProductCard;
