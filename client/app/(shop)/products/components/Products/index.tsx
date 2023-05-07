@@ -10,8 +10,12 @@ function Products({ products }: { products: ProductType[] }) {
   const [filter, setFilter] = useState<Sort>({ count: 10, sortBy: "date" });
   return (
     <div className="w-full">
-      <FilterTop filter={filter} setFilter={setFilter} />
-      <ProductGrid title="Dynamic" products={products} />
+      <FilterTop
+        length={products.length}
+        filter={filter}
+        setFilter={setFilter}
+      />
+      <ProductGrid title="Dynamic" products={products} filter={filter} />
       <Panigation />
     </div>
   );

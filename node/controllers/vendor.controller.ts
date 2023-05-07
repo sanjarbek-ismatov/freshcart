@@ -5,6 +5,11 @@ import { Vendor } from "../models/vendor.model";
 import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 
+async function getAll(req: NodeRequest, res: Response) {
+  const vendors = await Vendor.find();
+  res.status(200).send(vendors);
+}
+
 async function register(req: NodeRequest, res: Response) {
   const { error } = vendorValidator(req.body);
   if (error)
@@ -43,4 +48,4 @@ async function login(req: NodeRequest, res: Response) {
     .send({ code: 200, message: "Bajarildi" });
 }
 
-export default { register, login };
+export default { register, login, getAll };

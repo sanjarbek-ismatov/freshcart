@@ -6,9 +6,11 @@ import { Sort } from "@/types";
 function FilterTop({
   filter,
   setFilter,
+  length,
 }: {
   filter?: Sort;
   setFilter: React.Dispatch<React.SetStateAction<any>>;
+  length: number;
 }) {
   const changePageCount = useCallback(
     (e: ChangeEvent<HTMLSelectElement>) => {
@@ -28,7 +30,7 @@ function FilterTop({
   return (
     <>
       <div className="flex justify-between">
-        <p>10ta maxsulot topildi</p>
+        <p>{length}ta maxsulot topildi</p>
         <div className="">
           <select
             onChange={changePageCount}

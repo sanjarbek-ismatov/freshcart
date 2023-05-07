@@ -2,8 +2,9 @@
 import { useCallback, useState } from "react";
 import "./Collapse.css";
 import Link from "next/link";
+import { CategoryType } from "@/types";
 
-function Collapse() {
+function Collapse({ category }: { category: CategoryType }) {
   const [show, setShow] = useState(false);
   const handleShow = useCallback(() => {
     setShow(!show);
@@ -14,7 +15,7 @@ function Collapse() {
         onClick={handleShow}
         className="w-full cursor-pointer hover:bg-gray-100 px-3 py-1 border-b flex items-center justify-between my-1"
       >
-        <p className="text-sm">Oziq Ovqat</p>{" "}
+        <p className="text-sm">{category.name}</p>{" "}
         <i
           className={`fa-solid ${
             show ? "fa-chevron-down" : "fa-chevron-right"
@@ -23,16 +24,13 @@ function Collapse() {
       </div>
       <div className={`${show ? "h-auto" : "h-0"} overflow-hidden`}>
         <ul>
-          <li className="my-3 ml-5">
-            <Link className="text-sm" href="/">
-              Tuxum mahsulotlari
-            </Link>
-          </li>
-          <li className="my-3 ml-5">
-            <Link className="text-sm" href="/">
-              Makaron
-            </Link>
-          </li>
+          {category.subCategories.map((e, i) => (
+            <li key={i} className="my-3 ml-5">
+              <Link className="text-sm" href="/">
+                {e.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </>

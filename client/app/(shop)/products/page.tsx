@@ -1,18 +1,19 @@
 import { BreadCrumb } from "@/app/components";
 import React from "react";
 import { Filter, Products } from "./components";
-import { ProductType } from "@/types";
-
-const getProducts = async () => {
-  const res = await fetch("http://localhost:4000/api/product/all", {
-    cache: "no-store",
-  });
-  const data: ProductType[] = await res.json();
-  return data;
-};
+import { CategoryType, ProductType, VendorType } from "@/types";
+import { getSSRData } from "@/app/utils/getData";
 
 const Index = async () => {
-  const products = await getProducts();
+  const products = await getSSRData<ProductType[]>(
+    "http://localhost:4000/api/product/all"
+  );
+  const categories = await getSSRData<CategoryType[]>(
+    "http://localhost:4000/api/category/all"
+  );
+  const vendors = await getSSRData<VendorType[]>(
+    "http://localhost:4000/api/vendor/all"
+  );
   return (
     <>
       <div className="container mx-auto max-w-[1300px]">
@@ -23,7 +24,7 @@ const Index = async () => {
           ]}
         />
         <div className="flex">
-          <Filter />
+          <Filter vendors={vendors} categories={categories} />
           <Products products={products} />
         </div>
       </div>

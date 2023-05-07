@@ -44,6 +44,29 @@ interface VendorType {
   products: ProductType[];
 }
 
+interface CategoryType {
+  name: string;
+  slug: string;
+  subCategories: {
+    name: string;
+    slug: string;
+  }[];
+}
+
+interface VendorType {
+  name: string;
+  slug: string;
+  category: string[];
+  sells: number;
+  stars: number;
+  phone: string;
+  email: string;
+  password: string;
+  image: string;
+  banner: string;
+  products: ProductType[];
+}
+
 interface ProductType {
   name: string;
   slug: string;
@@ -58,12 +81,12 @@ interface ProductType {
   vendor: VendorType;
   guarantee: number;
   expirationData: string;
-  dateOfManufacture: string;
+  dateOfManufacture: Date;
 }
 
 interface Sort {
   count: number;
-  sortBy: string;
+  sortBy: "rating" | "date" | "low" | "high";
 }
 
 export type {
@@ -73,4 +96,6 @@ export type {
   User,
   ProductType,
   Sort,
+  CategoryType,
+  VendorType,
 };
