@@ -53,6 +53,20 @@ interface CategoryType {
   }[];
 }
 
+interface VendorType {
+  name: string;
+  slug: string;
+  category: string[];
+  sells: number;
+  stars: number;
+  phone: string;
+  email: string;
+  password: string;
+  image: string;
+  banner: string;
+  products: ProductType[];
+}
+
 interface ProductType {
   name: string;
   slug: string;
@@ -83,4 +97,5 @@ export type {
   ProductType,
   Sort,
   CategoryType,
+  VendorType,
 };
