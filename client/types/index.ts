@@ -58,12 +58,12 @@ interface ProductType {
   vendor: VendorType;
   guarantee: number;
   expirationData: string;
-  dateOfManufacture: string;
+  dateOfManufacture: Date;
 }
 
 interface Sort {
   count: number;
-  sortBy: string;
+  sortBy: "rating" | "date" | "low" | "high";
 }
 
 export type {

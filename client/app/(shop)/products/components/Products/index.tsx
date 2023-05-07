@@ -11,7 +11,7 @@ function Products({ products }: { products: ProductType[] }) {
   return (
     <div className="w-full">
       <FilterTop filter={filter} setFilter={setFilter} />
-      <ProductGrid title="Dynamic" products={products} />
+      <ProductGrid title="Dynamic" products={products} filter={filter} />
       <Panigation />
     </div>
   );
