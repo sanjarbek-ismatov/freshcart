@@ -4,7 +4,7 @@ import { useAddProductMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 
 function CreatePage() {
-  const [addProduct, { isLoading }] = useAddProductMutation();
+  const [addProduct] = useAddProductMutation();
   const formParser = new FormParser(addProduct);
   return (
     <form

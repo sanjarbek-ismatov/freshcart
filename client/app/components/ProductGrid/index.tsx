@@ -32,6 +32,7 @@ function PopularProducts({
         return mutation;
     }
   }, [products, state]);
+  console.log(products);
   return (
     <>
       <div className="my-6">
@@ -39,6 +40,10 @@ function PopularProducts({
         <div className="my-5 grid sm:grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 lg:grid-cols-5 grid-rows-2">
           {sorted
             .filter((e) => state.stars.includes(e.rating))
+            .filter(
+              (e) =>
+                state.vendors.includes(e.vendor.name) || !state.vendors.length
+            )
             .map((e, i) => (
               <ProductCard key={i} details={e} />
             ))}

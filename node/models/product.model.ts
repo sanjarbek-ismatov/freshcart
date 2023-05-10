@@ -17,7 +17,7 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   ],
   weight: Number,
   count: Number,
-  vendor: mongoose.SchemaTypes.ObjectId,
+  vendor: { type: mongoose.SchemaTypes.ObjectId, ref: "vendor" },
   guarantee: String,
   expirationData: String,
   dateOfManufacture: String,
