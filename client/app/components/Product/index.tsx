@@ -2,7 +2,6 @@ import { ProductType } from "@/types";
 import Image from "next/image";
 
 function ProductCard({ details }: { details: ProductType }) {
-  console.log(details.images[0]);
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">

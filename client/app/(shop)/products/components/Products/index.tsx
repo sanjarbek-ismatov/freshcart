@@ -1,21 +1,14 @@
-"use client";
 import FilterTop from "../FilterTop";
 import Panigation from "../Panigation";
 import "./Products.css";
 import { ProductGrid } from "@/app/components";
-import { ProductType, Sort } from "@/types";
-import { useState } from "react";
+import { ProductType } from "@/types";
 
 function Products({ products }: { products: ProductType[] }) {
-  const [filter, setFilter] = useState<Sort>({ count: 10, sortBy: "date" });
   return (
     <div className="w-full">
-      <FilterTop
-        length={products.length}
-        filter={filter}
-        setFilter={setFilter}
-      />
-      <ProductGrid title="Dynamic" products={products} filter={filter} />
+      <FilterTop length={products.length} />
+      <ProductGrid title="Dynamic" products={products} />
       <Panigation />
     </div>
   );

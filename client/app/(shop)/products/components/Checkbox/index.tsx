@@ -1,16 +1,18 @@
-import { ReactNode } from "react";
+import { ComponentProps, ReactNode } from "react";
 import "./Checkbox.css";
+
 function Checkbox({
   checked,
   children,
+  ...rest
 }: {
   checked: boolean;
   children: ReactNode;
-}) {
+} & ComponentProps<"input">) {
   return (
     <>
       <label className="inline-flex items-center">
-        <input type="checkbox" className="h-0 w-0 " />
+        <input {...rest} type="checkbox" className="h-0 w-0 " />
         <span
           className={`${
             checked ? "bg-green-500" : "bg-white border"
@@ -25,4 +27,5 @@ function Checkbox({
     </>
   );
 }
+
 export default Checkbox;
