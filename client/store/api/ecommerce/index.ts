@@ -5,8 +5,8 @@ import {
   User,
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { BaseQueryResult } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 import { gettoken } from "@/app/utils/gettoken";
+import { BaseQueryResult } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",

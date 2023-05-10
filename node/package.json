@@ -22,7 +22,7 @@
     "winston": "^3.8.2"
   },
   "scripts": {
-    "build": "esbuild server.ts --bundle --minify --platform=node --packages=external --outfile=dist/bundle.js",
+    "build": "yarn esbuild server.ts --bundle --minify --platform=node --packages=external --outfile=dist/bundle.js",
     "dev": "nodemon server.ts",
     "start": "node dist/bundle.js"
   },

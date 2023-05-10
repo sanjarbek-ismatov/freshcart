@@ -1,32 +1,22 @@
 "use client";
-import React, { ChangeEvent, useCallback, useEffect } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import "./FilterTop.css";
 import { Sort } from "@/types";
+import {
+  countItemDispatch,
+  sortByDispatch,
+  useAppSelector,
+} from "@/store/store";
 
-function FilterTop({
-  filter,
-  setFilter,
-  length,
-}: {
-  filter?: Sort;
-  setFilter: React.Dispatch<React.SetStateAction<any>>;
-  length: number;
-}) {
-  const changePageCount = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      setFilter({ ...filter, count: +e.target.value });
-    },
-    [filter]
-  );
-  const changeSortList = useCallback(
-    (e: ChangeEvent<HTMLSelectElement>) => {
-      setFilter({ ...filter, sortBy: e.target.value });
-    },
-    [filter]
-  );
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
+function FilterTop({ length }: { length: number }) {
+  const state = useAppSelector((state) => state.filter);
+
+  const changePageCount = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    countItemDispatch(+e.target.value);
+  }, []);
+  const changeSortList = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
+    sortByDispatch(e.target.value as Sort["sortBy"]);
+  }, []);
   return (
     <>
       <div className="flex justify-between">
@@ -34,7 +24,7 @@ function FilterTop({
         <div className="">
           <select
             onChange={changePageCount}
-            defaultValue={filter?.count}
+            defaultValue={state.count}
             className="p-2 border-green-500 border mx-2 rounded-md outline-none cursor-pointer"
           >
             <option value="10">10</option>
@@ -44,7 +34,7 @@ function FilterTop({
           </select>
           <select
             onChange={changeSortList}
-            defaultValue={filter?.sortBy}
+            defaultValue={state?.sortBy}
             className="p-2 border-green-500 border mx-2 rounded-md outline-none cursor-pointer"
           >
             <option value="date">Sanasi bo`yicha</option>
