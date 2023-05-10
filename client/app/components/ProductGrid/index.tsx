@@ -44,6 +44,9 @@ function PopularProducts({
               (e) =>
                 state.vendors.includes(e.vendor.name) || !state.vendors.length
             )
+            .filter(
+              (e) => e.price >= state.price[0] && e.price <= state.price[1]
+            )
             .map((e, i) => (
               <ProductCard key={i} details={e} />
             ))}
