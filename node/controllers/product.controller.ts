@@ -6,7 +6,7 @@ import { sluggenerator } from "../helpers/sluggenerator";
 
 async function getAll(req: NodeRequest, res: Response) {
   console.log(req?.user);
-  const products = await Product.find();
+  const products = await Product.find().populate("vendor");
   res.status(200).send(products);
 }
 
