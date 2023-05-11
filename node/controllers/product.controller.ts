@@ -32,4 +32,11 @@ async function create(req: NodeRequest, res: Response) {
   res.status(201).send({ code: 201, message: "Yaratildi!" });
 }
 
-export default { getAll, create };
+async function getBySlug(req: NodeRequest, res: Response) {
+  const product = await Product.findOne({ slug: req.params.slug });
+  if (!product)
+    return res.status(404).send({ code: 404, message: "not found" });
+  res.status(200).send(product);
+}
+
+export default { getAll, create, getBySlug };

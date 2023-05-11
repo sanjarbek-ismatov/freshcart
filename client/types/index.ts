@@ -84,10 +84,7 @@ interface ProductType {
   dateOfManufacture: Date;
 }
 
-interface Sort {
-  count: number;
-  sortBy: "rating" | "date" | "low" | "high";
-}
+type Sort = "rating" | "date" | "low" | "high";
 
 export type {
   ServerResponse,

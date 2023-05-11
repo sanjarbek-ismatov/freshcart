@@ -1,5 +1,6 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
+import Link from "next/link";
 
 function ProductCard({ details }: { details: ProductType }) {
   return (
@@ -7,16 +8,18 @@ function ProductCard({ details }: { details: ProductType }) {
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
-      <div className="flex justify-center items-center flex-col">
+      <div className="flex justify-center items-center flex-col h-[170px]">
         <Image
           width={250}
-          height={0}
+          height={250}
           src={`http://localhost:4000/api/files/image/${details.images[0]}`}
           alt="Product image"
           unoptimized
         />
         <div className="absolute  opacity-0 group-hover:opacity-100">
-          <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-eye"></i>
+          <Link href={`/product/${details.slug}`}>
+            <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-eye"></i>
+          </Link>
           <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-heart"></i>
         </div>
       </div>

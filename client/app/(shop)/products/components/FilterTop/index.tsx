@@ -15,7 +15,7 @@ function FilterTop({ length }: { length: number }) {
     countItemDispatch(+e.target.value);
   }, []);
   const changeSortList = useCallback((e: ChangeEvent<HTMLSelectElement>) => {
-    sortByDispatch(e.target.value as Sort["sortBy"]);
+    sortByDispatch(e.target.value as Sort);
   }, []);
   return (
     <>
