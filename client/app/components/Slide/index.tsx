@@ -20,11 +20,17 @@ function Slide({ product }: { product: ProductType }) {
       previewImage.style.backgroundSize = "cover";
       previewImage.style.backgroundPosition = "center";
     });
-  }, []);
+    const slider = document.getElementById("slider") as HTMLDivElement;
+    const px = current * 600;
+    slider.style.transform = `translateX(-${px}px)`;
+  }, [current]);
   return (
     <div className="">
       <div className="overflow-x-hidden w-[600px] h-[600px] relative">
-        <div className="h-[600px] flex  absolute overflow-hidden top-0 left-0">
+        <div
+          id="slider"
+          className="h-[600px] flex  absolute overflow-hidden duration-500 top-0 left-0"
+        >
           {product.images.map((e, i) => (
             <div
               key={i}
