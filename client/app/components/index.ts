@@ -17,3 +17,4 @@ export { default as ModalFormRegister } from "./ModalFormRegister";
 export { default as BreadCrumb } from "./BreadCrumb";
 export { default as Product } from "./Product";
 export {default as Slide} from "./Slide";
+export {default as SlideImages} from "./SlideImages";

@@ -9,7 +9,7 @@ async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
   return (
     <>
       <div className="flex">
-        <Slide />
+        <Slide product={product} />
         <div className="w-[600px]"></div>
       </div>
     </>
