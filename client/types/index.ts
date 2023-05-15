@@ -28,6 +28,10 @@ interface User {
   phone: string;
   temporary_token: string;
   username: string;
+  cart: {
+    id: ProductType;
+    count: number;
+  }[];
 }
 
 interface VendorType {

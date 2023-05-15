@@ -16,7 +16,7 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
       {
         id: {
           type: mongoose.SchemaTypes.ObjectId,
-          ref: "product",
+          ref: "Product",
         },
         count: Number,
       },

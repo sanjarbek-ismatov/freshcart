@@ -81,6 +81,15 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      getUserInfo: build.query<User, void>({
+        query: () => ({
+          method: "GET",
+          url: "/auth/info",
+          headers: {
+            ["x-token"]: gettoken("x-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -91,4 +100,5 @@ export const {
   useVendorRegisterMutation,
   useAddProductMutation,
   useAddToCartMutation,
+  useGetUserInfoQuery,
 } = eCommerceApi;

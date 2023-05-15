@@ -21,3 +21,4 @@ export {default as SlideImages} from "./SlideImages";
 export {default as Star} from "./Star";
 export {default as Counter} from "./Counter";
 export {default as AddToCard} from "./AddToCard";
+export {default as OffCanvas} from "./OffCanvas";
