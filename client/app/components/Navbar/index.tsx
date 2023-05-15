@@ -6,6 +6,7 @@ import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
+
 const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const auth = useAuth();
   const [show, setShow] = useState(false);
@@ -13,7 +14,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
     if (auth) setShow(!show);
   }, [auth, show]);
   const logOut = useCallback(() => {
-    localStorage.removeItem("token");
+    localStorage.removeItem("x-token");
     window.location.reload();
   }, []);
   return (

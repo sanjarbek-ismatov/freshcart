@@ -71,6 +71,16 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      addToCart: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          method: "PUT",
+          url: "/auth/product/add",
+          body,
+          headers: {
+            ["x-token"]: gettoken("x-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -80,4 +90,5 @@ export const {
   useVendorLoginMutation,
   useVendorRegisterMutation,
   useAddProductMutation,
+  useAddToCartMutation,
 } = eCommerceApi;

@@ -18,3 +18,6 @@ export { default as BreadCrumb } from "./BreadCrumb";
 export { default as Product } from "./Product";
 export {default as Slide} from "./Slide";
 export {default as SlideImages} from "./SlideImages";
+export {default as Star} from "./Star";
+export {default as Counter} from "./Counter";
+export {default as AddToCard} from "./AddToCard";

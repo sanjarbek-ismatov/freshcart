@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import {UserType} from "../types";
+import { UserType } from "../types";
 
 const userSchema: Schema<UserType> = new mongoose.Schema(
   {
@@ -12,6 +12,15 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
       unique: true,
     },
     password: String,
+    cart: [
+      {
+        id: {
+          type: mongoose.SchemaTypes.ObjectId,
+          ref: "product",
+        },
+        count: Number,
+      },
+    ],
   },
   { collection: "users" }
 );
