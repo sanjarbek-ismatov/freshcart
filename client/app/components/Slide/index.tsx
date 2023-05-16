@@ -12,7 +12,7 @@ function Slide({ product }: { product: ProductType }) {
     )[0] as HTMLElement;
     previewImage?.addEventListener("mousemove", (e) => {
       const x = (e.offsetX / 600) * 100;
-      const y = (e.offsetY / 600) * 100;
+      const y = (e.offsetY / 500) * 100;
       previewImage.style.backgroundSize = "1200px";
       previewImage.style.backgroundPosition = `${x}% ${y}%`;
     });
@@ -25,11 +25,11 @@ function Slide({ product }: { product: ProductType }) {
     slider.style.transform = `translateX(-${px}px)`;
   }, [current]);
   return (
-    <div className="">
-      <div className="overflow-x-hidden w-[600px] h-[600px] relative">
+    <div className="mr-24">
+      <div className="overflow-hidden w-[600px] h-[500px] relative border rounded-lg">
         <div
           id="slider"
-          className="h-[600px] flex  absolute overflow-hidden duration-500 top-0 left-0"
+          className="h-[600px] flex   absolute overflow-hidden duration-500 top-0 left-0"
         >
           {product.images.map((e, i) => (
             <div
@@ -37,7 +37,7 @@ function Slide({ product }: { product: ProductType }) {
               style={{
                 backgroundImage: `url("http://localhost:4000/api/files/image/${e}")`,
               }}
-              className={`w-[600px] h-[600px] left-0 top-0 bg-center bg-no-repeat hover:cursor-zoom-in ${
+              className={`w-[600px] h-[500px] left-0 top-0 bg-center bg-cover bg-no-repeat hover:cursor-zoom-in ${
                 current === i ? "active" : ""
               }`}
             ></div>

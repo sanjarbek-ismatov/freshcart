@@ -1,23 +1,19 @@
-import {Suspense, useCallback} from "react";
 import {
-  Swiper,
-  Categories,
-  ProductGrid,
   About,
+  Categories,
   Footer,
-  Modal,
+  ProductGrid,
   SidePanel,
-  ModalFormRegister,
-  ModalFormLogin,
+  Swiper,
 } from "./components";
-const getProducts = async () => {
-    const res = await fetch('http://localhost:4000/api/product/all', {cache: 'no-store'})
-    const data: ProductType[] = await res.json()
-    return data
-}
-import {ProductType} from "@/types";
-export  default async function Home() {
-    const products = await getProducts()
+import { ProductType } from "@/types";
+import { OffCanvas } from "@/app/components";
+import { getSSRData } from "@/app/utils/getData";
+
+export default async function Home() {
+  const products = await getSSRData<ProductType[]>(
+    "http://localhost:4000/api/product/all"
+  );
   return (
     <div className="container max-w-[1300px] mx-auto">
       <Swiper />
@@ -28,6 +24,7 @@ export  default async function Home() {
       <About />
       <Footer />
       <SidePanel />
+      <OffCanvas />
     </div>
   );
 }

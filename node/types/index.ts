@@ -1,10 +1,12 @@
 import { Request } from "express";
-import {Document, Types} from "mongoose";
+import { Document, Types } from "mongoose";
+
 interface CategoryType {
   name: string;
   slug: string;
   subCategories: string[];
 }
+
 interface ProductType {
   name: string;
   slug: string;
@@ -16,20 +18,25 @@ interface ProductType {
   reviews: string[];
   weight: number;
   count: number;
-  vendor: Document<unknown, {}, VendorType> & Omit<VendorType & {_id: Types.ObjectId}, never>;
+  vendor: Document<unknown, {}, VendorType> &
+    Omit<VendorType & { _id: Types.ObjectId }, never>;
   guarantee: number;
   expirationData: string;
   dateOfManufacture: string;
 }
+
 interface AdminType {
   login: string;
   password: string;
 }
-interface NodeRequest extends Request  {
+
+interface NodeRequest extends Request {
   user?: UserType;
-  vendor?: Document<unknown, {}, VendorType> & Omit<VendorType & {_id: Types.ObjectId}, never>;
+  vendor?: Document<unknown, {}, VendorType> &
+    Omit<VendorType & { _id: Types.ObjectId }, never>;
   admin?: boolean;
 }
+
 interface UserType extends Document {
   name: string;
   email: string;
@@ -37,18 +44,28 @@ interface UserType extends Document {
   image: string;
   username: string;
   password: string;
+  cart: ProductType[];
 }
-interface VendorType extends Document{
-  name:     string;
-  slug:     string;
+
+interface VendorType extends Document {
+  name: string;
+  slug: string;
   category: string[];
-  sells:    number;
-  stars:    number;
+  sells: number;
+  stars: number;
   phone: string;
   email: string;
   password: string;
   image: string;
   banner: string;
-  products: ProductType[]
+  products: ProductType[];
 }
-export type { CategoryType, ProductType, AdminType, NodeRequest, UserType, VendorType };
+
+export type {
+  CategoryType,
+  ProductType,
+  AdminType,
+  NodeRequest,
+  UserType,
+  VendorType,
+};

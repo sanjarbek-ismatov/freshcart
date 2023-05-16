@@ -1,6 +1,7 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
+import { Star } from "@/app/components";
 
 function ProductCard({ details }: { details: ProductType }) {
   return (
@@ -26,19 +27,7 @@ function ProductCard({ details }: { details: ProductType }) {
       <p className="text-slate-500 text-sm">{details.category.join(", ")}</p>
       <p className="text-lg font-medium">{details.name}</p>
       <div className="leading-7">
-        {Array.from(
-          new Array(Math.floor(details.rating || 0)),
-          (v, k) => k + 1
-        ).map((e, i) => (
-          <i key={i} className="fa-solid text-sm text-yellow-500 fa-star"></i>
-        ))}
-        {details.rating === 5 ? (
-          <i className="fa-solid text-sm text-yellow-500 fa-star"></i>
-        ) : Math.ceil(details.rating) > details.rating ? (
-          <i className="fa-regular text-sm text-yellow-500 fa-star-half-stroke"></i>
-        ) : (
-          ""
-        )}
+        <Star rating={details.rating} />
         <span className="ml-2 text-slate-600">
           {details.rating} ({details.reviews.length})
         </span>

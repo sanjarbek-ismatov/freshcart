@@ -1,5 +1,4 @@
 import "./SlideImages.css";
-import Image from "next/image";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction } from "react";
 
@@ -13,17 +12,18 @@ function SlideImages({
   setCurrent: Dispatch<SetStateAction<number>>;
 }) {
   return (
-    <div className="flex overflow-x-scroll">
+    <div className="flex overflow-x-scroll my-4">
       {product.images.map((e, i) => (
-        <Image
+        <div
           key={i}
-          width={200}
-          height={200}
+          style={{
+            backgroundImage: `url("http://localhost:4000/api/files/image/${e}")`,
+          }}
           onClick={() => setCurrent(i)}
-          src={`http://localhost:4000/api/files/image/${e}`}
-          alt="Image"
-          unoptimized
-        />
+          className={`cursor-pointer border-2 bg-center w-[200px] bg-cover ${
+            current === i ? "border-green-600" : ""
+          } h-[100px] m-2 rounded-md `}
+        ></div>
       ))}
     </div>
   );

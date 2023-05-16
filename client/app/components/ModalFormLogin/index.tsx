@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useFormik } from "formik";
 import Button from "../Button";
 import Input from "../Input";
@@ -6,6 +6,7 @@ import Modal from "../Modal";
 import Spinner from "../Spinner";
 import "./ModalFormLogin.css";
 import { useLoginMutation } from "@/store/api/ecommerce";
+
 function ModalFormLogin() {
   const [login, { isLoading }] = useLoginMutation();
   const { handleSubmit, handleChange, values } = useFormik({
@@ -16,7 +17,7 @@ function ModalFormLogin() {
     onSubmit(values, formikHelpers) {
       login(values).then((data) => {
         if ("data" in data) {
-          localStorage.setItem("token", data.data.token as any);
+          localStorage.setItem("x-token", data.data.token as any);
           window.location.reload();
         }
       });
@@ -69,4 +70,5 @@ function ModalFormLogin() {
     </>
   );
 }
+
 export default ModalFormLogin;

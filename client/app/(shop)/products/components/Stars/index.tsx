@@ -3,7 +3,7 @@ import "./Starts.css";
 import Checkbox from "../Checkbox";
 import { starsDispatch, useAppSelector } from "@/store/store";
 
-function Starts() {
+function Stars() {
   // const stars = useMemo(() => {
   //   // const start = [
   //   //   Array.from(new Array(5), (v, k) =>
@@ -77,4 +77,4 @@ function Starts() {
   );
 }
 
-export default Starts;
+export default Stars;

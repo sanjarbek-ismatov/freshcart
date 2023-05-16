@@ -1,6 +1,7 @@
 import { getSSRData } from "@/app/utils/getData";
 import { ProductType } from "@/types";
-import { Slide } from "@/app/components";
+import { BreadCrumb, Slide } from "@/app/components";
+import { About } from "@/app/(shop)/product/components";
 
 async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
   const product = await getSSRData<ProductType>(
@@ -8,9 +9,16 @@ async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
   );
   return (
     <>
+      <BreadCrumb
+        path={[
+          { title: "Uy", path: "/" },
+          { title: "Maxsulotlar", path: "/products" },
+          { title: product.name, path: `/${product.slug}` },
+        ]}
+      />
       <div className="flex">
         <Slide product={product} />
-        <div className="w-[600px]"></div>
+        <About product={product} />
       </div>
     </>
   );
