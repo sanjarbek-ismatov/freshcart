@@ -11,18 +11,24 @@ const OffCanvas = forwardRef<HTMLElement, { show: boolean }>(function OffCanvas(
   const { isLoading, data, refetch } = useGetUserInfoQuery();
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
-    document.addEventListener("click", (event) => {
-      if (!offCanvas?.contains(event?.target as any)) {
+    document
+      .getElementById("offcanvasback")
+      ?.addEventListener("click", (event) => {
         offCanvas.classList.remove("showCanvas");
         offCanvas.classList.add("hideCanvas");
-      }
-    });
+      });
   }, []);
   useEffect(() => {
     refetch();
   }, [refetch]);
   return (
-    <div className="w-full min-h-screen h-full fixed top-0 left-0 backdrop-brightness-50 z-20">
+    <div
+      id="offcanvasback"
+      className={`${
+        show &&
+        "w-full min-h-screen h-full fixed top-0 left-0 backdrop-brightness-50 z-20"
+      }`}
+    >
       <div
         id="offcanvas"
         className={`fixed ${
