@@ -7,7 +7,6 @@ import {
   Swiper,
 } from "./components";
 import { ProductType } from "@/types";
-import { OffCanvas } from "@/app/components";
 import { getSSRData } from "@/app/utils/getData";
 
 export default async function Home() {
@@ -24,7 +23,6 @@ export default async function Home() {
       <About />
       <Footer />
       <SidePanel />
-      <OffCanvas />
     </div>
   );
 }
