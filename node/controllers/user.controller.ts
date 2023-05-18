@@ -1,11 +1,11 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { registerValidator } from "../helpers/validator";
 import { User } from "../models/user.model";
 import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 import { NodeRequest } from "../types";
 
-async function signUpController(req: Request, res: Response) {
+async function signUpController(req: NodeRequest, res: Response) {
   const error = registerValidator(req.body);
   if (error) return res.status(400).send(error.details[0].message);
   const user = await User.findOne({ username: req.body.username });
@@ -15,12 +15,13 @@ async function signUpController(req: Request, res: Response) {
       .send({ code: 400, message: "Foydalanuvchi nomi allaqachon mavjud" });
   const hashedPassword = passwordGenerator(req.body.password);
   const tempUser = await User.create(req.body);
+  if (req.file) tempUser.image = req.file?.filename;
   tempUser.password = hashedPassword;
   await tempUser.save();
   res.status(200).send({ code: 201, message: "Bajarildi" });
 }
 
-async function loginController(req: Request, res: Response) {
+async function loginController(req: NodeRequest, res: Response) {
   const user = await User.findOne({ email: req.body.email });
   if (!user)
     return res
@@ -47,4 +48,21 @@ async function addToCart(req: NodeRequest, res: Response) {
   res.status(200).send({ code: 200, message: "Ok" });
 }
 
-export default { signUpController, loginController, getInfo, addToCart };
+async function updateUserInfo(req: NodeRequest, res: Response) {
+  const updatedUserInfo = await User.findByIdAndUpdate(req.user?._id, req.body);
+  if (!updatedUserInfo)
+    return res
+      .status(404)
+      .send({ code: 404, message: "Foydalanuvchi topilmadi" });
+  if (req.file) updatedUserInfo.image = req.file.filename;
+  console.log(updatedUserInfo);
+  res.status(200).send("Yeah");
+}
+
+export default {
+  signUpController,
+  loginController,
+  getInfo,
+  addToCart,
+  updateUserInfo,
+};

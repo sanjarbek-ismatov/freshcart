@@ -90,6 +90,13 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      updateUserInfo: build.mutation<User, User>({
+        query: (body) => ({
+          url: "/api/auth/info/update",
+          method: "PUT",
+          body,
+        }),
+      }),
     };
   },
 });
@@ -101,4 +108,5 @@ export const {
   useAddProductMutation,
   useAddToCartMutation,
   useGetUserInfoQuery,
+  useUpdateUserInfoMutation,
 } = eCommerceApi;
