@@ -1,0 +1,8 @@
+.showCanvas {
+    transform: translateX(0px);
+}
+
+.hideCanvas {
+    transform: translateX(100%);
+}
+

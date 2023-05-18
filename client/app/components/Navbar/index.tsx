@@ -1,22 +1,31 @@
 "use client";
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
-import { forwardRef, useCallback, useState } from "react";
+import { forwardRef, useCallback, useEffect, useRef, useState } from "react";
 import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
+import { OffCanvas } from "@/app/components";
 
 const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const auth = useAuth();
   const [show, setShow] = useState(false);
+  const [showOffCanvas, setOffCanvas] = useState(false);
+  const offCanvasRef = useRef<HTMLElement>(null);
   const handleShow = useCallback(() => {
     if (auth) setShow(!show);
   }, [auth, show]);
+  const handleShowOffCanvas = useCallback(() => {
+    setOffCanvas(!showOffCanvas);
+  }, [showOffCanvas]);
   const logOut = useCallback(() => {
     localStorage.removeItem("x-token");
     window.location.reload();
   }, []);
+  useEffect(() => {
+    offCanvasRef.current?.addEventListener("click", handleShowOffCanvas);
+  }, [handleShowOffCanvas]);
   return (
     <>
       <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
@@ -49,7 +58,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                   {show && (
                     <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
                       <li className="py-1">
-                        <Link href="/">Hisob</Link>
+                        <Link href="/account/personal">Hisob</Link>
                       </li>
                       <li className="py-1">
                         <Link href="/">Yordam</Link>
@@ -62,12 +71,15 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                 </>
               }
             </span>
-            <Link href="/account/wishlist" className="relative">
-              <i className="cursor-pointer fa-regular fa-bookmark text-xl"></i>
+            <span className="relative">
+              <i
+                onClick={handleShowOffCanvas}
+                className="cursor-pointer fa-regular fa-bookmark text-xl"
+              ></i>
               <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
                 1
               </span>
-            </Link>
+            </span>
           </div>
           <div className="md:hidden block mx-3">
             <span>
@@ -76,6 +88,11 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
           </div>
         </div>
       </div>
+      <OffCanvas
+        ref={offCanvasRef}
+        show={showOffCanvas}
+        setShow={setOffCanvas}
+      />
     </>
   );
 });
