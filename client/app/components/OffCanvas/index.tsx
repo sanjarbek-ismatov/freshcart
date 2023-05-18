@@ -1,23 +1,27 @@
 "use client";
 import "./OffCanvas.css";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import { forwardRef, useEffect } from "react";
+import React, { forwardRef, useEffect } from "react";
 import { CartProduct } from "@/app/components";
 
-const OffCanvas = forwardRef<HTMLElement, { show: boolean }>(function OffCanvas(
-  { show },
-  ref
-) {
+const OffCanvas = forwardRef<
+  HTMLElement,
+  {
+    show: boolean;
+    setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  }
+>(function OffCanvas({ show, setShow }, ref) {
   const { isLoading, data, refetch } = useGetUserInfoQuery();
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     document
       .getElementById("offcanvasback")
       ?.addEventListener("click", (event) => {
-        offCanvas.classList.remove("showCanvas");
-        offCanvas.classList.add("hideCanvas");
+        if (!offCanvas.contains(event?.target as any)) {
+          setShow(false);
+        }
       });
-  }, []);
+  }, [setShow]);
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -33,7 +37,7 @@ const OffCanvas = forwardRef<HTMLElement, { show: boolean }>(function OffCanvas(
         id="offcanvas"
         className={`fixed ${
           show ? "showCanvas" : "hideCanvas"
-        } right-0 top-0 z-10 transition-transform duration-500 bg-white min-h-screen h-full`}
+        } right-0 top-0 z-30 transition-transform duration-500 bg-white min-h-screen h-full`}
       >
         <header className="flex justify-between items-center p-3">
           <i ref={ref} className="fa-solid text-xl fa-x cursor-pointer"></i>

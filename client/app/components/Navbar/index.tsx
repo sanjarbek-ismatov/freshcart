@@ -88,7 +88,11 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
           </div>
         </div>
       </div>
-      <OffCanvas ref={offCanvasRef} show={showOffCanvas} />
+      <OffCanvas
+        ref={offCanvasRef}
+        show={showOffCanvas}
+        setShow={setOffCanvas}
+      />
     </>
   );
 });
