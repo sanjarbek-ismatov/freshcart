@@ -28,6 +28,7 @@ interface User {
   phone: string;
   temporary_token: string;
   username: string;
+  image: string;
   cart: {
     id: ProductType;
     count: number;

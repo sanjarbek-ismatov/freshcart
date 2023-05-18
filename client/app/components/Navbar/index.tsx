@@ -58,7 +58,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                   {show && (
                     <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
                       <li className="py-1">
-                        <Link href="/">Hisob</Link>
+                        <Link href="/account/personal">Hisob</Link>
                       </li>
                       <li className="py-1">
                         <Link href="/">Yordam</Link>
