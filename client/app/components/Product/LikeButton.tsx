@@ -2,8 +2,11 @@
 
 import { useAddToCartMutation } from "@/store/api/ecommerce";
 import { useCallback } from "react";
+import { useUserContext } from "@/app/context";
 
 function LikeButton({ id }: { id: string }) {
+  const data = useUserContext();
+  console.log(data);
   const [addToLiked] = useAddToCartMutation();
   const submitLiked = useCallback(() => {
     addToLiked({

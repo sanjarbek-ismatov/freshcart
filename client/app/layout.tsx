@@ -64,8 +64,8 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <ErrorBoundary>
-          <UserProvider>
-            <Provider>
+          <Provider>
+            <UserProvider>
               <Navbar ref={openRegisterRef} />
               <Menu />
               <div className="mx-auto max-w-[1300px] container">{children}</div>
@@ -79,8 +79,8 @@ export default function RootLayout({
                   <ModalFormLogin />
                 </Modal>
               )}
-            </Provider>
-          </UserProvider>
+            </UserProvider>
+          </Provider>
         </ErrorBoundary>
       </body>
     </html>
