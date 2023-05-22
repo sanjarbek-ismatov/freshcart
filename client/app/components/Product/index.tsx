@@ -2,6 +2,7 @@ import { ProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import { Star } from "@/app/components";
+import LikeButton from "@/app/components/Product/LikeButton";
 
 function ProductCard({ details }: { details: ProductType }) {
   return (
@@ -21,7 +22,7 @@ function ProductCard({ details }: { details: ProductType }) {
           <Link href={`/product/${details.slug}`}>
             <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-eye"></i>
           </Link>
-          <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-heart"></i>
+          <LikeButton id={details._id} />
         </div>
       </div>
       <p className="text-slate-500 text-sm">{details.category.join(", ")}</p>
