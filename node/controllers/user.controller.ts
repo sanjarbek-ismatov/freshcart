@@ -43,7 +43,8 @@ function getInfo(req: NodeRequest, res: Response) {
 
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
-  user?.cart.push(req.body);
+  if (req.body.type === "cart") user?.cart.push(req.body);
+  else user?.liked.push(req.body.id);
   await user?.save();
   res.status(200).send({ code: 200, message: "Ok" });
 }

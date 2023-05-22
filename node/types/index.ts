@@ -45,6 +45,7 @@ interface UserType extends Document {
   city: string;
   username: string;
   password: string;
+  liked: ProductType[];
   cart: ProductType[];
 }
 

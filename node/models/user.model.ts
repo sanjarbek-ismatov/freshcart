@@ -13,6 +13,12 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
       unique: true,
     },
     password: String,
+    liked: [
+      {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: "Product",
+      },
+    ],
     cart: [
       {
         id: {

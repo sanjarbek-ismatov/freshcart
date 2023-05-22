@@ -10,6 +10,7 @@ function AddToCard({ product }: { product: ProductType }) {
   const [count, setCount] = useState(0);
   const handleSubmit = useCallback(() => {
     addToCart({
+      type: "cart",
       id: product._id,
       count,
     });
