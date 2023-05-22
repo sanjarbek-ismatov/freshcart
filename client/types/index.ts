@@ -20,15 +20,15 @@ interface RequestLoginForm {
 }
 
 interface User {
-  city?: string;
-  email: string;
-  id: string;
   name: string;
-  password: string;
+  email: string;
   phone: string;
-  temporary_token: string;
-  username: string;
   image: string;
+  city: string;
+  username: string;
+  password: string;
+  liked: ProductType[];
+
   cart: {
     id: ProductType;
     count: number;
