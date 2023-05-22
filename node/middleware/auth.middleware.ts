@@ -15,7 +15,9 @@ export async function authMiddleware(
   const decoded = tokenParser(token);
   if (!decoded)
     return res.status(400).send({ code: 400, message: "Fucked token" });
-  const user = await User.findOne({ email: decoded.email }).populate("cart.id");
+  const user = await User.findOne({ email: decoded.email })
+    .populate("cart.id")
+    .populate("liked");
   if (!user) return res.status(404).send({ code: 404, message: "Xato login" });
   req.user = user;
   next();

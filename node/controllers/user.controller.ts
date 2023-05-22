@@ -43,19 +43,28 @@ function getInfo(req: NodeRequest, res: Response) {
 
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
-  user?.cart.push(req.body);
+  if (req.body.type === "cart") user?.cart.push(req.body);
+  else user?.liked.push(req.body.id);
   await user?.save();
   res.status(200).send({ code: 200, message: "Ok" });
 }
 
 async function updateUserInfo(req: NodeRequest, res: Response) {
-  const updatedUserInfo = await User.findByIdAndUpdate(req.user?._id, req.body);
-  if (!updatedUserInfo)
+  const user = await User.findById(req.user?._id);
+
+  if (!user)
     return res
       .status(404)
       .send({ code: 404, message: "Foydalanuvchi topilmadi" });
-  if (req.file) updatedUserInfo.image = req.file.filename;
-  console.log(updatedUserInfo);
+  if (req.file) user.image = req.file.filename;
+
+  if (req.body.password) user.password = passwordGenerator(req.body.password);
+
+  delete req.body.image;
+  delete req.body.password;
+  Object.assign(user, req.body);
+
+  user.save();
   res.status(200).send("Yeah");
 }
 

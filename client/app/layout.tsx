@@ -12,6 +12,7 @@ import {
 import Provider from "@/store/provider";
 import { useAuth } from "./hooks/useAuth";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { UserProvider } from "@/app/context/provider";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
@@ -64,19 +65,21 @@ export default function RootLayout({
       <body className={inter.className}>
         <ErrorBoundary>
           <Provider>
-            <Navbar ref={openRegisterRef} />
-            <Menu />
-            <div className="mx-auto max-w-[1300px] container">{children}</div>
-            {show === "register" && (
-              <Modal ref={closeRegisterRef} title="Hisob yaratish">
-                <ModalFormRegister ref={openLoginRef} />
-              </Modal>
-            )}
-            {show === "login" && (
-              <Modal ref={closeLoginRef} title="Kirish">
-                <ModalFormLogin />
-              </Modal>
-            )}
+            <UserProvider>
+              <Navbar ref={openRegisterRef} />
+              <Menu />
+              <div className="mx-auto max-w-[1300px] container">{children}</div>
+              {show === "register" && (
+                <Modal ref={closeRegisterRef} title="Hisob yaratish">
+                  <ModalFormRegister ref={openLoginRef} />
+                </Modal>
+              )}
+              {show === "login" && (
+                <Modal ref={closeLoginRef} title="Kirish">
+                  <ModalFormLogin />
+                </Modal>
+              )}
+            </UserProvider>
           </Provider>
         </ErrorBoundary>
       </body>

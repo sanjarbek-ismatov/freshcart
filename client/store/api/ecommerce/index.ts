@@ -92,9 +92,12 @@ export const eCommerceApi = createApi({
       }),
       updateUserInfo: build.mutation<User, User>({
         query: (body) => ({
-          url: "/api/auth/info/update",
+          url: "/auth/info/update",
           method: "PUT",
           body,
+          headers: {
+            ["x-token"]: gettoken("x-token"),
+          },
         }),
       }),
     };
