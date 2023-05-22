@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+
 export function dbConnect() {
   mongoose
     .connect(process.env.MONGO_URL || "")
