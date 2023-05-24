@@ -4,10 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import { Counter } from "@/app/components";
 
-interface CartProductProps {
-  product: ProductType;
-}
-
 function CartProduct({
   product,
   defCount,
@@ -22,8 +18,8 @@ function CartProduct({
         <Image
           width={60}
           height={60}
-          src={`http://localhost:4000/api/files/image/${product.images[0]}`}
-          alt={`${product.name} rasmi`}
+          src={`http://localhost:4000/api/files/image/${product?.images[0]}`}
+          alt={`${product?.name} rasmi`}
           unoptimized
         />
         <div className="mx-3">
