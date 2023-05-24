@@ -37,7 +37,7 @@ function VendorRegisterPage() {
         <Input name="phone" placeholder="Telefon raqam" />
         <Input name="category" placeholder="Do'kon kategoriyasi" />
         <Input
-          pattern="^[^\d](?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}"
+          // pattern="^[^\d](?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{7,}"
           name="password"
           placeholder="Maxfiy parol"
         />

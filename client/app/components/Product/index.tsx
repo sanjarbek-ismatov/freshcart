@@ -36,7 +36,7 @@ function ProductCard({ details }: { details: ProductType }) {
       <div className="flex justify-between mt-4">
         <span>${details.price}</span>{" "}
         <button className="p-1 bg-green-500 text-white rounded-md">
-          +Savat
+          +Savatss
         </button>
       </div>
     </div>

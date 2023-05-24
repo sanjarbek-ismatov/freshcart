@@ -23,13 +23,13 @@ function CartProduct({
           unoptimized
         />
         <div className="mx-3">
-          <h4 className="font-semibold">{product.name}</h4>
+          <h4 className="font-semibold">{product?.name}</h4>
           <button>Olib tashlash</button>
         </div>
       </div>
       <div className="w-[200px] flex justify-between items-center">
         <Counter count={count} setCount={setCount} />
-        <p>${product.price}</p>
+        <p>${product?.price}</p>
       </div>
     </div>
   );
