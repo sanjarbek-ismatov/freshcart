@@ -43,9 +43,16 @@ function getInfo(req: NodeRequest, res: Response) {
 
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
-  if (req.body.type === "cart") user?.cart.push(req.body);
-  else user?.liked.push(req.body.id);
-  await user?.save();
+  if (req.body.type === "cart") {
+    user?.cart.includes(req.body)
+      ? user.cart.splice(user.cart.indexOf(req.body, 1))
+      : user?.cart.unshift(req.body);
+  } else
+    user?.liked.includes(req.body.id)
+      ? user.liked.splice(user.cart.indexOf(req.body.id, 1))
+      : user?.cart.unshift(req.body.id);
+  // await user?.save();
+  console.log(user);
   res.status(200).send({ code: 200, message: "Ok" });
 }
 
