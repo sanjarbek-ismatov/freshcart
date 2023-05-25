@@ -31,7 +31,8 @@ interface AdminType {
 }
 
 interface NodeRequest extends Request {
-  user?: UserType;
+  user?: Document<unknown, {}, UserType> &
+    Omit<UserType & { _id: Types.ObjectId }, never>;
   vendor?: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;
   admin?: boolean;

@@ -32,7 +32,7 @@ function PopularProducts({
         return mutation;
     }
   }, [products, state]);
-  console.log(products);
+
   return (
     <>
       <div className="my-6">
