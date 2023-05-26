@@ -30,7 +30,6 @@ async function addSubCategory(req: NodeRequest, res: Response) {
     return res
       .status(404)
       .send({ code: 404, message: "Mavjud emas kategoriya" });
-  console.log(req.body);
   foundedCategory.subCategories.push(req.body);
   await foundedCategory.save();
   res.status(200).send({ code: 200, message: "Kategoriya qo'shildi" });
