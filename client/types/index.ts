@@ -30,7 +30,7 @@ interface User {
   liked: ProductType[];
 
   cart: {
-    id: string;
+    id: ProductType;
     count: number;
   }[];
 }
