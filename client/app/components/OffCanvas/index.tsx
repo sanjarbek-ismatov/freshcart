@@ -24,7 +24,7 @@ const OffCanvas = forwardRef<
   }, [setShow]);
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, [show, refetch]);
   return (
     <div
       id="offcanvasback"

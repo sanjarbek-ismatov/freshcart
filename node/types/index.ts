@@ -47,7 +47,9 @@ interface UserType extends Document {
   username: string;
   password: string;
   liked: ProductType[];
-  cart: ProductType[];
+  cart: {
+    id: string;
+  }[];
 }
 
 interface VendorType extends Document {

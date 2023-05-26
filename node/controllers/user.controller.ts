@@ -45,8 +45,9 @@ async function getInfo(req: NodeRequest, res: Response) {
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
   if (req.body.type === "cart") {
-    user?.cart.includes(req.body)
-      ? user.cart.splice(user.cart.indexOf(req.body, 1))
+    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id);
+    index !== -1
+      ? user?.cart.splice(index || -1, 1)
       : user?.cart.unshift(req.body);
   } else
     user?.liked.includes(req.body.id.toString())
