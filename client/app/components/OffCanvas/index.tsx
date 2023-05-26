@@ -11,7 +11,7 @@ const OffCanvas = forwardRef<
     setShow: React.Dispatch<React.SetStateAction<boolean>>;
   }
 >(function OffCanvas({ show, setShow }, ref) {
-  const { isLoading, data, refetch } = useGetUserInfoQuery();
+  const { data, refetch, isSuccess } = useGetUserInfoQuery();
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     document

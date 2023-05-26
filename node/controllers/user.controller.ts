@@ -37,22 +37,23 @@ async function loginController(req: NodeRequest, res: Response) {
     .send({ code: 200, message: "Bajarildi" });
 }
 
-function getInfo(req: NodeRequest, res: Response) {
-  res.status(200).send(req.user);
+async function getInfo(req: NodeRequest, res: Response) {
+  const user = await req.user?.populate("cart.id liked");
+  res.status(200).send(user);
 }
 
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
   if (req.body.type === "cart") {
-    user?.cart.includes(req.body)
-      ? user.cart.splice(user.cart.indexOf(req.body, 1))
+    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id);
+    index !== -1
+      ? user?.cart.splice(index || -1, 1)
       : user?.cart.unshift(req.body);
   } else
-    user?.liked.includes(req.body.id)
-      ? user.liked.splice(user.cart.indexOf(req.body.id, 1))
-      : user?.cart.unshift(req.body.id);
-  // await user?.save();
-  console.log(user);
+    user?.liked.includes(req.body.id.toString())
+      ? user.liked.splice(user.liked.indexOf(req.body.id, 1))
+      : user?.liked.unshift(req.body.id);
+  await user?.save();
   res.status(200).send({ code: 200, message: "Ok" });
 }
 
