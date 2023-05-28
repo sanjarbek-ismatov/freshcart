@@ -1,6 +1,7 @@
 import Image from "next/image";
-import StoreImage from "public/images/svg-graphics/store-graphics.svg";
+import StoreImage from "@/public/images/svg-graphics/store-graphics.svg";
 import "./Header.css";
+
 function Header() {
   return (
     <div className="flex justify-between items-center p-5 bg-slate-100">
@@ -9,4 +10,5 @@ function Header() {
     </div>
   );
 }
+
 export default Header;
