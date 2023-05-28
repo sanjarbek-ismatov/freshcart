@@ -6,8 +6,15 @@ import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 
 async function getAll(req: NodeRequest, res: Response) {
-  const vendors = await Vendor.find();
+  const vendors = await Vendor.find().select("-password");
   res.status(200).send(vendors);
+}
+
+async function getSingleVendor(req: NodeRequest, res: Response) {
+  const vendor = await Vendor.findOne({ slug: req.params.slug })
+    .populate("products")
+    .select("-password");
+  res.status(200).send(vendor);
 }
 
 async function register(req: NodeRequest, res: Response) {
@@ -48,4 +55,4 @@ async function login(req: NodeRequest, res: Response) {
     .send({ code: 200, message: "Bajarildi" });
 }
 
-export default { register, login, getAll };
+export default { register, login, getAll, getSingleVendor };
