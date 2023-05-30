@@ -1,5 +1,5 @@
 "use client";
-import { Form, Header } from "@/app/account/personal/components";
+import { Form, Header } from "@/app/(customer)/account/personal/components";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 
 function Personal() {
