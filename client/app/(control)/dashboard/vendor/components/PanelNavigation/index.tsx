@@ -5,27 +5,30 @@ import Link from "next/link";
 
 function PanelNavigation() {
   return (
-    <div className="w-[400px]">
+    <div className="w-[400px] leading-10 p-5">
       <Image src={LogoImage} alt="logo" />
-      <Link href="/dashboard/vendor">
+      <Link
+        className="py-2 px-3 text-green-600 block my-4 bg-green-200"
+        href="/dashboard/vendor"
+      >
         <i className="fa-solid fa-house fa-bounce"></i> Bosh sahifa
       </Link>
-      <p>Do`kon boshqaruvi</p>
+      <p className="text-sm text-gray-500">Do`kon boshqaruvi</p>
       <ul>
-        <li>
-          <Link href="/">
-            <i className="fa-solid fa-cart-shopping"></i>Maxsulotlar
+        <li className="my-3">
+          <Link className="p-3 text-gray-500" href="/">
+            <i className="fa-solid fa-cart-shopping mx-1"></i>Maxsulotlar
           </Link>
         </li>
-        <li>
-          <Link href="/">
-            <i className="fa-solid fa-bag-shopping"></i>Xaridlar
+        <li className="my-3">
+          <Link className="p-3 text-gray-500" href="/">
+            <i className="fa-solid fa-bag-shopping mx-1"></i>Xaridlar
           </Link>
         </li>
 
-        <li>
-          <Link href="/">
-            <i className="fa-regular fa-star"></i>Izohlar
+        <li className="my-3">
+          <Link className="p-3 text-gray-500" href="/">
+            <i className="fa-regular fa-star mx-1"></i>Izohlar
           </Link>
         </li>
       </ul>
