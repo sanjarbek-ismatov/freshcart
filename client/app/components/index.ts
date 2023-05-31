@@ -23,3 +23,4 @@ export {default as Counter} from "./Counter";
 export {default as AddToCard} from "./AddToCard";
 export {default as OffCanvas} from "./OffCanvas";
 export {default as CartProduct} from "./CartProduct";
+export {default as Badge} from "./Badge";

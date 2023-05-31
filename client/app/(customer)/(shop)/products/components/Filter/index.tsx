@@ -3,7 +3,7 @@ import Stars from "../Stars";
 import Stores from "../Stores";
 import "./Filter.css";
 import { CategoryType, VendorType } from "@/types";
-import { Collapse } from "@/app/(shop)/products/components";
+import { Collapse } from "@/app/(customer)/(shop)/products/components";
 
 function Filter({
   categories,
