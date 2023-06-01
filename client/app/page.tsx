@@ -2,12 +2,15 @@ import {
   About,
   Categories,
   Footer,
+  Menu,
+  Navbar,
   ProductGrid,
   SidePanel,
   Swiper,
 } from "./components";
 import { ProductType } from "@/types";
 import { getSSRData } from "@/app/utils/getData";
+import React from "react";
 
 export default async function Home() {
   const products = await getSSRData<ProductType[]>(
@@ -15,6 +18,8 @@ export default async function Home() {
   );
   return (
     <div className="container max-w-[1300px] mx-auto">
+      <Navbar />
+      <Menu />
       <Swiper />
       <Categories />
 
