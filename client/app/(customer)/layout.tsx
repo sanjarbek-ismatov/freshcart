@@ -14,8 +14,6 @@ import {
   Navbar,
 } from "@/app/components";
 import { useAuth } from "@/app/hooks/useAuth";
-import { UserProvider } from "@/app/context/provider";
-import Provider from "@/store/provider";
 
 function CustomerLayout({ children }: { children: ReactNode }) {
   const auth = useAuth();
@@ -25,13 +23,16 @@ function CustomerLayout({ children }: { children: ReactNode }) {
   const closeLoginRef = useRef<HTMLElement>(null);
   const openLoginRef = useRef<HTMLParagraphElement>(null);
   const handleShowRegister = useCallback(() => {
+    console.log("working");
     if (!auth) setShow(show === "" ? "register" : "");
   }, [auth, show]);
   const handleShowLogin = useCallback(
     () => setShow(show === "login" ? "" : "login"),
     [show]
   );
-
+  useEffect(() => {
+    console.log(show);
+  }, [show]);
   useEffect(() => {
     closeRegisterRef.current?.addEventListener("click", handleShowRegister);
     openRegisterRef.current?.addEventListener("click", handleShowRegister);
@@ -47,23 +48,21 @@ function CustomerLayout({ children }: { children: ReactNode }) {
     };
   }, [handleShowLogin, handleShowRegister]);
   return (
-    <UserProvider>
-      <Provider>
-        <Navbar />
-        <Menu />
-        <div className="mx-auto max-w-[1300px] container">{children}</div>
-        {show === "register" && (
-          <Modal ref={closeRegisterRef} title="Hisob yaratish">
-            <ModalFormRegister ref={openLoginRef} />
-          </Modal>
-        )}
-        {show === "login" && (
-          <Modal ref={closeLoginRef} title="Kirish">
-            <ModalFormLogin />
-          </Modal>
-        )}
-      </Provider>
-    </UserProvider>
+    <>
+      <Navbar ref={openRegisterRef} />
+      <Menu />
+      <div className="mx-auto max-w-[1300px] container">{children}</div>
+      {show === "register" && (
+        <Modal ref={closeRegisterRef} title="Hisob yaratish">
+          <ModalFormRegister ref={openLoginRef} />
+        </Modal>
+      )}
+      {show === "login" && (
+        <Modal ref={closeLoginRef} title="Kirish">
+          <ModalFormLogin />
+        </Modal>
+      )}
+    </>
   );
 }
 

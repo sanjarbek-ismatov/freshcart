@@ -6,7 +6,7 @@ import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
-import { OffCanvas } from "@/app/components";
+import { Badge, OffCanvas } from "@/app/components";
 
 const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const auth = useAuth();
@@ -14,6 +14,7 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const [showOffCanvas, setOffCanvas] = useState(false);
   const offCanvasRef = useRef<HTMLElement>(null);
   const handleShow = useCallback(() => {
+    console.log(show);
     if (auth) setShow(!show);
   }, [auth, show]);
   const handleShowOffCanvas = useCallback(() => {
@@ -71,7 +72,12 @@ const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
                 </>
               }
             </span>
-            {/*<Badge length={1} onClick={handleShowOffCanvas} />*/}
+            <Badge length={1}>
+              <i
+                className="cursor-pointer fa-regular fa-bookmark text-xl"
+                onClick={handleShowOffCanvas}
+              ></i>
+            </Badge>
           </div>
           <div className="md:hidden block mx-3">
             <span>

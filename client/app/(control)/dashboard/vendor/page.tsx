@@ -1,15 +1,7 @@
-import {
-  Main,
-  PanelNavigation,
-} from "@/app/(control)/dashboard/vendor/components";
+import { Main } from "@/app/(control)/dashboard/vendor/components";
 
 function VendorDashboardPage() {
-  return (
-    <div className="flex">
-      <PanelNavigation />
-      <Main />
-    </div>
-  );
+  return <Main />;
 }
 
 export default VendorDashboardPage;

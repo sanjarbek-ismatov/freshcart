@@ -16,7 +16,7 @@ function PanelNavigation() {
       <p className="text-sm text-gray-500">Do`kon boshqaruvi</p>
       <ul>
         <li className="my-3">
-          <Link className="p-3 text-gray-500" href="/">
+          <Link className="p-3 text-gray-500" href="/dashboard/vendor/products">
             <i className="fa-solid fa-cart-shopping mx-1"></i>Maxsulotlar
           </Link>
         </li>
