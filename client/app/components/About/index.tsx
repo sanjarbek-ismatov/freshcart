@@ -4,6 +4,7 @@ import gift from "public/images/icons/gift.svg";
 import pack from "public/images/icons/package.svg";
 import refresh from "public/images/icons/refresh-cw.svg";
 import Image from "next/image";
+
 function About() {
   return (
     <>
@@ -14,7 +15,7 @@ function About() {
             10 daqiqada oziq-ovqat
           </p>
           <p className="text-sm leading-6 text-slate-600">
-            Buyurtmangizni eng qisqa vaqt ichida o`zingizga yaqin FreshCart
+            Buyurtmangizni eng qisqa vaqt ichida o'zingizga yaqin FreshCart
             pikap do`konlaridan ostonanggacha yetkazing.
           </p>
         </div>
@@ -24,7 +25,7 @@ function About() {
             Eng yaxshi narxlar va takliflar
           </p>
           <p className="text-sm leading-6 text-slate-600">
-            Mahalliy supermarketga qaraganda arzonroq narxlar, uni to`ldirish
+            Mahalliy supermarketga qaraganda arzonroq narxlar, uni to'ldirish
             uchun ajoyib cashback takliflari. Eng yaxshi narxlar va takliflarni
             oling.
           </p>
@@ -52,4 +53,5 @@ function About() {
     </>
   );
 }
+
 export default About;
