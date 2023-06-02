@@ -5,3 +5,5 @@ export { default as Banner } from "./Banner";
 export { default as Card } from "./Card";
 export { default as Chart } from "./Chart";
 export {default as Order} from "./Order";
+export {default as TableHead} from "./TableHead";
+export {default as TableBody} from "./TableBody";
