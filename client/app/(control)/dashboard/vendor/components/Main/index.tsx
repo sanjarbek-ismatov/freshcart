@@ -3,14 +3,12 @@ import {
   Banner,
   Card,
   Chart,
-  Navbar,
   Order,
 } from "@/app/(control)/dashboard/vendor/components";
 
 function Main() {
   return (
-    <main className="w-full px-5">
-      <Navbar />
+    <>
       <Banner />
       <div className="flex">
         <Card
@@ -28,7 +26,7 @@ function Main() {
 
       <Chart />
       <Order />
-    </main>
+    </>
   );
 }
 
