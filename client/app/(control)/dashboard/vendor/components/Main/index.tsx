@@ -4,6 +4,7 @@ import {
   Card,
   Chart,
   Navbar,
+  Order,
 } from "@/app/(control)/dashboard/vendor/components";
 
 function Main() {
@@ -26,6 +27,7 @@ function Main() {
       </div>
 
       <Chart />
+      <Order />
     </main>
   );
 }
