@@ -4,7 +4,6 @@ import {
   Card,
   Chart,
   Navbar,
-  PieChart,
 } from "@/app/(control)/dashboard/vendor/components";
 
 function Main() {
@@ -25,10 +24,8 @@ function Main() {
           submain="Oxirgi 2 kun ichida 10ta"
         />
       </div>
-      <div className="flex">
-        <Chart />
-        <PieChart />
-      </div>
+
+      <Chart />
     </main>
   );
 }

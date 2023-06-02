@@ -63,7 +63,7 @@ function Chart() {
     ],
   };
 
-  return <Line width={400} data={data} options={options} />;
+  return <Line data={data} options={options} />;
 }
 
 export default Chart;
