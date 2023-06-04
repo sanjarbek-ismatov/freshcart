@@ -1,5 +1,11 @@
 import { Button } from "@/app/components";
 import { Filter } from "@/app/(control)/dashboard/vendor/products/components";
+import {
+  Table,
+  TableBody,
+  TableHead,
+} from "@/app/(control)/dashboard/vendor/components";
+import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 
 function ProductsDashboardPage() {
   return (
@@ -10,6 +16,32 @@ function ProductsDashboardPage() {
       </header>
       <main>
         <Filter />
+        <Table>
+          <TableHead
+            data={[
+              <Checkbox key={1} checked={false} />,
+              "Rasmi",
+              "Nomi",
+              "Kategoriyasi",
+              "Holati",
+              "Qiymati",
+              "Sanasi",
+            ]}
+          />
+          <tbody>
+            <TableBody
+              data={[
+                <Checkbox key={1} checked={true} />,
+                "rasm",
+                "Snikers",
+                "Oziq-ovqat",
+                "Bajarilmoqda",
+                "10",
+                "12.12.2005",
+              ]}
+            />
+          </tbody>
+        </Table>
       </main>
     </>
   );
