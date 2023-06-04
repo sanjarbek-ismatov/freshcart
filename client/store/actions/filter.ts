@@ -1,10 +1,15 @@
 import { createAction } from "@reduxjs/toolkit";
 
-const sortBy = createAction<"rating" | "date" | "high" | "low">(
-  "filter/sortBy"
-);
-const countItem = createAction<number>("filter/count");
-const stars = createAction<number>("filter/stars");
-const vendor = createAction<string>("filter/vendor");
-const price = createAction<[number, number]>("filter/price");
-export { countItem, sortBy, stars, vendor, price };
+const clientFilter = {
+  countItemFilter: createAction<number>("filter/count"),
+  starsFilter: createAction<number>("filter/stars"),
+  sortByFilter: createAction<"rating" | "date" | "high" | "low">(
+    "filter/sortBy"
+  ),
+  vendorFilter: createAction<string>("filter/vendor"),
+  priceFilter: createAction<[number, number]>("filter/price"),
+};
+const controlFilter = {
+  statusFilter: createAction<string>("controlFilter/status"),
+};
+export { clientFilter, controlFilter };

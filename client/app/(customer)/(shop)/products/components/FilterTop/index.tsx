@@ -23,13 +23,13 @@ function FilterTop({ length }: { length: number }) {
       <div className="flex justify-between">
         <p>{length}ta maxsulot topildi</p>
         <div className="">
-          <Select onChange={changePageCount} state={state}>
+          <Select onChange={changePageCount} defaultValue={state.count}>
             <option value="10">10</option>
             <option value="20">20</option>
             <option value="50">50</option>
             <option value="100">100</option>
           </Select>
-          <Select onChange={changeSortList} state={state}>
+          <Select onChange={changeSortList} defaultValue={state.sortBy}>
             <option value="date">Sanasi bo`yicha</option>
             <option value="rating">Reyting bo`yicha</option>
             <option value="low">Avval arzonlari</option>

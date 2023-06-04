@@ -1,19 +1,17 @@
 import { bindActionCreators, configureStore } from "@reduxjs/toolkit";
 import { eCommerceApi } from "./api/ecommerce";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { filterReducer } from "@/store/reducers/filter";
 import {
-  countItem,
-  price,
-  sortBy,
-  stars,
-  vendor,
-} from "@/store/actions/filter";
+  clientFilterReducer,
+  controlFilterReducer,
+} from "@/store/reducers/filter";
+import { clientFilter, controlFilter } from "@/store/actions/filter";
 
 export const store = configureStore({
   reducer: {
     [eCommerceApi.reducerPath]: eCommerceApi.reducer,
-    filter: filterReducer,
+    filter: clientFilterReducer,
+    controlFilter: controlFilterReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -22,19 +20,14 @@ export const store = configureStore({
   },
 });
 export const {
-  sortBy: sortByDispatch,
-  countItem: countItemDispatch,
-  stars: starsDispatch,
-  vendor: vendorDispatch,
-  price: priceDispatch,
-} = bindActionCreators(
-  {
-    sortBy,
-    countItem,
-    stars,
-    vendor,
-    price,
-  },
+  sortByFilter: sortByDispatch,
+  countItemFilter: countItemDispatch,
+  starsFilter: starsDispatch,
+  vendorFilter: vendorDispatch,
+  priceFilter: priceDispatch,
+} = bindActionCreators(clientFilter, store.dispatch);
+export const { statusFilter: statusFilterDispatch } = bindActionCreators(
+  controlFilter,
   store.dispatch
 );
 const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> =
