@@ -6,7 +6,7 @@ import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 
 async function getAll(req: NodeRequest, res: Response) {
-  const vendors = await Vendor.find().select("-password");
+  const vendors = await Vendor.find().select("-password").populate("products");
   res.status(200).send(vendors);
 }
 
@@ -15,6 +15,11 @@ async function getSingleVendor(req: NodeRequest, res: Response) {
     .populate("products")
     .select("-password");
   res.status(200).send(vendor);
+}
+
+async function getMe(req: NodeRequest, res: Response) {
+  console.log("Router is working");
+  res.status(200).send(req.vendor);
 }
 
 async function register(req: NodeRequest, res: Response) {
@@ -55,4 +60,4 @@ async function login(req: NodeRequest, res: Response) {
     .send({ code: 200, message: "Bajarildi" });
 }
 
-export default { register, login, getAll, getSingleVendor };
+export default { register, login, getAll, getSingleVendor, getMe };

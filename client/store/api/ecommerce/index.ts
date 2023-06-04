@@ -100,6 +100,11 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      getControllerInfo: build.query<any, void>({
+        query: () => ({
+          url: "/ven",
+        }),
+      }),
     };
   },
 });

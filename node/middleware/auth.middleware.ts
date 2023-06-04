@@ -27,8 +27,9 @@ export async function vendorAuthMiddleware(
   res: Response,
   next: NextFunction
 ) {
+  console.log("middleware is working");
   const vendorToken = req.headers["x-vendor-token"];
-  console.log(vendorToken);
+
   if (typeof vendorToken !== "string" || !vendorToken)
     return res.status(401).send({ code: 401, message: "Token kerak" });
   const { email } = tokenParser(vendorToken);

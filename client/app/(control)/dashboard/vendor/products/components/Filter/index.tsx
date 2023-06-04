@@ -13,7 +13,7 @@ function Filter() {
   const state = useAppSelector((state) => state.controlFilter);
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between my-5">
       <Input placeholder="Qidiring" width={300} />
       <Select onChange={changeFilter} defaultValue={state.status}>
         <option value="">status</option>
