@@ -11,6 +11,7 @@ vendorRoute.post(
 );
 vendorRoute.post("/login", vendorController.login);
 vendorRoute.get("/all", vendorController.getAll);
-vendorRoute.get("/:slug", vendorController.getSingleVendor);
 vendorRoute.get("/me", vendorAuthMiddleware, vendorController.getMe);
+vendorRoute.get("/:slug", vendorController.getSingleVendor);
+
 export default vendorRoute;
