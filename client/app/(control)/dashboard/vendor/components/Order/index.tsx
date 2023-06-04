@@ -1,5 +1,6 @@
 import "./Order.css";
 import {
+  Table,
   TableBody,
   TableHead,
 } from "@/app/(control)/dashboard/vendor/components";
@@ -10,13 +11,17 @@ function Order() {
       <h1 className="font-medium my-4 text-slate-800 text-xl">
         Oxirgi buyurtmalar
       </h1>
-      <table className="min-w-full bg-white border border-gray-300">
-        <TableHead />
+      <Table>
+        <TableHead data={["Raqami", "Nomi", "Sanasi", "Qiymati", "Holati"]} />
         <tbody>
-          <TableBody />
-          <TableBody />
+          <TableBody
+            data={["1121212", "Snikers", "12.12.2000", "10", "Pending"]}
+          />
+          <TableBody
+            data={["1121212", "Snikers", "12.12.2000", "10", "Finished"]}
+          />
         </tbody>
-      </table>
+      </Table>
     </div>
   );
 }
