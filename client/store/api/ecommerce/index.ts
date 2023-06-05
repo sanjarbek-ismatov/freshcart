@@ -3,6 +3,7 @@ import {
   RequestRegisterForm,
   ServerResponse,
   User,
+  VendorType,
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { gettoken } from "@/app/utils/gettoken";
@@ -100,9 +101,13 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      getControllerInfo: build.query<any, void>({
+      getControllerInfo: build.query<VendorType, void>({
         query: () => ({
-          url: "/ven",
+          url: "/vendor/me",
+          method: "GET",
+          headers: {
+            ["x-vendor-token"]: gettoken("x-vendor-token"),
+          },
         }),
       }),
     };
@@ -117,4 +122,5 @@ export const {
   useAddToCartMutation,
   useGetUserInfoQuery,
   useUpdateUserInfoMutation,
+  useGetControllerInfoQuery,
 } = eCommerceApi;

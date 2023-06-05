@@ -88,6 +88,7 @@ interface ProductType {
   guarantee: number;
   expirationData: string;
   dateOfManufacture: Date;
+  isInArchive: boolean;
 }
 
 type Sort = "rating" | "date" | "low" | "high";

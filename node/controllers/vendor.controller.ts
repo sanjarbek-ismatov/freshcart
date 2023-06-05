@@ -18,8 +18,8 @@ async function getSingleVendor(req: NodeRequest, res: Response) {
 }
 
 async function getMe(req: NodeRequest, res: Response) {
-  console.log("Router is working");
-  res.status(200).send(req.vendor);
+  const vendor = await req.vendor?.populate("products");
+  res.status(200).send(vendor);
 }
 
 async function register(req: NodeRequest, res: Response) {

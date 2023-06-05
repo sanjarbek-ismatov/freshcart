@@ -27,7 +27,6 @@ export async function vendorAuthMiddleware(
   res: Response,
   next: NextFunction
 ) {
-  console.log("middleware is working");
   const vendorToken = req.headers["x-vendor-token"];
 
   if (typeof vendorToken !== "string" || !vendorToken)

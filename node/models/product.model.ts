@@ -21,5 +21,9 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   guarantee: String,
   expirationData: String,
   dateOfManufacture: String,
+  isInArchive: {
+    type: Boolean,
+    default: false,
+  },
 });
 export const Product = mongoose.model<ProductType>("Product", productSchema);
