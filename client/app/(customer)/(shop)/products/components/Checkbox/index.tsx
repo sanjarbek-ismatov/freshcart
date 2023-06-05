@@ -1,5 +1,4 @@
 import { ComponentProps, ReactNode } from "react";
-import "./Checkbox.css";
 
 function Checkbox({
   checked,
