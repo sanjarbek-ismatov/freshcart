@@ -23,6 +23,7 @@ interface ProductType {
   guarantee: number;
   expirationData: string;
   dateOfManufacture: string;
+  isInArchive: boolean;
 }
 
 interface AdminType {
