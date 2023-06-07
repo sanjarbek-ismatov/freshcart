@@ -110,6 +110,19 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      deleteProductsById: build.mutation<
+        ServerResponse<any>,
+        { id: string | string[] }
+      >({
+        query: (body) => ({
+          url: "/product/delete",
+          method: "DELETE",
+          body,
+          headers: {
+            ["x-vendor-token"]: gettoken("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -123,4 +136,5 @@ export const {
   useGetUserInfoQuery,
   useUpdateUserInfoMutation,
   useGetControllerInfoQuery,
+  useDeleteProductsByIdMutation,
 } = eCommerceApi;

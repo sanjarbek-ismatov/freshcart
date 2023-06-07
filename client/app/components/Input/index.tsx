@@ -1,12 +1,21 @@
-import { InputHTMLAttributes } from "react";
+import { ComponentProps } from "react";
 import "./Input.css";
 
-function Input({ ...rest }: InputHTMLAttributes<HTMLInputElement>) {
+function Input({
+  fullWidth,
+  label,
+  ...rest
+}: { fullWidth?: boolean; label?: string } & ComponentProps<"input">) {
   return (
-    <input
-      {...rest}
-      className=" mt-2 px-3 py-2 outline-none border-slate-300 focus:border-green-500 border rounded-md"
-    />
+    <label className="text-sm mt-2 text-gray-500">
+      {label}
+      <input
+        {...rest}
+        className={`${
+          fullWidth && "w-full"
+        } mt-2 px-3 py-2 outline-none border-slate-300 focus:border-green-500 border rounded-md`}
+      />
+    </label>
   );
 }
 

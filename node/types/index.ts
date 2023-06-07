@@ -8,6 +8,7 @@ interface CategoryType {
 }
 
 interface ProductType {
+  _id: string;
   name: string;
   slug: string;
   price: number;
@@ -17,7 +18,6 @@ interface ProductType {
   images: string[];
   reviews: string[];
   weight: number;
-  count: number;
   vendor: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;
   guarantee: number;

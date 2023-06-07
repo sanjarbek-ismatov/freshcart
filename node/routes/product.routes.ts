@@ -11,4 +11,9 @@ productRoute.post(
   [vendorAuthMiddleware, upload.array("images")],
   productController.create
 );
+productRoute.delete(
+  "/delete",
+  vendorAuthMiddleware,
+  productController.deleteProduct
+);
 export default productRoute;

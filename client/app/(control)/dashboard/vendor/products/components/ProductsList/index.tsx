@@ -10,7 +10,7 @@ import { MenuButton } from "@/app/components";
 function ProductsList({ query }: { query: string }) {
   const [selected, setSelected] = useState<ProductType[]>([]);
   const [allAreCheck, setAllAreCheck] = useState(false);
-  const { isLoading, data } = useGetControllerInfoQuery();
+  const { data, refetch, isSuccess } = useGetControllerInfoQuery();
   useEffect(() => {
     data && allAreCheck ? setSelected(data?.products) : setSelected([]);
   }, [allAreCheck, data]);
@@ -40,16 +40,25 @@ function ProductsList({ query }: { query: string }) {
         ]}
       />
       <tbody>
-        {data?.products
-          ?.filter((e) => e.name.toUpperCase().includes(query.toUpperCase()))
-          .map((e, i) => (
-            <ProductTableBody
-              selected={selected.includes(e)}
-              setSelected={setSelected}
-              key={i}
-              product={e}
-            />
-          ))}
+        {
+          data?.products
+            ?.filter((e) => e.name.toUpperCase().includes(query.toUpperCase()))
+            .map((e, i) => (
+              <ProductTableBody
+                selected={selected.includes(e)}
+                setSelected={setSelected}
+                refetch={refetch}
+                key={i}
+                product={e}
+              />
+            ))
+
+          //     : (
+          //   <td colSpan={7}>
+          //     <p className="text-center p-3">Maxsulotlar yo'q shekilli</p>
+          //   </td>
+          // )
+        }
       </tbody>
     </Table>
   );
