@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { ProductTableBody } from "@/app/(control)/dashboard/vendor/products/components";
 import { MenuButton } from "@/app/components";
 
-function ProductsList() {
+function ProductsList({ query }: { query: string }) {
   const [selected, setSelected] = useState<ProductType[]>([]);
   const [allAreCheck, setAllAreCheck] = useState(false);
   const { isLoading, data } = useGetControllerInfoQuery();
@@ -40,14 +40,16 @@ function ProductsList() {
         ]}
       />
       <tbody>
-        {data?.products?.map((e, i) => (
-          <ProductTableBody
-            selected={selected.includes(e)}
-            setSelected={setSelected}
-            key={i}
-            product={e}
-          />
-        ))}
+        {data?.products
+          ?.filter((e) => e.name.toUpperCase().includes(query.toUpperCase()))
+          .map((e, i) => (
+            <ProductTableBody
+              selected={selected.includes(e)}
+              setSelected={setSelected}
+              key={i}
+              product={e}
+            />
+          ))}
       </tbody>
     </Table>
   );

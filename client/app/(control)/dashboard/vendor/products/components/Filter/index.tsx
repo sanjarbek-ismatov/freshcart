@@ -2,7 +2,13 @@
 import { Input } from "@/app/components";
 import React from "react";
 
-function Filter() {
+function Filter({
+  text,
+  setText,
+}: {
+  text: string;
+  setText: React.Dispatch<React.SetStateAction<string>>;
+}) {
   // const changeFilter = useCallback(
   //   (event: React.ChangeEvent<HTMLSelectElement>) => {
   //     statusFilterDispatch(event.target.value);
@@ -13,7 +19,12 @@ function Filter() {
 
   return (
     <div className="flex justify-between my-5">
-      <Input placeholder="Qidiring" width={300} />
+      <Input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Qidiring"
+        width={300}
+      />
       {/*<Select onChange={changeFilter} defaultValue={state.status}>*/}
       {/*  <option value="">status</option>*/}
       {/*  <option value="pending">Pending</option>*/}

@@ -1,10 +1,13 @@
+"use client";
 import { Button } from "@/app/components";
 import {
   Filter,
   ProductsList,
 } from "@/app/(control)/dashboard/vendor/products/components";
+import { useState } from "react";
 
 function ProductsDashboardPage() {
+  const [text, setText] = useState("");
   return (
     <>
       <header className="w-full flex justify-between my-5">
@@ -12,9 +15,9 @@ function ProductsDashboardPage() {
         <Button>Maxsulot qo'shish</Button>
       </header>
       <main>
-        <Filter />
+        <Filter text={text} setText={setText} />
 
-        <ProductsList />
+        <ProductsList query={text} />
       </main>
     </>
   );
