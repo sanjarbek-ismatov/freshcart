@@ -6,7 +6,7 @@ function TableBody({ data }: { data: (string | number | JSX.Element)[] }) {
       {data.map((e, i) => (
         <td
           key={i}
-          className="py-3 px-4 text-slate-700 border border-gray-300 text-start"
+          className="py-3 z-20 px-4 text-slate-700 border border-gray-300 text-start"
         >
           {e}
         </td>
