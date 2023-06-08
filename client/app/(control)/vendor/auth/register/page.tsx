@@ -24,9 +24,7 @@ function VendorRegisterPage() {
         onSubmit={(e) => {
           e.preventDefault();
           formParser.setForm(e);
-          formParser
-            .sendForm()
-            .then((data) => router.push("/vendor/auth/login"));
+          formParser.sendForm().then(() => router.push("/vendor/auth/login"));
         }}
         className="w-96"
         encType="multipart/form-data"

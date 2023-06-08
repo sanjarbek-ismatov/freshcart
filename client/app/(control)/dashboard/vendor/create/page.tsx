@@ -16,7 +16,7 @@ function CreatePage() {
         onSubmit={(event) => {
           event.preventDefault();
           formParser.setForm(event);
-          formParser.sendForm().then((data) => console.log(data));
+          formParser.sendForm().then((data: any) => console.log(data));
         }}
         encType="multipart/form-data"
       >

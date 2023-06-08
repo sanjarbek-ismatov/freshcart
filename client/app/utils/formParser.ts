@@ -1,14 +1,9 @@
-import { MutationTrigger } from "@reduxjs/toolkit/src/query/react/buildHooks";
-import { MutationDefinition } from "@reduxjs/toolkit/query";
-
 class FormParser {
   private form?: any;
   private formData = new FormData();
-  private mutation: MutationTrigger<MutationDefinition<any, any, any, any>>;
+  private mutation: any;
 
-  constructor(
-    mutation: MutationTrigger<MutationDefinition<any, any, any, any>>
-  ) {
+  constructor(mutation: any) {
     this.mutation = mutation;
   }
 
