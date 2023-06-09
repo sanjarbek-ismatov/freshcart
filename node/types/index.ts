@@ -84,7 +84,7 @@ interface OrderType {
   totalPrice: number;
   shippingAddress: AddressType;
   billingAddress: AddressType;
-  paymentMethod: "";
+  paymentMethod: string;
   orderNotes: string;
 }
 
