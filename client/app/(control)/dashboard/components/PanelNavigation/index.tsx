@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-function PanelNavigation({ params }: { params: string }) {
+function PanelNavigation() {
   const pathname = usePathname();
   const lastPath = pathname.split("/").at(-1);
 
