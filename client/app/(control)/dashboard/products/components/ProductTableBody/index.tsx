@@ -1,7 +1,7 @@
 "use client";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction, useCallback } from "react";
-import { TableBody } from "@/app/(control)/dashboard/vendor/components";
+import { TableBody } from "@/app/(control)/dashboard/components";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import Image from "next/image";
 import { MenuButton } from "@/app/components";

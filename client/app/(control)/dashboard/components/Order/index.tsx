@@ -3,7 +3,7 @@ import {
   Table,
   TableBody,
   TableHead,
-} from "@/app/(control)/dashboard/vendor/components";
+} from "@/app/(control)/dashboard/components";
 
 function Order() {
   return (

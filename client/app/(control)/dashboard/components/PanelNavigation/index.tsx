@@ -1,5 +1,5 @@
 import "./PanelNavigation.css";
-import LogoImage from "public/images/logo/freshcart-logo.svg";
+import LogoImage from "@/public/images/logo/freshcart-logo.svg";
 import Image from "next/image";
 import Link from "next/link";
 

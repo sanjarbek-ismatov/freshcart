@@ -15,16 +15,16 @@ function VendorRegisterPage() {
       <BreadCrumb
         path={[
           { title: "Uy", path: "/" },
-          { title: "Sotuvchi", path: "/vendor" },
-          { title: "Autentifikatsiya", path: "/vendor/auth" },
-          { title: "Ro'yhatdan o'tish", path: "/vendor/auth/register" },
+          { title: "Sotuvchi", path: "/vv" },
+          { title: "Autentifikatsiya", path: "/vv/auth" },
+          { title: "Ro'yhatdan o'tish", path: "/vv/auth/register" },
         ]}
       />
       <form
         onSubmit={(e) => {
           e.preventDefault();
           formParser.setForm(e);
-          formParser.sendForm().then(() => router.push("/vendor/auth/login"));
+          formParser.sendForm().then(() => router.push("/vv/auth/login"));
         }}
         className="w-96"
         encType="multipart/form-data"

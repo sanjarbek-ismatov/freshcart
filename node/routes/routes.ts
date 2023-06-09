@@ -14,7 +14,7 @@ import fileRoute from "./files.routes";
 export default function (app: Express) {
   app.use(
     cors({
-      exposedHeaders: ["x-token", "x-vendor-token"],
+      exposedHeaders: ["x-token", "x-vv-token"],
       optionsSuccessStatus: 200,
     })
   );
@@ -30,7 +30,7 @@ export default function (app: Express) {
   app.use("/api/admin", adminRouter);
   app.use("/api/category", categoryRoutes);
   app.use("/api/product", productRoute);
-  app.use("/api/vendor", vendorRoute);
+  app.use("/api/vv", vendorRoute);
   app.use("/api/files", fileRoute);
   app.use(error);
 }

@@ -1,10 +1,10 @@
 "use client";
 import { useGetControllerInfoQuery } from "@/store/api/ecommerce";
-import { Table, TableHead } from "@/app/(control)/dashboard/vendor/components";
+import { Table, TableHead } from "@/app/(control)/dashboard/components";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { ProductType } from "@/types";
 import { useEffect, useState } from "react";
-import { ProductTableBody } from "@/app/(control)/dashboard/vendor/products/components";
+import { ProductTableBody } from "@/app/(control)/dashboard/products/components";
 import { MenuButton } from "@/app/components";
 
 function ProductsList({ query }: { query: string }) {

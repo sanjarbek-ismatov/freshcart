@@ -1,4 +1,4 @@
-import { Main } from "@/app/(control)/dashboard/vendor/components";
+import { Main } from "@/app/(control)/dashboard/components";
 
 function VendorDashboardPage() {
   return <Main />;

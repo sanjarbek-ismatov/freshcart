@@ -2,7 +2,7 @@
 import {
   Filter,
   ProductsList,
-} from "@/app/(control)/dashboard/vendor/products/components";
+} from "@/app/(control)/dashboard/products/components";
 import { useState } from "react";
 import Link from "next/link";
 

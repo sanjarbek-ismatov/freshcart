@@ -4,7 +4,7 @@ import {
   Card,
   Chart,
   Order,
-} from "@/app/(control)/dashboard/vendor/components";
+} from "@/app/(control)/dashboard/components";
 
 function Main() {
   return (

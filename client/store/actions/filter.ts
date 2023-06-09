@@ -6,7 +6,7 @@ const clientFilter = {
   sortByFilter: createAction<"rating" | "date" | "high" | "low">(
     "filter/sortBy"
   ),
-  vendorFilter: createAction<string>("filter/vendor"),
+  vendorFilter: createAction<string>("filter/vv"),
   priceFilter: createAction<[number, number]>("filter/price"),
 };
 const controlFilter = {
