@@ -1,6 +1,6 @@
 "use client";
 import { useFormik } from "formik";
-import { Button, Input } from "@/app/components";
+import { Button, Input } from "@components";
 import { useVendorLoginMutation } from "@/store/api/ecommerce";
 
 function LoginPage() {

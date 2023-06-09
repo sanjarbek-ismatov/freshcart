@@ -1,10 +1,10 @@
 "use client";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction, useCallback } from "react";
-import { TableBody } from "@/app/(control)/dashboard/components";
+import { TableBody } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import Image from "next/image";
-import { MenuButton } from "@/app/components";
+import { MenuButton } from "@components";
 import { useDeleteProductsByIdMutation } from "@/store/api/ecommerce";
 
 function ProductTableBody({

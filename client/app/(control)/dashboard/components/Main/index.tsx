@@ -1,10 +1,5 @@
 import "./Main.css";
-import {
-  Banner,
-  Card,
-  Chart,
-  Order,
-} from "@/app/(control)/dashboard/components";
+import { Banner, Card, Chart, Order } from "@components/dashboard";
 
 function Main() {
   return (

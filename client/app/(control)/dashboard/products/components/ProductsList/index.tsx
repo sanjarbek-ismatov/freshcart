@@ -1,6 +1,6 @@
 "use client";
 import { useGetControllerInfoQuery } from "@/store/api/ecommerce";
-import { Table, TableHead } from "@/app/(control)/dashboard/components";
+import { Table, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { ProductType } from "@/types";
 import { useEffect, useState } from "react";

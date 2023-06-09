@@ -1,5 +1,5 @@
 "use client";
-import { Button, Input, Select } from "@/app/components";
+import { Button, Input, Select } from "@components";
 import { useAddProductMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 

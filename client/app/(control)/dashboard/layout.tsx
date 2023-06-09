@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { Navbar, PanelNavigation } from "@/app/(control)/dashboard/components";
+import { Navbar, PanelNavigation } from "@components/dashboard";
 
 function VendorDashboardLayout({ children }: { children: ReactNode }) {
   return (

@@ -1,8 +1,8 @@
 "use client";
 import "./Slide.css";
 import { useEffect, useState } from "react";
-import { SlideImages } from "@/app/components";
-import { ProductType } from "@/types";
+import { SlideImages } from "@components";
+import { ProductType } from "@types";
 
 function Slide({ product }: { product: ProductType }) {
   const [current, setCurrent] = useState(0);

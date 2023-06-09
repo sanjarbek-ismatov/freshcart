@@ -1,5 +1,5 @@
 import { LinkComponent } from "@/app/(control)/dashboard/auth/components";
-import { BreadCrumb } from "@/app/components";
+import { BreadCrumb } from "@components";
 import React from "react";
 
 function AuthPage() {

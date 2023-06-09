@@ -1,9 +1,5 @@
 import "./Order.css";
-import {
-  Table,
-  TableBody,
-  TableHead,
-} from "@/app/(control)/dashboard/components";
+import { Table, TableBody, TableHead } from "@components/dashboard";
 
 function Order() {
   return (

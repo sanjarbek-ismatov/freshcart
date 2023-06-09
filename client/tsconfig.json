@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,9 +25,28 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@components": [
+        "./app/components/index.ts"
+      ],
+      "@components/dashboard": [
+        "./app/(control)/dashboard/components/index.ts"
+      ],
+      "@types": [
+        "./types/index.ts"
+      ],
+      "@/*": [
+        "./*"
+      ]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "data/categories.json"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "data/categories.json"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }

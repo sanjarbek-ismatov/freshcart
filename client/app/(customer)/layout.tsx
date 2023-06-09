@@ -12,7 +12,7 @@ import {
   ModalFormLogin,
   ModalFormRegister,
   Navbar,
-} from "@/app/components";
+} from "@components";
 import { useAuth } from "@/app/hooks/useAuth";
 
 function CustomerLayout({ children }: { children: ReactNode }) {

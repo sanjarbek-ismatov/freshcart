@@ -1,8 +1,8 @@
 "use client";
-import { Input } from "@/app/components";
+import { Input } from "@components";
 import "./Stores.css";
 import Checkbox from "../Checkbox";
-import { VendorType } from "@/types";
+import { VendorType } from "@types";
 import { useAppSelector, vendorDispatch } from "@/store/store";
 
 function Stores({ vendors }: { vendors: VendorType[] }) {

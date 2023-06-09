@@ -1,5 +1,5 @@
 "use client";
-import { BreadCrumb, Button, Input } from "@/app/components";
+import { BreadCrumb, Button, Input } from "@components";
 import React, { FormEvent, useState } from "react";
 import { useVendorRegisterMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";

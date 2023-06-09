@@ -1,5 +1,5 @@
 "use client";
-import { Input } from "@/app/components";
+import { Input } from "@components";
 import React from "react";
 
 function Filter({

@@ -1,5 +1,5 @@
 import "./Banner.css";
-import { Button } from "@/app/components";
+import { Button } from "@components";
 
 function Banner() {
   return (

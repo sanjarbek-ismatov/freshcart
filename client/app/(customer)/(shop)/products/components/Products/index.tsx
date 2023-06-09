@@ -1,8 +1,8 @@
 import FilterTop from "../FilterTop";
 import Panigation from "../Panigation";
 import "./Products.css";
-import { ProductGrid } from "@/app/components";
-import { ProductType } from "@/types";
+import { ProductGrid } from "@components";
+import { ProductType } from "@types";
 
 function Products({ products }: { products: ProductType[] }) {
   return (

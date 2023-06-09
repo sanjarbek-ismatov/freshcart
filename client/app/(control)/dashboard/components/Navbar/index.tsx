@@ -1,5 +1,5 @@
 import "./Navbar.css";
-import { Badge } from "@/app/components";
+import { Badge } from "@components";
 import Image from "next/image";
 import ProfileImage from "@/public/images/avatar/avatar-1.jpg";
 

@@ -1,9 +1,9 @@
 "use client";
 import "./AddToCard.css";
 import { useCallback, useState } from "react";
-import { Button, Counter } from "@/app/components";
+import { Button, Counter } from "@components";
 import { useAddToCartMutation } from "@/store/api/ecommerce";
-import { ProductType } from "@/types";
+import { ProductType } from "@types";
 
 function AddToCard({ product }: { product: ProductType }) {
   const [addToCart] = useAddToCartMutation();

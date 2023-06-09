@@ -2,7 +2,7 @@
 import "./OffCanvas.css";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import React, { forwardRef, useEffect } from "react";
-import { CartProduct } from "@/app/components";
+import { CartProduct } from "@components";
 
 const OffCanvas = forwardRef<
   HTMLElement,

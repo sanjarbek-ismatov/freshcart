@@ -1,7 +1,7 @@
-import { BreadCrumb } from "@/app/components";
+import { BreadCrumb } from "@components";
 import React from "react";
 import { Filter, Products } from "./components";
-import { CategoryType, ProductType, VendorType } from "@/types";
+import { CategoryType, ProductType, VendorType } from "@types";
 import { getSSRData } from "@/app/utils/getData";
 
 const Index = async () => {
