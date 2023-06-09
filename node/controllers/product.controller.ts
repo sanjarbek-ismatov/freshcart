@@ -32,6 +32,17 @@ async function create(req: NodeRequest, res: Response) {
   res.status(201).send({ code: 201, message: "Yaratildi!" });
 }
 
+async function deleteProduct(req: NodeRequest, res: Response) {
+  const productId = req.body.id;
+  await Product.findByIdAndDelete(productId);
+  req.vendor?.products.splice(
+    req.vendor?.products.findIndex((e) => e._id.toString() === productId),
+    1
+  );
+  await req.vendor?.save();
+  res.status(204).send({ code: 204, message: "ok" });
+}
+
 async function getBySlug(req: NodeRequest, res: Response) {
   const product = await Product.findOne({ slug: req.params.slug });
   if (!product)
@@ -39,4 +50,4 @@ async function getBySlug(req: NodeRequest, res: Response) {
   res.status(200).send(product);
 }
 
-export default { getAll, create, getBySlug };
+export default { getAll, create, getBySlug, deleteProduct };

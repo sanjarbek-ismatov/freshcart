@@ -1,13 +1,13 @@
 "use client";
 import React, { ChangeEvent, useCallback } from "react";
 import "./FilterTop.css";
-import { Sort } from "@/types";
+import { Sort } from "@types";
 import {
   countItemDispatch,
   sortByDispatch,
   useAppSelector,
 } from "@/store/store";
-import { Select } from "@/app/components";
+import { Select } from "@components";
 
 function FilterTop({ length }: { length: number }) {
   const state = useAppSelector((state) => state.filter);

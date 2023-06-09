@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Metadata } from "next";
-import { BreadCrumb } from "@/app/components";
+import { BreadCrumb } from "@components";
 
 export const metadata: Metadata = {
   title: "Do'konlar",

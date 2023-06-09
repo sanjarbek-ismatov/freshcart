@@ -83,10 +83,8 @@ interface ProductType {
   images: string[];
   reviews: string[];
   weight: number;
-  count: number;
   vendor: VendorType;
   guarantee: number;
-  expirationData: string;
   dateOfManufacture: Date;
   isInArchive: boolean;
 }

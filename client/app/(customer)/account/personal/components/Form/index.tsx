@@ -1,6 +1,6 @@
 import "./Form.css";
 import { User } from "@/types";
-import { Button, Input } from "@/app/components";
+import { Button, Input } from "@components";
 import FormParser from "@/app/utils/formParser";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 

@@ -7,7 +7,6 @@ import {
 } from "@/types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { gettoken } from "@/app/utils/gettoken";
-import { BaseQueryResult } from "@reduxjs/toolkit/src/query/baseQueryTypes";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
@@ -39,7 +38,7 @@ export const eCommerceApi = createApi({
             },
           };
         },
-        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, arg) {
+        transformResponse(baseQueryResult: any, meta, arg) {
           return {
             ...baseQueryResult,
             token: meta?.response?.headers.get("x-token"),
@@ -55,7 +54,7 @@ export const eCommerceApi = createApi({
       }),
       vendorLogin: build.mutation<ServerResponse<any>, RequestLoginForm>({
         query: (body) => ({ url: "/vendor/login", method: "POST", body }),
-        transformResponse(baseQueryResult: BaseQueryResult<any>, meta, args) {
+        transformResponse(baseQueryResult: any, meta, args) {
           return {
             ...baseQueryResult,
             token: meta?.response?.headers.get("x-vendor-token"),
@@ -110,6 +109,19 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      deleteProductsById: build.mutation<
+        ServerResponse<any>,
+        { id: string | string[] }
+      >({
+        query: (body) => ({
+          url: "/product/delete",
+          method: "DELETE",
+          body,
+          headers: {
+            ["x-vendor-token"]: gettoken("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -123,4 +135,5 @@ export const {
   useGetUserInfoQuery,
   useUpdateUserInfoMutation,
   useGetControllerInfoQuery,
+  useDeleteProductsByIdMutation,
 } = eCommerceApi;

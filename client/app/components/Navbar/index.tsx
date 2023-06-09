@@ -6,7 +6,7 @@ import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
-import { Badge, OffCanvas } from "@/app/components";
+import { Badge, OffCanvas } from "@components";
 
 const Navbar = forwardRef<HTMLElement>(function Navbar(props, ref) {
   const auth = useAuth();

@@ -1,7 +1,7 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
-import { Star } from "@/app/components";
+import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
 
 function ProductCard({ details }: { details: ProductType }) {

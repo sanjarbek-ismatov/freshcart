@@ -1,8 +1,8 @@
 "use client";
-import { ProductType } from "@/types";
+import { ProductType } from "@types";
 import { useState } from "react";
 import Image from "next/image";
-import { Counter } from "@/app/components";
+import { Counter } from "@components";
 import { useAddToCartMutation } from "@/store/api/ecommerce";
 
 function CartProduct({

@@ -1,5 +1,5 @@
 "use client";
-import { Button, Input } from "@/app/components";
+import { Button, Input } from "@components";
 import "./Price.css";
 import { useState } from "react";
 import { priceDispatch } from "@/store/store";

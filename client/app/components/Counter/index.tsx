@@ -1,6 +1,6 @@
 import "./Counter.css";
 import React from "react";
-import { Button } from "@/app/components";
+import { Button } from "@components";
 
 function Counter({
   count,

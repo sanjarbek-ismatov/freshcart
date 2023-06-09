@@ -4,15 +4,16 @@ import { ReactNode, useState } from "react";
 function MenuButton({ children }: { children: ReactNode }) {
   const [show, setShow] = useState(false);
   return (
-    <span
-      onClick={() => setShow(!show)}
-      className="relative p-3 w-auto rounded hover:bg-gray-300  z-20 cursor-pointer"
-    >
-      <i className="fa-solid  fa-ellipsis-vertical"></i>
-      {show && (
-        <div className="absolute border top-0 left-[-170px] ">{children}</div>
-      )}
-    </span>
+    <div className="relative m-auto w-5 h-5">
+      <div className="w-full h-full"></div>
+      <span className="absolute top-0 right-0 flex flex-row-reverse w-auto rounded  z-20 cursor-pointer">
+        <i
+          onClick={() => setShow(!show)}
+          className="fa-solid px-3 fa-ellipsis-vertical"
+        ></i>
+        {show && <div className="border w-[200px]">{children}</div>}
+      </span>
+    </div>
   );
 }
 

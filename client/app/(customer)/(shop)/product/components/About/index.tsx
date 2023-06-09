@@ -1,7 +1,7 @@
 import "./About.css";
-import { ProductType } from "@/types";
+import { ProductType } from "@types";
 import Link from "next/link";
-import { AddToCard, Star } from "@/app/components";
+import { AddToCard, Star } from "@components";
 
 function About({ product }: { product: ProductType }) {
   return (

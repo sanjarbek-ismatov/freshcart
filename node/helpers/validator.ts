@@ -52,9 +52,7 @@ export const productValidator = (body: ProductType) => {
     images: Joi.array().items(Joi.string()),
     reviews: Joi.array().items(Joi.string()),
     weight: Joi.number(),
-    count: Joi.number(),
     guarantee: Joi.string(),
-    expirationData: Joi.string(),
     dateOfManufacture: Joi.string(),
   });
   return validator.validate(body);
