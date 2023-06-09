@@ -16,14 +16,14 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
     liked: [
       {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Product",
+        ref: "product",
       },
     ],
     cart: [
       {
         id: {
           type: mongoose.SchemaTypes.ObjectId,
-          ref: "Product",
+          ref: "product",
         },
         count: Number,
       },

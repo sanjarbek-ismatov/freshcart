@@ -67,6 +67,27 @@ interface VendorType extends Document {
   products: ProductType[];
 }
 
+interface AddressType {
+  zipCode: number;
+  state: string;
+  location: string;
+}
+
+interface OrderType {
+  slug: string;
+  vendorId: VendorType;
+  productId: ProductType;
+  clientId: UserType;
+  count: number;
+  status: "pending" | "processing" | "rejected" | "finished";
+  date: Date;
+  totalPrice: number;
+  shippingAddress: AddressType;
+  billingAddress: AddressType;
+  paymentMethod: "";
+  orderNotes: string;
+}
+
 export type {
   CategoryType,
   ProductType,
@@ -74,4 +95,6 @@ export type {
   NodeRequest,
   UserType,
   VendorType,
+  OrderType,
+  AddressType,
 };

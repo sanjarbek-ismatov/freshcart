@@ -18,7 +18,7 @@ export async function authMiddleware(
   const user = await User.findOne({ email: decoded.email });
 
   if (!user) return res.status(404).send({ code: 404, message: "Xato login" });
-  req.user = await user;
+  req.user = user;
   next();
 }
 
