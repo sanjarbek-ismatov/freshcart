@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import { AddressType, OrderType } from "../types";
 
-const addressSchema: Schema<AddressType> = new mongoose.Schema({
+export const addressSchema: Schema<AddressType> = new mongoose.Schema({
   zipCode: Number,
   state: String,
   location: String,
