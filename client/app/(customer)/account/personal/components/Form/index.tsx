@@ -12,7 +12,7 @@ function Form({ user }: { user: User }) {
       onSubmit={(e) => {
         e.preventDefault();
         form.setForm(e);
-        form.sendForm();
+        // form.sendForm();
       }}
     >
       <Input name="image" type="file" />
@@ -35,7 +35,17 @@ function Form({ user }: { user: User }) {
         defaultValue={user.email}
       />
       <Input type="tel" name="phone" defaultValue={user.phone} />
-      <Input type="text" name="city" defaultValue={user.city} />
+      <fieldset name="address">
+        <legend>Joylashuvingiz</legend>
+        <Input type="text" name="state" defaultValue={user.address.state} />
+        <Input
+          type="text"
+          name="location"
+          defaultValue={user.address.location}
+        />
+        <Input type="text" name="zipCode" defaultValue={user.address.zipCode} />
+      </fieldset>
+
       <Input type="password" name="password" placeholder="Yangi parol" />
       <Button type="submit">Yangilash</Button>
     </form>

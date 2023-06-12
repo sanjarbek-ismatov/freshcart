@@ -13,8 +13,26 @@ class FormParser {
     const { target } = form;
     for (let i = 0; i < target.length; i++) {
       const { type, name, value, files } = target[i];
+      if (target[i] instanceof HTMLFieldSetElement) {
+        const childObj: Record<string, any> = {};
+        const inputs: any[] = Array.from<any>(target[i].children).map(
+          (e: HTMLLabelElement) => e.firstElementChild
+        );
 
-      if (type === "file") {
+        for (const { type, name, files, value } of inputs.slice(1)) {
+          if (type === "file") {
+            childObj[name] = [];
+            for (const image of files) {
+              childObj[name].push(image);
+            }
+          } else if (type !== "submit") {
+            const key = name || "category";
+            childObj[key] = value;
+          }
+        }
+        obj[target[i].name] = childObj;
+        this.formData.append(target[i].name, JSON.stringify(childObj));
+      } else if (type === "file") {
         obj[name] = [];
         for (const image of files) {
           this.formData.append(name, image);

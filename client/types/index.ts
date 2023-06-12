@@ -6,6 +6,12 @@ interface ServerResponse<T> {
   token?: string;
 }
 
+interface AddressType {
+  zipCode: number;
+  state: string;
+  location: string;
+}
+
 interface RequestRegisterForm {
   name: string;
   phone: string;
@@ -24,7 +30,7 @@ interface User {
   email: string;
   phone: string;
   image: string;
-  city: string;
+  address: AddressType;
   username: string;
   password: string;
   liked: ProductType[];
