@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { UserType } from "../types";
+import { addressSchema } from "./order.model";
 
 const userSchema: Schema<UserType> = new mongoose.Schema(
   {
@@ -7,7 +8,7 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
     email: String,
     phone: String,
     image: String,
-    city: String,
+    address: { type: addressSchema },
     username: {
       type: String,
       unique: true,
@@ -16,14 +17,14 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
     liked: [
       {
         type: mongoose.SchemaTypes.ObjectId,
-        ref: "Product",
+        ref: "product",
       },
     ],
     cart: [
       {
         id: {
           type: mongoose.SchemaTypes.ObjectId,
-          ref: "Product",
+          ref: "product",
         },
         count: Number,
       },

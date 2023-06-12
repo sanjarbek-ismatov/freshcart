@@ -15,7 +15,7 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   products: [
     {
       type: mongoose.SchemaTypes.ObjectId,
-      ref: "Product",
+      ref: "product",
     },
   ],
 });

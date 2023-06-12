@@ -10,6 +10,7 @@ import categoryRoutes from "./category.routes";
 import productRoute from "./product.routes";
 import vendorRoute from "./vendor.routes";
 import fileRoute from "./files.routes";
+import orderRoutes from "./order.routes";
 
 export default function (app: Express) {
   app.use(
@@ -32,5 +33,6 @@ export default function (app: Express) {
   app.use("/api/product", productRoute);
   app.use("/api/vendor", vendorRoute);
   app.use("/api/files", fileRoute);
+  app.use("/api/order", orderRoutes);
   app.use(error);
 }

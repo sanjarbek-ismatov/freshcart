@@ -23,4 +23,4 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
     default: false,
   },
 });
-export const Product = mongoose.model<ProductType>("Product", productSchema);
+export const Product = mongoose.model<ProductType>("product", productSchema);
