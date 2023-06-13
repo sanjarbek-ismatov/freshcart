@@ -1,52 +1,84 @@
 import "./Form.css";
 import { User } from "@/types";
 import { Button, Input } from "@components";
-import FormParser from "@/app/utils/formParser";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
+import FormParserTemp from "@/app/utils/formParserTemp";
 
 function Form({ user }: { user: User }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
-  const form = new FormParser(updateUserInfo);
+  const formTemp = new FormParserTemp();
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        form.setForm(e);
-        // form.sendForm();
+        formTemp.setForm(e);
+        updateUserInfo(formTemp.getFormAsFormData);
       }}
     >
-      <Input name="image" type="file" />
+      <Input label="Rasm" name="image" type="file" fullWidth />
       <Input
         name="name"
         type="text"
+        label="Ismingiz"
         placeholder="Ismingiz"
+        fullWidth
         defaultValue={user.name}
       />
       <Input
         type="text"
         name="username"
+        label="Foydalanuvchi nomi"
         placeholder="Foydalanuvchi nomi"
+        fullWidth
         defaultValue={user.username}
       />
       <Input
         type="email"
         name="email"
+        label="Pochtangiz"
         placeholder="Emailingiz"
+        fullWidth
         defaultValue={user.email}
       />
-      <Input type="tel" name="phone" defaultValue={user.phone} />
+      <Input
+        type="tel"
+        name="phone"
+        label="Telefon raqamingiz"
+        defaultValue={user.phone}
+        fullWidth
+      />
       <fieldset name="address">
         <legend>Joylashuvingiz</legend>
-        <Input type="text" name="state" defaultValue={user.address.state} />
+        <Input
+          label="Viloyat"
+          fullWidth
+          type="text"
+          name="state"
+          defaultValue={user.address.state}
+        />
         <Input
           type="text"
+          label="Joylashuv"
+          fullWidth
           name="location"
           defaultValue={user.address.location}
         />
-        <Input type="text" name="zipCode" defaultValue={user.address.zipCode} />
+        <Input
+          type="text"
+          label="Pochta indeksi"
+          name="zipCode"
+          defaultValue={user.address.zipCode}
+          fullWidth
+        />
       </fieldset>
 
-      <Input type="password" name="password" placeholder="Yangi parol" />
+      <Input
+        type="password"
+        label="Parol"
+        name="password"
+        placeholder="Yangi parol"
+        fullWidth
+      />
       <Button type="submit">Yangilash</Button>
     </form>
   );
