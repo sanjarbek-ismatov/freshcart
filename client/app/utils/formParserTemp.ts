@@ -1,4 +1,5 @@
 import { FormEvent } from "react";
+import { User } from "@types";
 
 class FormParserTemp {
   private form?: any;
@@ -15,12 +16,14 @@ class FormParserTemp {
   }
 
   private getKeyAndValue(elem: HTMLInputElement) {
-    if (elem.type === "file") {
+    if (elem.type === "file" && elem.files) {
       const files: Blob[] = [];
-      for (const file of elem?.files as any) {
-        files.push(file);
-      }
-      return [elem.name, files] as [string, Blob[]];
+      if (elem.files && elem.files.length > 1) {
+        for (const file of elem?.files as any) {
+          files.push(file);
+        }
+        return [elem.name, files] as [string, Blob[]];
+      } else return [elem.name, elem.files[0]] as [string, Blob];
     } else if (elem.type !== "submit")
       return [elem.name, elem.value] as [string, string];
   }
@@ -44,11 +47,31 @@ class FormParserTemp {
       const result = this.getKeyAndValue(e);
       if (result) {
         object[fieldset.name][result[0]] = result[1];
+        if (Array.isArray(result[1])) {
+          for (const file of result[1]) {
+            // this.formData.append(`${fieldset.name}[0]['${result[0]}']`, file);
+          }
+        }
+        // this.formData.append(
+        //   `${fieldset.name}.${result[0]}`,
+        //   result[1] as string
+        // );
       }
     });
     labels.forEach((e) => {
       const result = this.getKeyAndValue(this.extractLabel(e));
-      if (result) object[fieldset.name][result[0]] = result[1];
+      if (result) {
+        object[fieldset.name][result[0]] = result[1];
+        if (Array.isArray(result[1])) {
+          for (const file of result[1]) {
+            // this.formData.append(`${fieldset.name}[0]['${result[0]}']`, file);
+          }
+        }
+        // this.formData.append(
+        //   `${fieldset.name}.${result[0]}`,
+        //   result[1] as string
+        // );
+      }
     });
     return object;
   }
@@ -63,6 +86,7 @@ class FormParserTemp {
       }
       return;
     }
+
     this.formObject[key] = value;
     this.formData.append(key, value);
   }
@@ -92,7 +116,7 @@ class FormParserTemp {
   }
 
   public get getFormAsObject() {
-    return this.formObject;
+    return this.formObject as User;
   }
 
   public get getFormAsFormData() {
