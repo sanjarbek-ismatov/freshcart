@@ -90,7 +90,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      updateUserInfo: build.mutation<User, User>({
+      updateUserInfo: build.mutation<User, User | FormData>({
         query: (body) => ({
           url: "/auth/info/update",
           method: "PUT",

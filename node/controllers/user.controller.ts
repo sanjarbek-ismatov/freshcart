@@ -58,6 +58,8 @@ async function addToCart(req: NodeRequest, res: Response) {
 }
 
 async function updateUserInfo(req: NodeRequest, res: Response) {
+  console.log(req.body);
+
   const user = await User.findById(req.user?._id);
 
   if (!user)
@@ -72,7 +74,7 @@ async function updateUserInfo(req: NodeRequest, res: Response) {
   delete req.body.password;
   Object.assign(user, req.body);
 
-  user.save();
+  // user.save();
   res.status(200).send("Yeah");
 }
 
