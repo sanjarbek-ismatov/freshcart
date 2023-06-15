@@ -5,7 +5,7 @@ import FormParser from "@/app/utils/formParser";
 
 function CreatePage() {
   const [addProduct] = useAddProductMutation();
-  const formParser = new FormParser(addProduct);
+  const formParser = new FormParser();
   return (
     <div className="">
       <h1 className="text-3xl my-5 font-bold text-slate-800">
@@ -16,7 +16,7 @@ function CreatePage() {
         onSubmit={(event) => {
           event.preventDefault();
           formParser.setForm(event);
-          formParser.sendForm().then((data: any) => console.log(data));
+          addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >

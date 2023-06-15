@@ -1,59 +1,125 @@
-class FormParser {
+import { FormEvent } from "react";
+
+class FormParser<D> {
   private form?: any;
   private formData = new FormData();
-  private mutation: any;
+  private formObject: Record<string, any> = {};
+  private correctInputs = [
+    HTMLInputElement,
+    HTMLSelectElement,
+    HTMLTextAreaElement,
+  ];
 
-  constructor(mutation: any) {
-    this.mutation = mutation;
+  private isTypeInput(elem: HTMLElement) {
+    return this.correctInputs.some((e) => elem instanceof e);
   }
 
-  public setForm(form: any) {
-    this.form = form;
-    const obj: Record<string, any> = {};
-    const { target } = form;
-    for (let i = 0; i < target.length; i++) {
-      const { type, name, value, files } = target[i];
-      if (target[i] instanceof HTMLFieldSetElement) {
-        const childObj: Record<string, any> = {};
-        const inputs: any[] = Array.from<any>(target[i].children).map(
-          (e: HTMLLabelElement) => e.firstElementChild
-        );
+  private getKeyAndValue(elem: HTMLInputElement) {
+    if (elem.type === "file" && elem.files) {
+      const files: Blob[] = [];
+      if (elem.files && elem.files.length > 1) {
+        for (const file of elem?.files as any) {
+          files.push(file);
+        }
+        return [elem.name, files] as [string, Blob[]];
+      } else return [elem.name, elem.files[0]] as [string, Blob];
+    } else if (elem.type !== "submit")
+      return [elem.name, elem.value] as [string, string];
+  }
 
-        for (const { type, name, files, value } of inputs.slice(1)) {
-          if (type === "file") {
-            childObj[name] = [];
-            for (const image of files) {
-              childObj[name].push(image);
-            }
-          } else if (type !== "submit") {
-            const key = name || "category";
-            childObj[key] = value;
-          }
-        }
-        obj[target[i].name] = childObj;
-        this.formData.append(target[i].name, JSON.stringify(childObj));
-      } else if (type === "file") {
-        obj[name] = [];
-        for (const image of files) {
-          this.formData.append(name, image);
-          obj[name].push(image);
-        }
-      } else if (type !== "submit") {
-        const key = name || "category";
-        this.formData.append(key, value);
-        obj[key] = value;
+  private extractLabel(label: HTMLLabelElement) {
+    return Array.from(label.children).find(
+      (e) => e instanceof HTMLInputElement
+    ) as HTMLInputElement;
+  }
+
+  private extraxtFieldSet(fieldset: HTMLFieldSetElement) {
+    const object: Record<string, any> = {};
+    object[fieldset.name] = {};
+    const labels = (Array.from(fieldset.children) as HTMLLabelElement[]).filter(
+      (e) => e instanceof HTMLLabelElement
+    );
+    const inputs = (Array.from(fieldset.children) as HTMLInputElement[]).filter(
+      (e) => e instanceof HTMLInputElement
+    );
+    inputs.forEach((e) => {
+      const result = this.getKeyAndValue(e);
+      if (result) {
+        object[fieldset.name][result[0]] = result[1];
+        // if (Array.isArray(result[1])) {
+        //   for (const file of result[1]) {
+        // this.formData.append(`${fieldset.name}[0]['${result[0]}']`, file);
+        //   }
+        // }
+        // this.formData.append(
+        //   `${fieldset.name}.${result[0]}`,
+        //   result[1] as string
+        // );
       }
+    });
+    labels.forEach((e) => {
+      const result = this.getKeyAndValue(this.extractLabel(e));
+      if (result) {
+        object[fieldset.name][result[0]] = result[1];
+        // if (Array.isArray(result[1])) {
+        //   for (const file of result[1]) {
+        // this.formData.append(`${fieldset.name}[0]['${result[0]}']`, file);
+        //   }
+        // }
+        // this.formData.append(
+        //   `${fieldset.name}.${result[0]}`,
+        //   result[1] as string
+        // );
+      }
+    });
+    return object;
+  }
+
+  private addToFormData([key, value]: Array<string | Blob | Blob[]>) {
+    if (typeof key !== "string") throw new Error("Invalid key");
+    if (Array.isArray(value)) {
+      this.formObject[key] = [] as Blob[];
+      for (const file of value) {
+        this.formObject[key].push(file);
+        this.formData.append(key, file);
+      }
+      return;
     }
 
-    console.log(obj);
+    this.formObject[key] = value;
+    this.formData.append(key, value);
   }
 
-  public get getData() {
+  private addToForm(child: HTMLInputElement) {
+    const result = this.getKeyAndValue(child);
+    result && this.addToFormData(result);
+  }
+
+  private parser() {
+    for (const child of this.form?.target) {
+      if (this.isTypeInput(child)) this.addToForm(child);
+      else if (child instanceof HTMLLabelElement) {
+        const inputElement = this.extractLabel(child);
+        inputElement && this.addToForm(inputElement);
+      } else if (child instanceof HTMLFieldSetElement) {
+        const fieldsetResult = this.extraxtFieldSet(child);
+        this.formData.append(child.name, JSON.stringify(fieldsetResult));
+        Object.assign(this.formObject, fieldsetResult);
+      }
+    }
+  }
+
+  public setForm(form: FormEvent) {
+    this.form = form;
+    this.parser();
+  }
+
+  public get getFormAsObject() {
+    return this.formObject as D;
+  }
+
+  public get getFormAsFormData() {
     return this.formData;
-  }
-
-  public sendForm() {
-    return this.mutation(this.formData);
   }
 }
 

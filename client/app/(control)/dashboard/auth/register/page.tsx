@@ -2,13 +2,14 @@
 import { BreadCrumb, Button, Input } from "@components";
 import React, { FormEvent, useState } from "react";
 import { useVendorRegisterMutation } from "@/store/api/ecommerce";
-import FormParser from "@/app/utils/formParser";
+
 import { useRouter } from "next/navigation";
+import FormParser from "@/app/utils/formParser";
 
 function VendorRegisterPage() {
   const [register, { isLoading }] = useVendorRegisterMutation();
   const [form, setForm] = useState<FormEvent>();
-  const formParser = new FormParser(register);
+  const formParser = new FormParser();
   const router = useRouter();
   return (
     <div>
@@ -24,7 +25,7 @@ function VendorRegisterPage() {
         onSubmit={(e) => {
           e.preventDefault();
           formParser.setForm(e);
-          formParser.sendForm().then(() => router.push("/vv/auth/login"));
+          register(formParser.getFormAsFormData);
         }}
         className="w-96"
         encType="multipart/form-data"

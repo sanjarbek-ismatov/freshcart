@@ -70,7 +70,9 @@ async function updateUserInfo(req: NodeRequest, res: Response) {
 
   delete req.body.image;
   delete req.body.password;
-  Object.assign(user, req.body, JSON.parse(req.body.address));
+  const address = JSON.parse(req.body.address);
+  const payment = JSON.parse(req.body.payment);
+  Object.assign(user, req.body, { address }, { payment });
   await user.save();
   res.status(200).send("Yeah");
 }
