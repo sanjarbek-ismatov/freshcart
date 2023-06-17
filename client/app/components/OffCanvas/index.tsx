@@ -3,6 +3,7 @@ import "./OffCanvas.css";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import React, { forwardRef, useEffect } from "react";
 import { CartProduct } from "@components";
+import Link from "next/link";
 
 const OffCanvas = forwardRef<
   HTMLElement,
@@ -37,7 +38,7 @@ const OffCanvas = forwardRef<
         id="offcanvas"
         className={`fixed ${
           show ? "showCanvas" : "hideCanvas"
-        } right-0 top-0 z-30 transition-transform duration-500 bg-white min-h-screen h-full`}
+        } right-0 top-0 z-30 transition-transform max-w-[600px] duration-500 bg-white min-h-screen h-full`}
       >
         <header className="flex justify-between items-center p-3">
           <i ref={ref} className="fa-solid text-xl fa-x cursor-pointer"></i>
@@ -48,6 +49,9 @@ const OffCanvas = forwardRef<
             <CartProduct key={i} product={e.id} defCount={e.count} />
           ))}
         </main>
+        <footer className="absolute bottom-0 left-0">
+          <Link href="/account/checkout">Sotib olish</Link>
+        </footer>
       </div>
     </div>
   );

@@ -2,17 +2,18 @@ import "./Form.css";
 import { User } from "@/types";
 import { Button, Input } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
-import FormParserTemp from "@/app/utils/formParserTemp";
+import FormParser from "@/app/utils/formParser";
 
 function Form({ user }: { user: User }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
-  const formTemp = new FormParserTemp();
+  const formTemp = new FormParser();
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         formTemp.setForm(e);
         updateUserInfo(formTemp.getFormAsFormData);
+        console.log(formTemp.getFormAsObject);
       }}
     >
       <Input label="Rasm" name="image" type="file" fullWidth />
@@ -54,24 +55,34 @@ function Form({ user }: { user: User }) {
           fullWidth
           type="text"
           name="state"
-          defaultValue={user.address.state}
+          defaultValue={user.address?.state}
         />
         <Input
           type="text"
           label="Joylashuv"
           fullWidth
           name="location"
-          defaultValue={user.address.location}
+          defaultValue={user.address?.location}
         />
         <Input
           type="text"
           label="Pochta indeksi"
           name="zipCode"
-          defaultValue={user.address.zipCode}
+          defaultValue={user.address?.zipCode}
           fullWidth
         />
       </fieldset>
-
+      <fieldset name="payment">
+        <Input
+          type="text"
+          label="Karta raqami"
+          name="cardNumber"
+          pattern="/[\d{16}]/"
+          defaultValue={user.payment?.cardNumber}
+          required
+          fullWidth
+        />
+      </fieldset>
       <Input
         type="password"
         label="Parol"

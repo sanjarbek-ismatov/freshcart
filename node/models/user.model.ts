@@ -9,6 +9,9 @@ const userSchema: Schema<UserType> = new mongoose.Schema(
     phone: String,
     image: String,
     address: { type: addressSchema },
+    payment: {
+      cardNumber: String,
+    },
     username: {
       type: String,
       unique: true,

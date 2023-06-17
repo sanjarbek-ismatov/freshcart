@@ -45,6 +45,9 @@ interface UserType extends Document {
   phone: string;
   image: string;
   address: AddressType;
+  payment: {
+    cardNumber: string;
+  };
   username: string;
   password: string;
   liked: ProductType[];
