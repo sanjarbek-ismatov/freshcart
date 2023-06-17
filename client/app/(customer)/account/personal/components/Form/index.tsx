@@ -77,7 +77,7 @@ function Form({ user }: { user: User }) {
           type="text"
           label="Karta raqami"
           name="cardNumber"
-          pattern="[\d{16}]"
+          pattern="/[\d{16}]/"
           defaultValue={user.payment?.cardNumber}
           required
           fullWidth
