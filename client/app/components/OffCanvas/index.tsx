@@ -2,7 +2,8 @@
 import "./OffCanvas.css";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import React, { forwardRef, useEffect } from "react";
-import { Button, CartProduct } from "@components";
+import { CartProduct } from "@components";
+import Link from "next/link";
 
 const OffCanvas = forwardRef<
   HTMLElement,
@@ -49,7 +50,7 @@ const OffCanvas = forwardRef<
           ))}
         </main>
         <footer className="absolute bottom-0 left-0">
-          <Button>Sotib olish</Button>
+          <Link href="/account/checkout">Sotib olish</Link>
         </footer>
       </div>
     </div>
