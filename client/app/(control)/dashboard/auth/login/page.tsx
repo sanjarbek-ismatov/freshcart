@@ -4,7 +4,7 @@ import { Button, Input } from "@components";
 import { useVendorLoginMutation } from "@/store/api/ecommerce";
 
 function LoginPage() {
-  const [login, { isLoading }] = useVendorLoginMutation();
+  const [login] = useVendorLoginMutation();
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",
@@ -14,6 +14,7 @@ function LoginPage() {
       login(values).then((data) => {
         if ("error" in data) console.log(data.error);
         else if (data.data.token) {
+          console.log(true);
           localStorage.setItem("x-vendor-token", data.data.token);
           window.location.reload();
         }

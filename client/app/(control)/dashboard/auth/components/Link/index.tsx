@@ -10,14 +10,14 @@ function LinkComponent() {
       <div>
         <Link
           className="px-6 py-3 bg-green-500 inline-block  text-lg my-2 border-4 active:border-green-300 text-white rounded-md"
-          href="/vendor/auth/register"
+          href="/dashboard/auth/register"
         >
           Ro`yhatdan o`tish
         </Link>
         <p>Yoki</p>
         <Link
           className="px-6 py-3 bg-green-500 inline-block text-lg my-2 border-4 active:border-green-300 text-white rounded-md"
-          href="/vendor/auth/login"
+          href="/dashboard/auth/login"
         >
           Kirish
         </Link>
