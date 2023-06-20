@@ -11,7 +11,7 @@ function ModalForm({
 }: {
   setShowLogin: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
-  const [signUp, { isLoading, isSuccess, isError }] = useSignUpMutation();
+  const [signUp, { isLoading }] = useSignUpMutation();
   const { values, handleSubmit, handleChange } = useFormik({
     initialValues: {
       name: "",
@@ -20,8 +20,7 @@ function ModalForm({
       email: "",
       password: "",
     },
-    onSubmit(values, formikHelpers) {
-      console.log(values);
+    onSubmit(values) {
       signUp(values)
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
