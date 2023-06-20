@@ -26,3 +26,4 @@ export {default as CartProduct} from "./CartProduct";
 export {default as Badge} from "./Badge";
 export {default as Select} from "./Select";
 export {default as MenuButton} from "./MenuButton";
+export {default as NavbarContainer} from "./NavbarContainer";

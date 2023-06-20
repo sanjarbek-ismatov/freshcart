@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { ErrorBoundary } from "./components";
 import Provider from "@/store/provider";
 import { UserProvider } from "@/app/context/provider";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
@@ -23,11 +24,13 @@ export default function RootLayout({
         <title>Freshcart</title>
       </head>
       <body className={inter.className}>
-        <ErrorBoundary>
-          <Provider>
-            <UserProvider>{children}</UserProvider>
-          </Provider>
-        </ErrorBoundary>
+        <React.StrictMode>
+          <ErrorBoundary>
+            <Provider>
+              <UserProvider>{children}</UserProvider>
+            </Provider>
+          </ErrorBoundary>
+        </React.StrictMode>
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import { ComponentProps } from "react";
 import "./Input.css";
 
 function Input({
-  fullWidth,
+  fullWidth = true,
   label,
   ...rest
 }: { fullWidth?: boolean; label?: string } & ComponentProps<"input">) {
