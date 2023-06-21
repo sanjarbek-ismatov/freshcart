@@ -5,8 +5,9 @@ import { useRouter } from "next/navigation";
 
 function VendorDashboardPage() {
   const auth = useAuth("vendor");
+
   const router = useRouter();
-  if (!auth) router.replace("/dashboard/auth/login");
+  // if (!auth) router.replace("/dashboard/auth/login");
   return <Main />;
 }
 

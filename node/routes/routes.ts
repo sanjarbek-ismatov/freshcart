@@ -15,7 +15,7 @@ import orderRoutes from "./order.routes";
 export default function (app: Express) {
   app.use(
     cors({
-      exposedHeaders: ["x-token", "x-vv-token"],
+      exposedHeaders: ["x-token", "x-vendor-token"],
       optionsSuccessStatus: 200,
     })
   );

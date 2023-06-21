@@ -32,6 +32,8 @@ export async function vendorAuthMiddleware(
   if (typeof vendorToken !== "string" || !vendorToken)
     return res.status(401).send({ code: 401, message: "Token kerak" });
   const { email } = tokenParser(vendorToken);
+  if (!email)
+    return res.status(500).send({ code: 500, message: "Tizimda xatolik" });
   const vendor = await Vendor.findOne({ email });
   if (!vendor)
     return res.status(404).send({ code: 404, message: "Mavjud emas" });

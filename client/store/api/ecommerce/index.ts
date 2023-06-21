@@ -55,7 +55,6 @@ export const eCommerceApi = createApi({
       vendorLogin: build.mutation<ServerResponse<any>, RequestLoginForm>({
         query: (body) => ({ url: "/vendor/login", method: "POST", body }),
         transformResponse(baseQueryResult: any, meta, args) {
-          console.log(meta?.response?.headers.get("x-vendor-token"));
           return {
             ...baseQueryResult,
             token: meta?.response?.headers.get("x-vendor-token"),
