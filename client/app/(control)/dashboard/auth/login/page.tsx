@@ -13,7 +13,9 @@ function LoginPage() {
         e.preventDefault();
         formParser.setForm(e);
         login(formParser.getFormAsObject).then((data) => {
-          if (!("error" in data)) console.log(data.data.token);
+          if (!("error" in data)) {
+            localStorage.setItem("x-vendor-token", data.data.token as any);
+          }
         });
       }}
     >
