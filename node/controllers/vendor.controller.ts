@@ -54,6 +54,7 @@ async function login(req: NodeRequest, res: Response) {
   if (!checkedPassword)
     return res.status(401).send({ code: 401, message: "Xato parol" });
   const token = tokenGenerator(checkVendor.email);
+  if (!token) throw new Error("Token");
   res
     .status(200)
     .setHeader("x-vendor-token", token)
