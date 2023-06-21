@@ -56,7 +56,7 @@ async function login(req: NodeRequest, res: Response) {
   const token = tokenGenerator(checkVendor.email);
   res
     .status(200)
-    .setHeader("x-vv-token", token)
+    .setHeader("x-vendor-token", token)
     .send({ code: 200, message: "Bajarildi" });
 }
 
