@@ -10,7 +10,9 @@ function PanelNavigation() {
 
   return (
     <div className="w-[400px] leading-10 p-5">
-      <Image src={LogoImage} alt="logo" />
+      <Link href="/">
+        <Image src={LogoImage} alt="logo" />
+      </Link>
       <Link
         className={`py-2 px-3 text-gray-500  block my-4 ${
           lastPath === "dashboard" && "bg-green-200 text-green-600"
