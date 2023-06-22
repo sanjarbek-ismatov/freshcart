@@ -3,12 +3,13 @@ import { Table, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
 import { useState } from "react";
-import { ProductTableBody } from "@/app/(control)/dashboard/products/components";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { ProductType } from "@types";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
+import { useAppSelector } from "@/store/store";
 
 function CheckoutPage() {
+  const state = useAppSelector((state1) => state1.checkout);
   const { data, refetch } = useGetUserInfoQuery();
   const [allAreCheck, setAllAreCheck] = useState(false);
   const [selected, setSelected] = useState<ProductType[]>([]);
@@ -52,13 +53,7 @@ function CheckoutPage() {
             ]}
           ></TableHead>
           {data?.cart.map((e, i) => (
-            <ProductTableBody
-              key={i}
-              product={e.id}
-              selected={false}
-              refetch={refetch}
-              setSelected={setSelected}
-            />
+            <p key={i}></p>
           ))}
         </Table>
         <AddressDetails user={data} />
