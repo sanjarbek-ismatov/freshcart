@@ -17,6 +17,7 @@ function CheckoutPage() {
   useEffect(() => {
     data && allAreCheck ? selectAll(data?.cart) : reset();
   }, [allAreCheck, data]);
+  console.log(data?.cart[0]?.id.vendor);
   return (
     <>
       <BreadCrumb
@@ -87,7 +88,7 @@ function CheckoutPage() {
             )
           )}
         </Table>
-        <AddressDetails user={data} />
+        <AddressDetails state={state} user={data} />
       </div>
     </>
   );

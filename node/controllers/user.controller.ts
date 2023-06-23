@@ -38,7 +38,8 @@ async function loginController(req: NodeRequest, res: Response) {
 }
 
 async function getInfo(req: NodeRequest, res: Response) {
-  const user = await req.user?.populate("cart.id liked");
+  const user = await req.user?.populate("cart.id cart.id.vendor liked");
+  console.log(user?.cart);
   res.status(200).send(user);
 }
 

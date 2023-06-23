@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ProductType } from "@types";
 
-interface CheckoutProduct {
+export interface CheckoutProduct {
   id: ProductType;
   count: number;
 }
