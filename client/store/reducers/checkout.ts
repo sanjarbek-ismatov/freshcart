@@ -11,9 +11,15 @@ const checkoutSlice = createSlice({
   initialState: [] as CheckoutProduct[],
   reducers: {
     select(state, action: PayloadAction<CheckoutProduct>) {
-      if (state.includes(action.payload))
-        state.splice(state.indexOf(action.payload), 1);
+      const item = state.findIndex((e) => e.id.slug === e.id.slug);
+      if (item !== -1) state.splice(item, 1);
       else state.push(action.payload);
+    },
+    selectAll(state, action: PayloadAction<CheckoutProduct[]>) {
+      state.push(...action.payload);
+    },
+    reset(state) {
+      state.splice(0, state.length);
     },
   },
 });

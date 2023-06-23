@@ -32,7 +32,7 @@ export const { statusFilter: statusFilterDispatch } = bindActionCreators(
   controlFilter,
   store.dispatch
 );
-export const { select } = bindActionCreators(
+export const { select, selectAll, reset } = bindActionCreators(
   checkoutSlice.actions,
   store.dispatch
 );
