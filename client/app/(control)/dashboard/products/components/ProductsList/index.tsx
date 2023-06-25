@@ -12,7 +12,7 @@ function ProductsList({ query }: { query: string }) {
   const [allAreCheck, setAllAreCheck] = useState(false);
   const { data, refetch, isSuccess } = useGetControllerInfoQuery();
   useEffect(() => {
-    data && allAreCheck ? setSelected(data?.products) : setSelected([]);
+    data && allAreCheck ? setSelected(data?.vendor.products) : setSelected([]);
   }, [allAreCheck, data]);
   return (
     <Table>
@@ -41,7 +41,7 @@ function ProductsList({ query }: { query: string }) {
       />
       <tbody>
         {
-          data?.products
+          data?.vendor.products
             ?.filter((e) => e.name.toUpperCase().includes(query.toUpperCase()))
             .map((e, i) => (
               <ProductTableBody
