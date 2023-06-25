@@ -6,4 +6,5 @@ import { upload } from "../models/gridfs.model";
 const orderRouter = express.Router();
 const controller = new OrderController();
 orderRouter.post("/add", [upload.none(), authMiddleware], controller.add);
+
 export default orderRouter;

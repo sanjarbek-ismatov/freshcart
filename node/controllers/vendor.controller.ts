@@ -4,6 +4,7 @@ import { vendorValidator } from "../helpers/validator";
 import { Vendor } from "../models/vendor.model";
 import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
+import { Order } from "../models/order.model";
 
 async function getAll(req: NodeRequest, res: Response) {
   const vendors = await Vendor.find().select("-password").populate("products");
@@ -19,7 +20,8 @@ async function getSingleVendor(req: NodeRequest, res: Response) {
 
 async function getMe(req: NodeRequest, res: Response) {
   const vendor = await req.vendor?.populate("products");
-  res.status(200).send(vendor);
+  const orders = await Order.find({ vendorId: vendor?._id });
+  res.status(200).send({ vendor, orders });
 }
 
 async function register(req: NodeRequest, res: Response) {

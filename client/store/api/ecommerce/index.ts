@@ -4,7 +4,7 @@ import {
   RequestRegisterForm,
   ServerResponse,
   User,
-  VendorType,
+  VendorWithOrders,
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { gettoken } from "@/app/utils/gettoken";
@@ -101,7 +101,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      getControllerInfo: build.query<VendorType, void>({
+      getControllerInfo: build.query<VendorWithOrders, void>({
         query: () => ({
           url: "/vendor/me",
           method: "GET",

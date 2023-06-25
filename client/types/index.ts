@@ -60,6 +60,11 @@ interface VendorType {
   products: ProductType[];
 }
 
+interface VendorWithOrders {
+  vendor: VendorType;
+  orders: OrderType[];
+}
+
 interface CategoryType {
   name: string;
   slug: string;
@@ -105,6 +110,8 @@ interface OrderType {
   productId: string;
   vendorId: string;
   count: number;
+  status: "pending" | "processing" | "rejected" | "finished";
+  date: string;
   slug: string;
   totalPrice: number;
   shippingAddress?: AddressType;
@@ -125,4 +132,5 @@ export type {
   CategoryType,
   VendorType,
   OrderType,
+  VendorWithOrders,
 };

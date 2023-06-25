@@ -9,7 +9,7 @@ function VendorDashboardLayout({ children }: { children: ReactNode }) {
     <div className="flex">
       <PanelNavigation />
       <main className="w-full px-5">
-        <Navbar vendor={data} />
+        {data && <Navbar details={data} />}
         {children}
       </main>
     </div>
