@@ -2,7 +2,7 @@
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { ProductType } from "@types";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
@@ -15,9 +15,16 @@ function CheckoutPage() {
   const [allAreCheck, setAllAreCheck] = useState(false);
   const [selected, setSelected] = useState<ProductType[]>([]);
   useEffect(() => {
-    data && allAreCheck ? selectAll(data?.cart) : reset();
+    if (data && allAreCheck) selectAll(data?.cart);
   }, [allAreCheck, data]);
-  console.log(data?.cart[0]?.id.vendor);
+  useEffect(() => {
+    setAllAreCheck(state.length === data?.cart.length);
+  }, [data?.cart.length, state.length]);
+  const handleCheck = useCallback(() => {
+    setAllAreCheck(!allAreCheck);
+    allAreCheck && reset();
+  }, [allAreCheck]);
+
   return (
     <>
       <BreadCrumb
@@ -36,11 +43,7 @@ function CheckoutPage() {
         <Table>
           <TableHead
             data={[
-              <Checkbox
-                key={1}
-                checked={allAreCheck}
-                onChange={() => setAllAreCheck(!allAreCheck)}
-              />,
+              <Checkbox key={1} checked={allAreCheck} onChange={handleCheck} />,
               "Rasmi",
               "Nomi",
               "Kategoriyasi",
