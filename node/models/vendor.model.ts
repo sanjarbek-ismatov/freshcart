@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import { VendorType } from "../types";
+import { addressSchema } from "./order.model";
 
 const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   name: String,
@@ -10,6 +11,9 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   phone: String,
   email: String,
   password: String,
+  address: {
+    type: addressSchema,
+  },
   image: String,
   banner: String,
   products: [

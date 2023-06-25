@@ -1,7 +1,10 @@
 "use client";
 import type { User } from "@types";
-import { useMemo } from "react";
+import { OrderType } from "@types";
+import { useCallback, useMemo } from "react";
 import { CheckoutProduct } from "@/store/reducers/checkout";
+import { Button } from "@components";
+import { useAddOrderMutation } from "@/store/api/ecommerce";
 
 function AddressDetails({
   user,
@@ -10,10 +13,30 @@ function AddressDetails({
   user?: User;
   state: CheckoutProduct[];
 }) {
+  const [addOrder] = useAddOrderMutation();
   const sum = useMemo(
     () => state.reduce((acc, curr) => (acc += +curr.count * curr.id.price), 0),
     [state]
   );
+
+  function addToOrder() {
+    state.forEach(({ id: { _id, vendor }, count }, i) => {
+      const body: Omit<OrderType, "slug" | "clientId"> = {
+        productId: _id,
+        vendorId: vendor._id,
+        count,
+        totalPrice: sum,
+        shippingAddress: user?.address,
+        billingAddress: vendor.address,
+        paymentMethod: "naqd",
+        orderNotes: "bla bla",
+      };
+
+      addOrder(body);
+    });
+  }
+
+  const submitPay = useCallback(() => addToOrder(), [addToOrder]);
   return (
     <div className="min-w-[200px] border text-center">
       <h1>Malumotlar</h1>
@@ -22,6 +45,7 @@ function AddressDetails({
       <p>
         {user?.address.state}, {user?.address.location}
       </p>
+      <Button onClick={submitPay}>Sotib olish</Button>
     </div>
   );
 }

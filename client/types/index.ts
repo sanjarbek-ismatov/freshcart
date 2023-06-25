@@ -45,6 +45,7 @@ interface User {
 }
 
 interface VendorType {
+  _id: string;
   name: string;
   slug: string;
   category: string[];
@@ -53,6 +54,7 @@ interface VendorType {
   phone: string;
   email: string;
   password: string;
+  address: AddressType;
   image: string;
   banner: string;
   products: ProductType[];
@@ -98,6 +100,19 @@ interface ProductType {
   isInArchive: boolean;
 }
 
+interface OrderType {
+  clientId: string;
+  productId: string;
+  vendorId: string;
+  count: number;
+  slug: string;
+  totalPrice: number;
+  shippingAddress?: AddressType;
+  billingAddress: AddressType;
+  paymentMethod: string;
+  orderNotes?: string;
+}
+
 type Sort = "rating" | "date" | "low" | "high";
 
 export type {
@@ -109,4 +124,5 @@ export type {
   Sort,
   CategoryType,
   VendorType,
+  OrderType,
 };

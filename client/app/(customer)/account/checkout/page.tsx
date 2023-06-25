@@ -4,7 +4,6 @@ import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
 import { useCallback, useEffect, useState } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import { ProductType } from "@types";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
 import { reset, select, selectAll, useAppSelector } from "@/store/store";
 import Image from "next/image";
@@ -12,8 +11,9 @@ import Image from "next/image";
 function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkout);
   const { data, refetch } = useGetUserInfoQuery();
+
   const [allAreCheck, setAllAreCheck] = useState(false);
-  const [selected, setSelected] = useState<ProductType[]>([]);
+
   useEffect(() => {
     if (data && allAreCheck) selectAll(data?.cart);
   }, [allAreCheck, data]);
