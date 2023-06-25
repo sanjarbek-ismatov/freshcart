@@ -45,6 +45,7 @@ interface User {
 }
 
 interface VendorType {
+  _id: string;
   name: string;
   slug: string;
   category: string[];
@@ -53,9 +54,15 @@ interface VendorType {
   phone: string;
   email: string;
   password: string;
+  address: AddressType;
   image: string;
   banner: string;
   products: ProductType[];
+}
+
+interface VendorWithOrders {
+  vendor: VendorType;
+  orders: OrderType[];
 }
 
 interface CategoryType {
@@ -98,6 +105,21 @@ interface ProductType {
   isInArchive: boolean;
 }
 
+interface OrderType {
+  clientId: string;
+  productId: string;
+  vendorId: string;
+  count: number;
+  status: "pending" | "processing" | "rejected" | "finished";
+  date: string;
+  slug: string;
+  totalPrice: number;
+  shippingAddress?: AddressType;
+  billingAddress: AddressType;
+  paymentMethod: string;
+  orderNotes?: string;
+}
+
 type Sort = "rating" | "date" | "low" | "high";
 
 export type {
@@ -109,4 +131,6 @@ export type {
   Sort,
   CategoryType,
   VendorType,
+  OrderType,
+  VendorWithOrders,
 };

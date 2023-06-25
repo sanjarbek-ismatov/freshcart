@@ -65,6 +65,7 @@ interface VendorType extends Document {
   phone: string;
   email: string;
   password: string;
+  address: AddressType;
   image: string;
   banner: string;
   products: ProductType[];

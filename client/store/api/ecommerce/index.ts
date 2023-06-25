@@ -1,10 +1,11 @@
 import {
+  OrderType,
   RequestLoginForm,
   RequestRegisterForm,
   ServerResponse,
   User,
-  VendorType,
-} from "@/types";
+  VendorWithOrders,
+} from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { gettoken } from "@/app/utils/gettoken";
 
@@ -100,7 +101,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      getControllerInfo: build.query<VendorType, void>({
+      getControllerInfo: build.query<VendorWithOrders, void>({
         query: () => ({
           url: "/vendor/me",
           method: "GET",
@@ -122,9 +123,23 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      addOrder: build.mutation<
+        ServerResponse<any>,
+        Omit<OrderType, "slug" | "clientId">
+      >({
+        query: (body) => ({
+          method: "POST",
+          url: "/order/add",
+          body,
+          headers: {
+            ["x-token"]: gettoken("x-token"),
+          },
+        }),
+      }),
     };
   },
 });
+
 export const {
   useSignUpMutation,
   useLoginMutation,
@@ -136,4 +151,5 @@ export const {
   useUpdateUserInfoMutation,
   useGetControllerInfoQuery,
   useDeleteProductsByIdMutation,
+  useAddOrderMutation,
 } = eCommerceApi;

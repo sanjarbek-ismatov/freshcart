@@ -27,3 +27,5 @@ export {default as Badge} from "./Badge";
 export {default as Select} from "./Select";
 export {default as MenuButton} from "./MenuButton";
 export {default as NavbarContainer} from "./NavbarContainer";
+export {default as Container} from "./Container";
+export {default as Typography} from "./Typography";
