@@ -38,8 +38,12 @@ async function loginController(req: NodeRequest, res: Response) {
 }
 
 async function getInfo(req: NodeRequest, res: Response) {
-  const user = await req.user?.populate("cart.id cart.id.vendor liked");
-  console.log(user?.cart);
+  const user = await req.user?.populate({
+    path: "cart.id liked",
+    populate: {
+      path: "vendor",
+    },
+  });
   res.status(200).send(user);
 }
 
@@ -47,7 +51,7 @@ async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
   if (req.body.type === "cart") {
     const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id);
-    console.log(index);
+
     index !== -1
       ? user?.cart.splice(index || -1, 1)
       : user?.cart.unshift(req.body);
