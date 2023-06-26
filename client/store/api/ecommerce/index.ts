@@ -136,6 +136,16 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      changeStatus: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          url: "/order/change",
+          method: "PUT",
+          body,
+          headers: {
+            ["x-vendor-token"]: gettoken("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
