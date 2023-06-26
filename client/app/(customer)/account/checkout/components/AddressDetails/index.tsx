@@ -1,5 +1,5 @@
 "use client";
-import type { User } from "@types";
+import type { UserType } from "@types";
 import { OrderType } from "@types";
 import { useCallback, useMemo } from "react";
 import { CheckoutProduct } from "@/store/reducers/checkout";
@@ -10,7 +10,7 @@ function AddressDetails({
   user,
   state,
 }: {
-  user?: User;
+  user?: UserType;
   state: CheckoutProduct[];
 }) {
   const [addOrder] = useAddOrderMutation();

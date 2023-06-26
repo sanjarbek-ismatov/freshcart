@@ -31,7 +31,10 @@ const MenuButton = forwardRef<
             <i ref={ref}></i>
           </>
         )}
-        {show || (defaultShow && <div className="w-[200px]">{children}</div>)}
+        {show ||
+          (defaultShow && (
+            <div className="min-w-[300px] w-full">{children}</div>
+          ))}
       </span>
     </div>
   );

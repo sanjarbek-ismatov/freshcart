@@ -1,4 +1,4 @@
-import { Badge, MenuButton } from "@components";
+import { Badge, Button, MenuButton, MenuItem } from "@components";
 import Image from "next/image";
 import { VendorWithOrders } from "@types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -37,12 +37,16 @@ function Navbar({
           ref={ref}
         >
           {pendingOrders.map((e, i) => (
-            <p
-              key={i}
-              className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white"
-            >
-              O'chirish
-            </p>
+            <MenuItem key={i}>
+              <h4 className="text-slate-800 text-2xl font-semibold">
+                {e.productId.name}
+              </h4>
+              <p className="text-sm text-slate-600">Holati: {e.status}</p>
+              <div className="flex flex-wrap h-16">
+                <Button>Qabul qilish</Button>
+                <Button>Rad etish</Button>
+              </div>
+            </MenuItem>
           ))}
         </MenuButton>
         <Image
