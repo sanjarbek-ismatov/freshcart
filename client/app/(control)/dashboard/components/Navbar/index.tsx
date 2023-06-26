@@ -1,7 +1,7 @@
 import { Badge, MenuButton } from "@components";
 import Image from "next/image";
 import { VendorWithOrders } from "@types";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 function Navbar({
   details: { vendor, orders },
@@ -19,17 +19,30 @@ function Navbar({
       setShow(!show);
     });
   }, [show]);
-
+  const handleClick = useCallback(() => {
+    ref.current?.click();
+  }, []);
   return (
     <header className="flex justify-between h-16 w-full items-center">
       <p>Some component</p>
       <nav className="flex items-center">
-        <Badge length={pendingOrders.length}>
-          <i className="fa-solid fa-bell text-xl"></i>
-        </Badge>
-        <MenuButton isThereOwnIcon ref={ref}>
+        <MenuButton
+          child={
+            <Badge onClick={handleClick} length={pendingOrders.length}>
+              <i className="fa-solid fa-bell text-xl"></i>
+            </Badge>
+          }
+          defaultShow={show}
+          isThereOwnIcon
+          ref={ref}
+        >
           {pendingOrders.map((e, i) => (
-            <p key={i}>{e.status}</p>
+            <p
+              key={i}
+              className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white"
+            >
+              O'chirish
+            </p>
           ))}
         </MenuButton>
         <Image
