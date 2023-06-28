@@ -3,7 +3,7 @@ import {
   RequestLoginForm,
   RequestRegisterForm,
   ServerResponse,
-  User,
+  UserType,
   VendorWithOrders,
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
@@ -28,7 +28,7 @@ export const eCommerceApi = createApi({
           };
         },
       }),
-      login: build.mutation<ServerResponse<User[]>, RequestLoginForm>({
+      login: build.mutation<ServerResponse<UserType[]>, RequestLoginForm>({
         query(body) {
           return {
             url: "auth/login",
@@ -82,7 +82,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      getUserInfo: build.query<User, void>({
+      getUserInfo: build.query<UserType, void>({
         query: () => ({
           method: "GET",
           url: "/auth/info",
@@ -91,7 +91,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      updateUserInfo: build.mutation<User, User | FormData>({
+      updateUserInfo: build.mutation<UserType, UserType | FormData>({
         query: (body) => ({
           url: "/auth/info/update",
           method: "PUT",
@@ -133,6 +133,16 @@ export const eCommerceApi = createApi({
           body,
           headers: {
             ["x-token"]: gettoken("x-token"),
+          },
+        }),
+      }),
+      changeStatus: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          url: "/order/change",
+          method: "PUT",
+          body,
+          headers: {
+            ["x-vendor-token"]: gettoken("x-vendor-token"),
           },
         }),
       }),

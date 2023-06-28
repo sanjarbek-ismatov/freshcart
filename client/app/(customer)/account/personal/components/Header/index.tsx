@@ -1,8 +1,8 @@
 import "./Header.css";
-import { User } from "@/types";
+import { UserType } from "@/types";
 import Image from "next/image";
 
-function Header({ user }: { user: User }) {
+function Header({ user }: { user: UserType }) {
   return (
     <div>
       <Image

@@ -25,7 +25,7 @@ interface RequestLoginForm {
   password: string;
 }
 
-interface User {
+interface UserType {
   name: string;
   email: string;
   phone: string;
@@ -106,9 +106,9 @@ interface ProductType {
 }
 
 interface OrderType {
-  clientId: string;
-  productId: string;
-  vendorId: string;
+  clientId: UserType;
+  productId: ProductType;
+  vendorId: VendorType;
   count: number;
   status: "pending" | "processing" | "rejected" | "finished";
   date: string;
@@ -126,7 +126,7 @@ export type {
   ServerResponse,
   RequestRegisterForm,
   RequestLoginForm,
-  User,
+  UserType,
   ProductType,
   Sort,
   CategoryType,

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { User } from "@/types";
+import { UserType } from "@/types";
 
-export const UserContext = createContext({} as User | undefined);
+export const UserContext = createContext({} as UserType | undefined);
 export const useUserContext = () => {
   return useContext(UserContext);
 };

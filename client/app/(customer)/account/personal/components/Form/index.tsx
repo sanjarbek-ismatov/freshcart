@@ -1,10 +1,10 @@
 import "./Form.css";
-import { User } from "@/types";
+import { UserType } from "@/types";
 import { Button, Input } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 
-function Form({ user }: { user: User }) {
+function Form({ user }: { user: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
   const formTemp = new FormParser();
   return (
