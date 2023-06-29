@@ -6,6 +6,7 @@ import { ProductType } from "@/types";
 import { useEffect, useState } from "react";
 import { ProductTableBody } from "@/app/(control)/dashboard/products/components";
 import { MenuButton } from "@/app/components";
+import { MenuItem } from "@components";
 
 function ProductsList({ query }: { query: string }) {
   const [selected, setSelected] = useState<ProductType[]>([]);
@@ -30,12 +31,12 @@ function ProductsList({ query }: { query: string }) {
           "Qiymati",
           "Sanasi",
           <MenuButton key={1}>
-            <p className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white">
+            <MenuItem>
               <i className="fa-solid  fa-trash mr-2"></i>O'chirish
-            </p>
-            <p className="p-2 hover:bg-gray-300 rounded-md text-gray-500 z-20 bg-white">
+            </MenuItem>
+            <MenuItem>
               <i className="fa-solid fa-box-archive mr-2"></i>Arxivga solish
-            </p>
+            </MenuItem>
           </MenuButton>,
         ]}
       />

@@ -105,12 +105,14 @@ interface ProductType {
   isInArchive: boolean;
 }
 
+type Status = "pending" | "processing" | "rejected" | "finished";
+
 interface OrderType {
   clientId: UserType;
   productId: ProductType;
   vendorId: VendorType;
   count: number;
-  status: "pending" | "processing" | "rejected" | "finished";
+  status: Status;
   date: string;
   slug: string;
   totalPrice: number;
@@ -121,6 +123,11 @@ interface OrderType {
 }
 
 type Sort = "rating" | "date" | "low" | "high";
+
+interface OrderChangeStatus {
+  productId: string;
+  status: Status;
+}
 
 export type {
   ServerResponse,
@@ -133,4 +140,6 @@ export type {
   VendorType,
   OrderType,
   VendorWithOrders,
+  Status,
+  OrderChangeStatus,
 };
