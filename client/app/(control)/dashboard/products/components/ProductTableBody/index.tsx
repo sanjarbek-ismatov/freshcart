@@ -4,7 +4,7 @@ import { Dispatch, SetStateAction, useCallback } from "react";
 import { TableBody } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import Image from "next/image";
-import { MenuButton } from "@components";
+import { MenuButton, MenuItem } from "@components";
 import { useDeleteProductsByIdMutation } from "@/store/api/ecommerce";
 
 function ProductTableBody({
@@ -44,24 +44,23 @@ function ProductTableBody({
         product.price,
         new Date(product.guarantee).toLocaleDateString(),
         <MenuButton key={1}>
-          <p className="p-2 hover:bg-gray-300 rounded-md  z-20 bg-white">
+          <MenuItem>
             <i className="fa-solid fa-circle-info mr-2"></i>Haqida
-          </p>
-          <p className="p-2 hover:bg-gray-300 rounded-md  z-20 bg-white">
+          </MenuItem>
+          <MenuItem>
             <i className="fa-solid  fa-file-pen mr-2"></i>O'zgartirish
-          </p>
-          <p
+          </MenuItem>
+          <MenuItem
             onClick={() => {
               deleteProduct({ id: product._id });
               refetch();
             }}
-            className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white"
           >
             <i className="fa-solid  fa-trash mr-2"></i>O'chirish
-          </p>
-          <p className="p-2 hover:bg-gray-300 rounded-md text-gray-500 z-20 bg-white">
+          </MenuItem>
+          <MenuItem>
             <i className="fa-solid fa-box-archive mr-2"></i>Arxivga solish
-          </p>
+          </MenuItem>
         </MenuButton>,
       ]}
     />

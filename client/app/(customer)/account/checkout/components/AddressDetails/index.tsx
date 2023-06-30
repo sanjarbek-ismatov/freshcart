@@ -19,13 +19,17 @@ function AddressDetails({
     [state]
   );
 
-  function addToOrder() {
+  const submitPay = useCallback(() => {
     state.forEach(({ id: { _id, vendor }, count }, i) => {
-      const body: Omit<OrderType, "slug" | "clientId"> = {
+      const body: Omit<
+        OrderType<string, string>,
+        "slug" | "clientId" | "date"
+      > = {
         productId: _id,
         vendorId: vendor._id,
         count,
         totalPrice: sum,
+        status: "pending",
         shippingAddress: user?.address,
         billingAddress: vendor.address,
         paymentMethod: "naqd",
@@ -34,9 +38,7 @@ function AddressDetails({
 
       addOrder(body);
     });
-  }
-
-  const submitPay = useCallback(() => addToOrder(), [addToOrder]);
+  }, [addOrder, state, sum, user?.address]);
   return (
     <div className="min-w-[200px] border text-center">
       <h1>Malumotlar</h1>

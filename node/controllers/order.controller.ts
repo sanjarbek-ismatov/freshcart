@@ -16,6 +16,7 @@ class OrderController {
       return res.status(404).send({ message: "Not found", code: 404 });
     order.status = req.body.status;
     await order.save();
+    res.status(200).send({ code: 200, message: "Yangilandi!" });
   }
 }
 

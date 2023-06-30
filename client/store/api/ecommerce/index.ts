@@ -1,4 +1,5 @@
 import {
+  OrderChangeStatus,
   OrderType,
   RequestLoginForm,
   RequestRegisterForm,
@@ -125,7 +126,7 @@ export const eCommerceApi = createApi({
       }),
       addOrder: build.mutation<
         ServerResponse<any>,
-        Omit<OrderType, "slug" | "clientId">
+        Omit<OrderType<string, string>, "slug" | "clientId" | "date">
       >({
         query: (body) => ({
           method: "POST",
@@ -136,11 +137,14 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      changeStatus: build.mutation<ServerResponse<any>, any>({
-        query: (body) => ({
+      changeStatus: build.mutation<ServerResponse<any>, OrderChangeStatus>({
+        query: ({ productId, status }) => ({
           url: "/order/change",
           method: "PUT",
-          body,
+          body: {
+            productId,
+            status,
+          },
           headers: {
             ["x-vendor-token"]: gettoken("x-vendor-token"),
           },
@@ -162,4 +166,5 @@ export const {
   useGetControllerInfoQuery,
   useDeleteProductsByIdMutation,
   useAddOrderMutation,
+  useChangeStatusMutation,
 } = eCommerceApi;
