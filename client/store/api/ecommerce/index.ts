@@ -126,7 +126,7 @@ export const eCommerceApi = createApi({
       }),
       addOrder: build.mutation<
         ServerResponse<any>,
-        Omit<OrderType, "slug" | "clientId">
+        Omit<OrderType<string, string>, "slug" | "clientId" | "date">
       >({
         query: (body) => ({
           method: "POST",
