@@ -135,7 +135,10 @@ interface OrderChangeStatus {
 interface FormObject {
   [key: string]: string | Blob;
 }
-
+interface CheckoutProduct {
+  id: ProductType;
+  count: number;
+}
 export type {
   ServerResponse,
   RequestRegisterForm,
@@ -150,4 +153,5 @@ export type {
   Status,
   OrderChangeStatus,
   FormObject,
+  CheckoutProduct,
 };

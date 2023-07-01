@@ -1,21 +1,24 @@
 "use client";
-import { Input } from "@components";
-import React from "react";
+import { statusFilterDispatch, useAppSelector } from "@/store/store";
+import { Input, Select } from "@components";
+import React, { useCallback } from "react";
 
 function Filter({
   text,
   setText,
+  filter = false,
 }: {
   text: string;
   setText: React.Dispatch<React.SetStateAction<string>>;
+  filter?: boolean;
 }) {
-  // const changeFilter = useCallback(
-  //   (event: React.ChangeEvent<HTMLSelectElement>) => {
-  //     statusFilterDispatch(event.target.value);
-  //   },
-  //   []
-  // );
-  // const state = useAppSelector((state) => state.controlFilter);
+  const changeFilter = useCallback(
+    (event: React.ChangeEvent<HTMLSelectElement>) => {
+      statusFilterDispatch(event.target.value);
+    },
+    []
+  );
+  const state = useAppSelector((state) => state.controlFilter);
 
   return (
     <div className="flex justify-between my-5">
@@ -25,13 +28,17 @@ function Filter({
         placeholder="Qidiring"
         width={300}
       />
-      {/*<Select onChange={changeFilter} defaultValue={state.status}>*/}
-      {/*  <option value="">status</option>*/}
-      {/*  <option value="pending">Pending</option>*/}
-      {/*  <option value="processing">Processing</option>*/}
-      {/*  <option value="finished">Finished</option>*/}
-      {/*  <option value="rejected">Rejected</option>*/}
-      {/*</Select>*/}
+      {filter && (
+        <Select onChange={changeFilter} defaultValue={state.status}>
+          <option value="" selected>
+            Holati
+          </option>
+          <option value="pending">Kutilmoqda</option>
+          <option value="processing">Jarayonda</option>
+          <option value="finished">Tugatildi</option>
+          <option value="rejected">Bekor qilindi</option>
+        </Select>
+      )}
     </div>
   );
 }

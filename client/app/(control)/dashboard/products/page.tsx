@@ -5,13 +5,14 @@ import {
 } from "@/app/(control)/dashboard/products/components";
 import { useState } from "react";
 import Link from "next/link";
+import { Typography } from "@components";
 
 function ProductsDashboardPage() {
   const [text, setText] = useState("");
   return (
     <>
       <header className="w-full flex justify-between my-5">
-        <h1 className="text-3xl font-semibold text-slate-800">Maxsulotlar</h1>
+        <Typography text="Maxsulotlar" />
         <Link href="/dashboard/vendor/create">Maxsulot qo'shish</Link>
       </header>
       <main>

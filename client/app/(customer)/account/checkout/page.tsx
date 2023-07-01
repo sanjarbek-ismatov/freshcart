@@ -5,26 +5,28 @@ import { BreadCrumb, MenuButton, Typography } from "@components";
 import { useCallback, useEffect, useState } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
-import { reset, select, selectAll, useAppSelector } from "@/store/store";
+import { setState, useAppSelector } from "@/store/store";
 import Image from "next/image";
+import { Filter } from "@/app/utils/filter";
+import { CheckoutProduct } from "@/store/reducers/checkout";
 
 function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkout);
   const { data, refetch } = useGetUserInfoQuery();
 
   const [allAreCheck, setAllAreCheck] = useState(false);
-
+  const filter = new Filter<CheckoutProduct>(data?.cart || []);
   useEffect(() => {
-    if (data && allAreCheck) selectAll(data?.cart);
-  }, [allAreCheck, data]);
+    if (data && allAreCheck) filter.selectAll(data?.cart);
+  }, [allAreCheck, data, filter]);
   useEffect(() => {
     setAllAreCheck(state.length === data?.cart.length);
   }, [data?.cart.length, state.length]);
   const handleCheck = useCallback(() => {
     setAllAreCheck(!allAreCheck);
-    allAreCheck && reset();
-  }, [allAreCheck]);
-
+    allAreCheck && filter.reset();
+  }, [allAreCheck, filter]);
+  console.log(filter.state);
   return (
     <>
       <BreadCrumb
@@ -67,7 +69,7 @@ function CheckoutPage() {
                     checked={
                       !!state.find((e) => data?.cart[i].id.slug === e.id.slug)
                     }
-                    onChange={() => select(data?.cart[i])}
+                    onChange={() => filter.select(data?.cart[i])}
                   />,
                   <Image
                     key={i}
