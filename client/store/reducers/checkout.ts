@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CheckoutProduct, ProductType } from "@types";
+import { createSlice } from "@reduxjs/toolkit";
+import { CheckoutProduct } from "@types";
 
 const checkoutSlice = createSlice({
   name: "checkout",
@@ -18,8 +18,8 @@ const checkoutSlice = createSlice({
     //   state.splice(0, state.length);
     // },
     setState(state, action) {
-      state.splice(0, state.length);
-      state.push(action.payload);
+      state.length = 0;
+      state.push(...action.payload);
     },
   },
 });

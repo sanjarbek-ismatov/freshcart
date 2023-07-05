@@ -2,31 +2,29 @@
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import { AddressDetails } from "@/app/(customer)/account/checkout/components";
 import { setState, useAppSelector } from "@/store/store";
 import Image from "next/image";
 import { Filter } from "@/app/utils/filter";
-import { CheckoutProduct } from "@/store/reducers/checkout";
+import { AddressDetails } from "@/app/(customer)/account/checkout/components";
 
 function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkout);
   const { data, refetch } = useGetUserInfoQuery();
+  const allAreChecked = useMemo(
+    () => state.length === data?.cart.length,
+    [data?.cart.length, state.length]
+  );
+  const filter = useMemo(() => new Filter(state), []);
 
-  const [allAreCheck, setAllAreCheck] = useState(false);
-  const filter = new Filter<CheckoutProduct>(data?.cart || []);
-  useEffect(() => {
-    if (data && allAreCheck) filter.selectAll(data?.cart);
-  }, [allAreCheck, data, filter]);
-  useEffect(() => {
-    setAllAreCheck(state.length === data?.cart.length);
-  }, [data?.cart.length, state.length]);
   const handleCheck = useCallback(() => {
-    setAllAreCheck(!allAreCheck);
-    allAreCheck && filter.reset();
-  }, [allAreCheck, filter]);
-  console.log(filter.state);
+    filter.selectAll(state || []);
+  }, [filter, state]);
+  useEffect(() => {
+    setState(filter.state);
+  }, [filter.state]);
+  console.log(state, filter.state);
   return (
     <>
       <BreadCrumb
@@ -45,7 +43,11 @@ function CheckoutPage() {
         <Table>
           <TableHead
             data={[
-              <Checkbox key={1} checked={allAreCheck} onChange={handleCheck} />,
+              <Checkbox
+                key={1}
+                checked={allAreChecked}
+                onChange={handleCheck}
+              />,
               "Rasmi",
               "Nomi",
               "Kategoriyasi",
@@ -67,9 +69,11 @@ function CheckoutPage() {
                   <Checkbox
                     key={i}
                     checked={
-                      !!state.find((e) => data?.cart[i].id.slug === e.id.slug)
+                      !!state.find(
+                        (e) => e && data?.cart[i].id.slug === e.id.slug
+                      )
                     }
-                    onChange={() => filter.select(data?.cart[i])}
+                    onChange={() => filter.select(data?.cart[i], "checkout")}
                   />,
                   <Image
                     key={i}
