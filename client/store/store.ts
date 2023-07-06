@@ -14,6 +14,7 @@ export const store = configureStore({
     filter: clientFilterReducer,
     controlFilter: controlFilterReducer,
     checkout: checkoutSlice.reducer,
+    controlCheckoutFilter: checkoutSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(

@@ -1,3 +1,4 @@
+"use client";
 import "./TableBody.css";
 
 function TableBody({ data }: { data: (string | number | JSX.Element)[] }) {
