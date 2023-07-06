@@ -38,7 +38,7 @@ function PanelNavigation() {
             className={`p-3 block text-gray-500 ${
               lastPath === "orders" && "bg-green-200 text-green-600"
             }`}
-            href="/"
+            href="/dashboard/orders"
           >
             <i className="fa-solid fa-bag-shopping mx-1"></i>Xaridlar
           </Link>
