@@ -36,6 +36,7 @@ export const { setState } = bindActionCreators(
   checkoutSlice.actions,
   store.dispatch
 );
+export type RootDispatch = typeof store.dispatch;
 const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> =
   useSelector;
 const useAppDispatch = useDispatch<typeof store.dispatch>;

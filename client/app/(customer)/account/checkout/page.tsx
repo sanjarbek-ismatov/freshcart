@@ -2,7 +2,7 @@
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useMemo } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { setState, useAppSelector } from "@/store/store";
 import Image from "next/image";
@@ -16,15 +16,11 @@ function CheckoutPage() {
     () => state.length === data?.cart.length,
     [data?.cart.length, state.length]
   );
-  const filter = useMemo(() => new Filter(state), []);
+  const filter = useMemo(() => new Filter(setState), []);
 
   const handleCheck = useCallback(() => {
-    filter.selectAll(state || []);
-  }, [filter, state]);
-  useEffect(() => {
-    setState(filter.state);
-  }, [filter.state]);
-  console.log(state, filter.state);
+    filter.selectAll(data?.cart);
+  }, [data?.cart, filter]);
   return (
     <>
       <BreadCrumb

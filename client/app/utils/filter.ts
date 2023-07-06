@@ -1,8 +1,11 @@
-class Filter {
-  private _state: any[];
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-  constructor(state: any[]) {
-    this._state = [...state];
+class Filter {
+  private _state: any[] = [];
+  private readonly setState: ActionCreatorWithPayload<any, "checkout/setState">;
+
+  constructor(setState: ActionCreatorWithPayload<any, "checkout/setState">) {
+    this.setState = setState;
   }
 
   select(item: any, type: "checkout" | "product") {
@@ -18,15 +21,14 @@ class Filter {
     });
     if (foundedItem !== -1) this._state.splice(foundedItem, 1);
     else this._state.push(item);
+    this.setState(this._state);
   }
 
-  selectAll(item: any[]) {
-    this._state.splice(0, this._state.length);
-    this._state.push(...item);
-  }
-
-  reset() {
-    this._state = [];
+  selectAll(item?: any[]) {
+    if (!item) return;
+    if (this._state.length === item.length) this._state = [];
+    else this._state.push(...item);
+    this.setState(this._state);
   }
 
   get state(): any[] {
