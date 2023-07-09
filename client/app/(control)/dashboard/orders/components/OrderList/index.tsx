@@ -18,9 +18,8 @@ function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
   );
   const handleCheck = useCallback(() => {
     filter.selectAll(orders);
-    console.log(filter.state);
   }, [orders, filter]);
-  console.log(state);
+
   return (
     <Table>
       <TableHead

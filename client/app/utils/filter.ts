@@ -13,7 +13,9 @@ class Filter {
       switch (type) {
         case "checkout":
           return state.id.slug === item.id.slug;
-        case "product" || "order":
+        case "product":
+          return state.slug === item.slug;
+        case "order":
           return state.slug === item.slug;
         default:
           return;
