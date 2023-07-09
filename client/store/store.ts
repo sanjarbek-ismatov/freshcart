@@ -7,14 +7,15 @@ import {
 } from "@/store/reducers/filter";
 import { clientFilter, controlFilter } from "@/store/actions/filter";
 import checkoutSlice from "@/store/reducers/checkout";
+import orderFilterSlice from "@/store/reducers/order";
 
 export const store = configureStore({
   reducer: {
     [eCommerceApi.reducerPath]: eCommerceApi.reducer,
     filter: clientFilterReducer,
     controlFilter: controlFilterReducer,
-    checkout: checkoutSlice.reducer,
-    controlCheckoutFilter: checkoutSlice.reducer,
+    checkoutFilter: checkoutSlice.reducer,
+    controlOrderFilter: orderFilterSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
@@ -33,8 +34,12 @@ export const { statusFilter: statusFilterDispatch } = bindActionCreators(
   controlFilter,
   store.dispatch
 );
-export const { setState } = bindActionCreators(
+export const { setCheckoutState } = bindActionCreators(
   checkoutSlice.actions,
+  store.dispatch
+);
+export const { setOrderState } = bindActionCreators(
+  orderFilterSlice.actions,
   store.dispatch
 );
 export type RootDispatch = typeof store.dispatch;

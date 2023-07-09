@@ -4,19 +4,19 @@ import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { BreadCrumb, MenuButton, Typography } from "@components";
 import { useCallback, useMemo } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import { setState, useAppSelector } from "@/store/store";
+import { setCheckoutState, useAppSelector } from "@/store/store";
 import Image from "next/image";
 import { Filter } from "@/app/utils/filter";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
 
 function CheckoutPage() {
-  const state = useAppSelector((state1) => state1.checkout);
+  const state = useAppSelector((state1) => state1.checkoutFilter);
   const { data, refetch } = useGetUserInfoQuery();
   const allAreChecked = useMemo(
     () => state.length === data?.cart.length,
     [data?.cart.length, state.length]
   );
-  const filter = useMemo(() => new Filter(setState), []);
+  const filter = useMemo(() => new Filter(setCheckoutState), []);
 
   const handleCheck = useCallback(() => {
     filter.selectAll(data?.cart);

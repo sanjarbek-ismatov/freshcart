@@ -2,9 +2,9 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
 class Filter {
   private _state: any[] = [];
-  private readonly setState: ActionCreatorWithPayload<any, "checkout/setState">;
+  private readonly setState: ActionCreatorWithPayload<any, any>;
 
-  constructor(setState: ActionCreatorWithPayload<any, "checkout/setState">) {
+  constructor(setState: ActionCreatorWithPayload<any, any>) {
     this.setState = setState;
   }
 
@@ -13,7 +13,7 @@ class Filter {
       switch (type) {
         case "checkout":
           return state.id.slug === item.id.slug;
-        case "product":
+        case "product" || "order":
           return state.slug === item.slug;
         default:
           return;

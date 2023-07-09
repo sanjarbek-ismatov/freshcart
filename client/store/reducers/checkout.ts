@@ -5,11 +5,12 @@ const checkoutSlice = createSlice({
   name: "checkout",
   initialState: [] as CheckoutProduct[],
   reducers: {
-    setState(state, action) {
+    setCheckoutState(state, action) {
       state.splice(0, state.length);
       state.length = 0;
       state.push(...action.payload);
     },
   },
 });
+
 export default checkoutSlice;

@@ -2,15 +2,15 @@
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import "./OrderList.css";
 import { MenuButton } from "@components";
-import { setState, useAppSelector } from "@/store/store";
+import { setOrderState, useAppSelector } from "@/store/store";
 import { VendorWithOrders } from "@types";
 import { useCallback, useMemo } from "react";
 import { Filter } from "@/app/utils/filter";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 
 function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
-  const state = useAppSelector((state) => state.controlCheckoutFilter);
-  const filter = useMemo(() => new Filter(setState), []);
+  const state = useAppSelector((state) => state.controlOrderFilter);
+  const filter = useMemo(() => new Filter(setOrderState), []);
 
   const allAreChecked = useMemo(
     () => state.length === orders.length,
@@ -18,6 +18,7 @@ function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
   );
   const handleCheck = useCallback(() => {
     filter.selectAll(orders);
+    console.log(filter.state);
   }, [orders, filter]);
   console.log(state);
   return (
@@ -46,9 +47,8 @@ function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
             data={[
               <Checkbox
                 key={i}
-                checked={true}
-                // checked={state.findIndex((el) => el.id.slug === e.slug) !== -1}
-                // onChange={() => filter.select(e, "checkout")}
+                checked={state.findIndex((el) => el.slug === e.slug) !== -1}
+                onChange={() => filter.select(e, "order")}
               />,
               e.slug,
               e.productId.name,
