@@ -1,4 +1,4 @@
-import "./Table.css";
+"use client";
 import { ReactNode } from "react";
 
 function Table({ children }: { children: ReactNode }) {

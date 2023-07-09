@@ -1,4 +1,4 @@
-import "./TableHead.css";
+"use client";
 
 function TableHead({ data }: { data: (number | string | JSX.Element)[] }) {
   return (

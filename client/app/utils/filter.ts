@@ -1,16 +1,21 @@
-class Filter {
-  private _state: any[];
+import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 
-  constructor(state: any[]) {
-    this._state = [...state];
+class Filter {
+  private _state: any[] = [];
+  private readonly setState: ActionCreatorWithPayload<any, any>;
+
+  constructor(setState: ActionCreatorWithPayload<any, any>) {
+    this.setState = setState;
   }
 
-  select(item: any, type: "checkout" | "product") {
+  select(item: any, type: "checkout" | "product" | "order") {
     const foundedItem = this._state.findIndex((state) => {
       switch (type) {
         case "checkout":
           return state.id.slug === item.id.slug;
         case "product":
+          return state.slug === item.slug;
+        case "order":
           return state.slug === item.slug;
         default:
           return;
@@ -18,15 +23,14 @@ class Filter {
     });
     if (foundedItem !== -1) this._state.splice(foundedItem, 1);
     else this._state.push(item);
+    this.setState(this._state);
   }
 
-  selectAll(item: any[]) {
-    this._state.splice(0, this._state.length);
-    this._state.push(...item);
-  }
-
-  reset() {
-    this._state = [];
+  selectAll(item?: any[]) {
+    if (!item) return;
+    if (this._state.length === item.length) this._state = [];
+    else this._state.push(...item);
+    this.setState(this._state);
   }
 
   get state(): any[] {

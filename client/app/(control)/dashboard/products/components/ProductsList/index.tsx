@@ -2,7 +2,7 @@
 import { useGetControllerInfoQuery } from "@/store/api/ecommerce";
 import { Table, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
-import { ProductType } from "@/types";
+import { ProductType } from "@types";
 import { useEffect, useState } from "react";
 import { ProductTableBody } from "@/app/(control)/dashboard/products/components";
 import { MenuButton } from "@/app/components";
