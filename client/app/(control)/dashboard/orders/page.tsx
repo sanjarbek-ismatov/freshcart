@@ -15,7 +15,7 @@ function OrdersPage() {
       </header>
       <main>
         <Filter text={text} setText={setText} filter />
-        <OrderList data={data} />
+        {data && <OrderList data={data} />}
       </main>
     </>
   );

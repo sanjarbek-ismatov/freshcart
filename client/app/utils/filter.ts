@@ -8,7 +8,7 @@ class Filter {
     this.setState = setState;
   }
 
-  select(item: any, type: "checkout" | "product") {
+  select(item: any, type: "checkout" | "product" | "order") {
     const foundedItem = this._state.findIndex((state) => {
       switch (type) {
         case "checkout":
