@@ -9,7 +9,10 @@ import { Filter } from "@/app/utils/filter";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 
 function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
-  const state = useAppSelector((state) => state.controlOrderFilter);
+  const {
+    controlOrderFilter: state,
+    controlFilter: { status },
+  } = useAppSelector((state) => state);
   const filter = useMemo(() => new Filter(setOrderState), []);
 
   const allAreChecked = useMemo(
@@ -40,30 +43,32 @@ function OrderList({ data: { orders } }: { data: VendorWithOrders }) {
         ]}
       />
       <tbody>
-        {orders.map((e, i) => (
-          <TableBody
-            key={i}
-            data={[
-              <Checkbox
-                key={i}
-                checked={state.findIndex((el) => el.slug === e.slug) !== -1}
-                onChange={() => filter.select(e, "order")}
-              />,
-              e.slug,
-              e.productId.name,
-              e.status,
-              e.totalPrice,
-              e.clientId.username,
-              new Date(e.date).toLocaleString(),
-              e.paymentMethod,
-              <MenuButton key={i}>
-                <p className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white">
-                  <i className="fa-solid  fa-trash mr-2"></i>O'chirish
-                </p>
-              </MenuButton>,
-            ]}
-          />
-        ))}
+        {orders
+          .filter((e) => (status ? e.status === status : true))
+          .map((e, i) => (
+            <TableBody
+              key={i}
+              data={[
+                <Checkbox
+                  key={i}
+                  checked={state.findIndex((el) => el.slug === e.slug) !== -1}
+                  onChange={() => filter.select(e, "order")}
+                />,
+                e.slug,
+                e.productId.name,
+                e.status,
+                e.totalPrice,
+                e.clientId.username,
+                new Date(e.date).toLocaleString(),
+                e.paymentMethod,
+                <MenuButton key={i}>
+                  <p className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white">
+                    <i className="fa-solid  fa-trash mr-2"></i>O'chirish
+                  </p>
+                </MenuButton>,
+              ]}
+            />
+          ))}
       </tbody>
     </Table>
   );
