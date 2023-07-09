@@ -21,7 +21,7 @@ async function getSingleVendor(req: NodeRequest, res: Response) {
 async function getMe(req: NodeRequest, res: Response) {
   const vendor = await req.vendor?.populate("products");
   const orders = await Order.find({ vendorId: vendor?._id }).populate(
-    "productId"
+    "productId clientId"
   );
   res.status(200).send({ vendor, orders });
 }
