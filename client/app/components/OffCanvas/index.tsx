@@ -45,7 +45,7 @@ const OffCanvas = forwardRef<
           <h1 className="text-3xl">Hello</h1>
         </header>
         <main>
-          {data?.cart.map((e, i) => (
+          {data?.user.cart.map((e, i) => (
             <CartProduct key={i} product={e.id} defCount={e.count} />
           ))}
         </main>

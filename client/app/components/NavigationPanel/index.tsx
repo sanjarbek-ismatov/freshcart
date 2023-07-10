@@ -40,7 +40,6 @@ function NavigationPanel({
               }`}
               href={e.path}
             >
-              <i className="fa-solid fa-cart-shopping mx-1"></i>
               {e.title}
             </Link>
           </li>

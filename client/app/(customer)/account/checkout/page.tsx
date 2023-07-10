@@ -1,7 +1,7 @@
 "use client";
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
-import { BreadCrumb, MenuButton, Typography } from "@components";
+import { MenuButton, Typography } from "@components";
 import { useCallback, useMemo } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { setCheckoutState, useAppSelector } from "@/store/store";
@@ -13,26 +13,26 @@ function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkoutFilter);
   const { data, refetch } = useGetUserInfoQuery();
   const allAreChecked = useMemo(
-    () => state.length === data?.cart.length,
-    [data?.cart.length, state.length]
+    () => state.length === data?.user.cart.length,
+    [data?.user.cart.length, state.length],
   );
   const filter = useMemo(() => new Filter(setCheckoutState), []);
 
   const handleCheck = useCallback(() => {
-    filter.selectAll(data?.cart);
-  }, [data?.cart, filter]);
+    filter.selectAll(data?.user.cart);
+  }, [data?.user.cart, filter]);
   return (
-    <>
-      <BreadCrumb
-        path={[
-          { title: "Uy", path: "/" },
-          { title: "Hisob", path: "/account" },
-          {
-            title: "Savatcha",
-            path: "/account/checkout",
-          },
-        ]}
-      />
+    <div className="w-full">
+      {/*<BreadCrumb*/}
+      {/*  path={[*/}
+      {/*    { title: "Uy", path: "/" },*/}
+      {/*    { title: "Hisob", path: "/account" },*/}
+      {/*    {*/}
+      {/*      title: "Savatcha",*/}
+      {/*      path: "/account/checkout",*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*/>*/}
 
       <Typography text="Savatcha" />
       <div className="flex">
@@ -57,7 +57,7 @@ function CheckoutPage() {
               </MenuButton>,
             ]}
           ></TableHead>
-          {data?.cart.map(
+          {data?.user.cart.map(
             ({ id: { name, images, category, price }, count }, i) => (
               <TableBody
                 key={i}
@@ -66,10 +66,12 @@ function CheckoutPage() {
                     key={i}
                     checked={
                       !!state.find(
-                        (e) => e && data?.cart[i].id.slug === e.id.slug
+                        (e) => e && data?.user.cart[i].id.slug === e.id.slug,
                       )
                     }
-                    onChange={() => filter.select(data?.cart[i], "checkout")}
+                    onChange={() =>
+                      filter.select(data?.user.cart[i], "checkout")
+                    }
                   />,
                   <Image
                     key={i}
@@ -90,12 +92,12 @@ function CheckoutPage() {
                   </MenuButton>,
                 ]}
               />
-            )
+            ),
           )}
         </Table>
-        <AddressDetails state={state} user={data} />
+        <AddressDetails state={state} user={data?.user} />
       </div>
-    </>
+    </div>
   );
 }
 
