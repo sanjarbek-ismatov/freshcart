@@ -1,7 +1,7 @@
 "use client";
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
-import { BreadCrumb, MenuButton, Typography } from "@components";
+import { MenuButton, Typography } from "@components";
 import { useCallback, useMemo } from "react";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { setCheckoutState, useAppSelector } from "@/store/store";
@@ -14,7 +14,7 @@ function CheckoutPage() {
   const { data, refetch } = useGetUserInfoQuery();
   const allAreChecked = useMemo(
     () => state.length === data?.cart.length,
-    [data?.cart.length, state.length]
+    [data?.cart.length, state.length],
   );
   const filter = useMemo(() => new Filter(setCheckoutState), []);
 
@@ -22,17 +22,17 @@ function CheckoutPage() {
     filter.selectAll(data?.cart);
   }, [data?.cart, filter]);
   return (
-    <>
-      <BreadCrumb
-        path={[
-          { title: "Uy", path: "/" },
-          { title: "Hisob", path: "/account" },
-          {
-            title: "Savatcha",
-            path: "/account/checkout",
-          },
-        ]}
-      />
+    <div className="w-full">
+      {/*<BreadCrumb*/}
+      {/*  path={[*/}
+      {/*    { title: "Uy", path: "/" },*/}
+      {/*    { title: "Hisob", path: "/account" },*/}
+      {/*    {*/}
+      {/*      title: "Savatcha",*/}
+      {/*      path: "/account/checkout",*/}
+      {/*    },*/}
+      {/*  ]}*/}
+      {/*/>*/}
 
       <Typography text="Savatcha" />
       <div className="flex">
@@ -66,7 +66,7 @@ function CheckoutPage() {
                     key={i}
                     checked={
                       !!state.find(
-                        (e) => e && data?.cart[i].id.slug === e.id.slug
+                        (e) => e && data?.cart[i].id.slug === e.id.slug,
                       )
                     }
                     onChange={() => filter.select(data?.cart[i], "checkout")}
@@ -90,12 +90,12 @@ function CheckoutPage() {
                   </MenuButton>,
                 ]}
               />
-            )
+            ),
           )}
         </Table>
         <AddressDetails state={state} user={data} />
       </div>
-    </>
+    </div>
   );
 }
 

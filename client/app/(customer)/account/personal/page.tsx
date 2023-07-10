@@ -6,7 +6,7 @@ import { Typography } from "@components";
 function Personal() {
   const { isLoading, data } = useGetUserInfoQuery();
   return (
-    <>
+    <div>
       <Typography text="Sozlamalar" />
       {data && (
         <>
@@ -14,7 +14,7 @@ function Personal() {
           <Form user={data} />
         </>
       )}
-    </>
+    </div>
   );
 }
 

@@ -12,6 +12,16 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
               lastPath: "personal",
               path: "/account/personal",
             },
+            {
+              title: "Buyurtmalar",
+              lastPath: "orders",
+              path: "/account/orders",
+            },
+            {
+              title: "Savatcha",
+              lastPath: "checkout",
+              path: "/account/checkout",
+            },
           ]}
           homeLink={{
             title: "Umumiy",

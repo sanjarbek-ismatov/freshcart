@@ -11,7 +11,7 @@ function Form({ user }: { user: UserType }) {
   const [image, setImage] = useState<string | ArrayBuffer>(
     `http://localhost:4000/api/files/image/${user.image}`,
   );
-  const formTemp = new FormParser();
+  const form = new FormParser();
   const handleSubmitImage = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
       if (!event.target.files) return;
@@ -27,8 +27,8 @@ function Form({ user }: { user: UserType }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        formTemp.setForm(e);
-        updateUserInfo(formTemp.getFormAsFormData);
+        form.setForm(e);
+        updateUserInfo(form.getFormAsFormData);
       }}
     >
       <label>
