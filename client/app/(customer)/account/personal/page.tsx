@@ -1,15 +1,16 @@
 "use client";
-import { Form, Header } from "@/app/(customer)/account/personal/components";
+import { Form } from "@/app/(customer)/account/personal/components";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
+import { Typography } from "@components";
 
 function Personal() {
   const { isLoading, data } = useGetUserInfoQuery();
   return (
     <>
-      <h1>Sozlamalar</h1>
+      <Typography text="Sozlamalar" />
       {data && (
         <>
-          <Header user={data} />
+          {/*<Header user={data} />*/}
           <Form user={data} />
         </>
       )}

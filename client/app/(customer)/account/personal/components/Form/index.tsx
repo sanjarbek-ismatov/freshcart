@@ -3,20 +3,49 @@ import { UserType } from "@/types";
 import { Button, Input } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
+import Image from "next/image";
+import React, { useCallback, useState } from "react";
 
 function Form({ user }: { user: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
+  const [image, setImage] = useState<string | ArrayBuffer>(
+    `http://localhost:4000/api/files/image/${user.image}`,
+  );
   const formTemp = new FormParser();
+  const handleSubmitImage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      if (!event.target.files) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        e.target?.result && setImage(e.target?.result);
+      };
+      reader.readAsDataURL(event.target.files[0]);
+    },
+    [],
+  );
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         formTemp.setForm(e);
         updateUserInfo(formTemp.getFormAsFormData);
-        console.log(formTemp.getFormAsObject);
       }}
     >
-      <Input label="Rasm" name="image" type="file" fullWidth />
+      <label>
+        <Image
+          width={200}
+          height={200}
+          className="rounded-full object-cover w-[200px] h-[200px]"
+          src={
+            image
+              ? image.toString()
+              : "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
+          }
+          alt="Profil rasmi"
+          unoptimized
+        />
+        <input onChange={handleSubmitImage} name="image" type="file" hidden />
+      </label>
       <Input
         name="name"
         type="text"

@@ -15,7 +15,7 @@ export default function AccountLayout({ children }: { children: ReactNode }) {
           ]}
           homeLink={{
             title: "Umumiy",
-            lastPath: "personal",
+            lastPath: "home",
             path: "/account/home",
           }}
           header={<Typography text="Navigatsiya" />}
