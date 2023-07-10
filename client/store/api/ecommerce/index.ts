@@ -1,10 +1,12 @@
 import {
   OrderChangeStatus,
   OrderType,
+  ProductType,
   RequestLoginForm,
   RequestRegisterForm,
   ServerResponse,
   UserType,
+  VendorType,
   VendorWithOrders,
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
@@ -83,7 +85,10 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      getUserInfo: build.query<UserType, void>({
+      getUserInfo: build.query<
+        { user: UserType; orders: OrderType<ProductType, VendorType>[] },
+        void
+      >({
         query: () => ({
           method: "GET",
           url: "/auth/info",

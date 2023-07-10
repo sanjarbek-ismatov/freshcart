@@ -11,7 +11,7 @@ function Personal() {
       {data && (
         <>
           {/*<Header user={data} />*/}
-          <Form user={data} />
+          <Form user={data.user} />
         </>
       )}
     </div>

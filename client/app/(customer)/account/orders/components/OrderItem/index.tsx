@@ -14,7 +14,9 @@ function OrderItem({ item }: { item: OrderType<ProductType, VendorType> }) {
           unoptimized
         />
       </div>
-      <div></div>
+      <div>
+        <h4>{item.productId.name}</h4>
+      </div>
     </div>
   );
 }

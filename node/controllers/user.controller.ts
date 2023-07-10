@@ -4,6 +4,7 @@ import { User } from "../models/user.model";
 import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 import { NodeRequest } from "../types";
+import { Order } from "../models/order.model";
 
 async function signUpController(req: NodeRequest, res: Response) {
   const error = registerValidator(req.body);
@@ -44,7 +45,10 @@ async function getInfo(req: NodeRequest, res: Response) {
       path: "vendor",
     },
   });
-  res.status(200).send(user);
+  const orders = await Order.find({ clientId: user?._id }).populate(
+    "productId vendorId",
+  );
+  res.status(200).send({ user, orders });
 }
 
 async function addToCart(req: NodeRequest, res: Response) {
