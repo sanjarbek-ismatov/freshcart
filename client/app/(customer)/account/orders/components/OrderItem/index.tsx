@@ -1,10 +1,17 @@
 import "./OrderItem.css";
 import { OrderType, ProductType, VendorType } from "@types";
 import Image from "next/image";
+import { ComponentProps } from "react";
 
-function OrderItem({ item }: { item: OrderType<ProductType, VendorType> }) {
+function OrderItem({
+  item,
+  ...rest
+}: { item: OrderType<ProductType, VendorType> } & ComponentProps<"div">) {
   return (
-    <div className="w-full flex items-center bg-slate-100 p-3">
+    <div
+      {...rest}
+      className="w-full border  flex items-center bg-slate-100 p-3"
+    >
       <div className="mr-4">
         <Image
           width={80}
