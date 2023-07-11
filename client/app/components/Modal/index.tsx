@@ -5,7 +5,7 @@ import "./Modal.css";
 type ModalProps = {
   title: string;
   children: ReactNode;
-  setShow?: React.Dispatch<React.SetStateAction<boolean>>;
+  setShow?: React.Dispatch<React.SetStateAction<any>>;
 };
 
 const Modal = ({ title, children, setShow }: ModalProps) => {
