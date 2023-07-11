@@ -6,7 +6,7 @@ import { OrderItem } from "@/app/(customer)/account/orders/components";
 function OrdersPage() {
   const { data } = useGetUserInfoQuery();
   return (
-    <div>
+    <div className="w-full">
       <Typography text="Buyurtmalar" />
       {data?.orders.map((e, i) => <OrderItem key={i} item={e} />)}
     </div>
