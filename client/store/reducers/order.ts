@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { OrderType, ProductType, VendorType } from "@types";
+import { OrderUsableType } from "@types";
 
 const orderFilterSlice = createSlice({
   name: "orderFilter",
-  initialState: [] as OrderType<ProductType, VendorType>[],
+  initialState: [] as OrderUsableType[],
   reducers: {
     setOrderState(state, action) {
       state.splice(0, state.length);

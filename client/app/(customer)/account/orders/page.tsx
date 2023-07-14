@@ -1,15 +1,16 @@
 "use client";
 import { Modal, Typography } from "@components";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import { OrderItem } from "@/app/(customer)/account/orders/components";
+import {
+  OrderItem,
+  OrderModal,
+} from "@/app/(customer)/account/orders/components";
 import { useState } from "react";
-import { OrderType, ProductType, VendorType } from "@types";
+import { OrderUsableType } from "@types";
 
 function OrdersPage() {
   const { data } = useGetUserInfoQuery();
-  const [selected, setSelected] = useState<
-    OrderType<ProductType, VendorType> | false
-  >();
+  const [selected, setSelected] = useState<OrderUsableType | false>();
   return (
     <div className="w-full">
       <Typography text="Buyurtmalar" />
@@ -18,7 +19,7 @@ function OrdersPage() {
       ))}
       {selected && (
         <Modal setShow={setSelected} title="Buyurtma haqida">
-          {selected.status}
+          <OrderModal order={selected} />
         </Modal>
       )}
     </div>
