@@ -12,7 +12,7 @@ orderRouter.post("/add", [upload.none(), authMiddleware], controller.add);
 orderRouter.put(
   "/change",
   [upload.none(), vendorAuthMiddleware],
-  controller.updateStatus
+  controller.updateStatus,
 );
-
+orderRouter.put("/accept", authMiddleware, controller.acceptOrder);
 export default orderRouter;
