@@ -8,8 +8,8 @@ function LikeButton({ id }: { id: string }) {
 
   const [addToLiked, { isSuccess }] = useAddToCartMutation();
   const isLiked = useMemo(
-    () => Boolean(data?.liked.find((e) => e._id.toString() === id.toString())),
-    [data?.liked, id]
+    () => Boolean(data?.liked?.find((e) => e._id.toString() === id.toString())),
+    [data?.liked, id],
   );
   const [liked, setLiked] = useState(isLiked || false);
 

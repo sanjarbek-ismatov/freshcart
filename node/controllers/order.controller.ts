@@ -15,6 +15,11 @@ class OrderController {
     if (!order)
       return res.status(404).send({ message: "Not found", code: 404 });
     order.status = req.body.status;
+    // const vendor = await Vendor.findOne({ _id: order.vendorId });
+    // if (!vendor) return res.status(404).send("Error");
+    // if(status === "")
+    // vendor.sells++;
+    // await vendor.save();
     await order.save();
     res.status(200).send({ code: 200, message: "Yangilandi!" });
   }

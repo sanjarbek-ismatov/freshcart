@@ -60,9 +60,11 @@ interface VendorType {
   products: ProductType[];
 }
 
+type OrderUsableType = OrderType<ProductType, VendorType>;
+
 interface VendorWithOrders {
   vendor: VendorType;
-  orders: OrderType<ProductType, VendorType>[];
+  orders: OrderUsableType[];
 }
 
 interface CategoryType {
@@ -109,7 +111,7 @@ type Status = "pending" | "processing" | "rejected" | "finished";
 
 interface OrderType<
   P extends ProductType | string,
-  V extends VendorType | string
+  V extends VendorType | string,
 > {
   clientId: UserType;
   productId: P;
@@ -135,10 +137,12 @@ interface OrderChangeStatus {
 interface FormObject {
   [key: string]: string | Blob;
 }
+
 interface CheckoutProduct {
   id: ProductType;
   count: number;
 }
+
 export type {
   ServerResponse,
   RequestRegisterForm,
@@ -154,4 +158,5 @@ export type {
   OrderChangeStatus,
   FormObject,
   CheckoutProduct,
+  OrderUsableType,
 };

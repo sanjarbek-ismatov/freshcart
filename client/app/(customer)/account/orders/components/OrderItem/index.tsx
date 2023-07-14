@@ -1,12 +1,13 @@
 import "./OrderItem.css";
-import { OrderType, ProductType, VendorType } from "@types";
 import Image from "next/image";
 import { ComponentProps } from "react";
+import { OrderUsableType } from "@types";
+import { StatusBadge } from "@components";
 
 function OrderItem({
   item,
   ...rest
-}: { item: OrderType<ProductType, VendorType> } & ComponentProps<"div">) {
+}: { item: OrderUsableType } & ComponentProps<"div">) {
   return (
     <div
       {...rest}
@@ -32,9 +33,7 @@ function OrderItem({
       </div>
       <div className="flex justify-between w-full ml-4">
         <div className="w-1/2">
-          <span className="bg-green-600 text-[12px]  text-white  p-1 rounded-md">
-            {item.status}
-          </span>
+          <StatusBadge status={item.status} />
         </div>
         <h5 className="text-lg font-semibold text-slate-800">
           ${item.totalPrice}
