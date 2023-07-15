@@ -14,5 +14,4 @@ orderRouter.put(
   [upload.none(), vendorAuthMiddleware],
   controller.updateStatus,
 );
-orderRouter.put("/accept", authMiddleware, controller.acceptOrder);
 export default orderRouter;
