@@ -113,6 +113,7 @@ interface OrderType<
   P extends ProductType | string,
   V extends VendorType | string,
 > {
+  _id: string;
   clientId: UserType;
   productId: P;
   vendorId: V;

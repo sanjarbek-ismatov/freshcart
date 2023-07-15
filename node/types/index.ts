@@ -92,6 +92,16 @@ interface OrderType {
   orderNotes: string;
 }
 
+interface ReviewType {
+  vendorId: string;
+  productId: string;
+  clientId: string;
+  body: string;
+  star: number;
+  images: string[];
+  date: string;
+}
+
 export type {
   CategoryType,
   ProductType,
@@ -101,4 +111,5 @@ export type {
   VendorType,
   OrderType,
   AddressType,
+  ReviewType,
 };

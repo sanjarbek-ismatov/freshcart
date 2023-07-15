@@ -5,6 +5,7 @@ import { Button, StatusBadge, Typography } from "@components";
 
 function OrderModal({
   order: {
+    _id,
     productId: { images, name },
     vendorId: { name: vendorName, sells },
     slug,
@@ -13,13 +14,15 @@ function OrderModal({
     paymentMethod,
     status,
   },
+  refetch,
 }: {
   order: OrderUsableType;
+  refetch: any;
 }) {
   return (
     <div className="w-full">
       <div className="flex">
-        <div>
+        <div className="mx-4">
           <Image
             width={200}
             height={200}
@@ -51,11 +54,18 @@ function OrderModal({
           </div>
         </div>
       </div>
-      <div>
-        <h1>Maxsulotni qabul qildingizmi?</h1>
-        <Button>Ha</Button>
-        <Button>Yo'q hali</Button>
-      </div>
+
+      {status === "processing" && (
+        <div>
+          <h1 className="text-center text-xl font-semibold">
+            Maxsulotni qabul qildingizmi?
+          </h1>
+          <div className="flex mx-auto justify-between w-4/6">
+            <Button>Ha</Button>
+            <Button>Yo'q hali</Button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

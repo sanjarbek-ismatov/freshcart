@@ -11,18 +11,19 @@ import productRoute from "./product.routes";
 import vendorRoute from "./vendor.routes";
 import fileRoute from "./files.routes";
 import orderRoutes from "./order.routes";
+import reviewRoutes from "./review.routes";
 
 export default function (app: Express) {
   app.use(
     cors({
       exposedHeaders: ["x-token", "x-vendor-token"],
       optionsSuccessStatus: 200,
-    })
+    }),
   );
   app.use(
     helmet({
       crossOriginResourcePolicy: false,
-    })
+    }),
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
@@ -34,5 +35,6 @@ export default function (app: Express) {
   app.use("/api/vendor", vendorRoute);
   app.use("/api/files", fileRoute);
   app.use("/api/order", orderRoutes);
+  app.use("/api/review", reviewRoutes);
   app.use(error);
 }

@@ -5,6 +5,7 @@ import {
   RequestLoginForm,
   RequestRegisterForm,
   ServerResponse,
+  Status,
   UserType,
   VendorWithOrders,
 } from "@types";
@@ -154,6 +155,19 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      acceptOrder: build.mutation<
+        ServerResponse<any>,
+        { id: string; status: Status }
+      >({
+        query: (body) => ({
+          url: "/order/accept",
+          body,
+          method: "PUT",
+          headers: {
+            ["x-token"]: gettoken("x-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -171,4 +185,5 @@ export const {
   useDeleteProductsByIdMutation,
   useAddOrderMutation,
   useChangeStatusMutation,
+  useAcceptOrderMutation,
 } = eCommerceApi;
