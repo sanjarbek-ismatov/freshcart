@@ -31,6 +31,7 @@ class OrderController {
     }
     await vendor.save();
     await order.save();
+    res.status(200).send("Updated");
   }
 }
 

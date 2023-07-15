@@ -9,7 +9,7 @@ import { useState } from "react";
 import { OrderUsableType } from "@types";
 
 function OrdersPage() {
-  const { data } = useGetUserInfoQuery();
+  const { data, refetch } = useGetUserInfoQuery();
   const [selected, setSelected] = useState<OrderUsableType | false>();
   return (
     <div className="w-full">
@@ -19,7 +19,7 @@ function OrdersPage() {
       ))}
       {selected && (
         <Modal setShow={setSelected} title="Buyurtma haqida">
-          <OrderModal order={selected} />
+          <OrderModal order={selected} refetch={refetch} />
         </Modal>
       )}
     </div>

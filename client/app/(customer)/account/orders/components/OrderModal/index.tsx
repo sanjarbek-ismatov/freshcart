@@ -2,9 +2,12 @@ import "./OrderModal.css";
 import Image from "next/image";
 import { OrderUsableType } from "@types";
 import { Button, StatusBadge, Typography } from "@components";
+import { useCallback } from "react";
+import { useAcceptOrderMutation } from "@/store/api/ecommerce";
 
 function OrderModal({
   order: {
+    _id,
     productId: { images, name },
     vendorId: { name: vendorName, sells },
     slug,
@@ -13,9 +16,18 @@ function OrderModal({
     paymentMethod,
     status,
   },
+  refetch,
 }: {
   order: OrderUsableType;
+  refetch: any;
 }) {
+  const [acceptOrder] = useAcceptOrderMutation();
+  const handleSubmitStatus = useCallback(() => {
+    acceptOrder({
+      id: _id,
+      status: "finished",
+    }).then(() => refetch());
+  }, [_id, acceptOrder, refetch]);
   return (
     <div className="w-full">
       <div className="flex">
@@ -58,7 +70,7 @@ function OrderModal({
             Maxsulotni qabul qildingizmi?
           </h1>
           <div className="flex mx-auto justify-between w-4/6">
-            <Button>Ha</Button>
+            <Button onClick={handleSubmitStatus}>Ha</Button>
             <Button>Yo'q hali</Button>
           </div>
         </div>
