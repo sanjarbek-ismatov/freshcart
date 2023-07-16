@@ -29,7 +29,7 @@ class FormParser<D> {
 
   private extractLabel(label: HTMLLabelElement) {
     return Array.from(label.children).find(
-      (e) => e instanceof HTMLInputElement
+      (e) => e instanceof HTMLInputElement,
     ) as HTMLInputElement;
   }
 
@@ -37,10 +37,10 @@ class FormParser<D> {
     const object: Record<string, any> = {};
     object[fieldset.name] = {};
     const labels = (Array.from(fieldset.children) as HTMLLabelElement[]).filter(
-      (e) => e instanceof HTMLLabelElement
+      (e) => e instanceof HTMLLabelElement,
     );
     const inputs = (Array.from(fieldset.children) as HTMLInputElement[]).filter(
-      (e) => e instanceof HTMLInputElement
+      (e) => e instanceof HTMLInputElement,
     );
     inputs.forEach((e) => {
       const result = this.getKeyAndValue(e);
@@ -115,7 +115,7 @@ class FormParser<D> {
   }
 
   public get getFormAsObject() {
-    return this.formObject as D;
+    return this.formObject as {};
   }
 
   public get getFormAsFormData() {

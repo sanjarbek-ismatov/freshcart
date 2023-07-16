@@ -5,7 +5,6 @@ import {
   RequestLoginForm,
   RequestRegisterForm,
   ServerResponse,
-  Status,
   UserType,
   VendorWithOrders,
 } from "@types";
@@ -155,14 +154,11 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      acceptOrder: build.mutation<
-        ServerResponse<any>,
-        { id: string; status: Status }
-      >({
+      acceptOrder: build.mutation<ServerResponse<any>, {}>({
         query: (body) => ({
-          url: "/order/accept",
+          url: "/review/add",
           body,
-          method: "PUT",
+          method: "POST",
           headers: {
             ["x-token"]: gettoken("x-token"),
           },
