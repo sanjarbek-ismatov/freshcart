@@ -1,6 +1,7 @@
 import "./FormModal.css";
 import { useAcceptOrderMutation } from "@/store/api/ecommerce";
 import { useCallback } from "react";
+import Image from "next/image";
 import FormParser from "@/app/utils/formParser";
 import { Input } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
@@ -14,7 +15,6 @@ function FormModal({ id, refetch }: { id: string; refetch: any }) {
     }).then(() => refetch());
   }, [id, acceptOrder, refetch]);
   const [handleSubmitImage, images] = useParsedUrlData();
-  console.log(images);
   const formParser = new FormParser();
   return (
     <form
@@ -32,6 +32,20 @@ function FormModal({ id, refetch }: { id: string; refetch: any }) {
         onChange={handleSubmitImage}
         label="Rasmlar"
       />
+      <div className="flex">
+        {images[0] &&
+          images?.map((e, i) => (
+            <Image
+              className="object-cover w-[100px] h-[100px] m-2"
+              key={i}
+              src={e}
+              width={50}
+              height={50}
+              alt="Skrinshot"
+              unoptimized
+            />
+          ))}
+      </div>
       <Input type="text" label="Izoh" name="description" />
       <Input type="number" label="Qanday baholaysiz?" name="star" />
       <Input type="submit" value="Jo'natish" />
