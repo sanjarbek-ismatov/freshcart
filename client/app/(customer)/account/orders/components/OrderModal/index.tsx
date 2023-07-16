@@ -8,8 +8,8 @@ import { FormModal } from "@/app/(customer)/account/orders/components";
 function OrderModal({
   order: {
     _id,
-    productId: { images, name },
-    vendorId: { name: vendorName, sells },
+    productId,
+    vendorId,
     slug,
     totalPrice,
     shippingAddress,
@@ -26,7 +26,7 @@ function OrderModal({
     <>
       {show && (
         <Modal setShow={setShow} title="Izoh yuborish">
-          <FormModal id={_id} refetch={refetch} />
+          <FormModal order={{ _id, vendorId }} refetch={refetch} />
         </Modal>
       )}
       <div className="w-full">
@@ -35,13 +35,13 @@ function OrderModal({
             <Image
               width={200}
               height={200}
-              src={`http://localhost:4000/api/files/image/${images[0]}`}
+              src={`http://localhost:4000/api/files/image/${productId.images[0]}`}
               alt="Maxsulot rasmi"
               unoptimized
             />
           </div>
           <div>
-            <Typography text={name} />
+            <Typography text={productId.name} />
             <p className="text-sm text-slate-600">#{slug}</p>
             <StatusBadge status={status} />
             <div className="bg-slate-200 p-3 my-4">
@@ -58,7 +58,7 @@ function OrderModal({
               </p>
               <p>
                 <strong>Sotuvchi: </strong>
-                {vendorName}({sells} savdo)
+                {vendorId.name}({vendorId.sells} savdo)
               </p>
             </div>
           </div>

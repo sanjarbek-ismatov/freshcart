@@ -7,10 +7,10 @@ import { Vendor } from "../models/vendor.model";
 class ReviewController {
   async addReview(req: NodeRequest, res: Response) {
     const newReview = new Review(req.body);
-    const order = await Order.findOne({ _id: req.body.id });
-    if (!order) return res.status(404).send("Error");
+    const order = await Order.findOne({ _id: req.body.orderId });
+    if (!order) return res.status(404).send("Order is not found");
     const vendor = await Vendor.findOne({ _id: order?.vendorId });
-    if (!vendor) return res.status(404).send("Error");
+    if (!vendor) return res.status(404).send("Vendor is not found");
     order.status = req.body.status;
 
     if (order.status === "finished") {
@@ -21,6 +21,7 @@ class ReviewController {
     if (Array.isArray(req.files)) {
       newReview.images = req.files?.map((file) => file.filename);
     }
+    console.log(newReview);
     await vendor.save();
     await order.save();
     await newReview.save();

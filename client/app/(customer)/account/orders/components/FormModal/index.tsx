@@ -5,22 +5,38 @@ import Image from "next/image";
 import FormParser from "@/app/utils/formParser";
 import { Input } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
+import { OrderUsableType } from "@types";
 
-function FormModal({ id, refetch }: { id: string; refetch: any }) {
+function FormModal({
+  order,
+  refetch,
+}: {
+  order: Pick<OrderUsableType, "_id" | "vendorId">;
+  refetch: any;
+}) {
   const [acceptOrder] = useAcceptOrderMutation();
-  const handleSubmitStatus = useCallback(() => {
-    acceptOrder({
-      id,
-      status: "finished",
-    }).then(() => refetch());
-  }, [id, acceptOrder, refetch]);
-  const [handleSubmitImage, images] = useParsedUrlData();
   const formParser = new FormParser();
+  const handleSubmitReview = useCallback(() => {
+    formParser.getFormAsFormData.append("vendorId", order.vendorId._id);
+    formParser.getFormAsFormData.append("orderId", order._id);
+    formParser.getFormAsFormData.append("status", "finished");
+
+    acceptOrder(formParser.getFormAsFormData).then(() => refetch());
+  }, [
+    acceptOrder,
+    formParser.getFormAsFormData,
+    order._id,
+    order.vendorId._id,
+    refetch,
+  ]);
+  const [handleSubmitImage, images] = useParsedUrlData();
+
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
         formParser.setForm(e);
+        handleSubmitReview();
       }}
       encType="multipart/form-data"
     >
@@ -46,7 +62,7 @@ function FormModal({ id, refetch }: { id: string; refetch: any }) {
             />
           ))}
       </div>
-      <Input type="text" label="Izoh" name="description" />
+      <Input type="text" label="Izoh" name="body" />
       <Input type="number" label="Qanday baholaysiz?" name="star" />
       <Input type="submit" value="Jo'natish" />
     </form>
