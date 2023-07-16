@@ -13,7 +13,8 @@ function FormModal({ id, refetch }: { id: string; refetch: any }) {
       status: "finished",
     }).then(() => refetch());
   }, [id, acceptOrder, refetch]);
-  const [handleSubmitImage, image] = useParsedUrlData();
+  const [handleSubmitImage, images] = useParsedUrlData();
+  console.log(images);
   const formParser = new FormParser();
   return (
     <form
@@ -28,6 +29,7 @@ function FormModal({ id, refetch }: { id: string; refetch: any }) {
         accept="image/*"
         type="file"
         name="images"
+        onChange={handleSubmitImage}
         label="Rasmlar"
       />
       <Input type="text" label="Izoh" name="description" />

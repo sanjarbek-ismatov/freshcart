@@ -1,13 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 
 function useParsedUrlData(defImage?: string) {
-  const images: (string | ArrayBuffer)[] = [];
+  const [images, setImages] = useState<(string | ArrayBuffer)[]>([]);
   const handleSubmit = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (!event.target.files) return;
     Array.from(event.target.files).forEach((file) => {
       const reader = new FileReader();
       reader.onload = (e) => {
-        e.target?.result && images.push(e.target?.result);
+        e.target?.result &&
+          setImages((prevImages: any) => [...prevImages, e.target?.result]);
       };
       reader.readAsDataURL(file);
     });
