@@ -1,27 +1,16 @@
-import "./Form.css";
+import Image from "next/image";
+import React from "react";
 import { UserType } from "@/types";
 import { Button, Input } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
-import Image from "next/image";
-import React, { useCallback, useState } from "react";
+import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 
 function Form({ user }: { user: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
-  const [image, setImage] = useState<string | ArrayBuffer>(
-    `http://localhost:4000/api/files/image/${user.image}`,
-  );
   const form = new FormParser();
-  const handleSubmitImage = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      if (!event.target.files) return;
-      const reader = new FileReader();
-      reader.onload = (e) => {
-        e.target?.result && setImage(e.target?.result);
-      };
-      reader.readAsDataURL(event.target.files[0]);
-    },
-    [],
+  const [handleSubmitImage, images] = useParsedUrlData(
+    `http://localhost:4000/api/files/image/${user.image}`,
   );
   return (
     <form
@@ -37,8 +26,8 @@ function Form({ user }: { user: UserType }) {
           height={200}
           className="rounded-full object-cover w-[200px] h-[200px]"
           src={
-            image
-              ? image.toString()
+            images.length
+              ? images[0].toString()
               : "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
           }
           alt="Profil rasmi"
