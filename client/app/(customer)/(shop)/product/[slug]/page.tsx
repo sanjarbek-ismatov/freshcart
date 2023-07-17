@@ -1,11 +1,11 @@
 import { getSSRData } from "@/app/utils/getData";
 import { ProductType } from "@/types";
 import { BreadCrumb, Slide } from "@components";
-import { About } from "@/app/(customer)/(shop)/product/components";
+import { About, Reviews } from "@/app/(customer)/(shop)/product/components";
 
 async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
   const product = await getSSRData<ProductType>(
-    `http://localhost:4000/api/product/${slug}`
+    `http://localhost:4000/api/product/${slug}`,
   );
   return (
     <>
@@ -20,6 +20,7 @@ async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
         <Slide product={product} />
         <About product={product} />
       </div>
+      <Reviews reviews={product.reviews} />
     </>
   );
 }

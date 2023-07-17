@@ -5,7 +5,6 @@ import { NodeRequest } from "../types";
 import { sluggenerator } from "../helpers/sluggenerator";
 
 async function getAll(req: NodeRequest, res: Response) {
-  console.log(req?.user);
   const products = await Product.find().populate("vendor");
   res.status(200).send(products);
 }
@@ -37,14 +36,19 @@ async function deleteProduct(req: NodeRequest, res: Response) {
   await Product.findByIdAndDelete(productId);
   req.vendor?.products.splice(
     req.vendor?.products.findIndex((e) => e._id.toString() === productId),
-    1
+    1,
   );
   await req.vendor?.save();
   res.status(204).send({ code: 204, message: "ok" });
 }
 
 async function getBySlug(req: NodeRequest, res: Response) {
-  const product = await Product.findOne({ slug: req.params.slug });
+  const product = await Product.findOne({ slug: req.params.slug }).populate({
+    path: "reviews",
+    populate: {
+      path: "clientId",
+    },
+  });
   if (!product)
     return res.status(404).send({ code: 404, message: "not found" });
   res.status(200).send(product);

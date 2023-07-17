@@ -11,8 +11,8 @@ const productSchema: Schema<ProductType> = new mongoose.Schema({
   images: [String],
   reviews: [
     {
-      type: [mongoose.SchemaTypes.ObjectId],
-      ref: "reviews",
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: "review",
     },
   ],
   weight: Number,
