@@ -16,7 +16,7 @@ interface ProductType {
   description: string;
   rating: number;
   images: string[];
-  reviews: string[];
+  reviews: Types.ObjectId[];
   weight: number;
   vendor: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;

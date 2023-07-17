@@ -16,6 +16,8 @@ function About({ product }: { product: ProductType }) {
       </span>
       <h1 className="text-3xl my-3">${product.price}</h1>
       <AddToCard product={product} />
+      <h4 className="text-slate-800 font-semibold text-xl">Maxsulot haqida</h4>
+      <p>{product.description}</p>
     </div>
   );
 }

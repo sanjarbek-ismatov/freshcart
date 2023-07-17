@@ -99,7 +99,7 @@ interface ProductType {
   description: string;
   rating: number;
   images: string[];
-  reviews: string[];
+  reviews: ReviewType[];
   weight: number;
   vendor: VendorType;
   guarantee: number;
@@ -144,6 +144,16 @@ interface CheckoutProduct {
   count: number;
 }
 
+interface ReviewType {
+  vendorId: string;
+  productId: string;
+  clientId: string;
+  body: string;
+  star: number;
+  images: string[];
+  date: string;
+}
+
 export type {
   ServerResponse,
   RequestRegisterForm,
@@ -160,4 +170,5 @@ export type {
   FormObject,
   CheckoutProduct,
   OrderUsableType,
+  ReviewType,
 };
