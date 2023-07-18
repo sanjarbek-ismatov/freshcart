@@ -8,12 +8,12 @@ function PreviewImage({
   setShow,
 }: {
   images: string[];
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  setShow: React.Dispatch<React.SetStateAction<string | boolean>>;
 }) {
   return (
     <>
       <Backdrop />
-      <div className="fixed top-0 left-0">
+      <div className="fixed top-0 z-20 left-0 w-full h-full">
         <header className="flex">
           <h1 className="text-white">Rasm</h1>
           <i
