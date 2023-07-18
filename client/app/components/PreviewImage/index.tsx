@@ -14,7 +14,7 @@ function PreviewImage({
   return (
     <>
       <Backdrop />
-      <div className="fixed flex flex-col top-0 z-20 left-0 w-full h-full pb-4">
+      <div className="fixed transition duration-500 flex flex-col top-0 z-20 left-0 w-full h-full pb-4">
         <header className="flex w-full justify-between bg-black opacity-75 p-4">
           <h1 className="text-white">Rasm</h1>
           <i
@@ -25,8 +25,8 @@ function PreviewImage({
         <div className="flex-1 flex w-full h-full justify-center items-center">
           {
             <Image
-              width={600}
-              height={600}
+              width={1000}
+              height={1000}
               src={typeof selected === "string" ? selected : ""}
               alt="Image"
               unoptimized
