@@ -147,7 +147,7 @@ interface CheckoutProduct {
 interface ReviewType {
   vendorId: string;
   productId: string;
-  clientId: string;
+  clientId: UserType;
   body: string;
   star: number;
   images: string[];
