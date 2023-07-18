@@ -8,30 +8,28 @@ function Reviews({ reviews }: { reviews: ReviewType[] }) {
     <div className="flex">
       <div className="w-[300px]"></div>
       <div>
-        <Typography text="Izohlar" />
+        <Typography text={`Izohlar (${reviews.length})`} />
         {reviews.map((e, i) => (
-          <div className="flex" key={i}>
-            {/*<Image*/}
-            {/*  height={50}*/}
-            {/*  width={50}*/}
-            {/*  src={`http://localhost:4000/api/files/image/${e.clientId.image}`}*/}
-            {/*  alt="Profil rasmi"*/}
-            {/*  unoptimized*/}
-            {/*/>*/}
-            <ProfileImage
-              image={`http://localhost:4000/api/files/image/${e.clientId.image}`}
-              size={50}
-            />
-            {/*</div>*/}
+          <div className="flex gap-x-5" key={i}>
+            <div>
+              <ProfileImage
+                image={`http://localhost:4000/api/files/image/${e.clientId.image}`}
+                size={60}
+              />
+            </div>
             <div>
               <div>
-                <h4>{e.clientId.name}</h4>
-                <p>{new Date(e.date).toDateString()}</p>
+                <h4 className="text-lg font-semibold text-slate-800">
+                  {e.clientId.name}
+                </h4>
+                <p className="text-slate-500 text-sm">
+                  {new Date(e.date).toDateString()}
+                </p>
               </div>
-              <div>
+              <div className="my-3">
                 <Star rating={e.star} />
-                <p>{e.body}</p>
-                <div className="flex gap-3">
+                <p className="text-slate-600">{e.body}</p>
+                <div className="flex gap-3 my-3">
                   {e.images.map((e, i) => (
                     <Image
                       key={i}
