@@ -1,6 +1,7 @@
 "use client";
 import React, { ReactNode } from "react";
 import "./Modal.css";
+import { Backdrop } from "@/app/components";
 
 type ModalProps = {
   title: string;
@@ -11,7 +12,7 @@ type ModalProps = {
 const Modal = ({ title, children, setShow }: ModalProps) => {
   return (
     <>
-      <div className="w-full fixed top-0 right-0 z-20 opacity-50 min-h-screen h-full bg-black"></div>
+      <Backdrop />
       <div className="w-full fixed top-0 right-0 z-20 min-h-screen h-full flex justify-center items-center">
         <div className="bg-white min-w-[500px] rounded-md px-5 py-4">
           <div className="flex justify-between w-full items-center">

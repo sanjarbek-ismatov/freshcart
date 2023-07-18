@@ -33,3 +33,6 @@ export {default as MenuItem} from "./MenuItem";
 export {default as Form} from "./Form";
 export {default as NavigationPanel} from "./NavigationPanel";
 export {default as StatusBadge} from "./StatusBadge";
+export {default as ProfileImage} from "./ProfileImage";
+export {default as PreviewImage} from "./PreviewImage";
+export {default as Backdrop} from "./Backdrop";

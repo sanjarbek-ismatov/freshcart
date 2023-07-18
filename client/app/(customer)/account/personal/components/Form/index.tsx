@@ -1,7 +1,6 @@
-import Image from "next/image";
 import React from "react";
 import { UserType } from "@/types";
-import { Button, Input } from "@components";
+import { Button, Input, ProfileImage } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
@@ -21,18 +20,7 @@ function Form({ user }: { user: UserType }) {
       }}
     >
       <label>
-        <Image
-          width={200}
-          height={200}
-          className="rounded-full object-cover w-[200px] h-[200px]"
-          src={
-            images.length
-              ? images[0].toString()
-              : "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg"
-          }
-          alt="Profil rasmi"
-          unoptimized
-        />
+        <ProfileImage size={200} image={images[0]} />
         <input onChange={handleSubmitImage} name="image" type="file" hidden />
       </label>
       <Input
