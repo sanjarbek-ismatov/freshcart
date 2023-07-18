@@ -43,7 +43,9 @@ function ReviewCard({ review }: { review: ReviewType }) {
                   className="w-[70px] h-[70px] object-cover"
                   src={`http://localhost:4000/api/files/image/${e}`}
                   alt="Rasmlar"
-                  onClick={() => setSelected(e)}
+                  onClick={() =>
+                    setSelected(`http://localhost:4000/api/files/image/${e}`)
+                  }
                   unoptimized
                 />
               ))}
@@ -51,7 +53,13 @@ function ReviewCard({ review }: { review: ReviewType }) {
           </div>
         </div>
       </div>
-      {selected && <PreviewImage images={images} setShow={setSelected} />}
+      {selected && (
+        <PreviewImage
+          images={images}
+          setSelected={setSelected}
+          selected={selected}
+        />
+      )}
     </>
   );
 }
