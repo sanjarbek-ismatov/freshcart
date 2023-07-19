@@ -142,11 +142,11 @@ export const eCommerceApi = createApi({
         }),
       }),
       changeStatus: build.mutation<ServerResponse<any>, OrderChangeStatus>({
-        query: ({ productId, status }) => ({
+        query: ({ _id, status }) => ({
           url: "/order/change",
           method: "PUT",
           body: {
-            productId,
+            _id,
             status,
           },
           headers: {

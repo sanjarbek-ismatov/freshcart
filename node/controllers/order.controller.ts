@@ -11,7 +11,7 @@ class OrderController {
   }
 
   async updateStatus(req: NodeRequest, res: Response) {
-    const order = await Order.findOne({ productId: req.body.productId });
+    const order = await Order.findOne({ _id: req.body._id });
     if (!order)
       return res.status(404).send({ message: "Not found", code: 404 });
     order.status = req.body.status;
