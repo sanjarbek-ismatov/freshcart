@@ -1,6 +1,6 @@
 import Joi from "joi";
 import JoiPasswordComplexity from "joi-password-complexity";
-import { CategoryType, ProductType, VendorType } from "../types";
+import { CategoryType, ProductTypeWithIds, VendorType } from "../types";
 
 export const registerValidator = (body: {
   name: string;
@@ -25,7 +25,7 @@ export const registerValidator = (body: {
       upperCase: 1,
       numeric: 1,
     },
-    "password"
+    "password",
   );
   const { error: errorBody } = validator.validate(body);
   const { error: errorPassword } = passwordComplexity.validate(body.password);
@@ -42,7 +42,7 @@ export const categoryValidator = (body: CategoryType) => {
   });
   return validator.validate(body);
 };
-export const productValidator = (body: ProductType) => {
+export const productValidator = (body: ProductTypeWithIds) => {
   const validator = Joi.object({
     name: Joi.string().required(),
     price: Joi.number().required(),
