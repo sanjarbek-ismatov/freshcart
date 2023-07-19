@@ -36,3 +36,5 @@ export {default as StatusBadge} from "./StatusBadge";
 export {default as ProfileImage} from "./ProfileImage";
 export {default as PreviewImage} from "./PreviewImage";
 export {default as Backdrop} from "./Backdrop";
+export {default as StarLine} from "./StarLine";
+export {default as Stats} from "./Stats";

@@ -19,12 +19,12 @@ function Navbar({
       changeOrderStatus(body);
       refetch();
     },
-    [changeOrderStatus, refetch]
+    [changeOrderStatus, refetch],
   );
 
   const pendingOrders = useMemo(
     () => orders.filter((e) => e.status === "pending"),
-    [orders]
+    [orders],
   );
   useEffect(() => {
     ref.current?.addEventListener("click", function (e) {
@@ -59,7 +59,7 @@ function Navbar({
                   <Button
                     onClick={() =>
                       changeStatus({
-                        productId: e.productId._id,
+                        _id: e._id,
                         status: "processing",
                       })
                     }
@@ -69,7 +69,7 @@ function Navbar({
                   <Button
                     onClick={() =>
                       changeStatus({
-                        productId: e.productId._id,
+                        _id: e._id,
                         status: "rejected",
                       })
                     }

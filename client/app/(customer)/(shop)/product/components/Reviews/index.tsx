@@ -1,12 +1,19 @@
+import "./Reviews.css";
 import { ReviewType } from "@types";
-import { Typography } from "@components";
+import { Star, Stats, Typography } from "@components";
 import { ReviewCard } from "@/app/(customer)/(shop)/product/components";
 
-function Reviews({ reviews }: { reviews: ReviewType[] }) {
+function Reviews({ reviews, star }: { reviews: ReviewType[]; star: number }) {
   return (
     <div className="flex">
-      <div className="w-[300px]"></div>
-      <div>
+      <div className="w-[300px] p-3 mr-4">
+        <Typography text="Statistika" />
+        <span>
+          <Star rating={star} /> {reviews.length}ta izoh
+        </span>
+        <Stats reviews={reviews} />
+      </div>
+      <div className="flex-1">
         <Typography text={`Izohlar (${reviews.length})`} />
         {reviews.map((e, i) => (
           <ReviewCard key={i} review={e} />

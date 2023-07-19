@@ -22,11 +22,12 @@ function PreviewImage({
             className="fa-solid text-white text-2xl fa-xmark cursor-pointer"
           ></i>
         </header>
-        <div className="flex-1 flex w-full h-full justify-center items-center">
+        <div className="flex-1 flex w-full h-full justify-center items-center my-3">
           {
             <Image
               width={1000}
-              height={1000}
+              height={500}
+              className="h-full w-auto"
               src={typeof selected === "string" ? selected : ""}
               alt="Image"
               unoptimized
@@ -40,7 +41,7 @@ function PreviewImage({
               height={100}
               key={i}
               src={e}
-              className="cursor-pointer"
+              className="cursor-pointer w-auto max-h-[100px]"
               alt="image"
               onClick={() => setSelected(e)}
               unoptimized

@@ -6,7 +6,7 @@ function ProfileImage({ image, size }: { image: string; size: number }) {
     () =>
       image
         ? image.toString()
-        : "https://static.vecteezy.com/system/resources/previews/008/442/086/original/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
+        : "https://img.freepik.com/free-icon/user_318-159711.jpg",
     [image],
   );
   return (

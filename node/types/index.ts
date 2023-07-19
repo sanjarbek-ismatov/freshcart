@@ -7,7 +7,7 @@ interface CategoryType {
   subCategories: string[];
 }
 
-interface ProductType {
+interface ProductType<T> {
   _id: string;
   name: string;
   slug: string;
@@ -16,7 +16,7 @@ interface ProductType {
   description: string;
   rating: number;
   images: string[];
-  reviews: Types.ObjectId[];
+  reviews: T[];
   weight: number;
   vendor: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;
@@ -25,6 +25,9 @@ interface ProductType {
   dateOfManufacture: string;
   isInArchive: boolean;
 }
+
+type ProductTypeWithIds = ProductType<Types.ObjectId>;
+type ProductTypeWithData = ProductType<ReviewType>;
 
 interface AdminType {
   login: string;
@@ -50,7 +53,7 @@ interface UserType extends Document {
   };
   username: string;
   password: string;
-  liked: ProductType[];
+  liked: ProductTypeWithIds[];
   cart: {
     id: string;
   }[];
@@ -68,7 +71,7 @@ interface VendorType extends Document {
   address: AddressType;
   image: string;
   banner: string;
-  products: ProductType[];
+  products: ProductTypeWithIds[];
 }
 
 interface AddressType {
@@ -80,7 +83,7 @@ interface AddressType {
 interface OrderType {
   slug: string;
   vendorId: VendorType;
-  productId: ProductType;
+  productId: ProductTypeWithIds;
   clientId: UserType;
   count: number;
   status: "pending" | "processing" | "rejected" | "finished";
@@ -112,4 +115,6 @@ export type {
   OrderType,
   AddressType,
   ReviewType,
+  ProductTypeWithData,
+  ProductTypeWithIds,
 };

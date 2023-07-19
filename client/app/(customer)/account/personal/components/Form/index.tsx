@@ -9,7 +9,7 @@ function Form({ user }: { user: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
   const form = new FormParser();
   const [handleSubmitImage, images] = useParsedUrlData(
-    `http://localhost:4000/api/files/image/${user.image}`,
+    user.image ? `http://localhost:4000/api/files/image/${user.image}` : "",
   );
   return (
     <form

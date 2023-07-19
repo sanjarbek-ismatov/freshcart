@@ -131,7 +131,7 @@ interface OrderType<
 type Sort = "rating" | "date" | "low" | "high";
 
 interface OrderChangeStatus {
-  productId: string;
+  _id: string;
   status: Status;
 }
 
