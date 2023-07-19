@@ -20,7 +20,7 @@ async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
         <Slide product={product} />
         <About product={product} />
       </div>
-      <Reviews reviews={product.reviews} />
+      <Reviews reviews={product.reviews} star={product.rating} />
     </>
   );
 }
