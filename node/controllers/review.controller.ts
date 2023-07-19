@@ -29,7 +29,7 @@ class ReviewController {
     const unpackedProduct = (await product.populate(
       "reviews",
     )) as ProductTypeWithData;
-    const accumulator = unpackedProduct.reviews.reduce(
+    const accumulator = [...unpackedProduct.reviews, newReview].reduce(
       (previousValue, currentValue) => {
         return {
           count: ++previousValue.count,
