@@ -1,0 +1,7 @@
+.line::before {
+    content: "";
+    display: block;
+    width: 100%;
+    background-color: gray;
+    height: 100%;
+}
