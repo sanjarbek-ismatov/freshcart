@@ -15,9 +15,11 @@ function Stats({ reviews }: { reviews: ReviewType[] }) {
   }, [stars]);
   return (
     <div className="my-4 leading-8">
-      {Object.keys(percents).map((e, i) => (
-        <StarLine key={i} ratingLevel={+e} percent={percents[e]} />
-      ))}
+      {Object.keys(percents)
+        .reverse()
+        .map((e, i) => (
+          <StarLine key={i} ratingLevel={+e} percent={percents[e]} />
+        ))}
     </div>
   );
 }
