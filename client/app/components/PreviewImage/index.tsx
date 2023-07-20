@@ -15,8 +15,11 @@ function PreviewImage({
     <>
       <Backdrop />
       <div className="fixed transition duration-500 flex flex-col top-0 z-20 left-0 w-full h-full pb-4">
-        <header className="flex w-full justify-between bg-black opacity-75 p-4">
-          <h1 className="text-white">Rasm</h1>
+        <header className="flex w-full justify-between bg-black opacity-50 p-4">
+          <h1 className="text-white">Rasmlar</h1>
+          <p className="text-white">
+            {images.indexOf(selected as string) + 1}/{images.length}
+          </p>
           <i
             onClick={() => setSelected(false)}
             className="fa-solid text-white text-2xl fa-xmark cursor-pointer"
@@ -27,7 +30,7 @@ function PreviewImage({
             <Image
               width={1000}
               height={500}
-              className="h-full w-auto"
+              className="max-h-[500px] h-full w-auto"
               src={typeof selected === "string" ? selected : ""}
               alt="Image"
               unoptimized
@@ -41,7 +44,7 @@ function PreviewImage({
               height={100}
               key={i}
               src={e}
-              className="cursor-pointer w-auto max-h-[100px]"
+              className="cursor-pointer w-auto h-full max-h-[100px]"
               alt="image"
               onClick={() => setSelected(e)}
               unoptimized
