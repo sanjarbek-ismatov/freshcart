@@ -14,7 +14,7 @@ function Stats({ reviews }: { reviews: ReviewType[] }) {
     return resultAsObj;
   }, [stars]);
   return (
-    <div className="my-4 leading-8">
+    <div className="my-4">
       {Object.keys(percents)
         .reverse()
         .map((e, i) => (

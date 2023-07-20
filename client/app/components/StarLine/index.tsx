@@ -1,4 +1,6 @@
-import "./StarLine.css";
+"use client";
+import { useRef } from "react";
+import { PopUp } from "@/app/components";
 
 function StarLine({
   ratingLevel,
@@ -7,21 +9,27 @@ function StarLine({
   ratingLevel: number;
   percent: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
   return (
-    <div className="flex w-full items-center">
-      <div className="flex items-center">
-        <span className="text-slate-500">{ratingLevel}</span>
-        <i className="fa-solid text-sm text-yellow-500 fa-star p-1"></i>
+    <>
+      <div className="h-8" ref={ref}>
+        <div className="flex w-full items-center">
+          <div className="flex items-center">
+            <span className="text-slate-500">{ratingLevel}</span>
+            <i className="fa-solid text-sm text-yellow-500 fa-star"></i>
+          </div>
+          <div className="bg-slate-300 w-full relative rounded-sm h-1.5">
+            <div
+              style={{
+                width: percent + "%",
+              }}
+              className="bg-yellow-500 absolute top-0 left-0 rounded-sm h-1.5"
+            ></div>
+          </div>
+        </div>
       </div>
-      <div className="bg-slate-300 w-full relative rounded-sm h-1.5">
-        <div
-          style={{
-            width: percent + "%",
-          }}
-          className="bg-yellow-500 absolute top-0 left-0 rounded-sm h-1.5"
-        ></div>
-      </div>
-    </div>
+      <PopUp body={`100dan ${percent}% natija`} compRef={ref} />
+    </>
   );
 }
 
