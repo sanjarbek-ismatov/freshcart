@@ -11,6 +11,7 @@ import {
   Tooltip,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+import { OrderUsableType } from "@types";
 
 ChartJS.register(
   CategoryScale,
@@ -19,10 +20,10 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend
+  Legend,
 );
 
-function Chart() {
+function Chart({ orders }: { orders?: OrderUsableType[] }) {
   const options = {
     responsive: true,
     plugins: {
@@ -36,26 +37,44 @@ function Chart() {
     },
   };
   const labels = [
-    "January",
-    "February",
-    "March",
-    "April",
+    "Yanvar",
+    "Fevral",
+    "Mart",
+    "Aprel",
     "May",
-    "June",
-    "July",
+    "Iyun",
+    "Iyul",
+    "Avgust",
+    "Sentabr",
+    "Oktabr",
+    "Noyabr",
+    "Dekabr",
   ];
-
+  const stats = labels.map((e, i) => {
+    const currentDate = new Date();
+    const firstDate = new Date(currentDate.getFullYear(), i, 1);
+    const lastDate = new Date(currentDate.getFullYear(), i + 1, 1);
+    lastDate.setTime(lastDate.getTime() - 1);
+    return orders?.filter((e) => {
+      const convertedDate = new Date(e.date).getTime();
+      return (
+        firstDate.getTime() <= convertedDate &&
+        convertedDate <= lastDate.getTime()
+      );
+    }).length;
+  });
+  console.log(stats);
   const data = {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
+        label: "Buyurtmalar",
         data: [65, 59, 80, 81, 56, 55, 40],
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
-        label: "Dataset 2",
+        label: "Sotilishlar",
         data: [28, 48, 40, 19, 86, 27, 90],
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
