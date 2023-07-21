@@ -19,6 +19,8 @@ class ReviewController {
     order.status = req.body.status;
     if (order.status === "finished") {
       vendor.sells++;
+      vendor.stars += newReview.star;
+      vendor.annualIncome += order.totalPrice;
     }
 
     newReview.clientId = req.user?._id;

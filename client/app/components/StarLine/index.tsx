@@ -1,6 +1,6 @@
 "use client";
 import { useRef } from "react";
-import { PopUp } from "@/app/components";
+import { PopUpContainer } from "@/app/components";
 
 function StarLine({
   ratingLevel,
@@ -11,7 +11,9 @@ function StarLine({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <>
+    <PopUpContainer
+      body={`<span class="text-gray-800 font-semibold">100</span>dan <span class="text-gray-800 font-semibold">${percent}%</span> natija`}
+    >
       <div className="h-8" ref={ref}>
         <div className="flex w-full items-center">
           <div className="flex items-center">
@@ -28,8 +30,7 @@ function StarLine({
           </div>
         </div>
       </div>
-      <PopUp body={`100dan ${percent}% natija`} compRef={ref} />
-    </>
+    </PopUpContainer>
   );
 }
 

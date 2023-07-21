@@ -16,11 +16,13 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   },
   image: String,
   banner: String,
+
   products: [
     {
       type: mongoose.SchemaTypes.ObjectId,
       ref: "product",
     },
   ],
+  annualIncome: { type: Number, default: 0 },
 });
 export const Vendor = mongoose.model<VendorType>("vendor", vendorSchema);

@@ -72,6 +72,7 @@ interface VendorType extends Document {
   image: string;
   banner: string;
   products: ProductTypeWithIds[];
+  annualIncome: number;
 }
 
 interface AddressType {

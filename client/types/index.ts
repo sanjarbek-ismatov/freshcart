@@ -26,6 +26,7 @@ interface RequestLoginForm {
 }
 
 interface UserType {
+  _id: string;
   name: string;
   email: string;
   phone: string;
@@ -88,6 +89,7 @@ interface VendorType {
   image: string;
   banner: string;
   products: ProductType[];
+  annualIncome: number;
 }
 
 interface ProductType {
