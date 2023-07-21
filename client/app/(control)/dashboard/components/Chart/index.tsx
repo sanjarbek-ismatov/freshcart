@@ -50,32 +50,38 @@ function Chart({ orders }: { orders?: OrderUsableType[] }) {
     "Noyabr",
     "Dekabr",
   ];
-  const stats = labels.map((e, i) => {
-    const currentDate = new Date();
-    const firstDate = new Date(currentDate.getFullYear(), i, 1);
-    const lastDate = new Date(currentDate.getFullYear(), i + 1, 1);
-    lastDate.setTime(lastDate.getTime() - 1);
-    return orders?.filter((e) => {
-      const convertedDate = new Date(e.date).getTime();
-      return (
-        firstDate.getTime() <= convertedDate &&
-        convertedDate <= lastDate.getTime()
-      );
-    }).length;
-  });
-  console.log(stats);
+
+  function getStats(data?: OrderUsableType[]) {
+    return labels?.map((e, i) => {
+      const currentDate = new Date();
+      const firstDate = new Date(currentDate.getFullYear(), i, 1);
+      const lastDate = new Date(currentDate.getFullYear(), i + 1, 1);
+      lastDate.setTime(lastDate.getTime() - 1);
+      return data?.filter((e) => {
+        const convertedDate = new Date(e.date).getTime();
+        return (
+          firstDate.getTime() <= convertedDate &&
+          convertedDate <= lastDate.getTime()
+        );
+      }).length;
+    });
+  }
+
+  const ordersStats = getStats(orders);
+  const sellsStats = getStats(orders?.filter((e) => e.status === "finished"));
+
   const data = {
     labels,
     datasets: [
       {
         label: "Buyurtmalar",
-        data: [65, 59, 80, 81, 56, 55, 40],
+        data: ordersStats,
         borderColor: "rgb(255, 99, 132)",
         backgroundColor: "rgba(255, 99, 132, 0.5)",
       },
       {
         label: "Sotilishlar",
-        data: [28, 48, 40, 19, 86, 27, 90],
+        data: sellsStats,
         borderColor: "rgb(53, 162, 235)",
         backgroundColor: "rgba(53, 162, 235, 0.5)",
       },
