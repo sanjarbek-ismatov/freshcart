@@ -13,7 +13,7 @@ function PopUpContainer({
     const elem = ref.current;
     const child = document.createElement("div");
     child.className = "absolute p-3 bg-white z-20 border rounded-md";
-    child.textContent = body;
+    child.innerHTML = body;
     if (!elem) return;
     const handleMouseEnter = () => {
       elem.parentElement?.append(child);

@@ -11,7 +11,9 @@ function StarLine({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   return (
-    <PopUpContainer body={`100dan ${percent}% natija`}>
+    <PopUpContainer
+      body={`<span class="text-gray-800 font-semibold">100</span>dan <span class="text-gray-800 font-semibold">${percent}%</span> natija`}
+    >
       <div className="h-8" ref={ref}>
         <div className="flex w-full items-center">
           <div className="flex items-center">
