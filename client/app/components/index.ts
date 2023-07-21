@@ -39,3 +39,4 @@ export {default as Backdrop} from "./Backdrop";
 export {default as StarLine} from "./StarLine";
 export {default as Stats} from "./Stats";
 export {default as PopUp} from "./PopUp";
+export {default as PopUpContainer} from "./PopUpContainer";

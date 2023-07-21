@@ -1,32 +1,22 @@
 "use client";
-import { RefObject, useRef } from "react";
+import { forwardRef } from "react";
 
-function PopUp({
-  compRef,
-  body,
-}: {
-  compRef: RefObject<HTMLDivElement>;
-  body: string;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-
+const PopUp = forwardRef<
+  HTMLDivElement,
+  { x: number; y: number; body: string }
+>(function PopUp({ x, y, body }, ref) {
   return (
     <div
       ref={ref}
-      style={
-        {
-          // top: coordinates.y + "px",
-          // left: coordinates.x + "px",
-        }
-      }
-      className={`absolute p-3 bg-white z-20 border ${
-        ""
-        // show ? "block" : "hidden"
-      } rounded-md`}
+      style={{
+        top: y + "px",
+        left: x + "px",
+      }}
+      className={`absolute p-3 bg-white z-20 border rounded-md`}
     >
       <p>{body}</p>
     </div>
   );
-}
+});
 
 export default PopUp;
