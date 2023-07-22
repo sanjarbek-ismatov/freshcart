@@ -41,7 +41,7 @@ function Main({ data }: { data?: VendorWithOrders }) {
       </div>
 
       <Chart orders={data?.orders} />
-      <Order />
+      <Order orders={data?.orders} />
     </>
   );
 }
