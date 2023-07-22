@@ -4,8 +4,15 @@ import { Order } from "../models/order.model";
 
 class OrderController {
   async add(req: NodeRequest, res: Response) {
-    const newOrder = await Order.create(req.body);
+    const newOrder = new Order(req.body);
+    const lastOrder = (await Order.find()).at(-1);
+    if (!lastOrder) return;
+    const count = lastOrder?.slug?.match(/(?=0*)[^0]+/i)?.[0] as string;
+    const tempSlug = 8 - +count.length;
+    newOrder.slug = "0".repeat(tempSlug) + (+count + 1);
     newOrder.clientId = req.user?._id;
+    req.user?.cart.splice(0, req.user?.cart.length);
+    await req.user?.save();
     await newOrder.save();
     res.status(201).send({ code: 201, message: "ok" });
   }
