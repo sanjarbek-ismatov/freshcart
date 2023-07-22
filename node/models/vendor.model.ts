@@ -7,7 +7,7 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   slug: String,
   category: [String],
   sells: Number,
-  stars: Number,
+  stars: { type: Number, default: 0 },
   phone: String,
   email: String,
   password: String,
