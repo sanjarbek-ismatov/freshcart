@@ -58,7 +58,7 @@ function OffCanvas({
       >
         <header className="flex border justify-between items-center p-3">
           <i
-            onClick={() => setShow(!show)}
+            onClick={() => setShow(false)}
             className="fa-solid text-slate-600 text-md fa-x cursor-pointer"
           ></i>
           <h1 className="text-2xl">Savatcha</h1>
@@ -66,7 +66,7 @@ function OffCanvas({
         <main>
           {cart?.length ? (
             cart.map((e, i) => (
-              <CartProduct key={i} product={e.id} defCount={e.count} />
+              <CartProduct key={i} count={e.count} product={e.id} />
             ))
           ) : (
             <div className="w-full text-center py-4 leading-9">
