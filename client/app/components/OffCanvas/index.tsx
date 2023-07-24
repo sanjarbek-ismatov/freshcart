@@ -1,9 +1,11 @@
 "use client";
-import "./OffCanvas.css";
-import { useGetUserInfoQuery } from "@/store/api/ecommerce";
-import React, { forwardRef, useEffect } from "react";
-import { Button, CartProduct } from "@components";
 import Link from "next/link";
+import Image from "next/image";
+import React, { forwardRef, useEffect } from "react";
+import EmptyCart from "public/images/emptry_cart.png";
+import { useGetUserInfoQuery } from "@/store/api/ecommerce";
+import { Button, CartProduct } from "@components";
+import "./OffCanvas.css";
 
 const OffCanvas = forwardRef<
   HTMLElement,
@@ -13,16 +15,32 @@ const OffCanvas = forwardRef<
   }
 >(function OffCanvas({ show, setShow }, ref) {
   const { data, refetch, isSuccess } = useGetUserInfoQuery();
+  const cart = data?.user.cart;
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
-    document
-      .getElementById("offcanvasback")
-      ?.addEventListener("click", (event) => {
-        if (!offCanvas.contains(event?.target as any)) {
-          setShow(false);
-        }
-      });
-  }, [setShow]);
+    const offCanvasBackdrop = document.getElementById(
+      "offcanvasback",
+    ) as HTMLDivElement;
+
+    function handleClick() {
+      setShow(!show);
+    }
+
+    function handleMouseLeave() {
+      offCanvasBackdrop.addEventListener("click", handleClick);
+    }
+
+    function handleMouseEnter() {
+      offCanvasBackdrop.removeEventListener("click", handleClick);
+    }
+
+    offCanvas.addEventListener("mouseleave", handleMouseLeave);
+    offCanvas.addEventListener("mouseenter", handleMouseEnter);
+    return () => {
+      offCanvas.removeEventListener("mouseenter", handleMouseEnter);
+      offCanvas.removeEventListener("mouseleave", handleMouseLeave);
+    };
+  }, [setShow, show]);
   useEffect(() => {
     refetch();
   }, [refetch]);
@@ -38,18 +56,32 @@ const OffCanvas = forwardRef<
         id="offcanvas"
         className={`fixed ${
           show ? "showCanvas" : "hideCanvas"
-        } right-0 top-0 z-30 transition-transform max-w-[600px] duration-500 bg-white min-h-screen h-full`}
+        } right-0 top-0 z-30 p-3 transition-transform max-w-[600px] min-w-[300px] duration-500 bg-white min-h-screen h-full`}
       >
-        <header className="flex justify-between items-center p-3">
-          <i ref={ref} className="fa-solid text-xl fa-x cursor-pointer"></i>
-          <h1 className="text-3xl">Hello</h1>
+        <header className="flex border justify-between items-center p-3">
+          <i
+            ref={ref}
+            className="fa-solid text-slate-600 text-md fa-x cursor-pointer"
+          ></i>
+          <h1 className="text-2xl">Savatcha</h1>
         </header>
         <main>
-          {data?.user.cart.map((e, i) => (
-            <CartProduct key={i} product={e.id} defCount={e.count} />
-          ))}
+          {cart?.length ? (
+            cart.map((e, i) => (
+              <CartProduct key={i} product={e.id} defCount={e.count} />
+            ))
+          ) : (
+            <div className="w-full text-center py-4 leading-9">
+              <Image
+                className="w-[70px] h-auto m-auto"
+                src={EmptyCart}
+                alt="Bo'sh savatcha"
+              />
+              <p>Savatcha bo'sh</p>
+            </div>
+          )}
         </main>
-        <footer className="absolute bottom-0 left-0">
+        <footer className="absolute bottom-0 left-0 p-3">
           <Link href="/account/checkout">
             <Button>Sotib olish</Button>
           </Link>
