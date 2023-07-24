@@ -1,21 +1,21 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { forwardRef, useEffect } from "react";
+import React, { useEffect } from "react";
 import EmptyCart from "public/images/emptry_cart.png";
-import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { Button, CartProduct } from "@components";
 import "./OffCanvas.css";
+import { UserType } from "@types";
 
-const OffCanvas = forwardRef<
-  HTMLElement,
-  {
-    show: boolean;
-    setShow: React.Dispatch<React.SetStateAction<boolean>>;
-  }
->(function OffCanvas({ show, setShow }, ref) {
-  const { data, refetch, isSuccess } = useGetUserInfoQuery();
-  const cart = data?.user.cart;
+function OffCanvas({
+  show,
+  setShow,
+  cart,
+}: {
+  show: boolean;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+  cart?: UserType["cart"];
+}) {
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     const offCanvasBackdrop = document.getElementById(
@@ -41,9 +41,7 @@ const OffCanvas = forwardRef<
       offCanvas.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [setShow, show]);
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+
   return (
     <div
       id="offcanvasback"
@@ -60,7 +58,7 @@ const OffCanvas = forwardRef<
       >
         <header className="flex border justify-between items-center p-3">
           <i
-            ref={ref}
+            onClick={() => setShow(!show)}
             className="fa-solid text-slate-600 text-md fa-x cursor-pointer"
           ></i>
           <h1 className="text-2xl">Savatcha</h1>
@@ -89,6 +87,6 @@ const OffCanvas = forwardRef<
       </div>
     </div>
   );
-});
+}
 
 export default OffCanvas;
