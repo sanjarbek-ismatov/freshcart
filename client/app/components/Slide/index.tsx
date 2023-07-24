@@ -8,12 +8,12 @@ function Slide({ product }: { product: ProductType }) {
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     const previewImage = document.getElementsByClassName(
-      "active"
+      "active",
     )[0] as HTMLElement;
     previewImage?.addEventListener("mousemove", (e) => {
       const x = (e.offsetX / 600) * 100;
       const y = (e.offsetY / 500) * 100;
-      previewImage.style.backgroundSize = "1200px";
+      previewImage.style.backgroundSize = "1000px";
       previewImage.style.backgroundPosition = `${x}% ${y}%`;
     });
     previewImage?.addEventListener("mouseout", (e) => {

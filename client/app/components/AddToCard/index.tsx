@@ -18,8 +18,13 @@ function AddToCard({ product }: { product: ProductType }) {
     }).then(() => refetch());
   }, [addToCart, count, product._id, refetch]);
   return (
-    <div className="mt-14">
-      <Counter count={count} setCount={setCount} />
+    <div>
+      <div className="flex items-center justify-between">
+        <Counter count={count} setCount={setCount} />
+        <span>
+          <strong>Qiymati:</strong> {10 * count}$
+        </span>
+      </div>
       <div>
         <Button onClick={handleSubmit}>
           <i className="fa-solid fa-cart-shopping"></i> Savatchaga qo`shish

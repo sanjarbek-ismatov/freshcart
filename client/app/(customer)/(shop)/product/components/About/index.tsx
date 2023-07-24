@@ -1,7 +1,7 @@
 import "./About.css";
 import { ProductType } from "@types";
 import Link from "next/link";
-import { AddToCard, Star } from "@components";
+import { AddToCard, Star, Typography } from "@components";
 
 function About({ product }: { product: ProductType }) {
   return (
@@ -9,7 +9,7 @@ function About({ product }: { product: ProductType }) {
       <Link className="text-green-500 my-5" href="">
         {product.category}
       </Link>
-      <h1 className="text-5xl font-semibold my-5">{product.name}</h1>
+      <Typography text={product.name} />
       <Star rating={product.rating} />
       <span className="text-sm text-slate-500">
         ({product.reviews.length}) izohlar
