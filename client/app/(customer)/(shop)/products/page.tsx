@@ -4,15 +4,23 @@ import { Filter, Products } from "./components";
 import { CategoryType, ProductType, VendorType } from "@types";
 import { getSSRData } from "@/app/utils/getData";
 
-const Index = async () => {
-  const products = await getSSRData<ProductType[]>(
-    "http://localhost:4000/api/product/all"
+const Index = async ({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string };
+}) => {
+  const products = (
+    await getSSRData<ProductType[]>("http://localhost:4000/api/product/all")
+  ).filter((e) =>
+    searchParams.name
+      ? e.name.toLowerCase().includes(searchParams.name.toLowerCase())
+      : true,
   );
   const categories = await getSSRData<CategoryType[]>(
-    "http://localhost:4000/api/category/all"
+    "http://localhost:4000/api/category/all",
   );
   const vendors = await getSSRData<VendorType[]>(
-    "http://localhost:4000/api/vendor/all"
+    "http://localhost:4000/api/vendor/all",
   );
   return (
     <>

@@ -1,15 +1,15 @@
 "use client";
 import { Modal, Typography } from "@components";
-import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import {
   OrderItem,
   OrderModal,
 } from "@/app/(customer)/account/orders/components";
 import { useState } from "react";
 import { OrderUsableType } from "@types";
+import { useUserContext } from "@/app/context";
 
 function OrdersPage() {
-  const { data, refetch } = useGetUserInfoQuery();
+  const { data, refetch } = useUserContext();
   const [selected, setSelected] = useState<OrderUsableType | false>();
   return (
     <div className="w-full">
