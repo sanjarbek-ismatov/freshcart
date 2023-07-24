@@ -9,7 +9,7 @@ import { useUserContext } from "@/app/context";
 function AddToCard({ product }: { product: ProductType }) {
   const { refetch } = useUserContext();
   const [addToCart] = useAddToCartMutation();
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const handleSubmit = useCallback(() => {
     addToCart({
       type: "cart",
