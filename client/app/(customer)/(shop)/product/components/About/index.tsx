@@ -1,7 +1,7 @@
 import "./About.css";
 import { ProductType } from "@types";
 import Link from "next/link";
-import { AddToCard, Star, Typography } from "@components";
+import { AddToCard, Description, Star, Typography } from "@components";
 
 function About({ product }: { product: ProductType }) {
   return (
@@ -16,8 +16,7 @@ function About({ product }: { product: ProductType }) {
       </span>
       <h1 className="text-3xl my-3">${product.price}</h1>
       <AddToCard product={product} />
-      <h4 className="text-slate-800 font-semibold text-xl">Maxsulot haqida</h4>
-      <p>{product.description}</p>
+      <Description description={product.description} />
     </div>
   );
 }
