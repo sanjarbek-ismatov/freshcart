@@ -16,14 +16,17 @@ import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { Badge, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
+import { useRouter } from "next/navigation";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
     const { data, refetch } = useUserContext();
+    const router = useRouter();
     const [show, setShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
     const offCanvasRef = useRef<HTMLElement>(null);
+
     const handleShow = useCallback(() => {
       if (auth) setShow(!show);
       else setShowModal(true);
@@ -45,11 +48,20 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
             <Image src={LogoImage} alt="Logo image" />
           </div>
           <div className="w-full md:block hidden">
-            <SearchInput placeholder="Maxsulot nomini yozing" />
-            <button className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200">
-              <i className="cursor-pointer fa-solid fa-location-dot mr-2"></i>{" "}
-              Hudud
-            </button>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const input = e.currentTarget
+                  .firstElementChild as HTMLInputElement;
+                router.push(`/products?name=${input.value}`);
+              }}
+            >
+              <SearchInput placeholder="Maxsulot nomini yozing" />
+              <button className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200">
+                <i className="cursor-pointer fa-solid fa-location-dot mr-2"></i>{" "}
+                Hudud
+              </button>
+            </form>
           </div>
           <div className="w-32 flex justify-between">
             <div>
