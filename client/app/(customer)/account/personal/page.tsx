@@ -1,10 +1,10 @@
 "use client";
 import { Form } from "@/app/(customer)/account/personal/components";
-import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { Typography } from "@components";
+import { useUserContext } from "@/app/context";
 
 function Personal() {
-  const { isLoading, data } = useGetUserInfoQuery();
+  const { data } = useUserContext();
   return (
     <div>
       <Typography text="Sozlamalar" />

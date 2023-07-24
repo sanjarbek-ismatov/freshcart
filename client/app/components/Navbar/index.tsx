@@ -20,7 +20,7 @@ import { useUserContext } from "@/app/context";
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
-    const user = useUserContext();
+    const { data, refetch } = useUserContext();
     const [show, setShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
     const offCanvasRef = useRef<HTMLElement>(null);
@@ -97,7 +97,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
           </div>
         </div>
         <OffCanvas
-          cart={user?.data?.cart}
+          cart={data?.user.cart}
           show={showOffCanvas}
           setShow={setOffCanvas}
         />

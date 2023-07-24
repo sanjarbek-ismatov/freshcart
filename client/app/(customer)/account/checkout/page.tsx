@@ -3,15 +3,15 @@ import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { MenuButton, Typography } from "@components";
 import { useCallback, useMemo } from "react";
-import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 import { setCheckoutState, useAppSelector } from "@/store/store";
 import Image from "next/image";
 import { Filter } from "@/app/utils/filter";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
+import { useUserContext } from "@/app/context";
 
 function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkoutFilter);
-  const { data, refetch } = useGetUserInfoQuery();
+  const { data, refetch } = useUserContext();
   const allAreChecked = useMemo(
     () => state.length === data?.user.cart.length,
     [data?.user.cart.length, state.length],

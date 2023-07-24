@@ -4,8 +4,10 @@ import { useCallback, useState } from "react";
 import { Button, Counter } from "@components";
 import { useAddToCartMutation } from "@/store/api/ecommerce";
 import { ProductType } from "@types";
+import { useUserContext } from "@/app/context";
 
 function AddToCard({ product }: { product: ProductType }) {
+  const { refetch } = useUserContext();
   const [addToCart] = useAddToCartMutation();
   const [count, setCount] = useState(0);
   const handleSubmit = useCallback(() => {
@@ -13,8 +15,8 @@ function AddToCard({ product }: { product: ProductType }) {
       type: "cart",
       id: product._id,
       count,
-    });
-  }, [addToCart, count, product._id]);
+    }).then(() => refetch());
+  }, [addToCart, count, product._id, refetch]);
   return (
     <div className="mt-14">
       <Counter count={count} setCount={setCount} />

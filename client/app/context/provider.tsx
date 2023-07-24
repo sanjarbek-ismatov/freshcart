@@ -6,7 +6,7 @@ import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { data, refetch } = useGetUserInfoQuery();
   return (
-    <UserContext.Provider value={{ data: data?.user, refetch: refetch }}>
+    <UserContext.Provider value={{ data, refetch }}>
       {children}
     </UserContext.Provider>
   );
