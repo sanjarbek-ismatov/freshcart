@@ -6,8 +6,7 @@ import {
   FC,
   SetStateAction,
   useCallback,
-  useEffect,
-  useRef,
+  useMemo,
   useState,
 } from "react";
 import "./Navbar.css";
@@ -23,10 +22,9 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     const auth = useAuth();
     const { data, refetch } = useUserContext();
     const router = useRouter();
+    const url = useMemo(() => new URL(window.location.href), []);
     const [show, setShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
-    const offCanvasRef = useRef<HTMLElement>(null);
-
     const handleShow = useCallback(() => {
       if (auth) setShow(!show);
       else setShowModal(true);
@@ -38,9 +36,6 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
       localStorage.removeItem("x-token");
       window.location.reload();
     }, []);
-    useEffect(() => {
-      offCanvasRef.current?.addEventListener("click", handleShowOffCanvas);
-    }, [handleShowOffCanvas]);
     return (
       <>
         <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
@@ -53,7 +48,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 e.preventDefault();
                 const input = e.currentTarget
                   .firstElementChild as HTMLInputElement;
-                router.push(`/products?name=${input.value}`);
+                router.push(`/products${url.search}&name=${input.value}`);
               }}
             >
               <SearchInput placeholder="Maxsulot nomini yozing" />

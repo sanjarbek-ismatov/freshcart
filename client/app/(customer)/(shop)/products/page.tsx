@@ -11,10 +11,14 @@ const Index = async ({
 }) => {
   const products = (
     await getSSRData<ProductType[]>("http://localhost:4000/api/product/all")
-  ).filter((e) =>
-    searchParams.name
-      ? e.name.toLowerCase().includes(searchParams.name.toLowerCase())
-      : true,
+  ).filter(
+    (e) =>
+      (searchParams.name
+        ? e.name.toLowerCase().includes(searchParams.name.toLowerCase())
+        : true) &&
+      (searchParams.category
+        ? e.category.slug === searchParams.category
+        : true),
   );
   const categories = await getSSRData<CategoryType[]>(
     "http://localhost:4000/api/category/all",
