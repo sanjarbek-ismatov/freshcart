@@ -1,9 +1,9 @@
 import "./FormModal.css";
 import { useAcceptOrderMutation } from "@/store/api/ecommerce";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import Image from "next/image";
 import FormParser from "@/app/utils/formParser";
-import { Input } from "@components";
+import { Input, ReviewStars } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 import { OrderUsableType } from "@types";
 
@@ -15,21 +15,16 @@ function FormModal({
   refetch: any;
 }) {
   const [acceptOrder] = useAcceptOrderMutation();
+  const [handleSubmitImage, images] = useParsedUrlData();
+  const [star, setStar] = useState(0);
   const formParser = new FormParser();
   const handleSubmitReview = useCallback(() => {
     formParser.getFormAsFormData.append("vendorId", order.vendorId._id);
     formParser.getFormAsFormData.append("orderId", order._id);
     formParser.getFormAsFormData.append("status", "finished");
-
+    formParser.getFormAsFormData.append("star", star.toString());
     acceptOrder(formParser.getFormAsFormData).then(() => refetch());
-  }, [
-    acceptOrder,
-    formParser.getFormAsFormData,
-    order._id,
-    order.vendorId._id,
-    refetch,
-  ]);
-  const [handleSubmitImage, images] = useParsedUrlData();
+  }, [acceptOrder, formParser.getFormAsFormData, order, refetch, star]);
 
   return (
     <form
@@ -63,7 +58,7 @@ function FormModal({
           ))}
       </div>
       <Input type="text" label="Izoh" name="body" />
-      <Input type="number" label="Qanday baholaysiz?" name="star" />
+      <ReviewStars star={star} setStar={setStar} />
       <Input type="submit" value="Jo'natish" />
     </form>
   );
