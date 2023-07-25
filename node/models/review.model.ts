@@ -5,7 +5,7 @@ const reviewSchema = new mongoose.Schema({
   vendorId: { type: mongoose.SchemaTypes.ObjectId, ref: "vendor" },
   productId: { type: mongoose.SchemaTypes.ObjectId, ref: "product" },
   clientId: { type: mongoose.SchemaTypes.ObjectId, ref: "user" },
-  body: String,
+  description: String,
   star: {
     type: Number,
     default: 0,

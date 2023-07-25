@@ -3,7 +3,7 @@ import { useAcceptOrderMutation } from "@/store/api/ecommerce";
 import { useCallback, useState } from "react";
 import Image from "next/image";
 import FormParser from "@/app/utils/formParser";
-import { Input, ReviewStars } from "@components";
+import { Input, ReviewStars, TextArea } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 import { OrderUsableType } from "@types";
 
@@ -57,7 +57,7 @@ function FormModal({
             />
           ))}
       </div>
-      <Input type="text" label="Izoh" name="body" />
+      <TextArea label="Izoh" name="description" />
       <ReviewStars star={star} setStar={setStar} />
       <Input type="submit" value="Jo'natish" />
     </form>
