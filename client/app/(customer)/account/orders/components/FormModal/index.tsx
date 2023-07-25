@@ -6,6 +6,7 @@ import FormParser from "@/app/utils/formParser";
 import { Input, ReviewStars, TextArea } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 import { OrderUsableType } from "@types";
+import ImageIcon from "public/images/image.svg";
 
 function FormModal({
   order,
@@ -35,15 +36,25 @@ function FormModal({
       }}
       encType="multipart/form-data"
     >
-      <Input
-        multiple
-        accept="image/*"
-        type="file"
-        name="images"
-        onChange={handleSubmitImage}
-        label="Rasmlar"
-      />
-      <div className="flex">
+      <label>
+        <input
+          multiple
+          accept="image/*"
+          type="file"
+          name="images"
+          onChange={handleSubmitImage}
+          hidden
+        />
+        <div className="text-center py-3 border border-b-0">
+          <Image
+            className="mx-auto h-20"
+            src={ImageIcon}
+            alt="Faylni joylash"
+          />
+          <p className="text-slate-600 text-sm">Rasmlarni joylashtiring</p>
+        </div>
+      </label>
+      <div className="flex border pb-3 border-t-0">
         {images[0] &&
           images?.map((e, i) => (
             <Image

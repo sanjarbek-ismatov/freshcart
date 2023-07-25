@@ -14,8 +14,12 @@ class FormParser<D> {
     return this.correctInputs.some((e) => elem instanceof e);
   }
 
-  private getKeyAndValue(elem: HTMLInputElement) {
-    if (elem.type === "file" && elem.files) {
+  private getKeyAndValue(elem: HTMLInputElement | HTMLTextAreaElement) {
+    if (
+      elem instanceof HTMLInputElement &&
+      elem.type === "file" &&
+      elem.files
+    ) {
       const files: Blob[] = [];
       if (elem.files && elem.files.length > 1) {
         for (const file of elem?.files as any) {
@@ -29,18 +33,23 @@ class FormParser<D> {
 
   private extractLabel(label: HTMLLabelElement) {
     return Array.from(label.children).find(
-      (e) => e instanceof HTMLInputElement,
+      (e) => e instanceof HTMLInputElement || e instanceof HTMLTextAreaElement,
     ) as HTMLInputElement;
   }
 
-  private extraxtFieldSet(fieldset: HTMLFieldSetElement) {
+  private extractFieldSet(fieldset: HTMLFieldSetElement) {
     const object: Record<string, any> = {};
     object[fieldset.name] = {};
     const labels = (Array.from(fieldset.children) as HTMLLabelElement[]).filter(
       (e) => e instanceof HTMLLabelElement,
     );
-    const inputs = (Array.from(fieldset.children) as HTMLInputElement[]).filter(
-      (e) => e instanceof HTMLInputElement,
+    const inputs = (
+      Array.from(fieldset.children) as (
+        | HTMLInputElement
+        | HTMLTextAreaElement
+      )[]
+    ).filter(
+      (e) => e instanceof HTMLInputElement || e instanceof HTMLTextAreaElement,
     );
     inputs.forEach((e) => {
       const result = this.getKeyAndValue(e);
@@ -102,7 +111,7 @@ class FormParser<D> {
         const inputElement = this.extractLabel(child);
         inputElement && this.addToForm(inputElement);
       } else if (child instanceof HTMLFieldSetElement) {
-        const fieldsetResult = this.extraxtFieldSet(child);
+        const fieldsetResult = this.extractFieldSet(child);
         this.formData.append(child.name, JSON.stringify(fieldsetResult));
         Object.assign(this.formObject, fieldsetResult);
       }

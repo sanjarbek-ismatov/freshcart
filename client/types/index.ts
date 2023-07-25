@@ -150,7 +150,7 @@ interface ReviewType {
   vendorId: string;
   productId: string;
   clientId: UserType;
-  body: string;
+  description: string;
   star: number;
   images: string[];
   date: string;

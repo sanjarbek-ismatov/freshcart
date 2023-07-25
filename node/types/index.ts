@@ -100,7 +100,7 @@ interface ReviewType {
   vendorId: string;
   productId: string;
   clientId: string;
-  body: string;
+  description: string;
   star: number;
   images: string[];
   date: string;
