@@ -33,7 +33,7 @@ function ReviewCard({ review }: { review: ReviewType }) {
           </div>
           <div className="my-2">
             <Star rating={review.star} />
-            <p className="text-slate-600">{review.body}</p>
+            <p className="text-slate-600">{review.description}</p>
             <div className="flex gap-3 my-3">
               {review.images.map((e, i) => (
                 <Image

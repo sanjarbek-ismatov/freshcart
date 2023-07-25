@@ -41,3 +41,5 @@ export {default as Stats} from "./Stats";
 export {default as PopUp} from "./PopUp";
 export {default as PopUpContainer} from "./PopUpContainer";
 export {default as Description} from "./Description";
+export {default as ReviewStars} from "./ReviewStars";
+export {default as TextArea} from "./TextArea";

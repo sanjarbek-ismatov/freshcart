@@ -97,7 +97,7 @@ interface ProductType {
   name: string;
   slug: string;
   price: number;
-  category: string[];
+  category: CategoryType;
   description: string;
   rating: number;
   images: string[];
@@ -150,7 +150,7 @@ interface ReviewType {
   vendorId: string;
   productId: string;
   clientId: UserType;
-  body: string;
+  description: string;
   star: number;
   images: string[];
   date: string;

@@ -26,7 +26,7 @@ function Collapse({ category }: { category: CategoryType }) {
         <ul>
           {category.subCategories.map((e, i) => (
             <li key={i} className="my-3 ml-5">
-              <Link className="text-sm" href="/">
+              <Link className="text-sm" href={`products?category=${e.slug}`}>
                 {e.name}
               </Link>
             </li>
