@@ -1,11 +1,12 @@
-import mongoose, {Schema} from 'mongoose'
-import {CategoryType} from "../types";
-const categorySchema: Schema<CategoryType> = new mongoose.Schema({
-    name: String,
-    slug: String,
-    subCategories: [{name: String, slug: String}]
-})
+import mongoose, { Schema } from "mongoose";
+import { CategoryType } from "../types";
 
-const Category = mongoose.model<CategoryType>('Category', categorySchema)
+export const categorySchema: Schema<CategoryType> = new mongoose.Schema({
+  name: String,
+  slug: String,
+  subCategories: [{ name: String, slug: String }],
+});
 
-export default Category
+const Category = mongoose.model<CategoryType>("Category", categorySchema);
+
+export default Category;

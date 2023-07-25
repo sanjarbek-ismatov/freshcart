@@ -16,8 +16,9 @@ async function create(req: NodeRequest, res: Response) {
     return res
       .status(400)
       .send({ code: 400, message: error.details[0].message });
-  const newProduct = await Product.create(req.body);
+  const newProduct = new Product(req.body);
   newProduct.category = req.body.category.split(/\s*,\s*/g);
+
   newProduct.slug = sluggenerator(newProduct.name);
   if (req.vendor) {
     newProduct.vendor = req.vendor;

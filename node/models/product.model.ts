@@ -1,11 +1,14 @@
 import mongoose, { Schema } from "mongoose";
 import { ProductTypeWithIds } from "../types";
+import { categorySchema } from "./category.model";
 
 const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
   name: String,
   slug: { type: String, unique: true },
   price: Number,
-  category: [String],
+  category: {
+    type: categorySchema,
+  },
   description: String,
   rating: Number,
   images: [String],

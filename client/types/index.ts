@@ -97,7 +97,7 @@ interface ProductType {
   name: string;
   slug: string;
   price: number;
-  category: string[];
+  category: CategoryType;
   description: string;
   rating: number;
   images: string[];
