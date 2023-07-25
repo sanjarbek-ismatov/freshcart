@@ -1,14 +1,11 @@
 import mongoose, { Schema } from "mongoose";
 import { ProductTypeWithIds } from "../types";
-import { categorySchema } from "./category.model";
 
 const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
   name: String,
   slug: { type: String, unique: true },
   price: Number,
-  category: {
-    type: categorySchema,
-  },
+  category: String,
   description: String,
   rating: Number,
   images: [String],
@@ -20,7 +17,6 @@ const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
   ],
   weight: Number,
   vendor: { type: mongoose.SchemaTypes.ObjectId, ref: "vendor" },
-  guarantee: String,
   isInArchive: {
     type: Boolean,
     default: false,

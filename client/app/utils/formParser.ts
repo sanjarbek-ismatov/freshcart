@@ -10,8 +10,8 @@ class FormParser<D> {
     HTMLTextAreaElement,
   ];
 
-  private isTypeInput(elem: HTMLElement) {
-    return this.correctInputs.some((e) => elem instanceof e);
+  private isTypeInput(elem: HTMLInputElement) {
+    return this.correctInputs.some((e) => elem instanceof e) && elem.name;
   }
 
   private getKeyAndValue(elem: HTMLInputElement | HTMLTextAreaElement) {

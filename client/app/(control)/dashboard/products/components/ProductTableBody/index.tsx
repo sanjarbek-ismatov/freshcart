@@ -23,7 +23,7 @@ function ProductTableBody({
     setSelected((prev: ProductType[]) =>
       prev.includes(product)
         ? prev.filter((e) => e._id !== product._id)
-        : [...prev, product]
+        : [...prev, product],
     );
   }, [product, setSelected]);
   return (
@@ -39,8 +39,7 @@ function ProductTableBody({
           unoptimized
         />,
         product.name,
-        product.category[0],
-
+        // product.category.name,
         product.price,
         new Date(product.guarantee).toLocaleDateString(),
         <MenuButton key={1}>

@@ -1,7 +1,7 @@
 "use client";
 import { useAddProductMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
-import { Button, Input, Select } from "@components";
+import { Button, Input, Select, TextArea } from "@components";
 import { CategoryType } from "@types";
 import { useMemo, useState } from "react";
 
@@ -42,23 +42,23 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
             </option>
           ))}
         </Select>
-        <Select defaultValue={subCategories[0].slug} fullWidth>
+        <Select defaultValue={subCategories[0].slug} name="category" fullWidth>
           {subCategories.map((e, i) => (
             <option value={e.slug} key={i}>
               {e.name}
             </option>
           ))}
         </Select>
-        <Input name="description" label="Mahsulot haqida" fullWidth />
-        <Input type="file" name="images" label="Rasmlar" multiple fullWidth />
-        <Input name="weight" label="Mahsulot og'irligi" fullWidth />
+        <TextArea name="description" label="Mahsulot haqida" fullWidth />
         <Input
-          name="dateOfManufacture"
-          type="date"
-          label="Ishlab chiqarilgan sana"
+          type="file"
+          name="images"
+          accept="image/*"
+          label="Rasmlar"
+          multiple
           fullWidth
         />
-        <Input name="guarantee" type="date" label="Kafolat muddati" fullWidth />
+        <Input name="weight" label="Mahsulot og'irligi" fullWidth />
         <Button type="submit">Mahsulot qo`shish</Button>
       </form>
     </div>
