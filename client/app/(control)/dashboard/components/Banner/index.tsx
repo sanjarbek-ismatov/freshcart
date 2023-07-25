@@ -1,5 +1,6 @@
 import "./Banner.css";
 import { Button } from "@components";
+import Link from "next/link";
 
 function Banner() {
   return (
@@ -15,7 +16,9 @@ function Banner() {
           Xush kelibsiz Freshcartga!
         </h1>
         <p>FreshCart dasturchi va dizayner uchun sodda va toza dizayndir.</p>
-        <Button>Maxsulot qo`shish</Button>
+        <Link href="/dashboard/create">
+          <Button>Maxsulot qo`shish</Button>
+        </Link>
       </div>
     </div>
   );

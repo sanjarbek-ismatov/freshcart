@@ -7,7 +7,7 @@ function Select({
   fullWidth,
   children,
 }: {
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   defaultValue: any;
   fullWidth?: boolean;
   children: ReactNode;

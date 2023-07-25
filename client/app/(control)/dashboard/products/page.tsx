@@ -13,7 +13,7 @@ function ProductsDashboardPage() {
     <>
       <header className="w-full flex justify-between my-5">
         <Typography text="Maxsulotlar" />
-        <Link href="/dashboard/vendor/create">Maxsulot qo'shish</Link>
+        <Link href="/dashboard/create">Maxsulot qo'shish</Link>
       </header>
       <main>
         <Filter text={text} setText={setText} />
