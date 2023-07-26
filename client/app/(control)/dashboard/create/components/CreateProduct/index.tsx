@@ -16,6 +16,11 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
     [categories, selected],
   );
   const formParser = new FormParser();
+  const handleChange = (category: string) => {
+    const group = categories.find((e) => e.name === selected);
+    const result = group?.subCategories.find((e) => e.slug === category) as any;
+    setCategory(result?._id);
+  };
   return (
     <div className="">
       <h1 className="text-3xl my-5 font-bold text-slate-800">
@@ -27,14 +32,18 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           event.preventDefault();
           formParser.setForm(event);
           formParser.getFormAsFormData.append("category", category);
-          addProduct(formParser.getFormAsFormData);
+          console.log(category);
+          // addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >
         <Input name="name" label="Mahsulot nomi" fullWidth />
         <Input name="price" label="Narxi" fullWidth />
         <Select
-          onChange={(e) => setSelected(e.target.value)}
+          onChange={(e) => {
+            setSelected(e.target.value);
+            setCategory(subCategories[0]._id);
+          }}
           defaultValue={categories[0].name}
           fullWidth
         >
@@ -45,14 +54,7 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           ))}
         </Select>
         <Select
-          onChange={(event) => {
-            const group = categories.find((e) => e.name === selected);
-            const result = group?.subCategories.find(
-              (e) => e.slug === event.target.value,
-            ) as any;
-            console.log(result);
-            setCategory(result?._id);
-          }}
+          onChange={(e) => handleChange(e.target.value)}
           defaultValue={subCategories[0].slug}
           fullWidth
         >
