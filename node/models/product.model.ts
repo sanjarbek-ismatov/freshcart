@@ -5,7 +5,10 @@ const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
   name: String,
   slug: { type: String, unique: true },
   price: Number,
-  category: String,
+  category: {
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: "category",
+  },
   description: String,
   rating: Number,
   images: [String],

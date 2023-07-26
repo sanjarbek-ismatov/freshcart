@@ -68,13 +68,16 @@ interface VendorWithOrders {
   orders: OrderUsableType[];
 }
 
-interface CategoryType {
+interface SubCategoryType {
+  _id: string;
   name: string;
   slug: string;
-  subCategories: {
-    name: string;
-    slug: string;
-  }[];
+  group: string;
+}
+
+interface CategoryType {
+  name: string;
+  subCategories: SubCategoryType[];
 }
 
 interface VendorType {

@@ -1,11 +1,15 @@
 import Category from "../models/category.model";
 import { Request, Response } from "express";
 import { categoryValidator } from "../helpers/validator";
-import { NodeRequest } from "../types";
 
 async function getAll(req: Request, res: Response) {
   const allCategories = await Category.find();
-  res.status(200).send(allCategories);
+  const groups = new Set(allCategories.map((e) => e.group));
+  const result = Array.from(groups).map((e) => {
+    const subs = allCategories.filter((el) => el.group === e);
+    return { name: e, subCategories: subs };
+  });
+  res.status(200).send(result);
 }
 
 async function create(req: Request, res: Response) {
@@ -24,15 +28,4 @@ async function create(req: Request, res: Response) {
   res.status(201).send({ code: 201, message: "Yaratildi" });
 }
 
-async function addSubCategory(req: NodeRequest, res: Response) {
-  const foundedCategory = await Category.findOne({ slug: req.params.slug });
-  if (!foundedCategory)
-    return res
-      .status(404)
-      .send({ code: 404, message: "Mavjud emas kategoriya" });
-  foundedCategory.subCategories.push(req.body);
-  await foundedCategory.save();
-  res.status(200).send({ code: 200, message: "Kategoriya qo'shildi" });
-}
-
-export default { getAll, create, addSubCategory };
+export default { getAll, create };

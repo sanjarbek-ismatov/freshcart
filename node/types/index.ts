@@ -4,7 +4,7 @@ import { Document, Types } from "mongoose";
 interface CategoryType {
   name: string;
   slug: string;
-  subCategories: string[];
+  group: string;
 }
 
 interface ProductType<T> {

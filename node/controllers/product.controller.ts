@@ -3,11 +3,9 @@ import { Product } from "../models/product.model";
 import { productValidator } from "../helpers/validator";
 import { NodeRequest } from "../types";
 import { sluggenerator } from "../helpers/sluggenerator";
-import Category from "../models/category.model";
 
 async function getAll(req: NodeRequest, res: Response) {
-  const products = await Product.find().populate("vendor");
-  const category = await Category.find();
+  const products = await Product.find().populate("vendor category");
   res.status(200).send(products);
 }
 

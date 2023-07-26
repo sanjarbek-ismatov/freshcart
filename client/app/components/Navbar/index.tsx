@@ -22,7 +22,11 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     const auth = useAuth();
     const { data, refetch } = useUserContext();
     const router = useRouter();
-    const url = useMemo(() => new URL(window.location.href), []);
+    const url = useMemo(
+      () =>
+        typeof window !== "undefined" ? new URL(window.location.href) : null,
+      [],
+    );
     const [show, setShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
     const handleShow = useCallback(() => {
@@ -48,7 +52,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 e.preventDefault();
                 const input = e.currentTarget
                   .firstElementChild as HTMLInputElement;
-                router.push(`/products${url.search}&name=${input.value}`);
+                router.push(`/products${url?.search}&name=${input.value}`);
               }}
             >
               <SearchInput placeholder="Maxsulot nomini yozing" />

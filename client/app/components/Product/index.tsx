@@ -25,7 +25,7 @@ function ProductCard({ details }: { details: ProductType }) {
           <LikeButton id={details._id} />
         </div>
       </div>
-      {/*<p className="text-slate-500 text-sm">{details.category.name}</p>*/}
+      <p className="text-slate-500 text-sm">{details.category.name}</p>
       <p className="text-lg font-medium">{details.name}</p>
       <div className="leading-7">
         <Star rating={details.rating} />

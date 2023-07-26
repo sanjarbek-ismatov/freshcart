@@ -4,9 +4,9 @@ import { CategoryType } from "../types";
 export const categorySchema: Schema<CategoryType> = new mongoose.Schema({
   name: String,
   slug: String,
-  subCategories: [{ name: String, slug: String }],
+  group: String,
 });
 
-const Category = mongoose.model<CategoryType>("Category", categorySchema);
+const Category = mongoose.model<CategoryType>("category", categorySchema);
 
 export default Category;
