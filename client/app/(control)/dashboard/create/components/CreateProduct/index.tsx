@@ -7,10 +7,11 @@ import { useMemo, useState } from "react";
 
 function CreateProduct({ categories }: { categories: CategoryType[] }) {
   const [addProduct] = useAddProductMutation();
-  const [selected, setSelected] = useState("");
+  const [selected, setSelected] = useState(categories[0].name);
+  const [category, setCategory] = useState(categories[0].subCategories[0]._id);
   const subCategories = useMemo(
     () =>
-      categories.find((e) => e.slug === selected)?.subCategories ||
+      categories.find((e) => e.name === selected)?.subCategories ||
       categories[0].subCategories,
     [categories, selected],
   );
@@ -25,6 +26,7 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
         onSubmit={(event) => {
           event.preventDefault();
           formParser.setForm(event);
+          formParser.getFormAsFormData.append("category", category);
           addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
@@ -33,16 +35,27 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
         <Input name="price" label="Narxi" fullWidth />
         <Select
           onChange={(e) => setSelected(e.target.value)}
-          defaultValue={categories[0].slug}
+          defaultValue={categories[0].name}
           fullWidth
         >
           {categories.map((e, i) => (
-            <option value={e.slug} key={i}>
+            <option value={e.name} key={i}>
               {e.name}
             </option>
           ))}
         </Select>
-        <Select defaultValue={subCategories[0].slug} name="category" fullWidth>
+        <Select
+          onChange={(event) => {
+            const group = categories.find((e) => e.name === selected);
+            const result = group?.subCategories.find(
+              (e) => e.slug === event.target.value,
+            ) as any;
+            console.log(result);
+            setCategory(result?._id);
+          }}
+          defaultValue={subCategories[0].slug}
+          fullWidth
+        >
           {subCategories.map((e, i) => (
             <option value={e.slug} key={i}>
               {e.name}

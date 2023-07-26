@@ -69,6 +69,7 @@ interface VendorWithOrders {
 }
 
 interface SubCategoryType {
+  _id: string;
   name: string;
   slug: string;
   group: string;
@@ -76,7 +77,6 @@ interface SubCategoryType {
 
 interface CategoryType {
   name: string;
-  slug: string;
   subCategories: SubCategoryType[];
 }
 
