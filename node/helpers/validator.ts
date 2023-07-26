@@ -38,7 +38,7 @@ export const categoryValidator = (body: CategoryType) => {
   const validator = Joi.object({
     name: Joi.string().required(),
     slug: Joi.string().required().lowercase(),
-    subCategories: Joi.array(),
+    group: Joi.string(),
   });
   return validator.validate(body);
 };
