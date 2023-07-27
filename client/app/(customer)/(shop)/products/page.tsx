@@ -17,7 +17,7 @@ const Index = async ({
         ? e.name.toLowerCase().includes(searchParams.name.toLowerCase())
         : true) &&
       (searchParams.category
-        ? e.category.slug === searchParams.category
+        ? e.category.name === searchParams.category
         : true),
   );
   const categories = await getSSRData<CategoryType[]>(

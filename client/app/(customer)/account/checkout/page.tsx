@@ -82,7 +82,7 @@ function CheckoutPage() {
                     unoptimized
                   />,
                   name,
-                  category[0],
+                  category.name,
                   price,
                   count,
                   <MenuButton key={i}>

@@ -7,7 +7,7 @@ function About({ product }: { product: ProductType }) {
   return (
     <div>
       <Link className="text-green-500 my-5" href="">
-        {product.category}
+        {product.category.name}
       </Link>
       <Typography text={product.name} />
       <Star rating={product.rating} />

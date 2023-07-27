@@ -12,7 +12,7 @@ function LoginPage() {
       onSubmit={(e) => {
         e.preventDefault();
         formParser.setForm(e);
-        login(formParser.getFormAsObject).then((data) => {
+        login(formParser.getFormAsObject as any).then((data) => {
           if (!("error" in data)) {
             localStorage.setItem("x-vendor-token", data.data.token as any);
           }

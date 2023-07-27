@@ -15,10 +15,9 @@ function AddressDetails({
   const [addOrder] = useAddOrderMutation();
   const sum = useMemo(() => {
     if (state.length) {
-      console.log(state);
       return state.reduce(
         (acc, curr) => (acc += +curr.count * curr.id.price),
-        0
+        0,
       );
     }
   }, [state]);
@@ -27,7 +26,7 @@ function AddressDetails({
     state.forEach(({ id: { _id, vendor }, count }, i) => {
       const body: Omit<
         OrderType<string, string>,
-        "slug" | "clientId" | "date"
+        "slug" | "clientId" | "date" | "_id"
       > = {
         productId: _id,
         vendorId: vendor._id,
