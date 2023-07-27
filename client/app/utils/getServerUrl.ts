@@ -1,3 +1,5 @@
+"use server";
+
 function getServerUrl(): string {
   switch (process.env.NODE_ENV) {
     case "development":
