@@ -1,32 +1,29 @@
 "use client";
 import "./Footer.css";
-import categories from "data/categories.json";
-import { categorySplitter } from "@/app/utils/categorysplitter";
-import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 
 function Footer() {
-  const [splitted, setSplitted] = useState<string[][]>();
-  const splitter = useCallback(() => categorySplitter(10, categories), []);
-  useEffect(() => {
-    splitter().then((data) => setSplitted(data));
-  }, [splitter]);
-  if (!splitted) return <p>loading...</p>;
+  // const [splitted, setSplitted] = useState<string[][]>();
+  // const splitter = useCallback(() => categorySplitter(10, categories), []);
+  // useEffect(() => {
+  //   splitter().then((data) => setSplitted(data));
+  // }, [splitter]);
+  // if (!splitted) return <p>loading...</p>;
   return (
     <>
       <div className={`grid grid-cols-5 grid-rows-1 mt-56`}>
-        {splitted?.map((e, i) => (
-          <div key={i}>
-            <h4 className="font-semibold text-slate-900 text-lg my-3">
-              Kategoriyalar
-            </h4>
-            {e.map((e: any, index: number) => (
-              <p className="text-slate-600 text-md leading-8" key={index}>
-                {e.name}
-              </p>
-            ))}
-          </div>
-        ))}
+        {/*{splitted?.map((e, i) => (*/}
+        {/*  <div key={i}>*/}
+        {/*    <h4 className="font-semibold text-slate-900 text-lg my-3">*/}
+        {/*      Kategoriyalar*/}
+        {/*    </h4>*/}
+        {/*    {e.map((e: any, index: number) => (*/}
+        {/*      <p className="text-slate-600 text-md leading-8" key={index}>*/}
+        {/*        {e.name}*/}
+        {/*      </p>*/}
+        {/*    ))}*/}
+        {/*  </div>*/}
+        {/*))}*/}
         <div>
           <h4 className="font-semibold text-slate-900 text-lg my-3">
             Biz haqimizda biling

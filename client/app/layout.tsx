@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import React from "react";
 import { ErrorBoundary } from "./components";
 import Provider from "@/store/provider";
-import { UserProvider } from "@/app/context/provider";
+import { URLProvider, UserProvider } from "@/app/context/provider";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
@@ -26,9 +27,11 @@ export default function RootLayout({
       <body className={inter.className}>
         <React.StrictMode>
           <ErrorBoundary>
-            <Provider>
-              <UserProvider>{children}</UserProvider>
-            </Provider>
+            <URLProvider url={getServerUrl()}>
+              <Provider>
+                <UserProvider>{children}</UserProvider>
+              </Provider>
+            </URLProvider>
           </ErrorBoundary>
         </React.StrictMode>
       </body>

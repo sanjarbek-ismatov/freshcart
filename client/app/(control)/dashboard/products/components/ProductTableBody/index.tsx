@@ -6,6 +6,7 @@ import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import Image from "next/image";
 import { MenuButton, MenuItem } from "@components";
 import { useDeleteProductsByIdMutation } from "@/store/api/ecommerce";
+import { useUrlContext } from "@/app/context";
 
 function ProductTableBody({
   product,
@@ -18,6 +19,7 @@ function ProductTableBody({
   refetch: any;
   setSelected: Dispatch<SetStateAction<ProductType[]>>;
 }) {
+  const url = useUrlContext();
   const [deleteProduct] = useDeleteProductsByIdMutation();
   const checkHandler = useCallback(() => {
     setSelected((prev: ProductType[]) =>
@@ -32,7 +34,7 @@ function ProductTableBody({
         <Checkbox onChange={checkHandler} key={1} checked={selected} />,
         <Image
           key={1}
-          src={`http://localhost:4000/api/files/image/${product.images[0]}`}
+          src={`${url}/files/image/${product.images[0]}`}
           width={50}
           height={50}
           alt="Maxsulotning rasmi"

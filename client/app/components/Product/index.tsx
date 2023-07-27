@@ -3,8 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
+import { useUrlContext } from "@/app/context";
 
 function ProductCard({ details }: { details: ProductType }) {
+  const url = useUrlContext();
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
@@ -14,7 +16,7 @@ function ProductCard({ details }: { details: ProductType }) {
         <Image
           width={250}
           height={250}
-          src={`http://localhost:4000/api/files/image/${details.images[0]}`}
+          src={`${url}/files/image/${details.images[0]}`}
           alt="Product image"
           unoptimized
         />
