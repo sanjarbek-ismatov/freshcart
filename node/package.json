@@ -20,6 +20,9 @@
     "typescript": "^5.0.2",
     "winston": "^3.8.2"
   },
+  "engines": {
+    "node": ">=18.x"
+  },
   "scripts": {
     "esbuild": "npm i -g esbuild && yarn esbuild server.ts --bundle --minify --platform=node --packages=external --outfile=dist/bundle.js",
     "build": "webpack",
