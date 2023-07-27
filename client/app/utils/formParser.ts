@@ -4,11 +4,10 @@ class FormParser<D> {
   private form?: any;
   private formData = new FormData();
   private formObject: Record<string, any> = {};
-  private correctInputs = [
-    HTMLInputElement,
-    HTMLSelectElement,
-    HTMLTextAreaElement,
-  ];
+  private correctInputs =
+    typeof window !== "undefined"
+      ? [HTMLInputElement, HTMLSelectElement, HTMLTextAreaElement]
+      : [];
 
   private isTypeInput(elem: HTMLInputElement) {
     return this.correctInputs.some((e) => elem instanceof e) && elem.name;

@@ -4,12 +4,14 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import { useAddToCartMutation } from "@/store/api/ecommerce";
 
 function LikeButton({ id }: { id: string }) {
-  const data = useUserContext();
-
+  const { data } = useUserContext();
   const [addToLiked, { isSuccess }] = useAddToCartMutation();
   const isLiked = useMemo(
-    () => Boolean(data?.liked?.find((e) => e._id.toString() === id.toString())),
-    [data?.liked, id],
+    () =>
+      Boolean(
+        data?.user.liked?.find((e) => e._id.toString() === id.toString()),
+      ),
+    [data?.user.liked, id],
   );
   const [liked, setLiked] = useState(isLiked || false);
 
