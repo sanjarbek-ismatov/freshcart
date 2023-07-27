@@ -2,6 +2,7 @@ import "./StoresGrid.css";
 import Image from "next/image";
 import Link from "next/link";
 import { VendorType } from "@/types";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function StoresGrid({ vendors }: { vendors: VendorType[] }) {
   return (
@@ -19,7 +20,7 @@ function StoresGrid({ vendors }: { vendors: VendorType[] }) {
             <div>
               <Image
                 className="rounded-full"
-                src={`http://localhost:4000/api/files/image/${e.image}`}
+                src={`${getServerUrl()}/files/image/${e.image}`}
                 width={100}
                 height={100}
                 alt="Do'kon nomi"

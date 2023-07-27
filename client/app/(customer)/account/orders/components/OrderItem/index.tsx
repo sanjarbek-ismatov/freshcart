@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ComponentProps } from "react";
 import { OrderUsableType } from "@types";
 import { StatusBadge } from "@components";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function OrderItem({
   item,
@@ -17,7 +18,7 @@ function OrderItem({
         <Image
           width={80}
           height={80}
-          src={`http://localhost:4000/api/files/image/${item.productId.images[0]}`}
+          src={`${getServerUrl()}/files/image/${item.productId.images[0]}`}
           alt="Order"
           unoptimized
         />

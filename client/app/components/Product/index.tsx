@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function ProductCard({ details }: { details: ProductType }) {
   return (
@@ -14,7 +15,7 @@ function ProductCard({ details }: { details: ProductType }) {
         <Image
           width={250}
           height={250}
-          src={`http://localhost:4000/api/files/image/${details.images[0]}`}
+          src={`${getServerUrl()}/files/image/${details.images[0]}`}
           alt="Product image"
           unoptimized
         />

@@ -3,6 +3,7 @@ import "./Slide.css";
 import { useEffect, useState } from "react";
 import { SlideImages } from "@components";
 import { ProductType } from "@types";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function Slide({ product }: { product: ProductType }) {
   const [current, setCurrent] = useState(0);
@@ -35,7 +36,7 @@ function Slide({ product }: { product: ProductType }) {
             <div
               key={i}
               style={{
-                backgroundImage: `url("http://localhost:4000/api/files/image/${e}")`,
+                backgroundImage: `url("${getServerUrl()}/files/image/${e}")`,
               }}
               className={`w-[600px] h-[500px] left-0 top-0 bg-center bg-cover bg-no-repeat hover:cursor-zoom-in ${
                 current === i ? "active" : ""

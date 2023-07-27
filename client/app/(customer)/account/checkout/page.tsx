@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Filter } from "@/app/utils/filter";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
 import { useUserContext } from "@/app/context";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function CheckoutPage() {
   const state = useAppSelector((state1) => state1.checkoutFilter);
@@ -75,7 +76,7 @@ function CheckoutPage() {
                   />,
                   <Image
                     key={i}
-                    src={`http://localhost:4000/api/files/image/${images[0]}`}
+                    src={`${getServerUrl()}/files/image/${images[0]}`}
                     width={50}
                     height={50}
                     alt="Maxsulotning rasmi"

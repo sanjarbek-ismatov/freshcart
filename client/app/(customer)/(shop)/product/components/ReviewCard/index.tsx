@@ -9,7 +9,7 @@ function ReviewCard({ review }: { review: ReviewType }) {
   const images = useMemo(
     () =>
       review.images.map(
-        (filename) => `http://localhost:4000/api/files/image/${filename}`,
+        (filename) => `${getSelection()}/files/image/${filename}`,
       ),
     [review],
   );

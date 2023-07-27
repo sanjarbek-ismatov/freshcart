@@ -3,6 +3,7 @@ import Image from "next/image";
 import { OrderChangeStatus, VendorWithOrders } from "@types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useChangeStatusMutation } from "@/store/api/ecommerce";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function Navbar({
   details: { vendor, orders },
@@ -87,7 +88,7 @@ function Navbar({
         </MenuButton>
         <Image
           className="w-12 h-12 rounded-full ml-5"
-          src={`http://localhost:4000/api/files/image/${vendor?.image}`}
+          src={`${getServerUrl()}/files/image/${vendor?.image}`}
           height={50}
           width={50}
           alt="Profile"

@@ -10,11 +10,12 @@ import {
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { gettoken } from "@/app/utils/gettoken";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api",
+    baseUrl: getServerUrl(),
   }),
   endpoints(build) {
     return {

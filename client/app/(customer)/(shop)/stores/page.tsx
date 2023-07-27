@@ -2,10 +2,11 @@ import { Footer } from "@components";
 import { Header, StoresGrid } from "./components";
 import { getSSRData } from "@/app/utils/getData";
 import { VendorType } from "@/types";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 async function Stores() {
   const vendors = await getSSRData<VendorType[]>(
-    "http://localhost:4000/api/vendor/all"
+    `${getServerUrl()}/vendor/all`,
   );
 
   return (

@@ -1,6 +1,7 @@
 "use client";
 import { ProductType } from "@types";
 import Image from "next/image";
+import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function CartProduct({
   product,
@@ -15,7 +16,7 @@ function CartProduct({
         <Image
           width={100}
           height={100}
-          src={`http://localhost:4000/api/files/image/${product?.images[0]}`}
+          src={`${getServerUrl()}/files/image/${product?.images[0]}`}
           alt={`${product?.name} rasmi`}
           unoptimized
         />
