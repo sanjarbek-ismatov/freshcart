@@ -7,10 +7,10 @@ import { setCheckoutState, useAppSelector } from "@/store/store";
 import Image from "next/image";
 import { Filter } from "@/app/utils/filter";
 import { AddressDetails } from "@/app/(customer)/account/checkout/components";
-import { useUserContext } from "@/app/context";
-import { getServerUrl } from "@/app/utils/getServerUrl";
+import { useUrlContext, useUserContext } from "@/app/context";
 
 function CheckoutPage() {
+  const url = useUrlContext();
   const state = useAppSelector((state1) => state1.checkoutFilter);
   const { data, refetch } = useUserContext();
   const allAreChecked = useMemo(
@@ -76,7 +76,7 @@ function CheckoutPage() {
                   />,
                   <Image
                     key={i}
-                    src={`${getServerUrl()}/files/image/${images[0]}`}
+                    src={`${url}/files/image/${images[0]}`}
                     width={50}
                     height={50}
                     alt="Maxsulotning rasmi"

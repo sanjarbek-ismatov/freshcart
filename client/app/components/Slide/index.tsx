@@ -3,9 +3,10 @@ import "./Slide.css";
 import { useEffect, useState } from "react";
 import { SlideImages } from "@components";
 import { ProductType } from "@types";
-import { getServerUrl } from "@/app/utils/getServerUrl";
+import { useUrlContext } from "@/app/context";
 
 function Slide({ product }: { product: ProductType }) {
+  const url = useUrlContext();
   const [current, setCurrent] = useState(0);
   useEffect(() => {
     const previewImage = document.getElementsByClassName(
@@ -36,7 +37,7 @@ function Slide({ product }: { product: ProductType }) {
             <div
               key={i}
               style={{
-                backgroundImage: `url("${getServerUrl()}/files/image/${e}")`,
+                backgroundImage: `url("${url}/files/image/${e}")`,
               }}
               className={`w-[600px] h-[500px] left-0 top-0 bg-center bg-cover bg-no-repeat hover:cursor-zoom-in ${
                 current === i ? "active" : ""
