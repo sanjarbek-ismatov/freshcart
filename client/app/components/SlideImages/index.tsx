@@ -1,7 +1,6 @@
 import "./SlideImages.css";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction } from "react";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function SlideImages({
   product,
@@ -18,7 +17,7 @@ function SlideImages({
         <div
           key={i}
           style={{
-            backgroundImage: `url("${getServerUrl()}/files/image/${e}")`,
+            backgroundImage: `url("${process.env.SERVER_URL}/files/image/${e}")`,
           }}
           onClick={() => setCurrent(i)}
           className={`cursor-pointer border-2 bg-center w-[200px] bg-cover ${

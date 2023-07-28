@@ -3,7 +3,7 @@ import Image from "next/image";
 import { OrderChangeStatus, VendorWithOrders } from "@types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useChangeStatusMutation } from "@/store/api/ecommerce";
-import { getServerUrl } from "@/app/utils/getServerUrl";
+import { useUrlContext } from "@/app/context";
 
 function Navbar({
   details: { vendor, orders },
@@ -12,6 +12,7 @@ function Navbar({
   details: VendorWithOrders;
   refetch: any;
 }) {
+  const url = useUrlContext();
   const [changeOrderStatus] = useChangeStatusMutation();
   const [show, setShow] = useState(false);
   const ref = useRef<HTMLElement>(null);
@@ -88,7 +89,7 @@ function Navbar({
         </MenuButton>
         <Image
           className="w-12 h-12 rounded-full ml-5"
-          src={`${getServerUrl()}/files/image/${vendor?.image}`}
+          src={`${url}/files/image/${vendor?.image}`}
           height={50}
           width={50}
           alt="Profile"

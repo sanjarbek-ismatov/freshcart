@@ -3,7 +3,7 @@ import React from "react";
 import { Filter, Products } from "./components";
 import { CategoryType, ProductType, VendorType } from "@types";
 import { getSSRData } from "@/app/utils/getData";
-import { getServerUrl } from "@/app/utils/getServerUrl";
+import * as process from "process";
 
 const Index = async ({
   searchParams,
@@ -11,7 +11,7 @@ const Index = async ({
   searchParams: { [key: string]: string };
 }) => {
   const products = (
-    await getSSRData<ProductType[]>(`${getServerUrl()}/product/all`)
+    await getSSRData<ProductType[]>(`${process.env.SERVER_URL}/product/all`)
   ).filter(
     (e) =>
       (searchParams.name

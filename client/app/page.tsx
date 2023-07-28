@@ -10,11 +10,10 @@ import { ProductType } from "@/types";
 import { getSSRData } from "@/app/utils/getData";
 import React from "react";
 import { Container } from "@components";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 export default async function Home() {
   const products = await getSSRData<ProductType[]>(
-    `${getServerUrl()}/product/all`,
+    `${process.env.SERVER_URL}/product/all`,
   );
   return (
     <Container>

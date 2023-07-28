@@ -4,13 +4,12 @@ import { Button, Input, ProfileImage } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function Form({ user }: { user: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
   const form = new FormParser();
   const [handleSubmitImage, images] = useParsedUrlData(
-    user.image ? `${getServerUrl()}/files/image/${user.image}` : "",
+    user.image ? `${process.env.SERVER_URL}/files/image/${user.image}` : "",
   );
   return (
     <form
