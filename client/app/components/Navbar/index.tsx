@@ -13,14 +13,14 @@ import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
-import { Badge, OffCanvas } from "@components";
+import { Badge, LocationList, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
 import { useRouter } from "next/navigation";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
-    const { data, refetch } = useUserContext();
+    const { data } = useUserContext();
     const router = useRouter();
     const url = useMemo(
       () =>
@@ -28,6 +28,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
       [],
     );
     const [show, setShow] = useState(false);
+    const [locationShow, setLocationShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
     const handleShow = useCallback(() => {
       if (auth) setShow(!show);
@@ -42,6 +43,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     }, []);
     return (
       <>
+        {locationShow && <LocationList setShow={setLocationShow} />}
         <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
           <div className="sm:w-56 w-40 mr-12">
             <Image src={LogoImage} alt="Logo image" />
@@ -56,7 +58,11 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
               }}
             >
               <SearchInput placeholder="Maxsulot nomini yozing" />
-              <button className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200">
+              <button
+                type="button"
+                onClick={() => setLocationShow(true)}
+                className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200"
+              >
                 <i className="cursor-pointer fa-solid fa-location-dot mr-2"></i>{" "}
                 Hudud
               </button>
