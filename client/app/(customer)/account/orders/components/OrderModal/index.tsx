@@ -4,7 +4,6 @@ import { OrderUsableType } from "@types";
 import { Button, Modal, StatusBadge, Typography } from "@components";
 import { useState } from "react";
 import { FormModal } from "@/app/(customer)/account/orders/components";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function OrderModal({
   order: {
@@ -36,7 +35,7 @@ function OrderModal({
             <Image
               width={200}
               height={200}
-              src={`${getServerUrl()}/files/image/${productId.images[0]}`}
+              src={`${process.env.SERVER_URL}/files/image/${productId.images[0]}`}
               alt="Maxsulot rasmi"
               unoptimized
             />

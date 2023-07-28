@@ -4,7 +4,7 @@ import React from "react";
 import { ErrorBoundary } from "./components";
 import Provider from "@/store/provider";
 import { URLProvider, UserProvider } from "@/app/context/provider";
-import { getServerUrl } from "@/app/utils/getServerUrl";
+import * as process from "process";
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <React.StrictMode>
           <ErrorBoundary>
-            <URLProvider url={getServerUrl()}>
+            <URLProvider url={process.env.SERVER_URL || ""}>
               <Provider>
                 <UserProvider>{children}</UserProvider>
               </Provider>

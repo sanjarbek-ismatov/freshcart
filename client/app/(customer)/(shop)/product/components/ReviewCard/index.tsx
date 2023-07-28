@@ -3,8 +3,10 @@ import { ReviewType } from "@types";
 import { PreviewImage, ProfileImage, Star } from "@components";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useUrlContext } from "@/app/context";
 
 function ReviewCard({ review }: { review: ReviewType }) {
+  const url = useUrlContext();
   const [selected, setSelected] = useState<string | boolean>(false);
   const images = useMemo(
     () =>
@@ -18,7 +20,7 @@ function ReviewCard({ review }: { review: ReviewType }) {
       <div className="flex gap-x-5 border-t border-slate-300 mt-5 pt-5">
         <div>
           <ProfileImage
-            image={`http://localhost:4000/api/files/image/${review.clientId.image}`}
+            image={`${url}/files/image/${review.clientId.image}`}
             size={60}
           />
         </div>

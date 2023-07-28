@@ -2,11 +2,10 @@ import { getSSRData } from "@/app/utils/getData";
 import { ProductType } from "@/types";
 import { BreadCrumb, Slide } from "@components";
 import { About, Reviews } from "@/app/(customer)/(shop)/product/components";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
   const product = await getSSRData<ProductType>(
-    `${getServerUrl()}/product/${slug}`,
+    `${process.env.SERVER_URL}/product/${slug}`,
   );
   return (
     <>

@@ -43,3 +43,4 @@ export {default as PopUpContainer} from "./PopUpContainer";
 export {default as Description} from "./Description";
 export {default as ReviewStars} from "./ReviewStars";
 export {default as TextArea} from "./TextArea";
+export {default as LocationList} from "./LocationList";

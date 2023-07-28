@@ -1,7 +1,6 @@
 import Image from "next/image";
 import StoreImage from "@/public/images/svg-graphics/store-graphics.svg";
 import "./Header.css";
-import { getServerUrl } from "@/app/utils/getServerUrl";
 
 function Header({ title, image }: { title?: string; image?: string }) {
   return (
@@ -11,7 +10,7 @@ function Header({ title, image }: { title?: string; image?: string }) {
       </h1>
       {image ? (
         <Image
-          src={`${getServerUrl()}/files/image/${image}`}
+          src={`${process.env.SERVER_URL}/files/image/${image}`}
           alt="Do'kon"
           width={100}
           height={100}

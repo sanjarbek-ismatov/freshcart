@@ -20,7 +20,7 @@ function PopularProducts({
         return mutation.sort(
           (a, b) =>
             new Date(a.dateOfManufacture).getTime() -
-            new Date(b.dateOfManufacture).getTime()
+            new Date(b.dateOfManufacture).getTime(),
         );
       case "rating":
         return mutation.sort((a, b) => b.rating - a.rating);
@@ -37,15 +37,15 @@ function PopularProducts({
     <>
       <div className="my-6">
         <h1 className="text-3xl font-bold text-slate-900">{title}</h1>
-        <div className="my-5 grid sm:grid-cols-2 gap-x-4 gap-y-8 md:grid-cols-4 lg:grid-cols-5 grid-rows-2">
+        <div className="my-5 flex flex-wrap p-3">
           {sorted
             .filter((e) => state.stars.includes(e.rating) || !e.rating)
             .filter(
               (e) =>
-                state.vendors.includes(e.vendor.name) || !state.vendors.length
+                state.vendors.includes(e.vendor.name) || !state.vendors.length,
             )
             .filter(
-              (e) => e.price >= state.price[0] && e.price <= state.price[1]
+              (e) => e.price >= state.price[0] && e.price <= state.price[1],
             )
             .map((e, i) => (
               <ProductCard key={i} details={e} />

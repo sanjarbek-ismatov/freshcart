@@ -1,4 +1,5 @@
 import {
+  CategoryType,
   OrderChangeStatus,
   OrderType,
   OrderUsableType,
@@ -96,7 +97,7 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
-      updateUserInfo: build.mutation<UserType, UserType | FormData>({
+      updateUserInfo: build.mutation<UserType, any>({
         query: (body) => ({
           url: "/auth/info/update",
           method: "PUT",
@@ -164,6 +165,9 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      getAllCategory: build.query<CategoryType[], void>({
+        query: () => "/category/all",
+      }),
     };
   },
 });
@@ -182,4 +186,5 @@ export const {
   useAddOrderMutation,
   useChangeStatusMutation,
   useAcceptOrderMutation,
+  useGetAllCategoryQuery,
 } = eCommerceApi;
