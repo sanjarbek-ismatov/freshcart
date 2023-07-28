@@ -2,36 +2,38 @@
 import Link from "next/link";
 import "./Menu.css";
 import { useCallback, useState } from "react";
+import { useGetAllCategoryQuery } from "@/store/api/ecommerce";
 
 function Menu() {
   const [show, setShow] = useState(false);
+  const { data } = useGetAllCategoryQuery();
   const toggle = useCallback(() => {
     setShow(!show);
   }, [show]);
   return (
     <>
       <div className="flex items-center mb-5 max-w-[1300px] mx-auto">
-        <div className="relative">
-          <button
-            onClick={toggle}
-            className=" py-3 px-4 bg-green-500 rounded-md text-white"
-          >
+        <div onClick={toggle} className="relative">
+          <button className=" py-3 px-4 bg-green-500 rounded-md text-white">
             <i className="fa-regular fa-square-plus"></i> Barchasi
           </button>
           <ul
-            className={`absolute transition-all translate-y-2 hidden ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white ${
-              show ? "opacity-100 block translate-y-0" : ""
+            className={`absolute transition-all translate-y-2 ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white ${
+              show ? "opacity-100 block translate-y-0" : "hidden"
             }`}
           >
-            <li className="py-1">
-              <Link href="/">Maishiy texnika</Link>
-            </li>
-            <li className="py-1">
-              <Link href="/">Sport anjomlari</Link>
-            </li>
-            <li className="py-1">
-              <Link href="/">Oziq-ovqat</Link>
-            </li>
+            {data?.map((e, i) => (
+              <li key={i} className="py-1">
+                <p>{e.name}</p>
+                {/*<div>*/}
+                {/*  {e.subCategories.map((e, i) => (*/}
+                {/*    <Link key={i} href={"/"}>*/}
+                {/*      {e.name}*/}
+                {/*    </Link>*/}
+                {/*  ))}*/}
+                {/*</div>*/}
+              </li>
+            ))}
           </ul>
         </div>
         <Link href="/" className="mx-3 text-slate-600 font-medium">
