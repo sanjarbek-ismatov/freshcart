@@ -22,10 +22,10 @@ const Index = async ({
         : true),
   );
   const categories = await getSSRData<CategoryType[]>(
-    "http://localhost:4000/api/category/all",
+    `${process.env.SERVER_URL}/category/all`,
   );
   const vendors = await getSSRData<VendorType[]>(
-    "http://localhost:4000/api/vendor/all",
+    `${process.env.SERVER_URL}/vendor/all`,
   );
   return (
     <>
