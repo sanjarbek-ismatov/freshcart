@@ -11,7 +11,7 @@ function Footer() {
   // if (!splitted) return <p>loading...</p>;
   return (
     <>
-      <div className={`grid grid-cols-5 grid-rows-1 mt-56`}>
+      <div className={`grid grid-cols-5 grid-rows-1 mt-5`}>
         {/*{splitted?.map((e, i) => (*/}
         {/*  <div key={i}>*/}
         {/*    <h4 className="font-semibold text-slate-900 text-lg my-3">*/}

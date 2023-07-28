@@ -8,14 +8,15 @@ import { useUrlContext } from "@/app/context";
 function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
   return (
-    <div className="relative group py-5 px-3 border hover:border-green-500  z-10 rounded-md">
+    <div className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
-      <div className="flex justify-center items-center flex-col h-[170px]">
+      <div className="flex justify-center items-center flex-col w-auto h-[200px]">
         <Image
           width={250}
           height={250}
+          className="h-full w-auto object-cover"
           src={`${url}/files/image/${details.images[0]}`}
           alt="Product image"
           unoptimized
