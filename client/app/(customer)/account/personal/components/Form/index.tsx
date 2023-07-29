@@ -4,12 +4,14 @@ import { Button, Input, ProfileImage } from "@components";
 import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
+import { useUrlContext } from "@/app/context";
 
-function Form({ user }: { user: UserType }) {
+function Form({ user }: { user?: UserType }) {
   const [updateUserInfo] = useUpdateUserInfoMutation();
+  const url = useUrlContext();
   const form = new FormParser();
   const [handleSubmitImage, images] = useParsedUrlData(
-    user.image ? `${process.env.SERVER_URL}/files/image/${user.image}` : "",
+    user?.image ? `${url}/files/image/${user.image}` : "",
   );
   return (
     <form
@@ -29,7 +31,7 @@ function Form({ user }: { user: UserType }) {
         label="Ismingiz"
         placeholder="Ismingiz"
         fullWidth
-        defaultValue={user.name}
+        defaultValue={user?.name}
       />
       <Input
         type="text"
@@ -37,7 +39,7 @@ function Form({ user }: { user: UserType }) {
         label="Foydalanuvchi nomi"
         placeholder="Foydalanuvchi nomi"
         fullWidth
-        defaultValue={user.username}
+        defaultValue={user?.username}
       />
       <Input
         type="email"
@@ -45,13 +47,13 @@ function Form({ user }: { user: UserType }) {
         label="Pochtangiz"
         placeholder="Emailingiz"
         fullWidth
-        defaultValue={user.email}
+        defaultValue={user?.email}
       />
       <Input
         type="tel"
         name="phone"
         label="Telefon raqamingiz"
-        defaultValue={user.phone}
+        defaultValue={user?.phone}
         fullWidth
       />
       <fieldset name="address">
@@ -61,20 +63,20 @@ function Form({ user }: { user: UserType }) {
           fullWidth
           type="text"
           name="state"
-          defaultValue={user.address?.state}
+          defaultValue={user?.address?.state}
         />
         <Input
           type="text"
           label="Joylashuv"
           fullWidth
           name="location"
-          defaultValue={user.address?.location}
+          defaultValue={user?.address?.location}
         />
         <Input
           type="text"
           label="Pochta indeksi"
           name="zipCode"
-          defaultValue={user.address?.zipCode}
+          defaultValue={user?.address?.zipCode}
           fullWidth
         />
       </fieldset>
@@ -84,7 +86,7 @@ function Form({ user }: { user: UserType }) {
           label="Karta raqami"
           name="cardNumber"
           pattern="/[\d{16}]/"
-          defaultValue={user.payment?.cardNumber}
+          defaultValue={user?.payment?.cardNumber}
           required
           fullWidth
         />

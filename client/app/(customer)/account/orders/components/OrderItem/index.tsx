@@ -3,11 +3,13 @@ import Image from "next/image";
 import { ComponentProps } from "react";
 import { OrderUsableType } from "@types";
 import { StatusBadge } from "@components";
+import { useUrlContext } from "@/app/context";
 
 function OrderItem({
   item,
   ...rest
 }: { item: OrderUsableType } & ComponentProps<"div">) {
+  const url = useUrlContext();
   return (
     <div
       {...rest}
@@ -17,7 +19,7 @@ function OrderItem({
         <Image
           width={80}
           height={80}
-          src={`${process.env.SERVER_URL}/files/image/${item.productId.images[0]}`}
+          src={`${url}/files/image/${item.productId.images[0]}`}
           alt="Order"
           unoptimized
         />

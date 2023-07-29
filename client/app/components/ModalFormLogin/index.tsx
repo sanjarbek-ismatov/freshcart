@@ -2,10 +2,9 @@
 import { useFormik } from "formik";
 import Button from "../Button";
 import Input from "../Input";
-import Modal from "../Modal";
-import Spinner from "../Spinner";
 import "./ModalFormLogin.css";
 import { useLoginMutation } from "@/store/api/ecommerce";
+import { LoadingModal } from "@/app/components";
 
 function ModalFormLogin() {
   const [login, { isLoading }] = useLoginMutation();
@@ -25,13 +24,7 @@ function ModalFormLogin() {
   });
   return (
     <>
-      {isLoading && (
-        <Modal title="Diqqat!">
-          <div className="flex">
-            <Spinner /> <span className="ml-3">Yuklanmoqda...</span>
-          </div>
-        </Modal>
-      )}
+      {isLoading && <LoadingModal />}
       <form onSubmit={handleSubmit}>
         <div className="w-full py-1">
           <label className="text-sm text-slate-800" htmlFor="email">

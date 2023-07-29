@@ -2,8 +2,9 @@ import "./OrderModal.css";
 import Image from "next/image";
 import { OrderUsableType } from "@types";
 import { Button, Modal, StatusBadge, Typography } from "@components";
-import { useState } from "react";
+import React, { useState } from "react";
 import { FormModal } from "@/app/(customer)/account/orders/components";
+import { useUrlContext } from "@/app/context";
 
 function OrderModal({
   order: {
@@ -16,17 +17,24 @@ function OrderModal({
     paymentMethod,
     status,
   },
+  setSelected,
   refetch,
 }: {
   order: OrderUsableType;
+  setSelected: React.Dispatch<React.SetStateAction<any>>;
   refetch: any;
 }) {
+  const url = useUrlContext();
   const [show, setShow] = useState(false);
   return (
     <>
       {show && (
         <Modal setShow={setShow} title="Izoh yuborish">
-          <FormModal order={{ _id, vendorId }} refetch={refetch} />
+          <FormModal
+            setSelected={setSelected}
+            order={{ _id, vendorId }}
+            refetch={refetch}
+          />
         </Modal>
       )}
       <div className="w-full">
@@ -35,7 +43,7 @@ function OrderModal({
             <Image
               width={200}
               height={200}
-              src={`${process.env.SERVER_URL}/files/image/${productId.images[0]}`}
+              src={`${url}/files/image/${productId.images[0]}`}
               alt="Maxsulot rasmi"
               unoptimized
             />

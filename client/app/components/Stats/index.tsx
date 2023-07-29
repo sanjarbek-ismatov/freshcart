@@ -9,7 +9,7 @@ function Stats({ reviews }: { reviews: ReviewType[] }) {
     const resultAsObj: Record<number | string, number> = {};
     for (let i = 1; i <= 5; i++) {
       const startCount = stars.filter((e) => e === i).length;
-      resultAsObj[i] = (startCount / stars.length) * 100;
+      resultAsObj[i] = ~~((startCount / stars.length) * 100);
     }
     return resultAsObj;
   }, [stars]);

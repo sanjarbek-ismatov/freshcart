@@ -44,3 +44,5 @@ export {default as Description} from "./Description";
 export {default as ReviewStars} from "./ReviewStars";
 export {default as TextArea} from "./TextArea";
 export {default as LocationList} from "./LocationList";
+export {default as LoadingModal} from "./LoadingModal";
+export {default as LoadingPage} from "./LoadingPage";

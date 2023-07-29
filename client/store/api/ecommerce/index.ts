@@ -15,7 +15,7 @@ import { gettoken } from "@/app/utils/gettoken";
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:4000/api",
+    baseUrl: "https://ecommerce-uz.onrender.com/api",
   }),
   endpoints(build) {
     return {
