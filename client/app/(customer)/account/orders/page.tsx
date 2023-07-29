@@ -23,7 +23,11 @@ function OrdersPage() {
       )}
       {selected && (
         <Modal setShow={setSelected} title="Buyurtma haqida">
-          <OrderModal order={selected} refetch={refetch} />
+          <OrderModal
+            setSelected={setSelected}
+            order={selected}
+            refetch={refetch}
+          />
         </Modal>
       )}
     </div>

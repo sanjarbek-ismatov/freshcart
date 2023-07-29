@@ -3,19 +3,21 @@ import { useAcceptOrderMutation } from "@/store/api/ecommerce";
 import { useCallback, useState } from "react";
 import Image from "next/image";
 import FormParser from "@/app/utils/formParser";
-import { Input, ReviewStars, TextArea } from "@components";
+import { Input, LoadingModal, ReviewStars, TextArea } from "@components";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 import { OrderUsableType } from "@types";
 import ImageIcon from "public/images/image.svg";
 
 function FormModal({
   order,
+  setSelected,
   refetch,
 }: {
   order: Pick<OrderUsableType, "_id" | "vendorId">;
+  setSelected: React.Dispatch<React.SetStateAction<any>>;
   refetch: any;
 }) {
-  const [acceptOrder] = useAcceptOrderMutation();
+  const [acceptOrder, { isLoading }] = useAcceptOrderMutation();
   const [handleSubmitImage, images] = useParsedUrlData();
   const [star, setStar] = useState(0);
   const formParser = new FormParser();
@@ -24,54 +26,68 @@ function FormModal({
     formParser.getFormAsFormData.append("orderId", order._id);
     formParser.getFormAsFormData.append("status", "finished");
     formParser.getFormAsFormData.append("star", star.toString());
-    acceptOrder(formParser.getFormAsFormData).then(() => refetch());
-  }, [acceptOrder, formParser.getFormAsFormData, order, refetch, star]);
+    acceptOrder(formParser.getFormAsFormData).then(() => {
+      refetch();
+      setSelected(false);
+    });
+  }, [
+    acceptOrder,
+    formParser.getFormAsFormData,
+    order._id,
+    order.vendorId._id,
+    refetch,
+    setSelected,
+    star,
+  ]);
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        formParser.setForm(e);
-        handleSubmitReview();
-      }}
-      encType="multipart/form-data"
-    >
-      <label>
-        <input
-          multiple
-          accept="image/*"
-          type="file"
-          name="images"
-          onChange={handleSubmitImage}
-          hidden
-        />
-        <div className="text-center py-3 border border-b-0">
-          <Image
-            className="mx-auto h-20"
-            src={ImageIcon}
-            alt="Faylni joylash"
+    <>
+      {isLoading && <LoadingModal />}
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          formParser.setForm(e);
+          handleSubmitReview();
+        }}
+        encType="multipart/form-data"
+      >
+        <label>
+          <input
+            multiple
+            accept="image/*"
+            type="file"
+            name="images"
+            onChange={handleSubmitImage}
+            hidden
           />
-          <p className="text-slate-600 text-sm">Rasmlarni joylashtiring</p>
-        </div>
-      </label>
-      <div className="flex border pb-3 border-t-0">
-        {images[0] &&
-          images?.map((e, i) => (
+          <div className="text-center py-3 border border-b-0">
             <Image
-              className="object-cover w-[100px] h-[100px] m-2"
-              key={i}
-              src={e}
-              width={50}
-              height={50}
-              alt="Skrinshot"
-              unoptimized
+              className="mx-auto h-20"
+              src={ImageIcon}
+              alt="Faylni joylash"
             />
-          ))}
-      </div>
-      <TextArea label="Izoh" name="description" />
-      <ReviewStars star={star} setStar={setStar} />
-      <Input type="submit" value="Jo'natish" />
-    </form>
+            <p className="text-slate-600 text-sm">Rasmlarni joylashtiring</p>
+          </div>
+        </label>
+        <div className="flex border pb-3 border-t-0">
+          {images[0] &&
+            images?.map((e, i) => (
+              <Image
+                className="object-cover w-[100px] h-[100px] m-2"
+                key={i}
+                src={e}
+                width={50}
+                height={50}
+                alt="Skrinshot"
+                unoptimized
+              />
+            ))}
+        </div>
+        <TextArea label="Izoh" name="description" />
+        <ReviewStars star={star} setStar={setStar} />
+        <Input type="submit" value="Jo'natish" />
+      </form>
+    </>
   );
 }
 
