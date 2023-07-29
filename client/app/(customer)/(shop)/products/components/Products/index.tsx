@@ -8,7 +8,7 @@ function Products({ products }: { products: ProductType[] }) {
   return (
     <div className="w-full">
       <FilterTop length={products.length} />
-      <ProductGrid title="Dynamic" products={products} />
+      <ProductGrid title="Topilgan maxsulotlar" products={products} />
       <Panigation />
     </div>
   );

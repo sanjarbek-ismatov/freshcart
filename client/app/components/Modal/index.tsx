@@ -26,7 +26,7 @@ const Modal = ({ title, children, setShow }: ModalProps) => {
             style={{
               maxHeight: "90%",
             }}
-            className="py-5 overflow-y-auto"
+            className="py-5 h-auto overflow-y-auto"
           >
             {children}
           </div>

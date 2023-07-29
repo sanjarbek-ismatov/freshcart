@@ -1,18 +1,19 @@
 "use client";
 import { Form } from "@/app/(customer)/account/personal/components";
-import { Typography } from "@components";
+import { LoadingPage, Typography } from "@components";
 import { useUserContext } from "@/app/context";
 
 function Personal() {
-  const { data } = useUserContext();
+  const { data, isLoading } = useUserContext();
   return (
-    <div>
+    <div className="w-full">
       <Typography text="Sozlamalar" />
-      {data && (
-        <>
-          {/*<Header user={data} />*/}
-          <Form user={data.user} />
-        </>
+      {isLoading ? (
+        <LoadingPage />
+      ) : (
+        <div className="max-w-[400px]">
+          <Form user={data?.user} />
+        </div>
       )}
     </div>
   );

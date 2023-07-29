@@ -4,9 +4,9 @@ import { UrlContext, UserContext } from "@/app/context/index";
 import { useGetUserInfoQuery } from "@/store/api/ecommerce";
 
 export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const { data, refetch } = useGetUserInfoQuery();
+  const { data, refetch, isLoading } = useGetUserInfoQuery();
   return (
-    <UserContext.Provider value={{ data, refetch }}>
+    <UserContext.Provider value={{ data, refetch, isLoading }}>
       {children}
     </UserContext.Provider>
   );

@@ -9,11 +9,8 @@ function ReviewCard({ review }: { review: ReviewType }) {
   const url = useUrlContext();
   const [selected, setSelected] = useState<string | boolean>(false);
   const images = useMemo(
-    () =>
-      review.images.map(
-        (filename) => `${getSelection()}/files/image/${filename}`,
-      ),
-    [review],
+    () => review.images.map((filename) => `${url}/files/image/${filename}`),
+    [review.images, url],
   );
   return (
     <>

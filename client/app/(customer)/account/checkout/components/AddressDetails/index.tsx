@@ -2,17 +2,19 @@
 import type { CheckoutProduct, UserType } from "@types";
 import { OrderType } from "@types";
 import { useCallback, useMemo } from "react";
-import { Button } from "@components";
+import { Button, LoadingModal } from "@components";
 import { useAddOrderMutation } from "@/store/api/ecommerce";
 
 function AddressDetails({
   user,
+  refetch,
   state,
 }: {
   user?: UserType;
   state: CheckoutProduct[];
+  refetch: any;
 }) {
-  const [addOrder] = useAddOrderMutation();
+  const [addOrder, { isLoading }] = useAddOrderMutation();
   const sum = useMemo(() => {
     if (state.length) {
       return state.reduce(
@@ -39,19 +41,22 @@ function AddressDetails({
         orderNotes: "bla bla",
       };
 
-      addOrder(body);
+      addOrder(body).then(() => refetch());
     });
   }, [addOrder, state, sum, user?.address]);
   return (
-    <div className="min-w-[200px] border text-center">
-      <h1>Malumotlar</h1>
-      Jami summa: <span>{sum}$</span> ({state.length}ta maxsulot)
-      <h1>Manzil: </h1>
-      <p>
-        {user?.address.state}, {user?.address.location}
-      </p>
-      <Button onClick={submitPay}>Sotib olish</Button>
-    </div>
+    <>
+      <div className="min-w-[200px] border text-center">
+        <h1>Malumotlar</h1>
+        Jami summa: <span>{sum}$</span> ({state.length}ta maxsulot)
+        <h1>Manzil: </h1>
+        <p>
+          {user?.address.state}, {user?.address.location}
+        </p>
+        <Button onClick={submitPay}>Sotib olish</Button>
+      </div>
+      {isLoading && <LoadingModal />}
+    </>
   );
 }
 
