@@ -1,3 +1,4 @@
+"use client";
 import "./SlideImages.css";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction } from "react";

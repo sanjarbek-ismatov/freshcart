@@ -2,10 +2,8 @@ import "./StoresGrid.css";
 import Image from "next/image";
 import Link from "next/link";
 import { VendorType } from "@/types";
-import { useUrlContext } from "@/app/context";
 
-function StoresGrid({ vendors }: { vendors: VendorType[] }) {
-  const url = useUrlContext();
+function StoresGrid({ vendors, url }: { vendors: VendorType[]; url?: string }) {
   return (
     <div className="my-5">
       <p className="py-4">

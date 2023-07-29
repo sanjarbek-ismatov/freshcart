@@ -1,10 +1,16 @@
 import Image from "next/image";
 import StoreImage from "@/public/images/svg-graphics/store-graphics.svg";
 import "./Header.css";
-import { useUrlContext } from "@/app/context";
 
-function Header({ title, image }: { title?: string; image?: string }) {
-  const url = useUrlContext();
+function Header({
+  title,
+  image,
+  url,
+}: {
+  title?: string;
+  image?: string;
+  url?: string;
+}) {
   return (
     <div className="flex justify-between items-center p-5 bg-slate-100">
       <h1 className="text-4xl text-slate-700 font-bold">

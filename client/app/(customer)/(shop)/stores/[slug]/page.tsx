@@ -9,7 +9,11 @@ async function Store({ params }: { params: { slug: string } }) {
   );
   return (
     <>
-      <Header title={vendor.name} image={vendor.image} />{" "}
+      <Header
+        url={process.env.SERVER_URL}
+        title={vendor.name}
+        image={vendor.image}
+      />{" "}
       <Products products={vendor.products} />
     </>
   );
