@@ -9,7 +9,7 @@ class Filter {
   }
 
   select(item: any, type: "checkout" | "product" | "order") {
-    const foundedItem = this._state?.findIndex((state) => {
+    const foundedItem = this._state.findIndex((state) => {
       switch (type) {
         case "checkout":
           return state.id.slug === item.id.slug;
@@ -26,10 +26,13 @@ class Filter {
     this.setState(this._state);
   }
 
-  selectAll(item?: any[]) {
-    if (!item) return;
-    if (this._state.length === item.length) this._state = [];
-    else this._state.push(...item);
+  selectAll(items?: any[]) {
+    if (!items) return;
+    if (this._state.length === items.length) this._state = [];
+    else {
+      this._state = [];
+      this._state.push(...items);
+    }
     this.setState(this._state);
   }
 

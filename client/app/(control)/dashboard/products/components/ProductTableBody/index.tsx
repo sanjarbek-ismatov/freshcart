@@ -25,7 +25,7 @@ function ProductTableBody({
     <TableBody
       data={[
         <Checkbox
-          onChange={() => filter.select(product)}
+          onChange={() => filter.select(product, "product")}
           key={1}
           checked={checked}
         />,
