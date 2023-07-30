@@ -3,7 +3,6 @@ import React from "react";
 import { Filter, Products } from "./components";
 import { CategoryType, ProductType, VendorType } from "@types";
 import { getSSRData } from "@/app/utils/getData";
-import * as process from "process";
 
 const Index = async ({
   searchParams,
@@ -18,7 +17,7 @@ const Index = async ({
         ? e.name.toLowerCase().includes(searchParams.name.toLowerCase())
         : true) &&
       (searchParams.category
-        ? e.category.name === searchParams.category
+        ? e.category.name.toLowerCase() === searchParams.category.toLowerCase()
         : true),
   );
   const categories = await getSSRData<CategoryType[]>(
@@ -27,6 +26,7 @@ const Index = async ({
   const vendors = await getSSRData<VendorType[]>(
     `${process.env.SERVER_URL}/vendor/all`,
   );
+
   return (
     <>
       <div className="container mx-auto max-w-[1300px]">
