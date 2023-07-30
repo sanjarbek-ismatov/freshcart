@@ -40,9 +40,9 @@ function ReviewCard({ review }: { review: ReviewType }) {
                   width={70}
                   height={70}
                   className="w-[70px] h-[70px] object-cover"
-                  src={`${url}/api/files/image/${e}`}
+                  src={`${url}/files/image/${e}`}
                   alt="Rasmlar"
-                  onClick={() => setSelected(`${url}/api/files/image/${e}`)}
+                  onClick={() => setSelected(`${url}/files/image/${e}`)}
                   unoptimized
                 />
               ))}

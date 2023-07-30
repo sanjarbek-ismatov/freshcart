@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { VendorType } from "@/types";
 
-function StoresGrid({ vendors }: { vendors: VendorType[] }) {
+function StoresGrid({ vendors, url }: { vendors: VendorType[]; url?: string }) {
   return (
     <div className="my-5">
       <p className="py-4">
@@ -19,7 +19,7 @@ function StoresGrid({ vendors }: { vendors: VendorType[] }) {
             <div>
               <Image
                 className="rounded-full"
-                src={`${process.env.SERVER_URL}/files/image/${e.image}`}
+                src={`${url}/files/image/${e.image}`}
                 width={100}
                 height={100}
                 alt="Do'kon nomi"

@@ -11,7 +11,7 @@ async function Stores() {
   return (
     <>
       <Header />
-      <StoresGrid vendors={vendors} />
+      <StoresGrid url={process.env.SERVER_URL} vendors={vendors} />
       <Footer />
     </>
   );

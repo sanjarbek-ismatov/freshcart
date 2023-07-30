@@ -1,6 +1,8 @@
+"use client";
 import "./SlideImages.css";
 import { ProductType } from "@/types";
 import { Dispatch, SetStateAction } from "react";
+import { useUrlContext } from "@/app/context";
 
 function SlideImages({
   product,
@@ -11,13 +13,14 @@ function SlideImages({
   current: number;
   setCurrent: Dispatch<SetStateAction<number>>;
 }) {
+  const url = useUrlContext();
   return (
     <div className="flex overflow-x-scroll my-4">
       {product.images.map((e, i) => (
         <div
           key={i}
           style={{
-            backgroundImage: `url("${process.env.SERVER_URL}/files/image/${e}")`,
+            backgroundImage: `url("${url}/files/image/${e}")`,
           }}
           onClick={() => setCurrent(i)}
           className={`cursor-pointer border-2 bg-center w-[200px] bg-cover ${

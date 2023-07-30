@@ -2,7 +2,15 @@ import Image from "next/image";
 import StoreImage from "@/public/images/svg-graphics/store-graphics.svg";
 import "./Header.css";
 
-function Header({ title, image }: { title?: string; image?: string }) {
+function Header({
+  title,
+  image,
+  url,
+}: {
+  title?: string;
+  image?: string;
+  url?: string;
+}) {
   return (
     <div className="flex justify-between items-center p-5 bg-slate-100">
       <h1 className="text-4xl text-slate-700 font-bold">
@@ -10,7 +18,7 @@ function Header({ title, image }: { title?: string; image?: string }) {
       </h1>
       {image ? (
         <Image
-          src={`${process.env.SERVER_URL}/files/image/${image}`}
+          src={`${url}/files/image/${image}`}
           alt="Do'kon"
           width={100}
           height={100}
