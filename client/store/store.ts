@@ -8,6 +8,7 @@ import {
 import { clientFilter, controlFilter } from "@/store/actions/filter";
 import checkoutSlice from "@/store/reducers/checkout";
 import orderFilterSlice from "@/store/reducers/order";
+import { productSlice } from "@/store/reducers/product";
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     filter: clientFilterReducer,
     controlFilter: controlFilterReducer,
     checkoutFilter: checkoutSlice.reducer,
+    productFilter: productSlice.reducer,
     controlOrderFilter: orderFilterSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
@@ -23,7 +25,6 @@ export const store = configureStore({
     );
   },
 });
-export const processUrl = process.env.SERVER_URL;
 export const {
   sortByFilter: sortByDispatch,
   countItemFilter: countItemDispatch,
@@ -41,6 +42,10 @@ export const { setCheckoutState } = bindActionCreators(
 );
 export const { setOrderState } = bindActionCreators(
   orderFilterSlice.actions,
+  store.dispatch,
+);
+export const { setProductState } = bindActionCreators(
+  productSlice.actions,
   store.dispatch,
 );
 export type RootDispatch = typeof store.dispatch;

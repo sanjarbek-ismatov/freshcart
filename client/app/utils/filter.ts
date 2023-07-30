@@ -9,7 +9,7 @@ class Filter {
   }
 
   select(item: any, type: "checkout" | "product" | "order") {
-    const foundedItem = this._state.findIndex((state) => {
+    const foundedItem = this._state?.findIndex((state) => {
       switch (type) {
         case "checkout":
           return state.id.slug === item.id.slug;
