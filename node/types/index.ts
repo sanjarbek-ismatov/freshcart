@@ -24,6 +24,7 @@ interface ProductType<T> {
   expirationData: string;
   dateOfManufacture: string;
   isInArchive: boolean;
+  date: Date;
 }
 
 type ProductTypeWithIds = ProductType<Types.ObjectId>;

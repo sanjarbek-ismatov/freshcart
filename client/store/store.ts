@@ -19,10 +19,11 @@ export const store = configureStore({
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
-      eCommerceApi.middleware
+      eCommerceApi.middleware,
     );
   },
 });
+export const processUrl = process.env.SERVER_URL;
 export const {
   sortByFilter: sortByDispatch,
   countItemFilter: countItemDispatch,
@@ -32,15 +33,15 @@ export const {
 } = bindActionCreators(clientFilter, store.dispatch);
 export const { statusFilter: statusFilterDispatch } = bindActionCreators(
   controlFilter,
-  store.dispatch
+  store.dispatch,
 );
 export const { setCheckoutState } = bindActionCreators(
   checkoutSlice.actions,
-  store.dispatch
+  store.dispatch,
 );
 export const { setOrderState } = bindActionCreators(
   orderFilterSlice.actions,
-  store.dispatch
+  store.dispatch,
 );
 export type RootDispatch = typeof store.dispatch;
 const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> =

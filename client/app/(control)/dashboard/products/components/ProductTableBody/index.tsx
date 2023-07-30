@@ -41,9 +41,11 @@ function ProductTableBody({
           unoptimized
         />,
         product.name,
-        // product.category.name,
+        product.category.name,
         product.price,
-        new Date(product.guarantee).toLocaleDateString(),
+        new Date(
+          product.date ? product.date : "2023-06-07T00:00:00",
+        ).toLocaleDateString(),
         <MenuButton key={1}>
           <MenuItem>
             <i className="fa-solid fa-circle-info mr-2"></i>Haqida

@@ -107,8 +107,7 @@ interface ProductType {
   reviews: ReviewType[];
   weight: number;
   vendor: VendorType;
-  guarantee: number;
-  dateOfManufacture: Date;
+  date: Date;
   isInArchive: boolean;
 }
 

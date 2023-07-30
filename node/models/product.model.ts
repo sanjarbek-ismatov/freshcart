@@ -24,6 +24,12 @@ const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  date: {
+    type: Date,
+    default: function () {
+      return new Date();
+    },
+  },
 });
 export const Product = mongoose.model<ProductTypeWithIds>(
   "product",
