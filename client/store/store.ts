@@ -8,6 +8,7 @@ import {
 import { clientFilter, controlFilter } from "@/store/actions/filter";
 import checkoutSlice from "@/store/reducers/checkout";
 import orderFilterSlice from "@/store/reducers/order";
+import { productSlice } from "@/store/reducers/product";
 
 export const store = configureStore({
   reducer: {
@@ -15,11 +16,12 @@ export const store = configureStore({
     filter: clientFilterReducer,
     controlFilter: controlFilterReducer,
     checkoutFilter: checkoutSlice.reducer,
+    productFilter: productSlice.reducer,
     controlOrderFilter: orderFilterSlice.reducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({ serializableCheck: false }).concat(
-      eCommerceApi.middleware
+      eCommerceApi.middleware,
     );
   },
 });
@@ -32,15 +34,19 @@ export const {
 } = bindActionCreators(clientFilter, store.dispatch);
 export const { statusFilter: statusFilterDispatch } = bindActionCreators(
   controlFilter,
-  store.dispatch
+  store.dispatch,
 );
 export const { setCheckoutState } = bindActionCreators(
   checkoutSlice.actions,
-  store.dispatch
+  store.dispatch,
 );
 export const { setOrderState } = bindActionCreators(
   orderFilterSlice.actions,
-  store.dispatch
+  store.dispatch,
+);
+export const { setProductState } = bindActionCreators(
+  productSlice.actions,
+  store.dispatch,
 );
 export type RootDispatch = typeof store.dispatch;
 const useAppSelector: TypedUseSelectorHook<ReturnType<typeof store.getState>> =

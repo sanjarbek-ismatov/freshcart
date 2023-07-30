@@ -1,4 +1,11 @@
-import { Badge, Button, LoadingModal, MenuButton, MenuItem } from "@components";
+import {
+  Badge,
+  Button,
+  LoadingModal,
+  MenuButton,
+  MenuItem,
+  Typography,
+} from "@components";
 import Image from "next/image";
 import { OrderChangeStatus, VendorWithOrders } from "@types";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
@@ -39,8 +46,8 @@ function Navbar({
   }, []);
   return (
     <>
-      <header className="flex justify-between h-16 w-full items-center">
-        <p>Some component</p>
+      <header className="flex justify-between h-16 w-full items-center border-b">
+        <Typography size="md" text="Asboblar paneli" />
         <nav className="flex items-center">
           <MenuButton
             child={

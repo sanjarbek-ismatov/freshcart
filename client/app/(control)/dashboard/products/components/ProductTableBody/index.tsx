@@ -1,37 +1,34 @@
 "use client";
 import { ProductType } from "@/types";
-import { Dispatch, SetStateAction, useCallback } from "react";
 import { TableBody } from "@components/dashboard";
-import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import Image from "next/image";
 import { MenuButton, MenuItem } from "@components";
 import { useDeleteProductsByIdMutation } from "@/store/api/ecommerce";
 import { useUrlContext } from "@/app/context";
+import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 
 function ProductTableBody({
   product,
-  selected,
   refetch,
-  setSelected,
+  filter,
+  checked,
 }: {
   product: ProductType;
-  selected: boolean;
+  filter: any;
   refetch: any;
-  setSelected: Dispatch<SetStateAction<ProductType[]>>;
+  checked: boolean;
 }) {
   const url = useUrlContext();
   const [deleteProduct] = useDeleteProductsByIdMutation();
-  const checkHandler = useCallback(() => {
-    setSelected((prev: ProductType[]) =>
-      prev.includes(product)
-        ? prev.filter((e) => e._id !== product._id)
-        : [...prev, product],
-    );
-  }, [product, setSelected]);
+
   return (
     <TableBody
       data={[
-        <Checkbox onChange={checkHandler} key={1} checked={selected} />,
+        <Checkbox
+          onChange={() => filter.select(product, "product")}
+          key={1}
+          checked={checked}
+        />,
         <Image
           key={1}
           src={`${url}/files/image/${product.images[0]}`}
@@ -41,9 +38,11 @@ function ProductTableBody({
           unoptimized
         />,
         product.name,
-        // product.category.name,
+        product.category.name,
         product.price,
-        new Date(product.guarantee).toLocaleDateString(),
+        new Date(
+          product.date ? product.date : "2023-06-07T00:00:00",
+        ).toLocaleDateString(),
         <MenuButton key={1}>
           <MenuItem>
             <i className="fa-solid fa-circle-info mr-2"></i>Haqida

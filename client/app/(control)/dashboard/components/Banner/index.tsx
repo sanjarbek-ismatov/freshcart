@@ -6,8 +6,7 @@ function Banner() {
   return (
     <div
       style={{
-        backgroundImage:
-          "url(https://freshcart.codescandy.com/assets/images/slider/slider-image-1.jpg)",
+        backgroundImage: "url(https://i.ibb.co/Jt5WBgM/slider-image-1.jpg)",
       }}
       className="h-60 rounded-md bg-cover bg-right bg-no-repeat my-5 px-20 flex leading-[35px] items-center"
     >

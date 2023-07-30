@@ -19,9 +19,14 @@ async function getSingleVendor(req: NodeRequest, res: Response) {
 }
 
 async function getMe(req: NodeRequest, res: Response) {
-  const vendor = await req.vendor?.populate("products");
+  const vendor = await req.vendor?.populate({
+    path: "products",
+    populate: {
+      path: "category",
+    },
+  });
   const orders = await Order.find({ vendorId: vendor?._id }).populate(
-    "productId clientId"
+    "productId clientId",
   );
   res.status(200).send({ vendor, orders });
 }
@@ -53,7 +58,7 @@ async function login(req: NodeRequest, res: Response) {
     return res.status(404).send({ code: 404, message: "Topilmadi" });
   const checkedPassword = passwordChecker(
     req.body.password,
-    checkVendor.password
+    checkVendor.password,
   );
   if (!checkedPassword)
     return res.status(401).send({ code: 401, message: "Xato parol" });
