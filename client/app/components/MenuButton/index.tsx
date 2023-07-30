@@ -1,5 +1,12 @@
 "use client";
-import { forwardRef, ReactNode, useState } from "react";
+import {
+  ElementRef,
+  forwardRef,
+  ReactNode,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 const MenuButton = forwardRef<
   HTMLElement,
@@ -11,9 +18,33 @@ const MenuButton = forwardRef<
   }
 >(function MenuButton(
   { isThereOwnIcon = false, defaultShow = false, children, child },
-  ref
+  ref,
 ) {
+  const iconRef = useRef<ElementRef<"i">>(null);
   const [show, setShow] = useState(false);
+  useEffect(() => {
+    const icon = iconRef.current;
+    if (!icon) return;
+
+    function handleClick() {
+      setShow(false);
+    }
+
+    function mouseLeave() {
+      document.addEventListener("click", handleClick);
+    }
+
+    function mouseEnter() {
+      document.removeEventListener("click", handleClick);
+    }
+
+    icon.addEventListener("mouseleave", mouseLeave);
+    icon.addEventListener("mouseenter", mouseEnter);
+    return () => {
+      icon.removeEventListener("mouseleave", mouseLeave);
+      icon.removeEventListener("mouseenter", mouseEnter);
+    };
+  }, []);
   return (
     <div className="relative m-auto">
       <div className="w-full h-full"></div>
@@ -21,6 +52,7 @@ const MenuButton = forwardRef<
         {!isThereOwnIcon ? (
           <>
             <i
+              ref={iconRef}
               onClick={() => setShow(!show)}
               className="fa-solid px-3 fa-ellipsis-vertical"
             ></i>
