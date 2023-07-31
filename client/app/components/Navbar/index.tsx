@@ -35,7 +35,10 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
         {locationShow && <LocationList setShow={setLocationShow} />}
         <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
           <div className="sm:w-56 w-40 mr-12">
-            <Image src={LogoImage} alt="Logo image" />
+            <Link href="/">
+              {" "}
+              <Image src={LogoImage} alt="Logo image" />
+            </Link>
           </div>
           <div className="w-full md:block hidden">
             <form

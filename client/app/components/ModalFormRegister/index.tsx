@@ -5,6 +5,7 @@ import Input from "../Input";
 import "./ModalFormRegister.css";
 import { useSignUpMutation } from "@/store/api/ecommerce";
 import React from "react";
+import Link from "next/link";
 
 function ModalForm({
   setShowLogin,
@@ -95,6 +96,12 @@ function ModalForm({
           >
             Hisobingiz mavjudmi?
           </p>
+          <Link
+            href="/dashboard/auth"
+            className="text-green-500 text-sm cursor-pointer"
+          >
+            Sotuvchimisiz?
+          </Link>
         </div>
       </form>
     </>

@@ -46,3 +46,4 @@ export {default as TextArea} from "./TextArea";
 export {default as LocationList} from "./LocationList";
 export {default as LoadingModal} from "./LoadingModal";
 export {default as LoadingPage} from "./LoadingPage";
+export {default as NavbarTitle} from "./NavbarTitle";
