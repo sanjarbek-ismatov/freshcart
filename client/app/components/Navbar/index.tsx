@@ -1,32 +1,21 @@
 "use client";
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, FC, SetStateAction, useCallback, useState } from "react";
 import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { Badge, LocationList, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
     const { data } = useUserContext();
     const router = useRouter();
-    const url = useMemo(
-      () =>
-        typeof window !== "undefined" ? new URL(window.location.href) : null,
-      [],
-    );
+    const searchParams = useSearchParams();
     const [show, setShow] = useState(false);
     const [locationShow, setLocationShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
@@ -46,7 +35,10 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
         {locationShow && <LocationList setShow={setLocationShow} />}
         <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
           <div className="sm:w-56 w-40 mr-12">
-            <Image src={LogoImage} alt="Logo image" />
+            <Link href="/">
+              {" "}
+              <Image src={LogoImage} alt="Logo image" />
+            </Link>
           </div>
           <div className="w-full md:block hidden">
             <form
@@ -54,7 +46,10 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 e.preventDefault();
                 const input = e.currentTarget
                   .firstElementChild as HTMLInputElement;
-                router.push(`/products${url?.search}&name=${input.value}`);
+                const params = new URLSearchParams(searchParams);
+                params.set("name", input.value);
+                router.push(`/products?${params.toString()}`);
+                input.value = "";
               }}
             >
               <SearchInput placeholder="Maxsulot nomini yozing" />

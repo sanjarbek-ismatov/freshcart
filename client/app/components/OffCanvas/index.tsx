@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import EmptyCart from "public/images/emptry_cart.png";
 import { Button, CartProduct } from "@components";
 import "./OffCanvas.css";
@@ -16,6 +16,7 @@ function OffCanvas({
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   cart?: UserType["cart"];
 }) {
+  const realCart = useMemo(() => cart?.filter((e) => e.id), [cart]);
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     const offCanvasBackdrop = document.getElementById(
@@ -64,8 +65,8 @@ function OffCanvas({
           <h1 className="text-2xl">Savatcha</h1>
         </header>
         <main>
-          {cart?.length ? (
-            cart.map((e, i) => (
+          {realCart?.length ? (
+            realCart.map((e, i) => (
               <CartProduct key={i} count={e.count} product={e.id} />
             ))
           ) : (

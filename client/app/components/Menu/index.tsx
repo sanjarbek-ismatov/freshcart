@@ -24,14 +24,16 @@ function Menu() {
           >
             {data?.map((e, i) => (
               <li key={i} className="py-1">
-                <p>{e.name}</p>
-                {/*<div>*/}
-                {/*  {e.subCategories.map((e, i) => (*/}
-                {/*    <Link key={i} href={"/"}>*/}
-                {/*      {e.name}*/}
-                {/*    </Link>*/}
-                {/*  ))}*/}
-                {/*</div>*/}
+                <p className="font-bold">{e.name}</p>
+                <div className="pl-2">
+                  {e.subCategories.map((e, i) => (
+                    <Link key={i} href={`/products?category=${e.slug}`}>
+                      <p className="text-sm p-2 hover:bg-gray-200 rounded-md">
+                        {e.name}
+                      </p>
+                    </Link>
+                  ))}
+                </div>
               </li>
             ))}
           </ul>
