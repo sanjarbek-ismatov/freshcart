@@ -18,9 +18,7 @@ function PopularProducts({
     switch (state?.sortBy) {
       case "date":
         return mutation.sort(
-          (a, b) =>
-            new Date(a.dateOfManufacture).getTime() -
-            new Date(b.dateOfManufacture).getTime(),
+          (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime(),
         );
       case "rating":
         return mutation.sort((a, b) => b.rating - a.rating);
