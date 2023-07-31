@@ -1,32 +1,21 @@
 "use client";
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useCallback,
-  useMemo,
-  useState,
-} from "react";
+import { Dispatch, FC, SetStateAction, useCallback, useState } from "react";
 import "./Navbar.css";
 import { SearchInput } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { Badge, LocationList, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
     const { data } = useUserContext();
     const router = useRouter();
-    const url = useMemo(
-      () =>
-        typeof window !== "undefined" ? new URL(window.location.href) : null,
-      [],
-    );
+    const searchParams = useSearchParams();
     const [show, setShow] = useState(false);
     const [locationShow, setLocationShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
@@ -54,7 +43,10 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 e.preventDefault();
                 const input = e.currentTarget
                   .firstElementChild as HTMLInputElement;
-                router.push(`/products${url?.search}&name=${input.value}`);
+                const params = new URLSearchParams(searchParams);
+                params.set("name", input.value);
+                router.push(`/products?${params.toString()}`);
+                input.value = "";
               }}
             >
               <SearchInput placeholder="Maxsulot nomini yozing" />
