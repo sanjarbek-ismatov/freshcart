@@ -10,7 +10,7 @@ import {
   VendorWithOrders,
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { gettoken } from "@/app/utils/gettoken";
+import { getLocalData } from "@/app/utils/getLocalData";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
@@ -72,7 +72,7 @@ export const eCommerceApi = createApi({
           method: "POST",
           body,
           headers: {
-            "x-vendor-token": gettoken("x-vendor-token"),
+            "x-vendor-token": getLocalData("x-vendor-token"),
           },
         }),
       }),
@@ -82,7 +82,7 @@ export const eCommerceApi = createApi({
           url: "/auth/product/add",
           body,
           headers: {
-            ["x-token"]: gettoken("x-token"),
+            ["x-token"]: getLocalData("x-token"),
           },
         }),
       }),
@@ -94,7 +94,7 @@ export const eCommerceApi = createApi({
           method: "GET",
           url: "/auth/info",
           headers: {
-            ["x-token"]: gettoken("x-token"),
+            ["x-token"]: getLocalData("x-token"),
           },
         }),
       }),
@@ -104,7 +104,7 @@ export const eCommerceApi = createApi({
           method: "PUT",
           body,
           headers: {
-            ["x-token"]: gettoken("x-token"),
+            ["x-token"]: getLocalData("x-token"),
           },
         }),
       }),
@@ -113,7 +113,7 @@ export const eCommerceApi = createApi({
           url: "/vendor/me",
           method: "GET",
           headers: {
-            ["x-vendor-token"]: gettoken("x-vendor-token"),
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
           },
         }),
       }),
@@ -126,7 +126,7 @@ export const eCommerceApi = createApi({
           method: "DELETE",
           body,
           headers: {
-            ["x-vendor-token"]: gettoken("x-vendor-token"),
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
           },
         }),
       }),
@@ -139,7 +139,7 @@ export const eCommerceApi = createApi({
           url: "/order/add",
           body,
           headers: {
-            ["x-token"]: gettoken("x-token"),
+            ["x-token"]: getLocalData("x-token"),
           },
         }),
       }),
@@ -152,7 +152,7 @@ export const eCommerceApi = createApi({
             status,
           },
           headers: {
-            ["x-vendor-token"]: gettoken("x-vendor-token"),
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
           },
         }),
       }),
@@ -162,7 +162,7 @@ export const eCommerceApi = createApi({
           body,
           method: "POST",
           headers: {
-            ["x-token"]: gettoken("x-token"),
+            ["x-token"]: getLocalData("x-token"),
           },
         }),
       }),
