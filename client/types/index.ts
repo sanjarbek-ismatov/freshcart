@@ -175,4 +175,5 @@ export type {
   CheckoutProduct,
   OrderUsableType,
   ReviewType,
+  SubCategoryType,
 };

@@ -2,25 +2,24 @@
 import { useAddProductMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
 import { Button, Input, Select, TextArea } from "@components";
-import { CategoryType } from "@types";
-import { useMemo, useState } from "react";
+import { CategoryType, SubCategoryType } from "@types";
+import { useCallback, useState } from "react";
 
 function CreateProduct({ categories }: { categories: CategoryType[] }) {
   const [addProduct] = useAddProductMutation();
-  const [selected, setSelected] = useState(categories[0].name);
-  const [category, setCategory] = useState(categories[0].subCategories[0]._id);
-  const subCategories = useMemo(
-    () =>
-      categories.find((e) => e.name === selected)?.subCategories ||
-      categories[0].subCategories,
-    [categories, selected],
+  const [category, setCategory] = useState<SubCategoryType[]>(
+    categories[0].subCategories,
   );
+  const [subIndex, setSubIndex] = useState(0);
   const formParser = new FormParser();
-  const handleChange = (category: string) => {
-    const group = categories.find((e) => e.name === selected);
-    const result = group?.subCategories.find((e) => e.slug === category) as any;
-    setCategory(result?._id);
-  };
+  const handleChangeMainCategory = useCallback(
+    (value: string) => {
+      const currCategory = categories.find((e) => e.name === value)
+        ?.subCategories;
+      currCategory && setCategory(currCategory);
+    },
+    [categories],
+  );
   return (
     <div className="">
       <h1 className="text-3xl my-5 font-bold text-slate-800">
@@ -31,19 +30,18 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
         onSubmit={(event) => {
           event.preventDefault();
           formParser.setForm(event);
-          formParser.getFormAsFormData.append("category", category);
-          console.log(category);
-          // addProduct(formParser.getFormAsFormData);
+          formParser.getFormAsFormData.append(
+            "category",
+            category[subIndex]._id,
+          );
+          addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >
         <Input name="name" label="Mahsulot nomi" fullWidth />
         <Input name="price" label="Narxi" fullWidth />
         <Select
-          onChange={(e) => {
-            setSelected(e.target.value);
-            setCategory(subCategories[0]._id);
-          }}
+          onChange={(e) => handleChangeMainCategory(e.target.value)}
           defaultValue={categories[0].name}
           fullWidth
         >
@@ -54,12 +52,12 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           ))}
         </Select>
         <Select
-          onChange={(e) => handleChange(e.target.value)}
-          defaultValue={subCategories[0].slug}
+          onChange={(e) => setSubIndex(e.target.selectedIndex)}
+          defaultValue={category[0]._id}
           fullWidth
         >
-          {subCategories.map((e, i) => (
-            <option value={e.slug} key={i}>
+          {category.map((e, i) => (
+            <option key={i} value={e._id}>
               {e.name}
             </option>
           ))}

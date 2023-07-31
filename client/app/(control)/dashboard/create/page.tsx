@@ -6,7 +6,6 @@ async function CreatePage() {
   const categories = await getSSRData<CategoryType[]>(
     `${process.env.SERVER_URL}/category/all`,
   );
-  console.log(categories);
   return <CreateProduct categories={categories} />;
 }
 
