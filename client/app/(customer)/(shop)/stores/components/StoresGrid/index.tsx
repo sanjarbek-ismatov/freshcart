@@ -5,12 +5,12 @@ import { VendorType } from "@/types";
 
 function StoresGrid({ vendors, url }: { vendors: VendorType[]; url?: string }) {
   return (
-    <div className="my-5">
+    <div className="my-10">
       <p className="py-4">
         Bizda <span className="text-green-500">{vendors.length}</span> sotuvchi
         bor
       </p>
-      <div className="grid grid-cols-3 grid-rows-3 gap-x-16 gap-y-5">
+      <div className="flex flex-wrap gap-x-16 gap-y-5">
         {vendors.map((e, i) => (
           <div
             key={i}
@@ -26,10 +26,10 @@ function StoresGrid({ vendors, url }: { vendors: VendorType[]; url?: string }) {
                 unoptimized
               />
             </div>
-            <div>
+            <div className="mx-3">
               <Link
                 className="font-bold text-xl hover:text-green-500"
-                href={`/store/${e.slug}`}
+                href={`/stores/${e.slug}`}
               >
                 {e.name}
               </Link>

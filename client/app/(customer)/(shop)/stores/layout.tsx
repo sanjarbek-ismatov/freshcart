@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
 import { Metadata } from "next";
-import { BreadCrumb } from "@components";
+import { BreadCrumb, Container } from "@components";
 
 export const metadata: Metadata = {
   title: "Do'konlar",
@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 function StoresLayout({ children }: { children: ReactNode }) {
   return (
-    <div className="mx-auto max-w-[1300px] container">
+    <Container>
       <BreadCrumb
         path={[
           { title: "Uy", path: "/" },
@@ -16,7 +16,7 @@ function StoresLayout({ children }: { children: ReactNode }) {
         ]}
       />
       {children}
-    </div>
+    </Container>
   );
 }
 
