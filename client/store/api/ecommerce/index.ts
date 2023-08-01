@@ -5,6 +5,7 @@ import {
   OrderUsableType,
   RequestLoginForm,
   RequestRegisterForm,
+  ReviewType,
   ServerResponse,
   UserType,
   VendorWithOrders,
@@ -169,6 +170,15 @@ export const eCommerceApi = createApi({
       getAllCategory: build.query<CategoryType[], void>({
         query: () => "/category/all",
       }),
+      getReviews: build.query<ReviewType[], void>({
+        query: () => ({
+          method: "GET",
+          url: "/review/all",
+          headers: {
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -188,4 +198,5 @@ export const {
   useChangeStatusMutation,
   useAcceptOrderMutation,
   useGetAllCategoryQuery,
+  useGetReviewsQuery,
 } = eCommerceApi;

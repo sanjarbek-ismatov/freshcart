@@ -6,6 +6,13 @@ import { Vendor } from "../models/vendor.model";
 import { Product } from "../models/product.model";
 
 class ReviewController {
+  async getAll(req: NodeRequest, res: Response) {
+    const reviews = await Review.find({ vendorId: req.vendor?._id }).populate(
+      "clientId",
+    );
+    res.status(200).send(reviews);
+  }
+
   async addReview(req: NodeRequest, res: Response) {
     const newReview = new Review(req.body);
     const order = await Order.findOne({ _id: req.body.orderId });

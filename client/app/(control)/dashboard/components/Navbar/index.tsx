@@ -37,7 +37,7 @@ function Navbar({
     [details?.orders],
   );
   useEffect(() => {
-    ref.current?.addEventListener("click", function (e) {
+    ref.current?.addEventListener("click", function () {
       setShow(!show);
     });
   }, [show]);

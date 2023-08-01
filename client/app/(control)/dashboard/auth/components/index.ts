@@ -1,1 +1,1 @@
-export { default as LinkComponent } from "./Link";
+export { default as AuthComponent } from "./AuthComponent";

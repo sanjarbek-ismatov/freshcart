@@ -2,12 +2,12 @@
 import { Button, Input, LoadingModal, Typography } from "@components";
 import FormParser from "@/app/utils/formParser";
 import { useVendorLoginMutation } from "@/store/api/ecommerce";
-import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 function AuthComponent() {
   const formParser = new FormParser();
   const [login, { isLoading }] = useVendorLoginMutation();
-  const router = useRouter();
+  const [message, setMessage] = useState("");
   return (
     <>
       {isLoading && <LoadingModal />}
@@ -28,7 +28,10 @@ function AuthComponent() {
                       "x-vendor-token",
                       data.data.token as any,
                     );
-                    router.replace("/dashboard");
+                    window.location.reload();
+                  } else {
+                    const error: any = data.error;
+                    alert(error.data.message);
                   }
                 });
               }}

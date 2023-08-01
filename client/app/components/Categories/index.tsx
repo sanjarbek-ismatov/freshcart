@@ -17,12 +17,12 @@ function Catergories() {
         {/*  loader={() => e.image}*/}
         {/*  unoptimized*/}
         {/*/>*/}
-        {/*      <Link*/}
+        {/*      <AuthComponent*/}
         {/*        className="my-3 group-hover:text-green-500 font-medium text-slate-700"*/}
         {/*        href={"/"}*/}
         {/*      >*/}
         {/*        {e.name}*/}
-        {/*      </Link>*/}
+        {/*      </AuthComponent>*/}
         {/*    </div>*/}
         {/*  ))}*/}
       </div>
