@@ -1,17 +1,16 @@
 import { LinkComponent } from "@/app/(control)/dashboard/auth/components";
-import { BreadCrumb } from "@components";
 import React from "react";
 
 function AuthPage() {
   return (
     <div>
-      <BreadCrumb
-        path={[
-          { title: "Uy", path: "/" },
-          { title: "Sotuvchi", path: "/vv" },
-          { title: "Autentifikatsiya", path: "/vv/auth" },
-        ]}
-      />
+      {/*<BreadCrumb*/}
+      {/*  path={[*/}
+      {/*    { title: "Uy", path: "/" },*/}
+      {/*    { title: "Sotuvchi", path: "/vv" },*/}
+      {/*    { title: "Autentifikatsiya", path: "/vv/auth" },*/}
+      {/*  ]}*/}
+      {/*/>*/}
       <LinkComponent />
     </div>
   );
