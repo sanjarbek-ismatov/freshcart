@@ -13,11 +13,11 @@ import { useChangeStatusMutation } from "@/store/api/ecommerce";
 import { useUrlContext } from "@/app/context";
 
 function Navbar({
-  details: { vendor, orders },
+  details,
   isLoading,
   refetch,
 }: {
-  details: VendorWithOrders;
+  details?: VendorWithOrders;
   isLoading: boolean;
   refetch: any;
 }) {
@@ -33,8 +33,8 @@ function Navbar({
   );
 
   const pendingOrders = useMemo(
-    () => orders.filter((e) => e.status === "pending"),
-    [orders],
+    () => details?.orders.filter((e) => e.status === "pending"),
+    [details?.orders],
   );
   useEffect(() => {
     ref.current?.addEventListener("click", function (e) {
@@ -51,7 +51,7 @@ function Navbar({
         <nav className="flex items-center">
           <MenuButton
             child={
-              <Badge onClick={handleClick} length={pendingOrders.length}>
+              <Badge onClick={handleClick} length={pendingOrders?.length || 0}>
                 <i className="fa-solid fa-bell text-xl"></i>
               </Badge>
             }
@@ -59,8 +59,8 @@ function Navbar({
             isThereOwnIcon
             ref={ref}
           >
-            {pendingOrders.length ? (
-              pendingOrders.map((e, i) => (
+            {pendingOrders?.length ? (
+              pendingOrders?.map((e, i) => (
                 <MenuItem key={i}>
                   <h4 className="text-slate-800 text-2xl font-semibold">
                     {e.productId.name}
@@ -98,7 +98,7 @@ function Navbar({
           </MenuButton>
           <Image
             className="w-12 h-12 rounded-full ml-5"
-            src={`${url}/files/image/${vendor?.image}`}
+            src={`${url}/files/image/${details?.vendor?.image}`}
             height={50}
             width={50}
             alt="Profile"

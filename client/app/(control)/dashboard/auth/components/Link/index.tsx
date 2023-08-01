@@ -4,7 +4,7 @@ import FormParser from "@/app/utils/formParser";
 import { useVendorLoginMutation } from "@/store/api/ecommerce";
 import { useRouter } from "next/navigation";
 
-function LinkComponent() {
+function AuthComponent() {
   const formParser = new FormParser();
   const [login, { isLoading }] = useVendorLoginMutation();
   const router = useRouter();
@@ -60,4 +60,4 @@ function LinkComponent() {
   );
 }
 
-export default LinkComponent;
+export default AuthComponent;
