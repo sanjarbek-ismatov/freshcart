@@ -49,7 +49,7 @@ function PanelNavigation() {
             className={`p-3 block text-gray-500 ${
               lastPath === "reviews" && "bg-green-200 text-green-600"
             }`}
-            href="/"
+            href="/dashboard/reviews"
           >
             <i className="fa-regular fa-star mx-1"></i>Izohlar
           </Link>

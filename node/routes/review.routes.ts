@@ -1,6 +1,9 @@
 import express from "express";
 import ReviewController from "../controllers/review.controller";
-import { authMiddleware } from "../middleware/auth.middleware";
+import {
+  authMiddleware,
+  vendorAuthMiddleware,
+} from "../middleware/auth.middleware";
 import { upload } from "../models/gridfs.model";
 
 const reviewRoutes = express.Router();
@@ -10,4 +13,5 @@ reviewRoutes.post(
   [authMiddleware, upload.array("images")],
   controller.addReview,
 );
+reviewRoutes.get("/all", vendorAuthMiddleware, controller.getAll);
 export default reviewRoutes;

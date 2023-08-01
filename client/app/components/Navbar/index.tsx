@@ -13,7 +13,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
-    const { data } = useUserContext();
+    const vendorAuth = useAuth("vendor");
+    const { data, isLoading } = useUserContext();
     const router = useRouter();
     const searchParams = useSearchParams();
     const [show, setShow] = useState(false);
@@ -40,7 +41,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
               <Image src={LogoImage} alt="Logo image" />
             </Link>
           </div>
-          <div className="w-full md:block hidden">
+          <div className="flex-1 md:block hidden">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -63,44 +64,53 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
               </button>
             </form>
           </div>
-          <div className="w-32 flex justify-between">
-            <div>
-              <span className="relative">
-                <i className="cursor-pointer fa-regular fa-heart text-xl"></i>
-                <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
-                  1
-                </span>
-              </span>
-              <span className="relative mx-3">
-                {
-                  <>
+          <div className="min-w-32 flex justify-between">
+            {!isLoading &&
+              (vendorAuth ? (
+                <Link href="/dashboard">
+                  <p className="text-slate-700 p-3 border">
+                    <i className="fa-solid fa-house-user"></i> Boshqaruv paneli
+                  </p>
+                </Link>
+              ) : (
+                <div>
+                  <span className="relative">
+                    <i className="cursor-pointer fa-regular fa-heart text-xl"></i>
+                    <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
+                      1
+                    </span>
+                  </span>
+                  <span className="relative mx-3">
+                    {
+                      <>
+                        <i
+                          onClick={handleShow}
+                          className="fa-regular cursor-pointer fa-user text-xl"
+                        ></i>
+                        {show && (
+                          <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
+                            <li className="py-1">
+                              <Link href="/account/personal">Hisob</Link>
+                            </li>
+                            <li className="py-1">
+                              <Link href="/">Yordam</Link>
+                            </li>
+                            <li className="py-1 text-red-500">
+                              <button onClick={logOut}>chiqish</button>
+                            </li>
+                          </ul>
+                        )}
+                      </>
+                    }
+                  </span>
+                  <Badge length={1}>
                     <i
-                      onClick={handleShow}
-                      className="fa-regular cursor-pointer fa-user text-xl"
+                      className="cursor-pointer fa-regular fa-bookmark text-xl"
+                      onClick={handleShowOffCanvas}
                     ></i>
-                    {show && (
-                      <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
-                        <li className="py-1">
-                          <Link href="/account/personal">Hisob</Link>
-                        </li>
-                        <li className="py-1">
-                          <Link href="/">Yordam</Link>
-                        </li>
-                        <li className="py-1 text-red-500">
-                          <button onClick={logOut}>chiqish</button>
-                        </li>
-                      </ul>
-                    )}
-                  </>
-                }
-              </span>
-              <Badge length={1}>
-                <i
-                  className="cursor-pointer fa-regular fa-bookmark text-xl"
-                  onClick={handleShowOffCanvas}
-                ></i>
-              </Badge>
-            </div>
+                  </Badge>
+                </div>
+              ))}
             <div className="md:hidden block mx-3">
               <span>
                 <i className="fa-solid fa-bars text-lg"></i>
