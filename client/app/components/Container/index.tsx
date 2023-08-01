@@ -1,6 +1,6 @@
 import "./Container.css";
 import { ReactNode } from "react";
-import { Menu, NavbarContainer } from "@/app/components";
+import { Footer, Menu, NavbarContainer } from "@/app/components";
 
 function Container({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +8,7 @@ function Container({ children }: { children: ReactNode }) {
       <NavbarContainer />
       <Menu />
       {children}
+      <Footer />
     </div>
   );
 }

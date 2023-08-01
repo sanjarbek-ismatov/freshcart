@@ -1,7 +1,6 @@
 import {
   About,
   Categories,
-  Footer,
   ProductGrid,
   SidePanel,
   Swiper,
@@ -25,7 +24,6 @@ export default async function Home() {
         <ProductGrid products={products} title="Mashhur maxsulotlar" />
 
         <About />
-        <Footer />
         <SidePanel />
       </Container>
     </>
