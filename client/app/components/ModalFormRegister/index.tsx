@@ -97,7 +97,7 @@ function ModalForm({
             Hisobingiz mavjudmi?
           </p>
           <Link
-            href="/dashboard/auth"
+            href="/dashboard"
             className="text-green-500 text-sm cursor-pointer"
           >
             Sotuvchimisiz?
