@@ -1,8 +1,7 @@
 "use client";
 import FilterTop from "../FilterTop";
-import Panigation from "../Panigation";
 import "./Products.css";
-import { ProductGrid } from "@components";
+import { Pagination, ProductGrid } from "@components";
 import { ProductType } from "@types";
 import { useSearchParams } from "next/navigation";
 
@@ -15,7 +14,7 @@ function Products({ products }: { products: ProductType[] }) {
       <FilterTop length={products.length} />
       <ProductGrid title="Topilgan maxsulotlar" products={products} />
       <div className="w-full flex justify-center">
-        <Panigation
+        <Pagination
           length={pageLength}
           baseURL="/products"
           currentPage={currentPage}
