@@ -1,12 +1,8 @@
-import {
-  NavbarAdmin,
-  Navigation,
-} from "@/app/(control)/admin/dashboard/components";
+import { Navigation } from "@/app/(control)/admin/dashboard/components";
 
 function AdminDashboardPage() {
   return (
     <>
-      <NavbarAdmin />
       <main>
         <Navigation />
       </main>
