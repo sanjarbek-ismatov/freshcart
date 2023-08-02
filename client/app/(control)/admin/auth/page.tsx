@@ -3,6 +3,7 @@ import { Button, Input, LoadingModal, Modal, Typography } from "@components";
 import { useLayoutEffect, useState } from "react";
 import { useLoginAdminMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
+import { setLocalData } from "@/app/utils/getLocalData";
 
 function AdminAuthPage() {
   const [show, setShow] = useState(false);
@@ -31,6 +32,7 @@ function AdminAuthPage() {
               e.preventDefault();
               formParser.setForm(e);
               loginAdmin(formParser.getFormAsObject).then((data) => {
+                setLocalData("admin", formParser.getFormAsObject.login);
                 window.location.href = "/admin/dashboard";
               });
             }}

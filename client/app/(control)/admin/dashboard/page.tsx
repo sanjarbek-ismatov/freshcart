@@ -1,5 +1,17 @@
+import {
+  NavbarAdmin,
+  Navigation,
+} from "@/app/(control)/admin/dashboard/components";
+
 function AdminDashboardPage() {
-  return <p>Admin dash</p>;
+  return (
+    <>
+      <NavbarAdmin />
+      <main>
+        <Navigation />
+      </main>
+    </>
+  );
 }
 
 export default AdminDashboardPage;

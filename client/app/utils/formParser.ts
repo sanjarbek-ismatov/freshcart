@@ -123,7 +123,7 @@ class FormParser<D> {
   }
 
   public get getFormAsObject() {
-    return this.formObject as {};
+    return this.formObject as Record<string, any>;
   }
 
   public get getFormAsFormData() {
