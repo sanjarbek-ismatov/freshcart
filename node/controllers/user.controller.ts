@@ -14,7 +14,7 @@ async function signUpController(req: NodeRequest, res: Response) {
     return res
       .status(400)
       .send({ code: 400, message: "Foydalanuvchi nomi allaqachon mavjud" });
-  const hashedPassword = passwordGenerator(req.body.password);
+  const hashedPassword = await passwordGenerator(req.body.password);
   const tempUser = await User.create(req.body);
   if (req.file) tempUser.image = req.file?.filename;
   tempUser.password = hashedPassword;
@@ -28,7 +28,10 @@ async function loginController(req: NodeRequest, res: Response) {
     return res
       .status(404)
       .send({ code: 404, message: "Foydalanuvchi topilmadi!" });
-  const checkedPassword = passwordChecker(req.body.password, user.password);
+  const checkedPassword = await passwordChecker(
+    req.body.password,
+    user.password,
+  );
   if (!checkedPassword)
     return res.status(401).send({ code: 401, message: "Xato parol" });
   const token = tokenGenerator(req.body.email);
@@ -76,7 +79,8 @@ async function updateUserInfo(req: NodeRequest, res: Response) {
       .send({ code: 404, message: "Foydalanuvchi topilmadi" });
   if (req.file) user.image = req.file.filename;
 
-  if (req.body.password) user.password = passwordGenerator(req.body.password);
+  if (req.body.password)
+    user.password = await passwordGenerator(req.body.password);
 
   delete req.body.image;
   delete req.body.password;

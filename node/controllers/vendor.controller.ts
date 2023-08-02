@@ -47,7 +47,7 @@ async function register(req: NodeRequest, res: Response) {
   newVendor.category = req.body.category.split(/\s*,\s*/g);
   newVendor.image = files["image"][0].filename;
   newVendor.banner = files["banner"][0].filename;
-  newVendor.password = passwordGenerator(req.body.password);
+  newVendor.password = await passwordGenerator(req.body.password);
   await newVendor.save();
   res.status(201).send({ code: 201, message: "Yaratildi" });
 }
@@ -56,7 +56,7 @@ async function login(req: NodeRequest, res: Response) {
   const checkVendor = await Vendor.findOne({ email: req.body.email });
   if (!checkVendor)
     return res.status(404).send({ code: 404, message: "Topilmadi" });
-  const checkedPassword = passwordChecker(
+  const checkedPassword = await passwordChecker(
     req.body.password,
     checkVendor.password,
   );

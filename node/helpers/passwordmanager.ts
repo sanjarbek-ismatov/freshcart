@@ -1,8 +1,14 @@
-import bcrypt from 'bcrypt'
-export function passwordChecker(password: string, originalPassword: string){
-	 return  bcrypt.compareSync(password, originalPassword)
+import bcrypt from "bcrypt";
+import util from "util";
+
+export async function passwordChecker(
+  password: string,
+  originalPassword: string,
+) {
+  return await util.promisify(bcrypt.compare)(password, originalPassword);
 }
-export function passwordGenerator(password: string) {
-	const salt = bcrypt.genSaltSync()
-	return  bcrypt.hashSync(password, salt)
+
+export async function passwordGenerator(password: string) {
+  const salt = await util.promisify(bcrypt.genSalt)();
+  return await util.promisify(bcrypt.hash)(password, +salt);
 }
