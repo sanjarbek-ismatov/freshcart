@@ -11,7 +11,7 @@ import {
   VendorWithOrders,
 } from "@types";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { getLocalData } from "@/app/utils/getLocalData";
+import { getLocalData, setLocalData } from "@/app/utils/getLocalData";
 
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
@@ -179,6 +179,18 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      loginAdmin: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          url: "/admin/login",
+          method: "POST",
+          body,
+        }),
+        transformResponse(baseQueryReturnValue: any, meta, arg) {
+          const token = meta?.response?.headers.get("x-admin-token");
+          token && setLocalData("x-admin-token", token);
+          return baseQueryReturnValue;
+        },
+      }),
     };
   },
 });
@@ -199,4 +211,5 @@ export const {
   useAcceptOrderMutation,
   useGetAllCategoryQuery,
   useGetReviewsQuery,
+  useLoginAdminMutation,
 } = eCommerceApi;

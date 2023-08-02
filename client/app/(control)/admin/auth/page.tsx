@@ -1,12 +1,16 @@
 "use client";
-import { Button, Input, Modal, Typography } from "@components";
+import { Button, Input, LoadingModal, Modal, Typography } from "@components";
 import { useLayoutEffect, useState } from "react";
+import { useLoginAdminMutation } from "@/store/api/ecommerce";
+import FormParser from "@/app/utils/formParser";
 
 function AdminAuthPage() {
   const [show, setShow] = useState(false);
+  const [loginAdmin, { isLoading }] = useLoginAdminMutation();
   useLayoutEffect(() => {
     setShow(true);
   }, []);
+  const formParser = new FormParser();
   return (
     <>
       {show && (
@@ -18,11 +22,21 @@ function AdminAuthPage() {
           </p>
         </Modal>
       )}
+      {isLoading && <LoadingModal />}
       <div className="w-full h-screen flex justify-center items-center">
         <div className="shadow-xl border p-5 rounded-md text-center">
           <Typography text="Admin autentifikatsiyasi" />
-          <form className="p-3 text-left">
-            <Input label="Login" type="email" name="login" />
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              formParser.setForm(e);
+              loginAdmin(formParser.getFormAsObject).then((data) => {
+                window.location.href = "/admin/dashboard";
+              });
+            }}
+            className="p-3 text-left"
+          >
+            <Input label="Login" type="text" name="login" />
             <Input label="Parol" type="password" name="password" />
             <div className="text-center">
               <Button type="submit">Kirish</Button>

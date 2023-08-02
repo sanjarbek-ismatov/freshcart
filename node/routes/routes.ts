@@ -16,7 +16,7 @@ import reviewRoutes from "./review.routes";
 export default function (app: Express) {
   app.use(
     cors({
-      exposedHeaders: ["x-token", "x-vendor-token"],
+      exposedHeaders: ["x-token", "x-vendor-token", "x-admin-token"],
       optionsSuccessStatus: 200,
     }),
   );
