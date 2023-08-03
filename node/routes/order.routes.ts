@@ -14,4 +14,5 @@ orderRouter.put(
   [upload.none(), vendorAuthMiddleware],
   controller.updateStatus,
 );
+orderRouter.get("/all", controller.getAll);
 export default orderRouter;

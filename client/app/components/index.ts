@@ -48,3 +48,4 @@ export { default as LoadingModal } from "./LoadingModal";
 export { default as LoadingPage } from "./LoadingPage";
 export { default as NavbarTitle } from "./NavbarTitle";
 export { default as Pagination } from "./Pagination";
+export {default as LinkOfNavigation} from "./LinkOfNavigation";

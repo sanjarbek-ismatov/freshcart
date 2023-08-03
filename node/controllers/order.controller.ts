@@ -25,6 +25,11 @@ class OrderController {
     await order.save();
     res.status(200).send({ code: 200, message: "Yangilandi!" });
   }
+
+  async getAll(req: NodeRequest, res: Response) {
+    const orders = await Order.find().populate("productId clientId");
+    res.status(200).send(orders);
+  }
 }
 
 export default OrderController;
