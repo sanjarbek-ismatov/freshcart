@@ -4,7 +4,11 @@ export function getLocalData(name: string) {
 }
 
 export function setLocalData(key: string, value: string) {
-  typeof window !== "undefined" && localStorage.setItem(key, value);
+  if (typeof window !== "undefined") {
+    if (["x-token", "x-vendor-token", "x-admin-token"].includes(key))
+      localStorage.clear();
+    localStorage.setItem(key, value);
+  }
 }
 
 export function removeLocalData(key: string) {

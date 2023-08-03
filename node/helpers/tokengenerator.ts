@@ -1,7 +1,10 @@
 import jwt from "jsonwebtoken";
 
-export function tokenGenerator(email: string) {
-  return jwt.sign({ email }, process.env.KEY || "");
+export function tokenGenerator(email: string, type = "email", login?: string) {
+  return jwt.sign(
+    type === "email" ? { email } : { login },
+    process.env.KEY || "",
+  );
 }
 
 export function tokenParser(token: string) {
