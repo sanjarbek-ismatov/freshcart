@@ -27,6 +27,46 @@ function Navigation() {
             <i className="fa-solid fa-gear"></i> Sayt sozlamalari
           </LinkOfNavigation>
         </li>
+        <li>
+          <LinkOfNavigation
+            href={"/admin/dashboard/stores"}
+            active={lastPath === "stores"}
+          >
+            <i className="fa-solid fa-shop"></i> Do'konlar
+          </LinkOfNavigation>
+        </li>
+        <li>
+          <LinkOfNavigation
+            href={"/admin/dashboard/users"}
+            active={lastPath === "users"}
+          >
+            <i className="fa-solid fa-user"></i> Foydalanuvchilar
+          </LinkOfNavigation>
+        </li>
+        <li>
+          <LinkOfNavigation
+            href={"/admin/dashboard/products"}
+            active={lastPath === "products"}
+          >
+            <i className="fa-solid fa-cheese"></i> Maxsulotlar
+          </LinkOfNavigation>
+        </li>
+        <li>
+          <LinkOfNavigation
+            href={"/admin/dashboard/orders"}
+            active={lastPath === "orders"}
+          >
+            <i className="fa-solid fa-shopping-cart"></i> Buyurtmalar
+          </LinkOfNavigation>
+        </li>
+        <li>
+          <LinkOfNavigation
+            href={"/admin/dashboard/reviews"}
+            active={lastPath === "reviews"}
+          >
+            <i className="fa-regular fa-comment-dots"></i> Izohlar
+          </LinkOfNavigation>
+        </li>
       </ul>
     </aside>
   );
