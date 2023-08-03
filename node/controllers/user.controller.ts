@@ -97,10 +97,16 @@ async function updateUserInfo(req: NodeRequest, res: Response) {
   res.status(200).send("Yeah");
 }
 
+async function getAll(req: NodeRequest, res: Response) {
+  const users = await User.find();
+  res.status(200).send(users);
+}
+
 export default {
   signUpController,
   loginController,
   getInfo,
   addToCart,
   updateUserInfo,
+  getAll,
 };

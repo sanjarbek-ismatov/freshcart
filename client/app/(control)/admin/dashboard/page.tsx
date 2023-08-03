@@ -1,7 +1,25 @@
-function AdminDashboardPage() {
+import { getSSRData } from "@/app/utils/getData";
+import { CategoryType, OrderUsableType, ProductType, UserType } from "@types";
+import { Stats } from "@/app/(control)/admin/dashboard/components";
+
+async function AdminDashboardPage() {
+  const products = await getSSRData<ProductType[]>(
+    `${process.env.SERVER_URL}/product/all`,
+  );
+  const categories = await getSSRData<CategoryType[]>(
+    `${process.env.SERVER_URL}/category/all`,
+  );
+  const orders = await getSSRData<OrderUsableType[]>(
+    `${process.env.SERVER_URL}/order/all`,
+  );
+  const users = await getSSRData<UserType[]>(
+    `${process.env.SERVER_URL}/auth/all`,
+  );
   return (
     <>
-      <main></main>
+      <main>
+        <Stats products={products} users={users} orders={orders} />
+      </main>
     </>
   );
 }

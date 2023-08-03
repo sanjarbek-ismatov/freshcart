@@ -7,7 +7,7 @@ const userRouter = express.Router();
 userRouter.post(
   "/signup",
   upload.single("image"),
-  userController.signUpController
+  userController.signUpController,
 );
 userRouter.post("/login", userController.loginController);
 userRouter.get("/info", authMiddleware, userController.getInfo);
@@ -15,6 +15,7 @@ userRouter.put("/product/add", authMiddleware, userController.addToCart);
 userRouter.put(
   "/info/update",
   [authMiddleware, upload.single("image")],
-  userController.updateUserInfo
+  userController.updateUserInfo,
 );
+userRouter.get("/all", userController.getAll);
 export { userRouter };
