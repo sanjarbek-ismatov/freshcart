@@ -8,7 +8,7 @@ function Navigation() {
   // const path = header.get("x-url") || "";
   const lastPath = pathname.split("/").at(-1);
   return (
-    <aside className="max-w-[300px]">
+    <aside className="min-w-[300px]">
       <Typography size="lg" text="Navigatsiya" />
       <ul className="my-5">
         <li>

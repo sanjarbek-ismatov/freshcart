@@ -17,7 +17,7 @@ async function AdminDashboardPage() {
   );
   return (
     <>
-      <main>
+      <main className="flex-1 px-3">
         <Stats products={products} users={users} orders={orders} />
       </main>
     </>

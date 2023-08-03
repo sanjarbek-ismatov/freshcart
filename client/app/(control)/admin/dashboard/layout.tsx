@@ -8,7 +8,7 @@ function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <NavbarAdmin />
-      <div className="px-12 flex my-5">
+      <div className="px-12 flex my-5 w-full">
         <Navigation />
         {children}
       </div>
