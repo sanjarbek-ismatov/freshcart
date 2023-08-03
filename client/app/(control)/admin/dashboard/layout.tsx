@@ -1,11 +1,17 @@
 import { ReactNode } from "react";
-import { NavbarAdmin } from "@/app/(control)/admin/dashboard/components";
+import {
+  NavbarAdmin,
+  Navigation,
+} from "@/app/(control)/admin/dashboard/components";
 
 function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <>
       <NavbarAdmin />
-      <div className="px-12">{children}</div>
+      <div className="px-12 flex">
+        <Navigation />
+        {children}
+      </div>
     </>
   );
 }
