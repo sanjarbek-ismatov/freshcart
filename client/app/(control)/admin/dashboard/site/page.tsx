@@ -1,5 +1,12 @@
+import { Typography } from "@components";
+
 function SiteSettingPage() {
-  return <p>Hello</p>;
+  return (
+    <>
+      <Typography text="Sayt sozlamalari" />
+      <p>BOdy</p>
+    </>
+  );
 }
 
 export default SiteSettingPage;

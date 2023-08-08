@@ -2,6 +2,7 @@
 import { OrderUsableType, ProductType, UserType } from "@types";
 import { ComponentProps, ReactNode, useMemo, useState } from "react";
 import { Typography } from "@components";
+import { Card } from "@components/dashboard";
 
 function Button({
   active,
@@ -33,6 +34,7 @@ function Stats({
   users: UserType[];
 }) {
   const [index, setIndex] = useState(0);
+  const [title, setTitle] = useState("Bugun");
   const getStartTime = useMemo(() => {
     const date = new Date();
     date.setHours(0, 0, 0, 0);
@@ -50,18 +52,32 @@ function Stats({
     return date;
   }, [index]);
 
-  function filteredArr(arr: any[]) {}
+  function filteredArr(arr: any[]) {
+    return arr.filter((item) => item.date >= getStartTime);
+  }
 
   return (
     <div className="my-5 w-full">
       <Typography text="Statistika" />
       <nav className="border-b mt-3 w-full">
-        {["Bugungi", "Shu oy", "Shu yil", "Umumiy"].map((title, i) => (
-          <Button onClick={() => setIndex(i)} key={i} active={i === index}>
+        {["Bugun", "Shu oy", "Shu yil", "Umumiy"].map((title, i) => (
+          <Button
+            onClick={() => {
+              setIndex(i);
+              setTitle(title);
+            }}
+            key={i}
+            active={i === index}
+          >
             {title}
           </Button>
         ))}
       </nav>
+      <div className="flex my-3">
+        <Card title={title} main="10" submain="Buyurtma" />
+        <Card title={title} main="20" submain="Yangi foydalanuvchi" />
+        <Card title={title} main="40" submain="Yangi sotuvchi" />
+      </div>
     </div>
   );
 }

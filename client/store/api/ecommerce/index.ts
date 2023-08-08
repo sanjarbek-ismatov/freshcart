@@ -16,8 +16,8 @@ import { getLocalData, setLocalData } from "@/app/utils/getLocalData";
 export const eCommerceApi = createApi({
   reducerPath: "ecommerce",
   baseQuery: fetchBaseQuery({
-    // baseUrl: "https://ecommerce-uz.onrender.com/api",
-    baseUrl: "http://localhost:4000/api",
+    baseUrl: "https://ecommerce-uz.onrender.com/api",
+    // baseUrl: "http://localhost:4000/api",
   }),
   endpoints(build) {
     return {

@@ -5,7 +5,28 @@ import { ErrorBoundary } from "./components";
 import Provider from "@/store/provider";
 import { URLProvider, UserProvider } from "@/app/context/provider";
 import * as process from "process";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Freshcart",
+  description: "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
+  openGraph: {
+    type: "website",
+    locale: "en_IE",
+    url: "https://freshcart-uz.vercel.app/",
+    siteName: "E-commerce",
+    title: "Freshcart",
+    description:
+      "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
+    images: [
+      {
+        url: "https://i.ibb.co/yW3cbGF/freshcart-logo.png",
+        width: 1200,
+        height: 1200,
+        alt: "Freshcart logo",
+      },
+    ],
+  },
+};
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default function RootLayout({
   children,
@@ -22,7 +43,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <title>Fresh cart</title>
+        <link rel="shortcut icon" href="images/favicon/favicon.ico" />
       </head>
       <body className={inter.className}>
         <React.StrictMode>
