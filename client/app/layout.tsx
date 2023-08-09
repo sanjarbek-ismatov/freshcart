@@ -5,13 +5,44 @@ import { ErrorBoundary } from "./components";
 import Provider from "@/store/provider";
 import { URLProvider, UserProvider } from "@/app/context/provider";
 import * as process from "process";
+import { getSSRData } from "./utils/getData";
 
+// export const metadata: Metadata = {
+//   title: "Freshcart",
+//   description: "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
+//   openGraph: {
+//     type: "website",
+//     locale: "en_IE",
+//     url: "https://freshcart-uz.vercel.app/",
+//     siteName: "E-commerce",
+//     title: "Freshcart",
+//     description:
+//       "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
+//     images: [
+//       {
+//         url: "https://i.ibb.co/yW3cbGF/freshcart-logo.png",
+//         width: 1200,
+//         height: 1200,
+//         alt: "Freshcart logo",
+//       },
+//     ],
+//   },
+// };
+
+interface SiteInfo {
+  title: string;
+  description: string;
+  image: string;
+}
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const siteInfo = await getSSRData<SiteInfo>(
+    `${process.env.SERVER_URL}/general/info`
+  );
   return (
     <html lang="uz">
       <head>
@@ -22,7 +53,20 @@ export default function RootLayout({
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
-        <title>Fresh cart</title>
+        <link rel="shortcut icon" href="images/favicon/favicon.ico" />
+
+        <title>{siteInfo.title}</title>
+        <meta name="description" content={siteInfo.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_IE" />
+        <meta property="og:url" content="https://freshcart-uz.vercel.app/" />
+        <meta property="og:site_name" content="E-commerce" />
+        <meta property="og:title" content={siteInfo.title} />
+        <meta property="og:description" content={siteInfo.description} />
+        <meta property="og:image" content={siteInfo.image} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="1200" />
+        <meta property="og:image:alt" content="Freshcart logo" />
       </head>
       <body className={inter.className}>
         <React.StrictMode>
