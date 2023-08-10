@@ -5,10 +5,10 @@ import {
   SidePanel,
   Swiper,
 } from "./components";
-import { ProductType } from "@/types";
-import { getSSRData } from "@/app/utils/getData";
 import React from "react";
 import { Container, NavbarTitle } from "@components";
+import { ProductType } from "@types";
+import { getSSRData } from "@/app/utils/getData";
 
 export default async function Home() {
   const products = await getSSRData<ProductType[]>(

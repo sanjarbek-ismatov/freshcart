@@ -1,12 +1,11 @@
 import "./globals.css";
-import { Inter } from "next/font/google";
+import {Inter} from "next/font/google";
 import React from "react";
-import { ErrorBoundary } from "./components";
-import Provider from "@/store/provider";
-import { URLProvider, UserProvider } from "@/app/context/provider";
+import {ErrorBoundary} from "./components";
 import * as process from "process";
-import { getSSRData } from "./utils/getData";
-
+import {getSSRData} from "./utils/getData";
+import Provider from "@store/provider";
+import {URLProvider, UserProvider} from "@/app/context/provider";
 // export const metadata: Metadata = {
 //   title: "Freshcart",
 //   description: "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
@@ -34,6 +33,7 @@ interface SiteInfo {
   description: string;
   image: string;
 }
+
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
 export default async function RootLayout({
   children,
@@ -41,7 +41,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const siteInfo = await getSSRData<SiteInfo>(
-    `${process.env.SERVER_URL}/general/info`
+    `${process.env.SERVER_URL}/general/info`,
   );
   return (
     <html lang="uz">
