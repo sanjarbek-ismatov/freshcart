@@ -48,6 +48,9 @@
       ],
       "@store/api": [
         "./store/api/ecommerce/index.ts"
+      ],
+      "@i18n": [
+        "./i18n/setting.ts"
       ]
     }
   },

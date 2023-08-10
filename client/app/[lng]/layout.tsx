@@ -1,32 +1,13 @@
 import "./globals.css";
-import {Inter} from "next/font/google";
+import { Inter } from "next/font/google";
 import React from "react";
-import {ErrorBoundary} from "./components";
+import { ErrorBoundary } from "./components";
 import * as process from "process";
-import {getSSRData} from "./utils/getData";
+import { getSSRData } from "./utils/getData";
 import Provider from "@store/provider";
-import {URLProvider, UserProvider} from "@/app/context/provider";
-// export const metadata: Metadata = {
-//   title: "Freshcart",
-//   description: "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
-//   openGraph: {
-//     type: "website",
-//     locale: "en_IE",
-//     url: "https://freshcart-uz.vercel.app/",
-//     siteName: "E-commerce",
-//     title: "Freshcart",
-//     description:
-//       "Freshcart bu yirik online maxsulot do'konilarining jamlanmasi",
-//     images: [
-//       {
-//         url: "https://i.ibb.co/yW3cbGF/freshcart-logo.png",
-//         width: 1200,
-//         height: 1200,
-//         alt: "Freshcart logo",
-//       },
-//     ],
-//   },
-// };
+import { URLProvider, UserProvider } from "@/app/context/provider";
+import { dir } from "i18next";
+import { languages } from "@i18n";
 
 interface SiteInfo {
   title: string;
@@ -35,16 +16,25 @@ interface SiteInfo {
 }
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
+
+export function generateStaticParams() {
+  return languages.map((lng) => ({ lng }));
+}
+
 export default async function RootLayout({
   children,
+  params: { lng },
 }: {
   children: React.ReactNode;
+  params: {
+    lng: string;
+  };
 }) {
   const siteInfo = await getSSRData<SiteInfo>(
     `${process.env.SERVER_URL}/general/info`,
   );
   return (
-    <html lang="uz">
+    <html lang={lng} dir={dir(lng)}>
       <head>
         <link
           rel="stylesheet"
