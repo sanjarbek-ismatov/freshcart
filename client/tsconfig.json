@@ -25,17 +25,32 @@
       }
     ],
     "paths": {
+      "@/*": [
+        "./*"
+      ],
       "@components": [
-        "./app/components/index.ts"
+        "./app/[lng]/components/index.ts"
       ],
       "@components/dashboard": [
-        "./app/(control)/dashboard/components/index.ts"
+        "./app/[lng]/(control)/dashboard/components/index.ts"
       ],
       "@types": [
         "./types/index.ts"
       ],
-      "@/*": [
-        "./*"
+      "@/app/*": [
+        "./app/[lng]/*"
+      ],
+      "@store": [
+        "./store/store.ts"
+      ],
+      "@store/provider": [
+        "./store/provider.tsx"
+      ],
+      "@store/api": [
+        "./store/api/ecommerce/index.ts"
+      ],
+      "@i18n": [
+        "./i18n/setting.ts"
       ]
     }
   },

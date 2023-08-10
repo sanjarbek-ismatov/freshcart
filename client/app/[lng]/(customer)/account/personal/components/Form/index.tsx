@@ -1,7 +1,7 @@
 import React from "react";
-import { UserType } from "@/types";
+import { UserType } from "@types";
 import { Button, Input, ProfileImage } from "@components";
-import { useUpdateUserInfoMutation } from "@/store/api/ecommerce";
+import { useUpdateUserInfoMutation } from "@store/api";
 import FormParser from "@/app/utils/formParser";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 import { useUrlContext } from "@/app/context";

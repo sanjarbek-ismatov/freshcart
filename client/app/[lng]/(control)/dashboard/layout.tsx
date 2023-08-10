@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { Navbar, PanelNavigation } from "@components/dashboard";
 import { useGetControllerInfoQuery } from "@/store/api/ecommerce";
 import { useAuth } from "@/app/hooks/useAuth";
-import AuthComponent from "app/(control)/dashboard/auth/components/AuthComponent";
+import AuthComponent from "@/app/(control)/dashboard/auth/components/AuthComponent";
 import { LoadingPage } from "@components";
 
 function VendorDashboardLayout({ children }: { children: ReactNode }) {

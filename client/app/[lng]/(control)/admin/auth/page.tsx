@@ -1,7 +1,7 @@
 "use client";
 import { Button, Input, LoadingModal, Modal, Typography } from "@components";
 import { useLayoutEffect, useState } from "react";
-import { useLoginAdminMutation } from "@/store/api/ecommerce";
+import { useLoginAdminMutation } from "@store/api";
 import FormParser from "@/app/utils/formParser";
 import { setLocalData } from "@/app/utils/getLocalData";
 
