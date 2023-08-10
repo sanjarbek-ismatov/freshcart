@@ -11,8 +11,10 @@ class GeneralController {
   async updateInfo(req: NodeRequest, res: Response) {
     const info = await Site.findOne({});
     if (!info) return;
-    if (req.file) {
-      info.image = req.file.filename;
+    if (req.files) {
+      const files = req.files as Record<string, Express.Multer.File[]>;
+      info.image = files["image"][0].filename;
+      info.logo = files["logo"][0].filename;
     }
     Object.assign(info, req.body);
     await info.save();

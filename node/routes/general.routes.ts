@@ -8,7 +8,13 @@ const generalRouter = express.Router();
 generalRouter.get("/info", controller.getInfo);
 generalRouter.put(
   "/info/update",
-  [upload.single("image"), adminMiddleware],
+  [
+    upload.fields([
+      { name: "image", maxCount: 1 },
+      { name: "logo", maxCount: 1 },
+    ]),
+    adminMiddleware,
+  ],
   controller.updateInfo,
 );
 export default generalRouter;
