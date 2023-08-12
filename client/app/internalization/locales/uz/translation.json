@@ -3,5 +3,12 @@
   "join-to-vendor": "Qo'shilish",
   "create-account": "Hisob yaratish",
   "login": "Kirish",
-  "all-category": "Barchasi"
+  "all-category": "Barchasi",
+  "products": "Maxsulotlar",
+  "stores": "Do'konlar",
+  "home": "Bosh sahifa",
+  "discount": "Chegirma",
+  "buy": "Sotib olish",
+  "popular-products": "Mashhur maxsulotlar",
+  "cart": "Savat"
 }

@@ -27,6 +27,7 @@ export default async function RootLayout({
   const siteInfo = await getSSRData<SiteInfo>(
     `${process.env.SERVER_URL}/general/info`,
   );
+  // const t = getTranslation(lng)
   return (
     <html lang={lng}>
       <head>

@@ -41,13 +41,13 @@ function Menu() {
           </ul>
         </div>
         <Link href="/" className="mx-3 text-slate-600 font-medium">
-          Uy
+          {t.home}
         </Link>
         <Link href="/products" className="mx-3 text-slate-600 font-medium">
-          Maxsulotlar
+          {t.products}
         </Link>
         <Link href="/stores" className="mx-3 text-slate-600 font-medium">
-          Do`konlar
+          {t.stores}
         </Link>
       </div>
     </>
