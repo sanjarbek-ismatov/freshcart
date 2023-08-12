@@ -49,11 +49,11 @@
       "@store/api": [
         "./store/api/ecommerce/index.ts"
       ],
-      "@i18n": [
-        "./app/i18n/setting.ts"
+      "@internalization": [
+        "./app/internalization/index.ts"
       ],
-      "@i18n/client": [
-        "./app/i18n/client.ts"
+      "@internalization/client": [
+        "./app/internalization/client.ts"
       ]
     }
   },

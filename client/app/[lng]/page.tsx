@@ -10,7 +10,11 @@ import { Container, NavbarTitle } from "@components";
 import { ProductType } from "@types";
 import { getSSRData } from "@/app/utils/getData";
 
-export default async function Home() {
+export default async function Home({
+  params: { lng },
+}: {
+  params: { lng: string };
+}) {
   const products = await getSSRData<ProductType[]>(
     `${process.env.SERVER_URL}/product/all`,
   );
