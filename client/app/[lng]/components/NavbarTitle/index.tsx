@@ -1,17 +1,21 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
+import { getTranslation } from "@internalization";
+import { usePathname } from "next/navigation";
 
 function NavbarTitle() {
   const [show, setShow] = useState(true);
+  const pathname = usePathname();
+  const t = getTranslation(pathname.split("/")[1]);
   return (
     <div
       className={`${!show && "hidden"} relative bg-yellow-300 p-3 text-center`}
     >
       <p className="text-slate-900 inline">
-        {/*{t("title")}*/}
+        {t["welcome-to-vendor"]}
         <Link href="/dashboard/auth" className="text-blue-600">
-          Qo'shilish
+          {t["join-to-vendor"]}
         </Link>
       </p>
       <i

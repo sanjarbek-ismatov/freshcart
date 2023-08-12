@@ -1,4 +1,7 @@
 {
-  "title": "Hallo Leute!",
-  "to-second-page": "Zur zweiten Seite"
+  "welcome-to-vendor": " Assalomu Alaykum, Freshcartda o'z do'koningizni yurgizishni xohlaysizmi? unda bizga qo'shiling: ",
+  "join-to-vendor": "Qo'shilish",
+  "create-account": "Hisob yaratish",
+  "login": "Kirish",
+  "all-category": "Barchasi"
 }
