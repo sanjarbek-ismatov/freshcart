@@ -50,7 +50,10 @@
         "./store/api/ecommerce/index.ts"
       ],
       "@i18n": [
-        "./i18n/setting.ts"
+        "./app/i18n/setting.ts"
+      ],
+      "@i18n/client": [
+        "./app/i18n/client.ts"
       ]
     }
   },

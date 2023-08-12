@@ -10,7 +10,7 @@ const nextConfig = {
       //   destination: "/products?page=1",
       //   permanent: false,
       // },
-      { source: "/", destination: "/uz", permanent: false },
+      // { source: "/", destination: "/uz", permanent: false },
     ];
   },
 };
