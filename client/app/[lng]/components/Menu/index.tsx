@@ -3,10 +3,12 @@ import Link from "next/link";
 import "./Menu.css";
 import { useCallback, useState } from "react";
 import { useGetAllCategoryQuery } from "@/store/api/ecommerce";
+import { getTranslation } from "@internalization";
 
 function Menu() {
   const [show, setShow] = useState(false);
   const { data } = useGetAllCategoryQuery();
+  const t = getTranslation("uz");
   const toggle = useCallback(() => {
     setShow(!show);
   }, [show]);
@@ -15,7 +17,7 @@ function Menu() {
       <div className="flex items-center mb-5 max-w-[1300px] mx-auto">
         <div onClick={toggle} className="relative">
           <button className=" py-3 px-4 bg-green-500 rounded-md text-white">
-            <i className="fa-regular fa-square-plus"></i> Barchasi
+            <i className="fa-regular fa-square-plus"></i> {t["all-category"]}
           </button>
           <ul
             className={`absolute transition-all translate-y-2 ease-in duration-300  opacity-0 border text-slate-600 border-slate-300 p-3 w-36 rounded-md z-10 bg-white ${
@@ -39,13 +41,13 @@ function Menu() {
           </ul>
         </div>
         <Link href="/" className="mx-3 text-slate-600 font-medium">
-          Uy
+          {t.home}
         </Link>
         <Link href="/products" className="mx-3 text-slate-600 font-medium">
-          Maxsulotlar
+          {t.products}
         </Link>
         <Link href="/stores" className="mx-3 text-slate-600 font-medium">
-          Do`konlar
+          {t.stores}
         </Link>
       </div>
     </>

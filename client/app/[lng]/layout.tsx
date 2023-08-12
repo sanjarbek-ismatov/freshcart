@@ -6,8 +6,6 @@ import * as process from "process";
 import { getSSRData } from "./utils/getData";
 import Provider from "@store/provider";
 import { URLProvider, UserProvider } from "@/app/context/provider";
-import { dir } from "i18next";
-import { languages } from "@i18n";
 
 interface SiteInfo {
   title: string;
@@ -16,10 +14,6 @@ interface SiteInfo {
 }
 
 const inter = Inter({ subsets: ["latin", "cyrillic"] });
-
-export function generateStaticParams() {
-  return languages.map((lng) => ({ lng }));
-}
 
 export default async function RootLayout({
   children,
@@ -33,8 +27,9 @@ export default async function RootLayout({
   const siteInfo = await getSSRData<SiteInfo>(
     `${process.env.SERVER_URL}/general/info`,
   );
+  // const t = getTranslation(lng)
   return (
-    <html lang={lng} dir={dir(lng)}>
+    <html lang={lng}>
       <head>
         <link
           rel="stylesheet"

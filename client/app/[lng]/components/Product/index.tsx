@@ -4,9 +4,11 @@ import Link from "next/link";
 import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
 import { useUrlContext } from "@/app/context";
+import { getTranslation } from "@internalization";
 
 function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
+  const t = getTranslation("uz");
   return (
     <div className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md">
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
@@ -39,7 +41,7 @@ function ProductCard({ details }: { details: ProductType }) {
       <div className="flex justify-between mt-4">
         <span>${details.price}</span>{" "}
         <button className="p-1 bg-green-500 text-white rounded-md">
-          +Savat
+          +{t.cart}
         </button>
       </div>
     </div>
