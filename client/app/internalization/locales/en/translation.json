@@ -1,3 +1,22 @@
 {
-  "welcome-to-vendor": " Hello, do you want to run your own store on Freshcart? then join us: "
+  "welcome-to-vendor": " Hello, Do you want to run your own store on Freshcart? then join us: ",
+  "join-to-vendor": "Join",
+  "create-account": "Create an account",
+  "login": "Login",
+  "all-category": "All",
+  "products": "Products",
+  "stores": "Stores",
+  "home": "Home",
+  "discount": "Discount",
+  "buy": "Buy",
+  "popular-products": "Popular products",
+  "cart": "Cart",
+  "ten-minute": "food in 10 minutes",
+  "short-deliver": "Deliver your order to your doorstep in the shortest possible time from your nearest FreshCart pickup stores.",
+  "best-recommends": "Best prices and offers",
+  "cashback-suggestions": "Cheaper prices than your local supermarket, great cashback offers to top it up. Get the best deals and offers.",
+  "wide-assortment": "Wide assortment",
+  "products-5000": "Choose from over 5000 products in food, personal care, household, bakery, veg and non-veg and other categories.",
+  "easy-return": "Easy Return",
+  "satisfaction": "Not satisfied with the product? Return it at your doorstep and get your money back within hours. No questions asked policy."
 }

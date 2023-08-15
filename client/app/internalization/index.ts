@@ -1,7 +1,4 @@
-// import en from "./locales/en/translation.json";
-import uz from "./locales/uz/translation.json";
-
-// import ru from "./locales/ru/translation.json";
+import ru from "./locales/ru/translation.json";
 
 export function getTranslation(lng: string) {
   // switch (lng) {
@@ -14,5 +11,5 @@ export function getTranslation(lng: string) {
   //   default:
   //     return uz;
   // }
-  return uz;
+  return ru;
 }
