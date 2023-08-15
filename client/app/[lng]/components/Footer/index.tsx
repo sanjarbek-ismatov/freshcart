@@ -1,6 +1,7 @@
 "use client";
 import "./Footer.css";
 import Link from "next/link";
+import { getTranslation } from "@internalization";
 
 function Footer() {
   // const [splitted, setSplitted] = useState<string[][]>();
@@ -9,6 +10,7 @@ function Footer() {
   //   splitter().then((data) => setSplitted(data));
   // }, [splitter]);
   // if (!splitted) return <p>loading...</p>;
+  const t = getTranslation("uz");
   return (
     <>
       <div className={`grid grid-cols-5 grid-rows-1 mt-5`}>
@@ -74,7 +76,7 @@ function Footer() {
         </div>
       </div>
       <div className="py-8 mt-3 bg-gray-300 text-center">
-        <p>Barcha huquqlar himoyalangan!</p>
+        <p>{t["all-rights-reserved"]}</p>
       </div>
     </>
   );
