@@ -1,5 +1,5 @@
 {
-  "welcome-to-vendor": " Assalomu Alaykum, Freshcartda o'z do'koningizni yurgizishni xohlaysizmi? unda bizga qo'shiling: ",
+  "welcome-to-vendor": "Assalomu Alaykum, Freshcartda o'z do'koningizni yurgizishni xohlaysizmi? unda bizga qo'shiling: ",
   "join-to-vendor": "Qo'shilish",
   "create-account": "Hisob yaratish",
   "login": "Kirish",
@@ -18,5 +18,10 @@
   "wide-assortment": "Keng assortiment",
   "products-5000": "Oziq-ovqat, shaxsiy parvarish, maishiy, non, sabzavotli va sabzavotli bo`lmagan va boshqa toifadagi 5000 dan ortiq mahsulotlardan tanlang.",
   "easy-return": "Oson Qaytish",
-  "satisfaction": "Mahsulotdan qoniqmaysizmi? Uni ostonada qaytaring va bir necha soat ichida pulni qaytarib oling. Hech qanday savol berilmagan siyosat."
+  "satisfaction": "Mahsulotdan qoniqmaysizmi? Uni ostonada qaytaring va bir necha soat ichida pulni qaytarib oling. Hech qanday savol berilmagan siyosat.",
+  "menu": "Menyu",
+  "enter-product-name": "Maxsulot nomini yozing",
+  "look-for-products": "Maxsulotlarni qidiring",
+  "search": "Qidirish",
+  "all-rights-reserved": "Barcha huquqlar himoyalangan!"
 }
