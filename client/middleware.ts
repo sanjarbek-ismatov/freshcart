@@ -17,7 +17,9 @@ export default function middleware(req: NextRequest) {
   const regex = new RegExp(languages.map((lng) => `(${lng})`).join("|"));
   const result = regex.test(req.nextUrl.pathname);
   if (!result) {
-    return NextResponse.redirect(new URL(`uz${req.nextUrl.pathname}`, req.url));
+    return NextResponse.redirect(
+      new URL(`/uz${req.nextUrl.pathname}`, req.url),
+    );
   }
   NextResponse.next();
 }
