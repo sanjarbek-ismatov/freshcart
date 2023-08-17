@@ -25,6 +25,7 @@ interface ProductType<T> {
   dateOfManufacture: string;
   isInArchive: boolean;
   date: Date;
+  discounts: number[];
 }
 
 type ProductTypeWithIds = ProductType<Types.ObjectId>;

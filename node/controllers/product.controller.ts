@@ -41,6 +41,21 @@ async function deleteProduct(req: NodeRequest, res: Response) {
   res.status(204).send({ code: 204, message: "ok" });
 }
 
+async function addDiscount(req: NodeRequest, res: Response) {
+  const ids = req.body.products as string[];
+
+  async function addDiscountFunc(_id: string) {
+    const product = await Product.findOne({ _id });
+    product?.discounts.push(req.body.percent);
+    await product?.save();
+  }
+
+  ids.forEach((id) => {
+    addDiscountFunc(id);
+  });
+  res.status(200).send({ message: "Chegirma qo'shildi", status: 200 });
+}
+
 async function getBySlug(req: NodeRequest, res: Response) {
   const product = await Product.findOne({ slug: req.params.slug }).populate({
     path: "reviews",
@@ -53,4 +68,4 @@ async function getBySlug(req: NodeRequest, res: Response) {
   res.status(200).send(product);
 }
 
-export default { getAll, create, getBySlug, deleteProduct };
+export default { getAll, create, getBySlug, deleteProduct, addDiscount };

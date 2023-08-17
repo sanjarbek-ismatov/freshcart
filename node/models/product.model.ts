@@ -30,6 +30,7 @@ const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
       return new Date();
     },
   },
+  discounts: [Number],
 });
 export const Product = mongoose.model<ProductTypeWithIds>(
   "product",

@@ -9,11 +9,16 @@ productRoute.get("/:slug", productController.getBySlug);
 productRoute.post(
   "/create",
   [vendorAuthMiddleware, upload.array("images")],
-  productController.create
+  productController.create,
 );
 productRoute.delete(
   "/delete",
   vendorAuthMiddleware,
-  productController.deleteProduct
+  productController.deleteProduct,
+);
+productRoute.put(
+  "/discount/add",
+  vendorAuthMiddleware,
+  productController.addDiscount,
 );
 export default productRoute;
