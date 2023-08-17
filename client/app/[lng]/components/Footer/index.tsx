@@ -2,6 +2,7 @@
 import "./Footer.css";
 import Link from "next/link";
 import { getTranslation } from "@internalization";
+import { FourGrid } from "@/app/components";
 
 function Footer() {
   // const [splitted, setSplitted] = useState<string[][]>();
@@ -13,7 +14,7 @@ function Footer() {
   const t = getTranslation("uz");
   return (
     <>
-      <div className={`grid grid-cols-5 grid-rows-1 mt-5`}>
+      <FourGrid>
         {/*{splitted?.map((e, i) => (*/}
         {/*  <div key={i}>*/}
         {/*    <h4 className="font-semibold text-slate-900 text-lg my-3">*/}
@@ -74,7 +75,7 @@ function Footer() {
           </p>
           <p className="text-slate-600 text-md leading-8">Yangi sotuvchilar</p>
         </div>
-      </div>
+      </FourGrid>
       <div className="py-8 mt-3 bg-gray-300 text-center">
         <p>{t["all-rights-reserved"]}</p>
       </div>

@@ -1,10 +1,4 @@
-import {
-  About,
-  Categories,
-  ProductGrid,
-  SidePanel,
-  Swiper,
-} from "./components";
+import { About, Categories, ProductGrid, Swiper } from "./components";
 import React from "react";
 import { Container, NavbarTitle } from "@components";
 import { ProductType } from "@types";
@@ -30,7 +24,6 @@ export default async function Home({
         <ProductGrid products={products} title={t["popular-products"]} />
 
         <About />
-        <SidePanel />
       </Container>
     </>
   );

@@ -3,10 +3,15 @@ import Button from "../Button";
 import SearchInput from "../SearchInput";
 import "./SidePanel.css";
 import { getTranslation } from "@internalization";
-import { useState } from "react";
+import React from "react";
 
-function SidePanel() {
-  const [show, setShow] = useState(false);
+function SidePanel({
+  show,
+  setShow,
+}: {
+  show: boolean;
+  setShow: React.Dispatch<React.SetStateAction<boolean>>;
+}) {
   const t = getTranslation("uz");
   return (
     <>
@@ -14,7 +19,7 @@ function SidePanel() {
         style={{
           left: show ? "0" : "-100%",
         }}
-        className={`fixed  md:hidden block h-screen w-96 bg-white top-0 left-0 z-30 p-4`}
+        className={`fixed transition-all duration-500 block h-screen w-96 bg-white top-0 z-30 p-4`}
       >
         <div className="flex justify-between items-center my-3">
           <span>{t.menu}</span>

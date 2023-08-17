@@ -1,9 +1,15 @@
 "use client";
 import Image from "next/image";
 import LogoImage from "public/images/logo/freshcart-logo.svg";
-import { Dispatch, FC, SetStateAction, useCallback, useState } from "react";
+import React, {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useCallback,
+  useState,
+} from "react";
 import "./Navbar.css";
-import { SearchInput } from "..";
+import { SearchInput, SidePanel } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { Badge, LocationList, OffCanvas } from "@components";
@@ -16,6 +22,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     const vendorAuth = useAuth("vendor");
     const { data, isLoading } = useUserContext();
     const router = useRouter();
+    const [showMenu, setShowMenu] = useState(false);
     const searchParams = useSearchParams();
     const [show, setShow] = useState(false);
     const [locationShow, setLocationShow] = useState(false);
@@ -34,14 +41,14 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     return (
       <>
         {locationShow && <LocationList setShow={setLocationShow} />}
-        <div className="flex container max-w-[1300px] mx-auto md:justify-center justify-between py-5 items-center">
+        <div className="flex container  mx-auto lg:justify-center justify-between py-5 items-center">
           <div className="sm:w-56 w-40 mr-12">
             <Link href="/">
               {" "}
               <Image src={LogoImage} alt="Logo image" />
             </Link>
           </div>
-          <div className="flex-1 md:block hidden">
+          <div className="flex-1 lg:block hidden">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -111,7 +118,10 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                   </Badge>
                 </div>
               ))}
-            <div className="md:hidden block mx-3">
+            <div
+              onClick={() => setShowMenu(!showMenu)}
+              className="lg:hidden block mx-3"
+            >
               <span>
                 <i className="fa-solid fa-bars text-lg"></i>
               </span>
@@ -123,6 +133,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
           show={showOffCanvas}
           setShow={setOffCanvas}
         />
+        <SidePanel show={showMenu} setShow={setShowMenu} />
       </>
     );
   };
