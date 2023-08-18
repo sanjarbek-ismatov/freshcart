@@ -109,6 +109,7 @@ interface ProductType {
   vendor: VendorType;
   date: Date;
   isInArchive: boolean;
+  discounts: number[];
 }
 
 type Status = "pending" | "processing" | "rejected" | "finished";

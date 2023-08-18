@@ -54,6 +54,16 @@ function PanelNavigation() {
             <i className="fa-regular fa-star mx-1"></i>Izohlar
           </Link>
         </li>
+        <li className="my-3">
+          <Link
+            className={`p-3 block text-gray-500 ${
+              lastPath === "discounts" && "bg-green-200 text-green-600"
+            }`}
+            href="/dashboard/discounts"
+          >
+            <i className="fa-solid fa-tag mx-1"></i> Chegirmalar
+          </Link>
+        </li>
       </ul>
     </div>
   );

@@ -21,8 +21,6 @@ interface ProductType<T> {
   vendor: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;
   guarantee: number;
-  expirationData: string;
-  dateOfManufacture: string;
   isInArchive: boolean;
   date: Date;
   discounts: number[];
