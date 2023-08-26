@@ -36,13 +36,14 @@ function FilterDiscounts({
     removeDiscount(selectedId ? { id: selectedId } : { type: "all" });
   }, [removeDiscount, selectedId]);
   return (
-    <div>
+    <>
       <div className="flex justify-between items-center">
         <label>
           <input
             max={100}
             min={0}
             type="range"
+            className="w-56"
             onChange={(event) => setPercent(+event.target.value)}
             value={percent}
           />
@@ -121,7 +122,7 @@ function FilterDiscounts({
           ? "Barcha chegirmani olib tashlash"
           : "Ushbu chegirmani olib tashlash"}
       </Button>
-    </div>
+    </>
   );
 }
 
