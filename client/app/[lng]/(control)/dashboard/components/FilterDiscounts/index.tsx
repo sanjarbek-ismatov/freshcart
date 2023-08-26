@@ -1,10 +1,13 @@
 "use client";
 import { ProductType } from "@types";
-import { Button, Select, Typography } from "@components";
-import { useState } from "react";
+import { Button, Input, Select, Typography } from "@components";
+import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { useUrlContext } from "@/app/context";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
+import { setProductState, useAppSelector } from "@store";
+import { Filter } from "@/app/utils/filter";
+import { useAddDiscountMutation } from "@store/api";
 
 function FilterDiscounts({
   products,
@@ -15,10 +18,26 @@ function FilterDiscounts({
 }) {
   const [selected, setSelected] = useState(0);
   const url = useUrlContext();
+  const [addDiscount] = useAddDiscountMutation();
+  const state = useAppSelector((state) => state.productFilter);
+  const filter = useMemo(() => new Filter(setProductState), []);
+  const allAreCheck = useMemo(
+    () => state.length === products.length,
+    [products.length, state.length],
+  );
+  const addDiscountCallback = useCallback(() => {
+    const ids = state.map((e) => e._id);
+    addDiscount(ids);
+  }, [addDiscount, state]);
   return (
     <div>
       <div className="flex justify-between">
-        <Button disabled>Chegirma e'lon qilish</Button>
+        <div className="flex w-96">
+          <Input />
+          <Button onClick={addDiscountCallback} disabled={state.length === 0}>
+            Chegirma e'lon qilish
+          </Button>
+        </div>
         <Select
           defaultValue="0"
           onChange={(event) => setSelected(+event.target.value)}
@@ -51,7 +70,14 @@ function FilterDiscounts({
             );
             return (
               <li key={index} className="flex items-center shadow my-2 p-3">
-                <Checkbox checked={true} />
+                <Checkbox
+                  onChange={() => {
+                    filter.select(product, "product");
+                  }}
+                  checked={
+                    state.findIndex((e) => e.slug === product.slug) !== -1
+                  }
+                />
                 <Image
                   src={`${url}/files/image/${product.images[0]}`}
                   className="rounded-full p-2 shadow-lg"
