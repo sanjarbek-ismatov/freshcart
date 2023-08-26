@@ -1,6 +1,6 @@
 "use client";
-import { ProductType } from "@types";
-import { Button, Input, Select, Typography } from "@components";
+import { DiscountType, ProductType } from "@types";
+import { Button, Select, Typography } from "@components";
 import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { useUrlContext } from "@/app/context";
@@ -14,8 +14,9 @@ function FilterDiscounts({
   discounts,
 }: {
   products: ProductType[];
-  discounts: number[];
+  discounts: DiscountType[];
 }) {
+  const [percent, setPercent] = useState(0);
   const [selected, setSelected] = useState(0);
   const url = useUrlContext();
   const [addDiscount] = useAddDiscountMutation();
@@ -27,17 +28,21 @@ function FilterDiscounts({
   );
   const addDiscountCallback = useCallback(() => {
     const ids = state.map((e) => e._id);
-    addDiscount(ids);
-  }, [addDiscount, state]);
+    addDiscount({ products: ids, percent });
+  }, [addDiscount, percent, state]);
   return (
     <div>
-      <div className="flex justify-between">
-        <div className="flex w-96">
-          <Input />
-          <Button onClick={addDiscountCallback} disabled={state.length === 0}>
-            Chegirma e'lon qilish
-          </Button>
-        </div>
+      <div className="flex justify-between items-center">
+        <label>
+          <input
+            max={100}
+            min={0}
+            type="range"
+            onChange={(event) => setPercent(+event.target.value)}
+            value={percent}
+          />
+          <span className="w-12 inline-block mx-2">{percent} %</span>
+        </label>
         <Select
           defaultValue="0"
           onChange={(event) => setSelected(+event.target.value)}
@@ -47,25 +52,25 @@ function FilterDiscounts({
           </option>
           {discounts.map((discount, index) => (
             <option
-              selected={selected === discount}
+              selected={selected === discount.percent}
               key={index}
-              value={discount}
+              value={discount.percent}
             >
-              {discount}%
+              {discount.percent}%
             </option>
           ))}
         </Select>
       </div>
       <ul className="border">
         {products
-          .filter((product) =>
-            product.discounts.some(
-              (value) => selected === value || selected === 0,
-            ),
+          .filter(
+            (product) =>
+              product.discounts.some((value) => selected === value.percent) ||
+              selected === 0,
           )
           .map((product, index) => {
             const totalDiscount = product.discounts.reduce(
-              (acc, curr) => acc + curr,
+              (acc, curr) => acc + curr.percent,
               0,
             );
             return (
@@ -99,6 +104,14 @@ function FilterDiscounts({
             );
           })}
       </ul>
+      <Button onClick={addDiscountCallback} disabled={state.length === 0}>
+        Chegirma e'lon qilish
+      </Button>
+      <Button>
+        {selected === 0
+          ? "Barcha chegirmani olib tashlash"
+          : "Ushbu chegirmani olib tashlash"}
+      </Button>
     </div>
   );
 }

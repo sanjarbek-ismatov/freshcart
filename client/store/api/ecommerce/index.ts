@@ -191,16 +191,18 @@ export const eCommerceApi = createApi({
           return baseQueryReturnValue;
         },
       }),
-      addDiscount: build.mutation<any, string[]>({
-        query: (body) => ({
-          url: "/discount/add",
-          method: "POST",
-          body,
-          headers: {
-            ["x-vendor-token"]: getLocalData("x-vendor-token"),
-          },
-        }),
-      }),
+      addDiscount: build.mutation<any, { percent: number; products: string[] }>(
+        {
+          query: (body) => ({
+            url: "/product/discount/add",
+            method: "POST",
+            body,
+            headers: {
+              ["x-vendor-token"]: getLocalData("x-vendor-token"),
+            },
+          }),
+        },
+      ),
     };
   },
 });

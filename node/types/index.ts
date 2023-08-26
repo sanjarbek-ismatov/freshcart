@@ -23,7 +23,7 @@ interface ProductType<T> {
   guarantee: number;
   isInArchive: boolean;
   date: Date;
-  discounts: number[];
+  discounts: Types.ObjectId[];
 }
 
 type ProductTypeWithIds = ProductType<Types.ObjectId>;
@@ -96,6 +96,10 @@ interface OrderType {
   orderNotes: string;
 }
 
+interface DiscountType {
+  percent: number;
+}
+
 interface ReviewType {
   vendorId: string;
   productId: string;
@@ -118,4 +122,5 @@ export type {
   ReviewType,
   ProductTypeWithData,
   ProductTypeWithIds,
+  DiscountType,
 };

@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { ProductTypeWithIds } from "../types";
+import { DiscountType, ProductTypeWithIds } from "../types";
 
 const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
   name: String,
@@ -30,9 +30,16 @@ const productSchema: Schema<ProductTypeWithIds> = new mongoose.Schema({
       return new Date();
     },
   },
-  discounts: [Number],
+  discounts: [{ ref: "discount", type: mongoose.SchemaTypes.ObjectId }],
+});
+const discountSchema: Schema<DiscountType> = new mongoose.Schema({
+  percent: Number,
 });
 export const Product = mongoose.model<ProductTypeWithIds>(
   "product",
   productSchema,
+);
+export const Discount = mongoose.model<DiscountType>(
+  "discount",
+  discountSchema,
 );

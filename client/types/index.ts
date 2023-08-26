@@ -109,7 +109,7 @@ interface ProductType {
   vendor: VendorType;
   date: Date;
   isInArchive: boolean;
-  discounts: number[];
+  discounts: DiscountType[];
 }
 
 type Status = "pending" | "processing" | "rejected" | "finished";
@@ -159,6 +159,10 @@ interface ReviewType {
   date: string;
 }
 
+interface DiscountType {
+  percent: number;
+}
+
 export type {
   ServerResponse,
   RequestRegisterForm,
@@ -177,4 +181,5 @@ export type {
   OrderUsableType,
   ReviewType,
   SubCategoryType,
+  DiscountType,
 };
