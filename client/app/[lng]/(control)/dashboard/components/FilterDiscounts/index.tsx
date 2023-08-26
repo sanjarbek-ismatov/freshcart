@@ -7,7 +7,7 @@ import { useUrlContext } from "@/app/context";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
 import { setProductState, useAppSelector } from "@store";
 import { Filter } from "@/app/utils/filter";
-import { useAddDiscountMutation } from "@store/api";
+import { useAddDiscountMutation, useRemoveDiscountMutation } from "@store/api";
 
 function FilterDiscounts({
   products,
@@ -18,8 +18,10 @@ function FilterDiscounts({
 }) {
   const [percent, setPercent] = useState(0);
   const [selected, setSelected] = useState(0);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const url = useUrlContext();
   const [addDiscount] = useAddDiscountMutation();
+  const [removeDiscount] = useRemoveDiscountMutation();
   const state = useAppSelector((state) => state.productFilter);
   const filter = useMemo(() => new Filter(setProductState), []);
   const allAreCheck = useMemo(
@@ -30,6 +32,8 @@ function FilterDiscounts({
     const ids = state.map((e) => e._id);
     addDiscount({ products: ids, percent });
   }, [addDiscount, percent, state]);
+  const removeDiscountCallback = useCallback(() => {}, []);
+  console.log(selectedId);
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -45,7 +49,11 @@ function FilterDiscounts({
         </label>
         <Select
           defaultValue="0"
-          onChange={(event) => setSelected(+event.target.value)}
+          onChange={(event) => {
+            const discount = JSON.parse(event.target.value);
+            setSelected(discount.percent ?? 0);
+            setSelectedId(discount._id);
+          }}
         >
           <option value="0" selected>
             Belgilanmagan
@@ -54,7 +62,7 @@ function FilterDiscounts({
             <option
               selected={selected === discount.percent}
               key={index}
-              value={discount.percent}
+              value={JSON.stringify(discount)}
             >
               {discount.percent}%
             </option>

@@ -56,9 +56,13 @@ async function addDiscount(req: NodeRequest, res: Response) {
 }
 
 async function removeDiscount(req: NodeRequest, res: Response) {
-  const discount = await Discount.findById(req.body.id);
-  if (!discount)
-    return res.status(404).send({ code: 404, message: "Topilmadi" });
+  if (req.body.type === "all") {
+    await Discount.deleteMany({});
+  } else {
+    const discount = await Discount.findById(req.body.id);
+    if (!discount)
+      return res.status(404).send({ code: 404, message: "Topilmadi" });
+  }
   res.status(204).send({ code: 204, message: "O'chirildi" });
 }
 

@@ -160,6 +160,7 @@ interface ReviewType {
 }
 
 interface DiscountType {
+  _id: string;
   percent: number;
 }
 

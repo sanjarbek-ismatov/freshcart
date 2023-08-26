@@ -21,6 +21,10 @@ productRoute.post(
   vendorAuthMiddleware,
   productController.addDiscount,
 );
-productRoute.delete("/discount/remove", productController.removeDiscount);
+productRoute.delete(
+  "/discount/remove",
+  vendorAuthMiddleware,
+  productController.removeDiscount,
+);
 productRoute.get("/discount/all", productController.getAllDiscounts);
 export default productRoute;

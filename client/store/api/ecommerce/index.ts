@@ -203,6 +203,16 @@ export const eCommerceApi = createApi({
           }),
         },
       ),
+      removeDiscount: build.mutation<any, { id: string } | { type: "all" }>({
+        query: (body) => ({
+          method: "DELETE",
+          url: "/product/discount/remove",
+          body,
+          headers: {
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -225,4 +235,5 @@ export const {
   useGetReviewsQuery,
   useLoginAdminMutation,
   useAddDiscountMutation,
+  useRemoveDiscountMutation,
 } = eCommerceApi;
