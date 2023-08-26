@@ -32,8 +32,9 @@ function FilterDiscounts({
     const ids = state.map((e) => e._id);
     addDiscount({ products: ids, percent });
   }, [addDiscount, percent, state]);
-  const removeDiscountCallback = useCallback(() => {}, []);
-  console.log(selectedId);
+  const removeDiscountCallback = useCallback(() => {
+    removeDiscount(selectedId ? { id: selectedId } : { type: "all" });
+  }, [removeDiscount, selectedId]);
   return (
     <div>
       <div className="flex justify-between items-center">
@@ -115,7 +116,7 @@ function FilterDiscounts({
       <Button onClick={addDiscountCallback} disabled={state.length === 0}>
         Chegirma e'lon qilish
       </Button>
-      <Button>
+      <Button onClick={removeDiscountCallback}>
         {selected === 0
           ? "Barcha chegirmani olib tashlash"
           : "Ushbu chegirmani olib tashlash"}

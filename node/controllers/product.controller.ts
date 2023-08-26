@@ -59,7 +59,7 @@ async function removeDiscount(req: NodeRequest, res: Response) {
   if (req.body.type === "all") {
     await Discount.deleteMany({});
   } else {
-    const discount = await Discount.findById(req.body.id);
+    const discount = await Discount.findByIdAndDelete(req.body.id);
     if (!discount)
       return res.status(404).send({ code: 404, message: "Topilmadi" });
   }
