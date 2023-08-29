@@ -65,7 +65,7 @@ function Range({
         type="range"
         min={minValue}
         max={maxValue}
-        value={range}
+        value={Math.ceil(range)}
         hidden
       />
       <div ref={lineRef} className="w-full bg-gray-200 relative p-1">
@@ -74,6 +74,7 @@ function Range({
           className="bg-green-500 w-4 h-4 top-[-4px] absolute rounded-full inline-block cursor-pointer"
         ></div>
       </div>
+      <span>{Math.ceil(range)}</span>
     </div>
   );
 }
