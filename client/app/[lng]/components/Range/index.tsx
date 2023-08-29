@@ -12,6 +12,7 @@ function Range({
   maxValue: number;
 }) {
   const [range, setRange] = useState(minValue);
+  const [width, setWidth] = useState(0);
   const lineRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const line = lineRef.current;
@@ -22,15 +23,20 @@ function Range({
 
     function changeEvent(event: PointerEvent) {
       if (!line) return;
+      const step = line.clientWidth / maxValue;
       if (event.offsetX >= line?.clientWidth) {
-        setRange(line.clientWidth);
-        onChange && onChange(100);
+        setRange(maxValue);
+        setWidth(line.clientWidth);
+        onChange && onChange(maxValue);
       } else if (event.offsetX < 0) {
-        setRange(0);
-        onChange && onChange(0);
+        setRange(minValue);
+        setWidth(0);
+        onChange && onChange(minValue);
       } else {
-        setRange(event.offsetX - 5);
-        onChange && onChange(Math.round(event.offsetX / singlePercent));
+        const currentRange = (event.offsetX - 5) / step;
+        setRange(currentRange);
+        setWidth(event.offsetX - 5);
+        onChange && onChange(Math.round(currentRange));
       }
     }
 
@@ -56,7 +62,7 @@ function Range({
       line.removeEventListener("pointerup", pointerUp);
       line.removeEventListener("pointermove", pointerMove);
     };
-  }, [lineRef, setRange, onChange]);
+  }, [lineRef, setRange, onChange, maxValue, minValue]);
 
   return (
     <div className="m-3">
@@ -70,7 +76,7 @@ function Range({
       />
       <div ref={lineRef} className="w-full bg-gray-200 relative p-1">
         <div
-          style={{ left: `${range}px` }}
+          style={{ left: `${width}px` }}
           className="bg-green-500 w-4 h-4 top-[-4px] absolute rounded-full inline-block cursor-pointer"
         ></div>
       </div>
