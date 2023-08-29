@@ -35,7 +35,8 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
             "category",
             category[subIndex]._id
           );
-          addProduct(formParser.getFormAsFormData);
+          console.log(formParser.getFormAsObject);
+          // addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >
@@ -78,7 +79,7 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           label="Mahsulot og'irligi (gram da)"
           fullWidth
         /> */}
-        <Range onChange={(e) => console.log(e)} value={0} />
+        <Range minValue={0} maxValue={500} />
         <Button type="submit">Mahsulot qo`shish</Button>
       </form>
     </div>

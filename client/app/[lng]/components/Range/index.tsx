@@ -1,15 +1,17 @@
 "use client";
 
-import { RefObject, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 function Range({
   onChange,
-  value,
+  minValue,
+  maxValue,
 }: {
-  onChange: (value: number) => void;
-  value: number;
+  onChange?: (value: number) => void;
+  minValue: number;
+  maxValue: number;
 }) {
-  const [range, setRange] = useState(value);
+  const [range, setRange] = useState(minValue);
   const lineRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const line = lineRef.current;
@@ -22,13 +24,13 @@ function Range({
       if (!line) return;
       if (event.offsetX >= line?.clientWidth) {
         setRange(line.clientWidth);
-        onChange(100);
+        onChange && onChange(100);
       } else if (event.offsetX < 0) {
         setRange(0);
-        onChange(0);
+        onChange && onChange(0);
       } else {
         setRange(event.offsetX - 5);
-        onChange(Math.round(event.offsetX / singlePercent));
+        onChange && onChange(Math.round(event.offsetX / singlePercent));
       }
     }
 
@@ -58,6 +60,14 @@ function Range({
 
   return (
     <div className="m-3">
+      <input
+        name="weight"
+        type="range"
+        min={minValue}
+        max={maxValue}
+        value={range}
+        hidden
+      />
       <div ref={lineRef} className="w-full bg-gray-200 relative p-1">
         <div
           style={{ left: `${range}px` }}
