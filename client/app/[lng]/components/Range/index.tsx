@@ -6,10 +6,14 @@ function Range({
   onChange,
   minValue,
   maxValue,
+  label,
+  inputWidth,
 }: {
   onChange?: (value: number) => void;
   minValue: number;
   maxValue: number;
+  label?: string;
+  inputWidth: number | "full";
 }) {
   const [range, setRange] = useState(minValue);
   const [width, setWidth] = useState(0);
@@ -65,23 +69,33 @@ function Range({
   }, [lineRef, setRange, onChange, maxValue, minValue]);
 
   return (
-    <div className="m-3">
-      <input
-        name="weight"
-        type="range"
-        min={minValue}
-        max={maxValue}
-        value={Math.ceil(range)}
-        hidden
-      />
-      <div ref={lineRef} className="w-full bg-gray-200 relative p-1">
-        <div
-          style={{ left: `${width}px` }}
-          className="bg-green-500 w-4 h-4 top-[-4px] absolute rounded-full inline-block cursor-pointer"
-        ></div>
+    <label
+      style={{
+        width: inputWidth === "full" ? "100%" : inputWidth,
+      }}
+      className="text-sm text-gray-500"
+    >
+      <p>{label}</p>
+      <div className="m-3 flex items-center">
+        <input
+          name="weight"
+          type="range"
+          min={minValue}
+          max={maxValue}
+          value={Math.ceil(range)}
+          hidden
+        />
+        <div className="w-full">
+          <div ref={lineRef} className="w-full bg-gray-200 relative p-1">
+            <div
+              style={{ left: `${width}px` }}
+              className="bg-green-500 w-4 h-4 top-[-4px] absolute rounded-full inline-block cursor-pointer"
+            ></div>
+          </div>
+        </div>
+        <span className="ml-4">{Math.ceil(range)}</span>
       </div>
-      <span>{Math.ceil(range)}</span>
-    </div>
+    </label>
   );
 }
 export default Range;

@@ -79,7 +79,12 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           label="Mahsulot og'irligi (gram da)"
           fullWidth
         /> */}
-        <Range minValue={0} maxValue={500} />
+        <Range
+          inputWidth="full"
+          label="Maxsulot og'irligi"
+          minValue={0}
+          maxValue={500}
+        />
         <Button type="submit">Mahsulot qo`shish</Button>
       </form>
     </div>

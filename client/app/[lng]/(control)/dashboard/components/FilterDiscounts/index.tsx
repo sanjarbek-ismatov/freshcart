@@ -1,6 +1,6 @@
 "use client";
 import { DiscountType, ProductType } from "@types";
-import { Button, Select, Typography } from "@components";
+import { Button, Select, Typography, Range } from "@components";
 import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { useUrlContext } from "@/app/context";
@@ -26,7 +26,7 @@ function FilterDiscounts({
   const filter = useMemo(() => new Filter(setProductState), []);
   const allAreCheck = useMemo(
     () => state.length === products.length,
-    [products.length, state.length],
+    [products.length, state.length]
   );
   const addDiscountCallback = useCallback(() => {
     const ids = state.map((e) => e._id);
@@ -38,17 +38,12 @@ function FilterDiscounts({
   return (
     <>
       <div className="flex justify-between items-center">
-        <label>
-          <input
-            max={100}
-            min={0}
-            type="range"
-            className="w-56"
-            onChange={(event) => setPercent(+event.target.value)}
-            value={percent}
-          />
-          <span className="w-12 inline-block mx-2">{percent} %</span>
-        </label>
+        <Range
+          maxValue={100}
+          minValue={0}
+          onChange={(event) => setPercent(event)}
+          inputWidth={200}
+        />
         <Select
           defaultValue="0"
           onChange={(event) => {
@@ -76,12 +71,12 @@ function FilterDiscounts({
           .filter(
             (product) =>
               product.discounts.some((value) => selected === value.percent) ||
-              selected === 0,
+              selected === 0
           )
           .map((product, index) => {
             const totalDiscount = product.discounts.reduce(
               (acc, curr) => acc + curr.percent,
-              0,
+              0
             );
             return (
               <li key={index} className="flex items-center shadow my-2 p-3">
