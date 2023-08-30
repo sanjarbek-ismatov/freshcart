@@ -48,13 +48,13 @@ function Range({
     function pointerDown(event: PointerEvent) {
       event.preventDefault();
       dot?.setPointerCapture(event.pointerId);
-      dot?.addEventListener("pointermove", pointerMove);
+      // dot?.addEventListener("pointermove", pointerMove);
       changeEvent(event);
     }
 
     function pointerUp(event: PointerEvent) {
       dot?.releasePointerCapture(event.pointerId);
-      dot?.removeEventListener("pointermove", pointerMove);
+      // dot?.removeEventListener("pointermove", pointerMove);
     }
 
     function pointerMove(event: PointerEvent) {
@@ -62,14 +62,16 @@ function Range({
     }
 
     line.addEventListener("pointerdown", pointerDown);
+    line.addEventListener("pointerup", pointerUp);
     dot.addEventListener("pointerdown", pointerDown);
     dot.addEventListener("pointerup", pointerUp);
-    line.addEventListener("pointerup", pointerUp);
 
     return () => {
       line.removeEventListener("pointerdown", pointerDown);
       line.removeEventListener("pointerup", pointerUp);
-      dot.removeEventListener("pointermove", pointerMove);
+      dot.removeEventListener("pointerdown", pointerDown);
+      dot.removeEventListener("pointerup", pointerUp);
+      // dot.removeEventListener("pointermove", pointerMove);
     };
   }, [lineRef, setRange, onChange, maxValue, minValue]);
 
