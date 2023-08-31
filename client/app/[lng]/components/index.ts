@@ -50,3 +50,4 @@ export { default as NavbarTitle } from "./NavbarTitle";
 export { default as Pagination } from "./Pagination";
 export { default as LinkOfNavigation } from "./LinkOfNavigation";
 export { default as FourGrid } from "./FourGridComponent";
+export {default as Range} from "./Range";

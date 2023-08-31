@@ -21,11 +21,9 @@ interface ProductType<T> {
   vendor: Document<unknown, {}, VendorType> &
     Omit<VendorType & { _id: Types.ObjectId }, never>;
   guarantee: number;
-  expirationData: string;
-  dateOfManufacture: string;
   isInArchive: boolean;
   date: Date;
-  discounts: number[];
+  discounts: Types.ObjectId[];
 }
 
 type ProductTypeWithIds = ProductType<Types.ObjectId>;
@@ -98,6 +96,10 @@ interface OrderType {
   orderNotes: string;
 }
 
+interface DiscountType {
+  percent: number;
+}
+
 interface ReviewType {
   vendorId: string;
   productId: string;
@@ -120,4 +122,5 @@ export type {
   ReviewType,
   ProductTypeWithData,
   ProductTypeWithIds,
+  DiscountType,
 };

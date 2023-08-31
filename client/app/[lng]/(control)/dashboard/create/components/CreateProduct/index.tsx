@@ -1,24 +1,25 @@
 "use client";
 import { useAddProductMutation } from "@/store/api/ecommerce";
 import FormParser from "@/app/utils/formParser";
-import { Button, Input, Select, TextArea } from "@components";
+import { Button, Input, Range, Select, TextArea } from "@components";
 import { CategoryType, SubCategoryType } from "@types";
 import { useCallback, useState } from "react";
 
 function CreateProduct({ categories }: { categories: CategoryType[] }) {
   const [addProduct] = useAddProductMutation();
   const [category, setCategory] = useState<SubCategoryType[]>(
-    categories[0].subCategories,
+    categories[0].subCategories
   );
   const [subIndex, setSubIndex] = useState(0);
   const formParser = new FormParser();
   const handleChangeMainCategory = useCallback(
     (value: string) => {
-      const currCategory = categories.find((e) => e.name === value)
-        ?.subCategories;
+      const currCategory = categories.find(
+        (e) => e.name === value
+      )?.subCategories;
       currCategory && setCategory(currCategory);
     },
-    [categories],
+    [categories]
   );
   return (
     <div className="">
@@ -32,9 +33,10 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           formParser.setForm(event);
           formParser.getFormAsFormData.append(
             "category",
-            category[subIndex]._id,
+            category[subIndex]._id
           );
-          addProduct(formParser.getFormAsFormData);
+          console.log(formParser.getFormAsObject);
+          // addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >
@@ -71,7 +73,18 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
           multiple
           fullWidth
         />
-        <Input name="weight" label="Mahsulot og'irligi" fullWidth />
+        {/* <Input
+          type="number"
+          name="weight"
+          label="Mahsulot og'irligi (gram da)"
+          fullWidth
+        /> */}
+        <Range
+          inputWidth="full"
+          label="Maxsulot og'irligi"
+          minValue={0}
+          maxValue={500}
+        />
         <Button type="submit">Mahsulot qo`shish</Button>
       </form>
     </div>

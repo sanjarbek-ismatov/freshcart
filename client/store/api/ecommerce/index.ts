@@ -191,6 +191,28 @@ export const eCommerceApi = createApi({
           return baseQueryReturnValue;
         },
       }),
+      addDiscount: build.mutation<any, { percent: number; products: string[] }>(
+        {
+          query: (body) => ({
+            url: "/product/discount/add",
+            method: "POST",
+            body,
+            headers: {
+              ["x-vendor-token"]: getLocalData("x-vendor-token"),
+            },
+          }),
+        },
+      ),
+      removeDiscount: build.mutation<any, { id: string } | { type: "all" }>({
+        query: (body) => ({
+          method: "DELETE",
+          url: "/product/discount/remove",
+          body,
+          headers: {
+            ["x-vendor-token"]: getLocalData("x-vendor-token"),
+          },
+        }),
+      }),
     };
   },
 });
@@ -212,4 +234,6 @@ export const {
   useGetAllCategoryQuery,
   useGetReviewsQuery,
   useLoginAdminMutation,
+  useAddDiscountMutation,
+  useRemoveDiscountMutation,
 } = eCommerceApi;
