@@ -35,8 +35,7 @@ function CreateProduct({ categories }: { categories: CategoryType[] }) {
             "category",
             category[subIndex]._id
           );
-          console.log(formParser.getFormAsObject);
-          // addProduct(formParser.getFormAsFormData);
+          addProduct(formParser.getFormAsFormData);
         }}
         encType="multipart/form-data"
       >

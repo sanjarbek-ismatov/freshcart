@@ -1,6 +1,6 @@
 "use client";
 import { DiscountType, ProductType } from "@types";
-import { Button, Select, Typography, Range } from "@components";
+import { Button, Range, Select, Typography } from "@components";
 import { useCallback, useMemo, useState } from "react";
 import Image from "next/image";
 import { useUrlContext } from "@/app/context";
@@ -66,7 +66,7 @@ function FilterDiscounts({
           ))}
         </Select>
       </div>
-      <ul className="border">
+      <ul className="border max-h-screen h-100 overflow-y-auto">
         {products
           .filter(
             (product) =>
@@ -79,29 +79,40 @@ function FilterDiscounts({
               0
             );
             return (
-              <li key={index} className="flex items-center shadow my-2 p-3">
-                <Checkbox
-                  onChange={() => {
-                    filter.select(product, "product");
-                  }}
-                  checked={
-                    state.findIndex((e) => e.slug === product.slug) !== -1
-                  }
-                />
-                <Image
-                  src={`${url}/files/image/${product.images[0]}`}
-                  className="rounded-full p-2 shadow-lg"
-                  alt={product.name}
-                  width={70}
-                  height={70}
-                  unoptimized
-                />
-                <Typography text={product.name} size="md" />
-                <div>
-                  <p>Jami narxi: {product.price} $</p>
-                  <p>Chegirma: {totalDiscount}%</p>
+              <li
+                key={index}
+                className="flex items-center justify-between shadow my-2 p-3"
+              >
+                <label className="flex items-center">
+                  <Checkbox
+                    onChange={() => {
+                      filter.select(product, "product");
+                    }}
+                    checked={
+                      state.findIndex((e) => e.slug === product.slug) !== -1
+                    }
+                  />
+                  <Image
+                    src={`${url}/files/image/${product.images[0]}`}
+                    className="rounded-full p-2 shadow-lg mx-3"
+                    alt={product.name}
+                    width={70}
+                    height={70}
+                    unoptimized
+                  />
+                  <Typography text={product.name} size="md" />
+                </label>
+                <div className="text-[12px] text-gray-600">
                   <p>
-                    Hozirgi narxi:{" "}
+                    <span className="text-gray-900">Asl narxi: </span>{" "}
+                    {product.price} $
+                  </p>
+                  <p>
+                    <span className="text-gray-900">Chegirma: </span>{" "}
+                    {totalDiscount}%
+                  </p>
+                  <p>
+                    <span className="text-gray-900">Hozirgi narx: </span>:{" "}
                     {product.price - (totalDiscount / 100) * product.price} $
                   </p>
                 </div>
