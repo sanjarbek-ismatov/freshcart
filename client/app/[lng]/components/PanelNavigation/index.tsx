@@ -45,6 +45,12 @@ function PanelNavigation({ label }: { label?: string }) {
           icon="fa-solid fa-tag mx-1"
           lastPath="discounts"
         />
+        <PanelLink
+          href="/dashboard/settings"
+          title="Sozlamalar"
+          icon="fa-solid fa-gear mx-1"
+          lastPath="settings"
+        />
       </ul>
     </div>
   );
