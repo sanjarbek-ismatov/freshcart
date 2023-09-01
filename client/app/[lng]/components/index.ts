@@ -51,3 +51,5 @@ export { default as Pagination } from "./Pagination";
 export { default as LinkOfNavigation } from "./LinkOfNavigation";
 export { default as FourGrid } from "./FourGridComponent";
 export {default as Range} from "./Range";
+export {default as PanelNavigation} from "./PanelNavigation";
+export {default as PanelLink} from "./PanelLink";
