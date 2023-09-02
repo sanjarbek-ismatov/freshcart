@@ -3,11 +3,11 @@ import { VendorWithOrders } from "@types";
 
 function Main({ data }: { data?: VendorWithOrders }) {
   const lastOrders = data?.orders.filter(
-    (e) => e.status === "pending" || e.status === "processing",
+    (e) => e.status === "pending" || e.status === "processing"
   );
   const lastOrdersTotalPrice = lastOrders?.reduce(
     (accu, curr) => accu + curr.totalPrice,
-    0,
+    0
   );
   const ordersinlastTwoWeeks = data?.orders.filter((e) => {
     const date = new Date();
@@ -39,8 +39,9 @@ function Main({ data }: { data?: VendorWithOrders }) {
           }ta`}
         />
       </div>
-
-      <Chart orders={data?.orders} />
+      <div className="max-h-[600px] h-full flex justify-center">
+        <Chart orders={data?.orders} />
+      </div>
       <Order orders={data?.orders} />
     </>
   );

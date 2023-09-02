@@ -8,7 +8,7 @@ function Banner() {
       style={{
         backgroundImage: "url(https://i.ibb.co/Jt5WBgM/slider-image-1.jpg)",
       }}
-      className="h-60 rounded-md bg-cover bg-right bg-no-repeat my-5 px-20 flex leading-[35px] items-center"
+      className="w-full h-60 rounded-md bg-cover bg-right bg-no-repeat my-5 px-20 flex leading-[35px] items-center"
     >
       <div>
         <h1 className="font-semibold text-3xl text-slate-800">
