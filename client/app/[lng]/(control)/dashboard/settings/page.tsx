@@ -10,12 +10,17 @@ import { useGetControllerInfoQuery } from "@store/api";
 import { useState } from "react";
 import { VendorWithOrders } from "@types";
 import { useUrlContext } from "@/app/context";
+import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
 
 function VendorSettingsLeft({ data }: { data?: VendorWithOrders }) {
   const [editable, setEditable] = useState(false);
 
   return (
     <form>
+      <VendorProfileImageSetting
+        image={data?.vendor.image}
+        editable={editable}
+      />
       <Input
         label="Do'kon nomi"
         name="name"
@@ -40,7 +45,17 @@ function VendorSettingsLeft({ data }: { data?: VendorWithOrders }) {
         defaultValue={data?.vendor.email}
         disabled={!editable}
       />
-      <Button type="submit">Saqlash</Button>
+      <Button
+        onClick={() => setEditable(!editable)}
+        type="button"
+        bgColor="bg-gray-300"
+        color="text-slate-600"
+      >
+        {editable ? "Bekor qilish" : "O'zgartirish"}
+      </Button>
+      <Button type="submit" disabled={!editable}>
+        Saqlash
+      </Button>
     </form>
   );
 }
@@ -67,11 +82,15 @@ function VendorPasswordChangeSetting(){
   </form>
       </>
 }
-function VendorProfileImageSetting({image}: {image?: string}){
+function VendorProfileImageSetting({image, editable}: {image?: string; editable?: boolean}){
   const url = useUrlContext()
-  return <div className='mx-32'>
+  const [handleChangeImage, images] = useParsedUrlData(`${url}/files/image/${image}`)
+  return <div>
     <Typography text="Profil rasmini tahrirlash" size='sm' />
-    <ProfileImage image={`${url}/files/image/${image}`} size={200} />
+    <label>
+    <ProfileImage image={images[0]} size={200} editable={editable}  />
+    <input type="file" name='image' onChange={handleChangeImage} hidden disabled={!editable} />
+    </label>
   </div>
 }
 function SettingsLayout() {
@@ -88,7 +107,7 @@ function SettingsLayout() {
           <VendorSettingsLeft data={data} />
           <VendorPasswordChangeSetting />
           </div>
-            <VendorProfileImageSetting image={data?.vendor.image} />
+
           </div>
       )}
     </>
