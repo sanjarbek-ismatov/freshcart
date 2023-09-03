@@ -11,6 +11,7 @@ const storage = new GridFsStorage({
       crypto.randomBytes(16, (err, buff) => {
         if (err) console.log(err);
         const filename = buff.toString("hex") + ".png";
+        console.log(filename);
         resolve({
           filename,
           bucketName: "uploads",

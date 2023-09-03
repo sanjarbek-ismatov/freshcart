@@ -17,7 +17,7 @@ function PanelLink({
   const lastPath = pathname.split("/").at(-1);
   return (
     <Link
-      className={`py-2 px-3 text-gray-500 w-[300px] block my-4 ${
+      className={`py-2 px-3 rounded-md text-gray-500 w-[300px] block my-4 ${
         lastPath === actualPath && "bg-green-200 text-green-600"
       }`}
       href={href}

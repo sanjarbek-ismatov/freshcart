@@ -11,7 +11,7 @@ function Form({ user }: { user?: UserType }) {
   const url = useUrlContext();
   const form = new FormParser();
   const [handleSubmitImage, images] = useParsedUrlData(
-    user?.image ? `${url}/files/image/${user.image}` : "",
+    user?.image ? `${url}/files/image/${user.image}` : ""
   );
   return (
     <form
@@ -22,7 +22,7 @@ function Form({ user }: { user?: UserType }) {
       }}
     >
       <label>
-        <ProfileImage size={200} image={images[0]} />
+        <ProfileImage editable={true} size={200} image={images[0]} />
         <input onChange={handleSubmitImage} name="image" type="file" hidden />
       </label>
       <Input
