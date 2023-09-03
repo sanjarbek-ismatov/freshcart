@@ -13,5 +13,5 @@ vendorRoute.post("/login", vendorController.login);
 vendorRoute.get("/all", vendorController.getAll);
 vendorRoute.get("/me", vendorAuthMiddleware, vendorController.getMe);
 vendorRoute.get("/:slug", vendorController.getSingleVendor);
-
+vendorRoute.put("/update",[upload.single("image"), vendorAuthMiddleware],  vendorController.updateInfo)
 export default vendorRoute;

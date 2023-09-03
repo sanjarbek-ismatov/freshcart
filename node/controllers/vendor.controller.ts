@@ -69,5 +69,15 @@ async function login(req: NodeRequest, res: Response) {
     .setHeader("x-vendor-token", token)
     .send({ code: 200, message: "Bajarildi" });
 }
-
-export default { register, login, getAll, getSingleVendor, getMe };
+async function updateInfo(req: NodeRequest, res: Response){
+  const {error} = vendorValidator(req.body, true)
+  if(!req.vendor) return res.status(404).send({code: 404, message: "Vendor hasn't been found"})
+  if(error) return res.status(400).send({code: 400, message: error.details[0].message})
+  if(req.file){
+    req.vendor.image = req.file.filename
+  }
+  Object.assign(req.vendor, req.body)
+  console.log(req.vendor, req.body)
+  res.status(200).send({code: 200, message: "Vendor info has been updated"})
+}
+export default { register, login, getAll, getSingleVendor, getMe, updateInfo };
