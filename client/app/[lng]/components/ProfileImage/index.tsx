@@ -1,13 +1,13 @@
 import "./ProfileImage.css";
 import React, { useMemo } from "react";
 
-function ProfileImage({ image, size }: { image: string; size: number }) {
+function ProfileImage({ image, size }: { image?: string; size: number }) {
   const imageSrc = useMemo(
     () =>
       image
         ? image.toString()
         : "https://img.freepik.com/free-icon/user_318-159711.jpg",
-    [image],
+    [image]
   );
   return (
     <div
