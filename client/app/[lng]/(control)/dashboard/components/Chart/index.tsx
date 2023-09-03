@@ -20,7 +20,7 @@ ChartJS.register(
   LineElement,
   Title,
   Tooltip,
-  Legend,
+  Legend
 );
 
 function Chart({ orders }: { orders?: OrderUsableType[] }) {
@@ -32,7 +32,7 @@ function Chart({ orders }: { orders?: OrderUsableType[] }) {
       },
       title: {
         display: true,
-        text: "Chart.js Line Chart",
+        text: "Do'kon statistikasi",
       },
     },
   };

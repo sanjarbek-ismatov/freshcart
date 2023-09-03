@@ -16,7 +16,6 @@ const vendorSchema: Schema<VendorType> = new mongoose.Schema({
   },
   image: String,
   banner: String,
-
   products: [
     {
       type: mongoose.SchemaTypes.ObjectId,
