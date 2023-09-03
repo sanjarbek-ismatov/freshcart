@@ -25,7 +25,7 @@ export const registerValidator = (body: {
       upperCase: 1,
       numeric: 1,
     },
-    "password",
+    "password"
   );
   const { error: errorBody } = validator.validate(body);
   const { error: errorPassword } = passwordComplexity.validate(body.password);
@@ -57,17 +57,14 @@ export const productValidator = (body: ProductTypeWithIds) => {
   });
   return validator.validate(body);
 };
-export const vendorValidator = (body: VendorType) => {
+export const vendorValidator = (body: VendorType, toUpdate?: boolean) => {
   const validator = Joi.object({
-    name: Joi.string().required(),
-    slug: Joi.string().required(),
-    category: Joi.string(),
-    sells: Joi.number().integer().min(0),
-    stars: Joi.number().min(0).max(5),
-    phone: Joi.string().pattern(/^\+[0-9]+$/),
+    name: toUpdate ? Joi.string() : Joi.string().required(),
+    slug: toUpdate ? Joi.string() : Joi.string().required(),
+    phone: Joi.string().pattern(/^\+\d+$/),
     email: Joi.string().email(),
     products: Joi.array().items(Joi.string()),
-    password: Joi.string().required(),
+    password: toUpdate ? Joi.string() : Joi.string().required(),
     image: Joi.binary(),
     banner: Joi.binary(),
   });
