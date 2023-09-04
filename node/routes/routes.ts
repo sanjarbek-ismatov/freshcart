@@ -4,6 +4,7 @@ import helmet from "helmet";
 import bodyParser from "body-parser";
 import { userRouter } from "./user.routes";
 import morgan from "morgan";
+import methodOverride from "method-override";
 import error from "../middleware/error.middleware";
 import adminRouter from "./admin.routes";
 import categoryRoutes from "./category.routes";
@@ -28,6 +29,7 @@ export default function (app: Express) {
   );
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: true }));
+  app.use(methodOverride("_method"));
   app.use(morgan("tiny"));
   app.use("/api/auth", userRouter);
   app.use("/api/admin", adminRouter);

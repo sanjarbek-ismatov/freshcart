@@ -1,13 +1,14 @@
 import express from "express";
 import productController from "../controllers/product.controller";
 import { vendorAuthMiddleware } from "../middleware/auth.middleware";
+import { upload } from "../models/gridfs.model";
 
 const productRoute = express.Router();
 productRoute.get("/all", productController.getAll);
 productRoute.get("/:slug", productController.getBySlug);
 productRoute.post(
   "/create",
-  // [vendorAuthMiddleware, upload.array("images")],
+  [upload.array("images"), vendorAuthMiddleware],
   productController.create,
 );
 productRoute.delete(
