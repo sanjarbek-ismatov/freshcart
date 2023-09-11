@@ -42,7 +42,7 @@ async function register(req: NodeRequest, res: Response) {
     return res
       .status(400)
       .send({ code: 400, message: "Nom allaqachon mavjud" });
-  const newVendor = await Vendor.create(req.body);
+  const newVendor = new Vendor(req.body);
   const files = req.files as { [fieldname: string]: Express.Multer.File[] };
   newVendor.category = req.body.category.split(/\s*,\s*/g);
   newVendor.image = files["image"][0].filename;

@@ -31,6 +31,9 @@
     "dev": "nodemon server.ts",
     "start": "node dist/bundle.js"
   },
+  "resolutions": {
+    "mongodb": "4.17.1"
+  },
   "devDependencies": {
     "@types/bcrypt": "^10.0.28-alpha",
     "@types/body-parser": "^1.19.2",
