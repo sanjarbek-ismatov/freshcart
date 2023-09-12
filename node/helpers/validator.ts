@@ -64,6 +64,7 @@ export const vendorValidator = (body: VendorType, toUpdate?: boolean) => {
     phone: Joi.string().pattern(/^\+\d+$/),
     email: Joi.string().email(),
     products: Joi.array().items(Joi.string()),
+    category: Joi.string(),
     password: toUpdate ? Joi.string() : Joi.string().required(),
     image: Joi.binary(),
     banner: Joi.binary(),

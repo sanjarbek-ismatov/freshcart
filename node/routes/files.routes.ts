@@ -1,14 +1,17 @@
 import express from "express";
 import mongoose from "mongoose";
-const fileRoute = express.Router()
-// import { GridFSBucket } from 'mongodb';
+import Grid, { Grid as GridType } from "gridfs-stream";
 
-let gfb: any;
+const fileRoute = express.Router();
 
 const connection = mongoose.connection;
-
+var gfs: GridType, gfb: any;
 connection.once('open', () => {
-    gfb = new mongoose.mongo.GridFSBucket(connection.db as any, { bucketName: 'uploads' });
+    gfs = Grid(connection.db, mongoose.mongo)
+    gfs.collection('uploads')
+    gfb = new mongoose.mongo.GridFSBucket(connection.db, {
+        bucketName: "uploads",
+    });
 });
 
 fileRoute.get('/all', async (req, res) => {
