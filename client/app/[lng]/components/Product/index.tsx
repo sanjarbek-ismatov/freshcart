@@ -14,7 +14,7 @@ function ProductCard({ details }: { details: ProductType }) {
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
-      <div className="flex justify-center items-center flex-col w-auto h-[200px]">
+      <div className="flex justify-center items-center flex-col max-w-[200px] h-[200px]">
         <Image
           width={250}
           height={250}

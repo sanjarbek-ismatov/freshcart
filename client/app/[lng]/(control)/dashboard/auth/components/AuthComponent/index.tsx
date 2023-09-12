@@ -3,6 +3,7 @@ import { Button, Input, LoadingModal, Typography } from "@components";
 import FormParser from "@/app/utils/formParser";
 import { useVendorLoginMutation } from "@/store/api/ecommerce";
 import { useState } from "react";
+import Link from "next/link";
 
 function AuthComponent() {
   const formParser = new FormParser();
@@ -47,7 +48,7 @@ function AuthComponent() {
               </div>
             </form>
             <p>Yoki</p>
-            <Button>Ro'yxatdan o'tish</Button>
+            <Link href="/dashboard/auth/register"><Button>Ro'yxatdan o'tish</Button></Link>
             <br />
             <a
               className="text-green-500 text-sm hover:underline"
