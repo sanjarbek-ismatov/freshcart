@@ -76,6 +76,7 @@ async function updateInfo(req: NodeRequest, res: Response){
   if(req.file){
     req.vendor.image = req.file.filename
   }
+  delete req.body.image
   Object.assign(req.vendor, req.body)
   await req.vendor.save()
   res.status(200).send({code: 200, message: "Vendor info has been updated"})
