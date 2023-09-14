@@ -5,6 +5,7 @@ import { Vendor } from "../models/vendor.model";
 import { tokenGenerator } from "../helpers/tokengenerator";
 import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 import { Order } from "../models/order.model";
+import bcrypt from "bcrypt";
 
 async function getAll(req: NodeRequest, res: Response) {
   const vendors = await Vendor.find().select("-password").populate("products");
@@ -80,5 +81,15 @@ async function updateInfo(req: NodeRequest, res: Response){
   Object.assign(req.vendor, req.body)
   await req.vendor.save()
   res.status(200).send({code: 200, message: "Vendor info has been updated"})
+}
+async function passwordUpdate(req: NodeRequest, res: Response){
+  const {password} = req.body
+  if(!password) return res.status(400).send({code: 400, message: "Parol kerak"})
+  bcrypt.compare(req.body.password, password, (err, same) => {
+    if(err) throw err
+    if(!same)
+    return res.status(401).send({code: 401, message: "Parol noto'g'ri"})
+  })
+  res.status(200).send({code: 200, message: "Password has been updated"})
 }
 export default { register, login, getAll, getSingleVendor, getMe, updateInfo };
