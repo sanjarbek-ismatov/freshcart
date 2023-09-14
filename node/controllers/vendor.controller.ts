@@ -77,7 +77,7 @@ async function updateInfo(req: NodeRequest, res: Response){
     req.vendor.image = req.file.filename
   }
   Object.assign(req.vendor, req.body)
-  console.log(req.vendor, req.body)
+  await req.vendor.save()
   res.status(200).send({code: 200, message: "Vendor info has been updated"})
 }
 export default { register, login, getAll, getSingleVendor, getMe, updateInfo };
