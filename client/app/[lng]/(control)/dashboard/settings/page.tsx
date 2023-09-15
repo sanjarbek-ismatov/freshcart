@@ -6,8 +6,8 @@ import {
     ProfileImage,
     Typography,
 } from "@components";
-import {useGetControllerInfoQuery, useUpdateVendorInfoMutation} from "@store/api";
-import { useState } from "react";
+import {useGetControllerInfoQuery, useUpdateVendorInfoMutation, useUpdateVendorPasswordMutation} from "@store/api";
+import {useCallback, useState} from "react";
 import { VendorWithOrders } from "@types";
 import { useUrlContext } from "@/app/context";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
@@ -90,27 +90,36 @@ const [updateInfo, {isLoading}] = useUpdateVendorInfoMutation()
 function VendorPasswordChangeSetting(){
   const [editable, setEditable] = useState(false)
   const [password, setPassword] = useState("")
-  const [isError, setIsError] = useState(false)
-  return <>
+    const [newPassword, setNewPassword] = useState("")
+    const [isError, setIsError] = useState(false)
+    const [updatePassword, {isLoading}] = useUpdateVendorPasswordMutation()
+    const submitPassword = useCallback(() => {
+        updatePassword({
+            newPassword,
+            password
+        })
+    }, [password, newPassword])
+    return <>
+        {isLoading && <LoadingModal />}
     <Typography
       text="Parolni o'zgartirish"
       color="text-red-500"
       size="sm"
   />
-  <form>
-    <Input label="Joriy parolni kiriting" type="password" disabled={!editable} />
+  <form onSubmit={() => submitPassword()}>
+    <Input onChange={(e) => setPassword(e.target.value)} label="Joriy parolni kiriting" type="password" disabled={!editable} />
     <Input
         label="Yangi parolni kiriting"
         type="password"
         name="password"
-        onChange={e => setPassword(e.target.value)}
+        onChange={e => setNewPassword(e.target.value)}
         disabled={!editable}
     />
     <Input
         isError={isError}
         label="Parolni qayta kiriting"
         onChange={e => {
-          setIsError(e.target.value !== password)
+          setIsError(e.target.value !== newPassword)
         }}
         type="password"
         disabled={!editable}

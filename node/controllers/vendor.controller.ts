@@ -83,13 +83,14 @@ async function updateInfo(req: NodeRequest, res: Response){
   res.status(200).send({code: 200, message: "Vendor info has been updated"})
 }
 async function passwordUpdate(req: NodeRequest, res: Response){
-  const {password} = req.body
+  const {password, newPassword} = req.body
   if(!password) return res.status(400).send({code: 400, message: "Parol kerak"})
   bcrypt.compare(req.body.password, password, (err, same) => {
     if(err) throw err
     if(!same)
-    return res.status(401).send({code: 401, message: "Parol noto'g'ri"})
+     return res.status(401).send({code: 401, message: "Parol noto'g'ri"})
   })
+  console.log(newPassword)
   res.status(200).send({code: 200, message: "Password has been updated"})
 }
-export default { register, login, getAll, getSingleVendor, getMe, updateInfo };
+export default { register, login, getAll, getSingleVendor, getMe, updateInfo, passwordUpdate };
