@@ -11,37 +11,22 @@ async function getAll(req: NodeRequest, res: Response) {
 
 async function create(req: NodeRequest, res: Response) {
   const { error } = productValidator(req.body);
-  console.log("1")
-  console.log(error?.details[0].message)
   if (error)
     return res
       .status(400)
       .send({ code: 400, message: error.details[0].message });
-  console.log("2")
   const newProduct = new Product(req.body);
-  console.log("3")
   newProduct.slug = sluggenerator(newProduct.name);
-  console.log("4")
   if (req.vendor) {
-    console.log("5")
     newProduct.vendor = req.vendor;
-    console.log("6")
     req.vendor.products.push(newProduct);
-    console.log("7")
     await req.vendor.save();
-    console.log("8")
   }
-  console.log("9")
   if (Array.isArray(req.files)) {
-    console.log("10")
     newProduct.images = req.files?.map((e: Express.Multer.File) => e.filename);
-    console.log("11")
   }
-  console.log("12")
   await newProduct.save();
-  console.log("13")
   res.status(201).send({ code: 201, message: "Yaratildi!" });
-  console.log("14")
 }
 
 async function deleteProduct(req: NodeRequest, res: Response) {

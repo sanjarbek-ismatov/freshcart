@@ -213,6 +213,26 @@ export const eCommerceApi = createApi({
           },
         }),
       }),
+      updateVendorInfo: build.mutation<ServerResponse<any>, any>({
+        query: (body) => ({
+          url: "/vendor/update",
+          method: "PUT",
+          body,
+          headers: {
+            ['x-vendor-token']: getLocalData('x-vendor-token')
+          }
+        })
+      }),
+      updateVendorPassword: build.mutation<ServerResponse<any>, any>({
+        query: body => ({
+          url: "/vendor/update/password",
+          method: "PUT",
+          body,
+          headers: {
+            ['x-vendor-token']: getLocalData("x-vendor-token")
+          }
+        })
+      })
     };
   },
 });
@@ -236,4 +256,6 @@ export const {
   useLoginAdminMutation,
   useAddDiscountMutation,
   useRemoveDiscountMutation,
+    useUpdateVendorInfoMutation,
+useUpdateVendorPasswordMutation
 } = eCommerceApi;

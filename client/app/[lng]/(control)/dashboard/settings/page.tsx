@@ -1,16 +1,17 @@
 "use client";
 import {
-  Button,
-  Input,
-  LoadingPage,
-  ProfileImage,
-  Typography,
+    Button,
+    Input, LoadingModal,
+    LoadingPage,
+    ProfileImage,
+    Typography,
 } from "@components";
-import { useGetControllerInfoQuery } from "@store/api";
-import { useState } from "react";
+import {useGetControllerInfoQuery, useUpdateVendorInfoMutation, useUpdateVendorPasswordMutation} from "@store/api";
+import {useCallback, useState} from "react";
 import { VendorWithOrders } from "@types";
 import { useUrlContext } from "@/app/context";
 import { useParsedUrlData } from "@/app/hooks/useParsedUrlData";
+import FormParser from "@/app/utils/formParser";
 
 function SubmitButtons({
   handleClick,
@@ -38,9 +39,18 @@ function SubmitButtons({
 
 function VendorSettingsLeft({ data }: { data?: VendorWithOrders }) {
   const [editable, setEditable] = useState(false);
-
+const [updateInfo, {isLoading}] = useUpdateVendorInfoMutation()
+    const formParser = new FormParser()
   return (
-    <form>
+      <>
+      {isLoading && <LoadingModal />}
+    <form onSubmit={event => {
+        event.preventDefault()
+        formParser.setForm(event)
+        updateInfo(formParser.getFormAsFormData)
+    }
+    }>
+
       <VendorProfileImageSetting
         image={data?.vendor.image}
         editable={editable}
@@ -74,32 +84,42 @@ function VendorSettingsLeft({ data }: { data?: VendorWithOrders }) {
         editable={editable}
       />
     </form>
+      </>
   );
 }
 function VendorPasswordChangeSetting(){
   const [editable, setEditable] = useState(false)
   const [password, setPassword] = useState("")
-  const [isError, setIsError] = useState(false)
-  return <>
+    const [newPassword, setNewPassword] = useState("")
+    const [isError, setIsError] = useState(false)
+    const [updatePassword, {isLoading}] = useUpdateVendorPasswordMutation()
+    const submitPassword = useCallback(() => {
+        updatePassword({
+            newPassword,
+            password
+        })
+    }, [password, newPassword])
+    return <>
+        {isLoading && <LoadingModal />}
     <Typography
       text="Parolni o'zgartirish"
       color="text-red-500"
       size="sm"
   />
-  <form>
-    <Input label="Joriy parolni kiriting" type="password" disabled={!editable} />
+  <form onSubmit={() => submitPassword()}>
+    <Input onChange={(e) => setPassword(e.target.value)} label="Joriy parolni kiriting" type="password" disabled={!editable} />
     <Input
         label="Yangi parolni kiriting"
         type="password"
         name="password"
-        onChange={e => setPassword(e.target.value)}
+        onChange={e => setNewPassword(e.target.value)}
         disabled={!editable}
     />
     <Input
         isError={isError}
         label="Parolni qayta kiriting"
         onChange={e => {
-          setIsError(e.target.value !== password)
+          setIsError(e.target.value !== newPassword)
         }}
         type="password"
         disabled={!editable}
