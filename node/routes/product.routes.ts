@@ -16,6 +16,7 @@ productRoute.delete(
   vendorAuthMiddleware,
   productController.deleteProduct,
 );
+productRoute.put("/archive", vendorAuthMiddleware, productController.archiveProduct)
 productRoute.post(
   "/discount/add",
   vendorAuthMiddleware,
