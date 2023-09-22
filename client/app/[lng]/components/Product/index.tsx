@@ -10,7 +10,10 @@ function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
   const t = getTranslation("uz");
   return (
-    <div className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md">
+    <Link
+      href={`/product/${details.slug}`}
+      className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md"
+    >
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
@@ -24,9 +27,6 @@ function ProductCard({ details }: { details: ProductType }) {
           unoptimized
         />
         <div className="absolute  opacity-0 group-hover:opacity-100">
-          <Link href={`/product/${details.slug}`}>
-            <i className="fa-regular bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-eye"></i>
-          </Link>
           <LikeButton id={details._id} />
         </div>
       </div>
@@ -44,7 +44,7 @@ function ProductCard({ details }: { details: ProductType }) {
           +{t.cart}
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 

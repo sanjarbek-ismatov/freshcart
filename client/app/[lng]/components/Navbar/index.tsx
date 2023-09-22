@@ -14,14 +14,12 @@ import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
 import { Badge, LocationList, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
-import { useRouter, useSearchParams } from "next/navigation";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
     const vendorAuth = useAuth("vendor");
     const { data, isLoading } = useUserContext();
-    const router = useRouter();
     const [showMenu, setShowMenu] = useState(false);
 
     const [show, setShow] = useState(false);
@@ -100,7 +98,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                       </>
                     }
                   </span>
-                  <Badge length={1}>
+                  <Badge length={data?.user.cart.length}>
                     <i
                       className="cursor-pointer fa-regular fa-bookmark text-xl"
                       onClick={handleShowOffCanvas}
