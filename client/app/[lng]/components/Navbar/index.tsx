@@ -23,7 +23,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     const { data, isLoading } = useUserContext();
     const router = useRouter();
     const [showMenu, setShowMenu] = useState(false);
-    const searchParams = useSearchParams();
+
     const [show, setShow] = useState(false);
     const [locationShow, setLocationShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
@@ -49,17 +49,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
             </Link>
           </div>
           <div className="flex-1 lg:block hidden">
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const input = e.currentTarget
-                  .firstElementChild as HTMLInputElement;
-                const params = new URLSearchParams(searchParams as any);
-                params.set("name", input.value);
-                router.push(`/products?${params.toString()}`);
-                input.value = "";
-              }}
-            >
+            <div>
               <SearchInput placeholder="Maxsulot nomini yozing" />
               <button
                 type="button"
@@ -69,7 +59,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 <i className="cursor-pointer fa-solid fa-location-dot mr-2"></i>{" "}
                 Hudud
               </button>
-            </form>
+            </div>
           </div>
           <div className="min-w-32 flex justify-between">
             {!isLoading &&
