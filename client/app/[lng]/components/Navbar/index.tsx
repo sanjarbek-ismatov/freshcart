@@ -54,7 +54,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 e.preventDefault();
                 const input = e.currentTarget
                   .firstElementChild as HTMLInputElement;
-                const params = new URLSearchParams(searchParams);
+                const params = new URLSearchParams(searchParams as any);
                 params.set("name", input.value);
                 router.push(`/products?${params.toString()}`);
                 input.value = "";

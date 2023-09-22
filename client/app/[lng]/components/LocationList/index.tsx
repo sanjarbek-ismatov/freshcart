@@ -14,7 +14,6 @@ function LocationList({
   const { data } = useUserContext();
 
   function handleUpdate(state: string) {
-    console.log("Im workig");
     updateUser({
       address: {
         state,
@@ -26,9 +25,10 @@ function LocationList({
     <Modal setShow={setShow} title="Hududlar">
       {regions.map((region, i) => (
         <div
+
           className={`w-full ${
             data?.user.address.state === region && "bg-gray-200"
-          } cursor-pointer px-3 py-4 border hover:bg-gray-100 rounded my-2`}
+          } cursor-pointer px-3 py-4 border hover:bg-gray-100 rounded my-2 `}
           onClick={() => {
             handleUpdate(region);
           }}
