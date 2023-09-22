@@ -94,7 +94,7 @@ function VendorPasswordChangeSetting(){
     const [isError, setIsError] = useState(false)
     const [updatePassword, {isLoading}] = useUpdateVendorPasswordMutation()
     const submitPassword = useCallback(() => {
-        updatePassword({
+       !isError && updatePassword({
             newPassword,
             password
         })
@@ -106,7 +106,11 @@ function VendorPasswordChangeSetting(){
       color="text-red-500"
       size="sm"
   />
-  <form onSubmit={() => submitPassword()}>
+  <form onSubmit={(event) => {
+      event.preventDefault()
+      submitPassword()
+  }
+  }>
     <Input onChange={(e) => setPassword(e.target.value)} label="Joriy parolni kiriting" type="password" disabled={!editable} />
     <Input
         label="Yangi parolni kiriting"

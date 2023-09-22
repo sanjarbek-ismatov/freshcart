@@ -39,7 +39,13 @@ async function deleteProduct(req: NodeRequest, res: Response) {
   await req.vendor?.save();
   res.status(204).send({ code: 204, message: "ok" });
 }
-
+async function archiveProduct(req: NodeRequest, res: Response){
+  const product = await Product.findById(req.body.id)
+  if(!product) return res.status(404).send({code: 404, message: "Maxsulot mavjud emas"})
+  product.isInArchive = !product.isInArchive
+  await product.save()
+  res.status(200).send({code: 200, message: "Maxsulot arxivlandi!"})
+}
 async function addDiscount(req: NodeRequest, res: Response) {
   if (!req.body.percent)
     return res.status(400).send({ code: 400, message: "Bad request" });
@@ -53,6 +59,7 @@ async function addDiscount(req: NodeRequest, res: Response) {
 
   res.status(200).send({ message: "Chegirma qo'shildi", status: 200 });
 }
+
 
 async function removeDiscount(req: NodeRequest, res: Response) {
   if (req.body.type === "all") {
@@ -90,4 +97,5 @@ export default {
   addDiscount,
   removeDiscount,
   getAllDiscounts,
+  archiveProduct
 };

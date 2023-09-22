@@ -84,14 +84,16 @@ async function updateInfo(req: NodeRequest, res: Response){
 }
 async function passwordUpdate(req: NodeRequest, res: Response){
   const {password, newPassword} = req.body
+  if(!req.vendor) return res.status(403).send({code: 403, message: "Do'konchi aniqlanmadi"})
   if(!password) return res.status(400).send({code: 400, message: "Parol kerak"})
-  const compare = util.promisify(bcrypt.compare)
   try {
-    const result = await compare(password, newPassword)
+    const result = await passwordChecker(password, req.vendor.password)
     if(!result) return res.status(401).send({code: 401, message: "Parol noto'g'ri"})
   } catch(e){
     throw e
   }
+    req.vendor.password = await passwordGenerator(newPassword)
+    await req.vendor.save()
   res.status(200).send({code: 200, message: "Password has been updated"})
 }
 export default { register, login, getAll, getSingleVendor, getMe, updateInfo, passwordUpdate };

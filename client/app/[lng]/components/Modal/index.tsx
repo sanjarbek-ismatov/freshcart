@@ -24,7 +24,8 @@ const Modal = ({ title, children, setShow }: ModalProps) => {
           </div>
           <div
             style={{
-              maxHeight: "90%",
+              maxHeight: "calc(100vh - 100px)",
+              overflowY: "auto",
             }}
             className="py-5 h-auto overflow-y-auto"
           >

@@ -5,13 +5,15 @@ function Badge({
   length,
   children,
   ...rest
-}: { length: number; children: ReactNode } & ComponentProps<"span">) {
+}: { length?: number; children: ReactNode } & ComponentProps<"span">) {
   return (
     <span {...rest} className="relative">
       {children}
-      <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
-        {length}
-      </span>
+      {length && (
+        <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
+          {length}
+        </span>
+      )}
     </span>
   );
 }

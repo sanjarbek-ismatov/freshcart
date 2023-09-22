@@ -232,6 +232,13 @@ export const eCommerceApi = createApi({
             ['x-vendor-token']: getLocalData("x-vendor-token")
           }
         })
+      }),
+      archiveProduct: build.mutation<any, any>({
+        query: body => ({
+          url: "/product/archive",
+          method: "PUT",
+          body
+        })
       })
     };
   },
@@ -256,6 +263,7 @@ export const {
   useLoginAdminMutation,
   useAddDiscountMutation,
   useRemoveDiscountMutation,
-    useUpdateVendorInfoMutation,
-useUpdateVendorPasswordMutation
+  useUpdateVendorInfoMutation,
+  useUpdateVendorPasswordMutation,
+  useArchiveProductMutation
 } = eCommerceApi;
