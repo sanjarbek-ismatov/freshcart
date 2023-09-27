@@ -3,7 +3,6 @@ import { Inter } from "next/font/google";
 import React from "react";
 import { ErrorBoundary } from "./components";
 import * as process from "process";
-import { getSSRData } from "./utils/getData";
 import Provider from "@store/provider";
 import { URLProvider, UserProvider } from "@/app/context/provider";
 
@@ -24,9 +23,9 @@ export default async function RootLayout({
     lng: string;
   };
 }) {
-  const siteInfo = await getSSRData<SiteInfo>(
-    `${process.env.SERVER_URL}/general/info`,
-  );
+  // const siteInfo = await getSSRData<SiteInfo>(
+  //   `${process.env.SERVER_URL}/general/info`,
+  // );
   // const t = getTranslation(lng)
   return (
     <html lang={lng}>
@@ -40,15 +39,15 @@ export default async function RootLayout({
         />
         <link rel="shortcut icon" href="images/favicon/favicon.ico" />
 
-        <title>{siteInfo.title}</title>
-        <meta name="description" content={siteInfo.description} />
+        <title>Freshcart</title>
+        <meta name="description" content="Nasib project o'xshaydi, bu fake description" />
         <meta property="og:type" content="website" />
         <meta property="og:locale" content="en_IE" />
         <meta property="og:url" content="https://freshcart-uz.vercel.app/" />
         <meta property="og:site_name" content="E-commerce" />
-        <meta property="og:title" content={siteInfo.title} />
-        <meta property="og:description" content={siteInfo.description} />
-        <meta property="og:image" content={siteInfo.image} />
+        <meta property="og:title" content="Freshcart" />
+        <meta property="og:description" content="Nasib project o'xshaydi, bu fake description" />
+        <meta property="og:image" content="https://i.ibb.co/DtPM6J3/freshcart-logo.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="1200" />
         <meta property="og:image:alt" content="Freshcart logo" />
