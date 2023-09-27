@@ -17,10 +17,10 @@ function ProductCard({ details }: { details: ProductType }) {
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
-      <div className="flex justify-center items-center flex-col max-w-[200px] h-[200px]">
+      <div className="flex justify-center items-center flex-col max-w-[300px] h-[200px]">
         <Image
-          width={250}
-          height={250}
+          width={400}
+          height={400}
           className="h-full w-auto object-cover"
           src={`${url}/files/image/${details.images[0]}`}
           alt="Product image"
@@ -40,8 +40,8 @@ function ProductCard({ details }: { details: ProductType }) {
       </div>
       <div className="flex justify-between mt-4">
         <span>${details.price}</span>{" "}
-        <button className="p-1 bg-green-500 text-white rounded-md">
-          +{t.cart}
+        <button className="py-1 px-2 border-slate-200 border text-green-500 text-[10px] rounded-md">
+          <i className="fa-solid fa-cart-plus"></i>
         </button>
       </div>
     </Link>

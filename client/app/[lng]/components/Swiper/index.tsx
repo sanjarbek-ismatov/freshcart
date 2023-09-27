@@ -28,7 +28,7 @@ function Swiper() {
                 30% {t.discount}
               </span>
               <h1 className="text-5xl font-bold text-slate-900 capitalize">
-                Biror narsaning title i
+                Katta chegirma bilan sotib oling
               </h1>
               <p className="my-3 text-slate-700">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -47,7 +47,7 @@ function Swiper() {
                 30% {t.discount}
               </span>
               <h1 className="text-5xl font-bold text-slate-900 capitalize">
-                Biror narsaning title i
+                Ajoyib taklif
               </h1>
               <p className="my-3 text-slate-700">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
