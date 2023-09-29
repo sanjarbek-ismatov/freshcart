@@ -18,11 +18,9 @@ function Button({
       {...rest}
       className={`${
         full && "w-full"
-      } px-3 text-sm disabled:bg-gray-300 rounded-lg my-2 py-2 ${
+      } px-3 text-sm disabled:bg-gray-300 hover:bg-green-400 rounded-lg my-2 py-2 ${
         bgColor ? bgColor : "bg-green-500"
-      } border-4 active:border-green-300 ${
-        color ? color : "text-white"
-      } inline`}
+      }  ${color ? color : "text-white"} inline`}
     >
       {children}
     </button>

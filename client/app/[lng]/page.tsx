@@ -11,7 +11,7 @@ export default async function Home({
   params: { lng: string };
 }) {
   const products = await getSSRData<ProductType[]>(
-    `${process.env.SERVER_URL}/product/all`,
+    `${process.env.SERVER_URL}/product/get/rating`,
   );
   const t = getTranslation(lng);
   return (

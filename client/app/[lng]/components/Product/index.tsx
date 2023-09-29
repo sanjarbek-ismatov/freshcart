@@ -12,12 +12,12 @@ function ProductCard({ details }: { details: ProductType }) {
   return (
     <Link
       href={`/product/${details.slug}`}
-      className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md"
+      className="relative group py-5 px-3 border hover:border-green-500 m-2 z-10 rounded-md"
     >
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
         30%
       </span>
-      <div className="flex justify-center items-center flex-col max-w-[300px] h-[200px]">
+      <div className="flex justify-center items-center flex-col min-w-[200px] w-[270px] h-[200px]">
         <Image
           width={400}
           height={400}

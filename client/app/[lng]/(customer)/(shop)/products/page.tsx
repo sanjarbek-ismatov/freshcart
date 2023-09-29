@@ -10,7 +10,7 @@ const Index = async ({
   searchParams: { [key: string]: string };
 }) => {
   const products = (
-    await getSSRData<ProductType[]>(`${process.env.SERVER_URL}/product/all`)
+    await getSSRData<ProductType[]>(`${process.env.SERVER_URL}/product/get/all`)
   ).filter(
     (e) =>
       (searchParams.name
