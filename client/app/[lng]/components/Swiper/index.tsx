@@ -3,7 +3,7 @@ import "./Swiper.css";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { getTranslation } from "@internalization";
 
 function Swiper() {
@@ -14,11 +14,12 @@ function Swiper() {
         className="mt-3"
         spaceBetween={30}
         centeredSlides={true}
-        modules={[Autoplay]}
+        modules={[Autoplay, Pagination]}
+        pagination={true}
         loop={true}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
         }}
       >
         <SwiperSlide className="daily-banner daily-banner-2">

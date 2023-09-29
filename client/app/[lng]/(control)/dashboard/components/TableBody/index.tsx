@@ -9,7 +9,7 @@ function TableBody({
   colspan?: number;
 }) {
   return (
-    <tr>
+    <tr onClick={() => console.log("Hello")}>
       {data.map((e, i) => (
         <td
           key={i}
