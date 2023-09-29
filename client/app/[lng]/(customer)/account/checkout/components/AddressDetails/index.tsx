@@ -51,7 +51,7 @@ function AddressDetails({
         Jami summa: <span>{sum}$</span> ({state.length}ta maxsulot)
         <h1>Manzil: </h1>
         <p>
-          {user?.address.state}, {user?.address.location}
+          {user?.address?.state}, {user?.address?.location}
         </p>
         <Button onClick={submitPay}>Sotib olish</Button>
       </div>

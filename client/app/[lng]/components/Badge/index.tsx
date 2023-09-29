@@ -9,10 +9,12 @@ function Badge({
   return (
     <span {...rest} className="relative">
       {children}
-      {length && (
+      {length ? (
         <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
           {length}
         </span>
+      ) : (
+        ""
       )}
     </span>
   );

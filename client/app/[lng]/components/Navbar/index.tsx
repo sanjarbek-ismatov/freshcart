@@ -12,7 +12,7 @@ import "./Navbar.css";
 import { SearchInput, SidePanel } from "..";
 import Link from "next/link";
 import { useAuth } from "@/app/hooks/useAuth";
-import { Badge, LocationList, OffCanvas } from "@components";
+import { Badge, OffCanvas } from "@components";
 import { useUserContext } from "@/app/context";
 
 const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
@@ -38,9 +38,8 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     }, []);
     return (
       <>
-        {locationShow && <LocationList setShow={setLocationShow} />}
-        <div className="flex container  mx-auto lg:justify-center justify-between py-5 items-center">
-          <div className="sm:w-56 w-40 mr-12">
+        <div className="flex container w-full mx-auto lg:justify-center justify-between py-5 items-center">
+          <div className="sm:w-56 w-40">
             <Link href="/">
               {" "}
               <Image src={LogoImage} alt="Logo image" />
@@ -49,14 +48,6 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
           <div className="flex-1 lg:block hidden">
             <div>
               <SearchInput placeholder="Maxsulot nomini yozing" />
-              <button
-                type="button"
-                onClick={() => setLocationShow(true)}
-                className="mx-4 border border-slate-300 py-2 px-5 text-slate-500 rounded-md bg-slate-200"
-              >
-                <i className="cursor-pointer fa-solid fa-location-dot mr-2"></i>{" "}
-                Hudud
-              </button>
             </div>
           </div>
           <div className="min-w-32 flex justify-between">
@@ -69,12 +60,6 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                 </Link>
               ) : (
                 <div>
-                  <span className="relative">
-                    <i className="cursor-pointer fa-regular fa-heart text-xl"></i>
-                    <span className="text-sm px-1 text-white rounded-full absolute top-[-10px] right-[-10px] bg-green-500">
-                      1
-                    </span>
-                  </span>
                   <span className="relative mx-3">
                     {
                       <>

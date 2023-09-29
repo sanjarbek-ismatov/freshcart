@@ -6,7 +6,10 @@ import { sluggenerator } from "../helpers/sluggenerator";
 
 async function getAll(req: NodeRequest, res: Response) {
   const products = await Product.find().populate("vendor category discounts");
-  res.status(200).send(products);
+  if (req.params.select === "rating") {
+    const sortedProducts = products.sort((a, b) => a.rating - b.rating);
+    res.status(200).send(sortedProducts.slice(0, 8));
+  } else res.status(200).send(products);
 }
 
 async function create(req: NodeRequest, res: Response) {

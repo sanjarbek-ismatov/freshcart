@@ -13,7 +13,7 @@ function Reviews({ reviews, star }: { reviews: ReviewType[]; star: number }) {
         </span>
         <Stats reviews={reviews} />
       </div>
-      <div className="flex-1">
+      <div className="flex-1 py-2">
         <Typography text={`Izohlar (${reviews.length})`} />
         {reviews.map((e, i) => (
           <ReviewCard key={i} review={e} />

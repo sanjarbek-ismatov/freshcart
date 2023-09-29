@@ -45,7 +45,7 @@ async function getInfo(req: NodeRequest, res: Response) {
   const user = await req.user?.populate({
     path: "cart.id liked",
     populate: {
-      path: "vendor",
+      path: "vendor category",
     },
   });
   const orders = await Order.find({ clientId: user?._id }).populate(

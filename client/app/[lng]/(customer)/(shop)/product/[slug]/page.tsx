@@ -16,7 +16,7 @@ async function ProductPage({ params: { slug } }: { params: { slug: string } }) {
           { title: product.name, path: `/${product.slug}` },
         ]}
       />
-      <div className="flex">
+      <div className="md:flex">
         <Slide product={product} />
         <About product={product} />
       </div>

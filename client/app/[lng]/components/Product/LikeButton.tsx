@@ -35,8 +35,8 @@ function LikeButton({ id }: { id: string }) {
     <button title="Yoqtirish" onClick={submitLiked}>
       <i
         className={`${
-          liked ? "text-red-600 fa-solid" : "fa-regular"
-        } bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100 text-slate-900 mx-1 text-2xl fa-heart`}
+          liked ? "text-red-600 fa-solid" : "fa-regular text-slate-900"
+        } bg-white py-2 px-3 rounded-lg cursor-pointer hover:bg-green-500 hover:text-white transition-colors ease-in duration-100  mx-1 text-2xl fa-heart`}
       ></i>
     </button>
   );

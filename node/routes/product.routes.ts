@@ -4,7 +4,7 @@ import { vendorAuthMiddleware } from "../middleware/auth.middleware";
 import { upload } from "../models/gridfs.model";
 
 const productRoute = express.Router();
-productRoute.get("/all", productController.getAll);
+productRoute.get("/get/:select", productController.getAll);
 productRoute.get("/:slug", productController.getBySlug);
 productRoute.post(
   "/create",

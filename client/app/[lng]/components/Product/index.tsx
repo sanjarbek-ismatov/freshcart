@@ -5,22 +5,40 @@ import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
 import { useUrlContext } from "@/app/context";
 import { getTranslation } from "@internalization";
+import { useCallback } from "react";
+import { useAddToCartMutation } from "@store/api";
 
 function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
   const t = getTranslation("uz");
+  const [addToCart] = useAddToCartMutation();
+  const handleSubmit = useCallback(() => {
+    addToCart({
+      type: "cart",
+      id: details._id,
+      count: 1,
+    });
+  }, [addToCart, details._id]);
+  const generalDiscount = details.discounts.reduce(
+    (acc, currentValue) => acc + currentValue.percent,
+    0,
+  );
   return (
     <Link
       href={`/product/${details.slug}`}
-      className="relative group py-5 px-3 border hover:border-green-500 m-1 z-10 rounded-md"
+      className="relative group py-5 px-3 border hover:border-green-500 m-2 z-10 rounded-md"
     >
-      <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
-        30%
-      </span>
-      <div className="flex justify-center items-center flex-col max-w-[200px] h-[200px]">
+      {generalDiscount ? (
+        <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
+          {generalDiscount}%
+        </span>
+      ) : (
+        ""
+      )}
+      <div className="flex justify-center items-center flex-col min-w-[200px] w-[270px] h-[200px]">
         <Image
-          width={250}
-          height={250}
+          width={400}
+          height={400}
           className="h-full w-auto object-cover"
           src={`${url}/files/image/${details.images[0]}`}
           alt="Product image"
@@ -40,8 +58,11 @@ function ProductCard({ details }: { details: ProductType }) {
       </div>
       <div className="flex justify-between mt-4">
         <span>${details.price}</span>{" "}
-        <button className="p-1 bg-green-500 text-white rounded-md">
-          +{t.cart}
+        <button
+          onClick={handleSubmit}
+          className="py-1 px-2 border-slate-200 border text-green-500 text-[10px] rounded-md"
+        >
+          <i className="fa-solid fa-cart-plus"></i>
         </button>
       </div>
     </Link>

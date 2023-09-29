@@ -3,7 +3,7 @@ import "./Swiper.css";
 import "swiper/css";
 import "swiper/css/autoplay";
 import { Swiper as SwiperComponent, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper";
+import { Autoplay, Pagination } from "swiper";
 import { getTranslation } from "@internalization";
 
 function Swiper() {
@@ -14,11 +14,12 @@ function Swiper() {
         className="mt-3"
         spaceBetween={30}
         centeredSlides={true}
-        modules={[Autoplay]}
+        modules={[Autoplay, Pagination]}
+        pagination={true}
         loop={true}
         autoplay={{
           delay: 2500,
-          disableOnInteraction: false,
+          disableOnInteraction: true,
         }}
       >
         <SwiperSlide className="daily-banner daily-banner-2">
@@ -28,7 +29,7 @@ function Swiper() {
                 30% {t.discount}
               </span>
               <h1 className="text-5xl font-bold text-slate-900 capitalize">
-                Biror narsaning title i
+                Katta chegirma bilan sotib oling
               </h1>
               <p className="my-3 text-slate-700">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -47,7 +48,7 @@ function Swiper() {
                 30% {t.discount}
               </span>
               <h1 className="text-5xl font-bold text-slate-900 capitalize">
-                Biror narsaning title i
+                Ajoyib taklif
               </h1>
               <p className="my-3 text-slate-700">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.

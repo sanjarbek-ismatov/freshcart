@@ -5,7 +5,7 @@ import { passwordChecker, passwordGenerator } from "../helpers/passwordmanager";
 import { tokenGenerator } from "../helpers/tokengenerator";
 
 async function createAdmin(req: NodeRequest, res: Response) {
-  const { key, password, login } = req.query;
+  const { key, password, login } = req.body;
   if (!(key && typeof password === "string" && login))
     return res.status(400).send({
       code: 400,
