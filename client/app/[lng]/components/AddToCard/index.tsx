@@ -22,7 +22,7 @@ function AddToCard({ product }: { product: ProductType }) {
       <div className="flex items-center justify-between">
         <Counter count={count} setCount={setCount} />
         <span>
-          <strong>Qiymati:</strong> {10 * count}$
+          <strong>Qiymati:</strong> {product.price}$
         </span>
       </div>
       <div>
