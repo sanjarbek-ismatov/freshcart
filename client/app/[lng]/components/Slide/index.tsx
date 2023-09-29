@@ -19,7 +19,7 @@ function Slide({ product }: { product: ProductType }) {
       previewImage.style.backgroundPosition = `${x}% ${y}%`;
     });
     previewImage?.addEventListener("mouseout", (e) => {
-      previewImage.style.backgroundSize = "cover";
+      previewImage.style.backgroundSize = "contain";
       previewImage.style.backgroundPosition = "center";
     });
     const slider = document.getElementById("slider") as HTMLDivElement;
@@ -39,7 +39,7 @@ function Slide({ product }: { product: ProductType }) {
               style={{
                 backgroundImage: `url("${url}/files/image/${e}")`,
               }}
-              className={`w-[600px] h-[500px] left-0 top-0 bg-center bg-cover bg-no-repeat hover:cursor-zoom-in ${
+              className={`w-[600px] h-[500px] left-0 top-0 bg-center bg-contain bg-no-repeat hover:cursor-zoom-in ${
                 current === i ? "active" : ""
               }`}
             ></div>

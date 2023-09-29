@@ -20,7 +20,7 @@ function FilterTop({ length }: { length: number }) {
   }, []);
   return (
     <>
-      <div className="flex justify-between">
+      <div className="flex justify-between items-center">
         <p>{length}ta maxsulot topildi</p>
         <div className="">
           <Select onChange={changePageCount} defaultValue={state.count}>

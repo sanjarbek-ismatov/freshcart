@@ -15,7 +15,7 @@ function SlideImages({
 }) {
   const url = useUrlContext();
   return (
-    <div className="flex overflow-x-scroll my-4">
+    <div className="flex overflow-x-auto my-4">
       {product.images.map((e, i) => (
         <div
           key={i}
@@ -23,7 +23,7 @@ function SlideImages({
             backgroundImage: `url("${url}/files/image/${e}")`,
           }}
           onClick={() => setCurrent(i)}
-          className={`cursor-pointer border-2 bg-center w-[200px] bg-cover ${
+          className={`cursor-pointer border-2 bg-center w-[200px] bg-contain bg-no-repeat ${
             current === i ? "border-green-600" : ""
           } h-[100px] m-2 rounded-md `}
         ></div>

@@ -11,9 +11,9 @@ function Counter({
 }) {
   return (
     <div>
-      <Button onClick={() => setCount(count + 1)}>+</Button>
-      <span>{count}</span>
       <Button onClick={() => setCount(count > 1 ? count - 1 : 1)}>-</Button>
+      <span className="mx-3">{count}</span>
+      <Button onClick={() => setCount(count + 1)}>+</Button>
     </div>
   );
 }

@@ -9,13 +9,17 @@ import { getTranslation } from "@internalization";
 function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
   const t = getTranslation("uz");
+  const generalDiscount = details.discounts.reduce(
+    (acc, currentValue) => acc + currentValue.percent,
+    0,
+  );
   return (
     <Link
       href={`/product/${details.slug}`}
       className="relative group py-5 px-3 border hover:border-green-500 m-2 z-10 rounded-md"
     >
       <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
-        30%
+        {generalDiscount}%
       </span>
       <div className="flex justify-center items-center flex-col min-w-[200px] w-[270px] h-[200px]">
         <Image
