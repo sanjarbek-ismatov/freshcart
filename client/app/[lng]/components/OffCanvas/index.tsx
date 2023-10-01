@@ -11,12 +11,17 @@ function OffCanvas({
   show,
   setShow,
   cart,
+  refetch,
 }: {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   cart?: UserType["cart"];
+  refetch: any;
 }) {
   const realCart = useMemo(() => cart?.filter((e) => e.id), [cart]);
+  useEffect(() => {
+    show && refetch();
+  }, [show, refetch]);
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     const offCanvasBackdrop = document.getElementById(

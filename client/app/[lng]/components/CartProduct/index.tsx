@@ -12,15 +12,18 @@ function CartProduct({
 }) {
   const url = useUrlContext();
   return (
-    <div className="w-[500px] flex px-4 justify-between items-center my-8 border">
+    <div className="w-[500px] flex px-4 justify-between items-center my-4 border">
       <div className="flex items-center">
-        <Image
-          width={100}
-          height={100}
-          src={`${url}/files/image/${product?.images[0]}`}
-          alt={`${product?.name} rasmi`}
-          unoptimized
-        />
+        <div className="w-[100px] flex justify-center items-center">
+          <Image
+            width={100}
+            height={100}
+            className="h-[100px] w-auto"
+            src={`${url}/files/image/${product?.images[0]}`}
+            alt={`${product?.name} rasmi`}
+            unoptimized
+          />
+        </div>
         <div className="mx-3">
           <h4 className="font-semibold text-lg">
             {product?.name}{" "}

@@ -19,7 +19,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
   function ({ setShowModal }) {
     const auth = useAuth();
     const vendorAuth = useAuth("vendor");
-    const { data, isLoading } = useUserContext();
+    const { data, isLoading, refetch } = useUserContext();
     const [showMenu, setShowMenu] = useState(false);
 
     const [show, setShow] = useState(false);
@@ -103,6 +103,7 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
         </div>
         <OffCanvas
           cart={data?.user.cart}
+          refetch={refetch}
           show={showOffCanvas}
           setShow={setOffCanvas}
         />
