@@ -56,6 +56,7 @@ interface UserType extends Document {
   liked: ProductTypeWithIds[];
   cart: {
     id: string;
+    count: number;
   }[];
 }
 
