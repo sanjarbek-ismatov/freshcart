@@ -1,7 +1,7 @@
 "use client";
 import { Table, TableBody, TableHead } from "@components/dashboard";
 import { Checkbox } from "@/app/(customer)/(shop)/products/components";
-import { LoadingPage, MenuButton, Typography } from "@components";
+import { LoadingPage, Typography } from "@components";
 import { useCallback, useMemo } from "react";
 import { setCheckoutState, useAppSelector } from "@/store/store";
 import Image from "next/image";
@@ -39,7 +39,7 @@ function CheckoutPage() {
       {isLoading ? (
         <LoadingPage />
       ) : (
-        <div className="flex">
+        <div className="flex flex-wrap sm:flex-nowrap">
           <Table>
             <TableHead
               data={[
@@ -48,17 +48,8 @@ function CheckoutPage() {
                   checked={allAreChecked}
                   onChange={handleCheck}
                 />,
-                "Rasmi",
-                "Nomi",
-                "Kategoriyasi",
-
+                "Maxsulot",
                 "Qiymati",
-                "Soni",
-                <MenuButton key={1}>
-                  <p className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white">
-                    <i className="fa-solid  fa-trash mr-2"></i>O'chirish
-                  </p>
-                </MenuButton>,
               ]}
             ></TableHead>
             {data?.user.cart.length ? (
@@ -79,23 +70,18 @@ function CheckoutPage() {
                           filter.select(data?.user.cart[i], "checkout")
                         }
                       />,
-                      <Image
-                        key={i}
-                        src={`${url}/files/image/${images[0]}`}
-                        width={50}
-                        height={50}
-                        alt="Maxsulotning rasmi"
-                        unoptimized
-                      />,
-                      name,
-                      category.name,
-                      price,
-                      count,
-                      <MenuButton key={i}>
-                        <p className="p-2 hover:bg-gray-300 text-red-600 rounded-md  z-20 bg-white">
-                          <i className="fa-solid  fa-trash mr-2"></i>O'chirish
-                        </p>
-                      </MenuButton>,
+                      <div>
+                        <Image
+                          key={i}
+                          src={`${url}/files/image/${images[0]}`}
+                          width={50}
+                          height={50}
+                          alt="Maxsulotning rasmi"
+                          unoptimized
+                        />
+                        {name}
+                      </div>,
+                      `${price} x ${count} = ${price * count}$`,
                     ]}
                   />
                 ),

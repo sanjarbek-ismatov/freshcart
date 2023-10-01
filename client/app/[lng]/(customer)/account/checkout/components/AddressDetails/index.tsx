@@ -2,7 +2,7 @@
 import type { CheckoutProduct, UserType } from "@types";
 import { OrderType } from "@types";
 import { useCallback, useMemo } from "react";
-import { Button, LoadingModal } from "@components";
+import { Button, LoadingModal, Typography } from "@components";
 import { useAddOrderMutation } from "@/store/api/ecommerce";
 
 function AddressDetails({
@@ -46,14 +46,22 @@ function AddressDetails({
   }, [addOrder, state, sum, user?.address]);
   return (
     <>
-      <div className="min-w-[200px] border text-center">
-        <h1>Malumotlar</h1>
-        Jami summa: <span>{sum}$</span> ({state.length}ta maxsulot)
+      <div className="min-w-[200px] w-full sm:w-auto p-3 border text-center">
+        <Typography text="Malumotlar" size="md" />
+        Jami summa: <span>{sum || 0}$</span> ({state.length}ta maxsulot)
         <h1>Manzil: </h1>
         <p>
-          {user?.address?.state}, {user?.address?.location}
+          {user && user?.address ? (
+            `${user?.address?.state}, ${user?.address?.location}`
+          ) : (
+            <span className="text-red-400">
+              Iltimos joylashuvni sozlamalar orqali yangilang
+            </span>
+          )}
         </p>
-        <Button onClick={submitPay}>Sotib olish</Button>
+        <Button onClick={submitPay} disabled={!user?.address}>
+          Sotib olish
+        </Button>
       </div>
       {isLoading && <LoadingModal />}
     </>

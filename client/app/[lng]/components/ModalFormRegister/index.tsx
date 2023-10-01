@@ -6,6 +6,7 @@ import "./ModalFormRegister.css";
 import { useSignUpMutation } from "@/store/api/ecommerce";
 import React from "react";
 import Link from "next/link";
+import { ToastContainer } from "react-toastify";
 
 function ModalForm({
   setShowLogin,
@@ -29,6 +30,7 @@ function ModalForm({
   });
   return (
     <>
+      <ToastContainer />
       {isLoading && (
         <Modal title="Diqqat!">
           <div className="flex">

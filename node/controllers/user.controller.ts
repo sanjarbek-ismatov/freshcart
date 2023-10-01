@@ -57,11 +57,11 @@ async function getInfo(req: NodeRequest, res: Response) {
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
   if (req.body.type === "cart") {
-    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id);
-
-    index !== -1
-      ? user?.cart.splice(index || -1, 1)
-      : user?.cart.unshift(req.body);
+    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id.toString());
+    if(index !== null && index !== undefined && index !== -1){
+      const cart = user?.cart[index]
+      cart && cart.count++
+    } else user?.cart.unshift(req.body);
   } else
     user?.liked.includes(req.body.id.toString())
       ? user.liked.splice(user.liked.indexOf(req.body.id, 1))

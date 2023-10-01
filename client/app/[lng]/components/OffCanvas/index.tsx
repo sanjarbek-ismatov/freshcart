@@ -11,12 +11,17 @@ function OffCanvas({
   show,
   setShow,
   cart,
+  refetch,
 }: {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
   cart?: UserType["cart"];
+  refetch: any;
 }) {
   const realCart = useMemo(() => cart?.filter((e) => e.id), [cart]);
+  useEffect(() => {
+    show && refetch();
+  }, [show, refetch]);
   useEffect(() => {
     const offCanvas = document.getElementById("offcanvas") as HTMLDivElement;
     const offCanvasBackdrop = document.getElementById(
@@ -64,7 +69,7 @@ function OffCanvas({
           ></i>
           <h1 className="text-2xl">Savatcha</h1>
         </header>
-        <main>
+        <main className="h-[80%] overflow-auto">
           {realCart?.length ? (
             realCart.map((e, i) => (
               <CartProduct key={i} count={e.count} product={e.id} />

@@ -4,6 +4,7 @@ import ProductCard from "../Product";
 import { ProductType } from "@/types";
 import { useMemo } from "react";
 import { useAppSelector } from "@/store/store";
+import { DefaultToastComponent } from "@/app/components";
 
 function PopularProducts({
   title,
@@ -33,6 +34,7 @@ function PopularProducts({
 
   return (
     <>
+      <DefaultToastComponent />
       <div className="my-6">
         <h1 className="text-3xl font-bold text-slate-900">{title}</h1>
         <div className="my-5 flex flex-wrap p-3">

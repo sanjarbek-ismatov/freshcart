@@ -4,10 +4,13 @@ import Button from "../Button";
 import Input from "../Input";
 import "./ModalFormLogin.css";
 import { useLoginMutation } from "@/store/api/ecommerce";
-import { LoadingModal } from "@/app/components";
+import { DefaultToastComponent, LoadingModal } from "@/app/components";
+import { toast } from "react-toastify";
+import { toastOptions } from "@/app/utils/constants";
 
 function ModalFormLogin() {
   const [login, { isLoading }] = useLoginMutation();
+
   const { handleSubmit, handleChange, values } = useFormik({
     initialValues: {
       email: "",
@@ -17,13 +20,18 @@ function ModalFormLogin() {
       login(values).then((data) => {
         if ("data" in data) {
           localStorage.setItem("x-token", data.data.token as any);
+          toast.success(data.data.message, toastOptions);
           window.location.reload();
+        } else if ("error" in data) {
+          const error: any = data.error;
+          toast.error(error.data.message, toastOptions);
         }
       });
     },
   });
   return (
     <>
+      <DefaultToastComponent />
       {isLoading && <LoadingModal />}
       <form onSubmit={handleSubmit}>
         <div className="w-full py-1">

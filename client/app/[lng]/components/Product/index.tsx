@@ -1,33 +1,41 @@
 import { ProductType } from "@/types";
 import Image from "next/image";
-import Link from "next/link";
 import { Star } from "@components";
 import LikeButton from "@/app/components/Product/LikeButton";
 import { useUrlContext } from "@/app/context";
 import { getTranslation } from "@internalization";
 import { useCallback } from "react";
 import { useAddToCartMutation } from "@store/api";
+import { toast } from "react-toastify";
+import Link from "next/link";
+import { toastOptions } from "@/app/utils/constants";
 
 function ProductCard({ details }: { details: ProductType }) {
   const url = useUrlContext();
   const t = getTranslation("uz");
   const [addToCart] = useAddToCartMutation();
   const handleSubmit = useCallback(() => {
-    addToCart({
-      type: "cart",
-      id: details._id,
-      count: 1,
-    });
+    toast.promise(
+      () =>
+        addToCart({
+          type: "cart",
+          id: details._id,
+          count: 1,
+        }),
+      {
+        pending: "Qo'shilmoqda...",
+        success: "Bajarildi!",
+        error: "Nimadir xato ketdi!",
+      },
+      toastOptions,
+    );
   }, [addToCart, details._id]);
   const generalDiscount = details.discounts.reduce(
     (acc, currentValue) => acc + currentValue.percent,
     0,
   );
   return (
-    <Link
-      href={`/product/${details.slug}`}
-      className="relative group py-5 px-3 border hover:border-green-500 m-2 z-10 rounded-md"
-    >
+    <div className="relative group py-5 px-3 border hover:border-green-500 m-2 z-10 rounded-md">
       {generalDiscount ? (
         <span className="bg-green-500 text-sm text-white px-2 rounded-md absolute top-[10px] left-[10px]">
           {generalDiscount}%
@@ -48,8 +56,10 @@ function ProductCard({ details }: { details: ProductType }) {
           <LikeButton id={details._id} />
         </div>
       </div>
-      <p className="text-slate-500 text-sm">{details.category.name}</p>
-      <p className="text-lg font-medium">{details.name}</p>
+      <Link href={`/product/${details.slug}`}>
+        <p className="text-slate-500 text-sm">{details.category.name}</p>
+        <p className="text-lg font-medium">{details.name}</p>
+      </Link>
       <div className="leading-7">
         <Star rating={details.rating} />
         <span className="ml-2 text-slate-600">
@@ -65,7 +75,7 @@ function ProductCard({ details }: { details: ProductType }) {
           <i className="fa-solid fa-cart-plus"></i>
         </button>
       </div>
-    </Link>
+    </div>
   );
 }
 
