@@ -57,9 +57,8 @@ async function getInfo(req: NodeRequest, res: Response) {
 async function addToCart(req: NodeRequest, res: Response) {
   const user = req.user;
   if (req.body.type === "cart") {
-    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id);
-
-    if(index && index !== -1){
+    const index = user?.cart.findIndex((e) => e.id.toString() === req.body.id.toString());
+    if(index !== null && index !== undefined && index !== -1){
       const cart = user?.cart[index]
       cart && cart.count++
     } else user?.cart.unshift(req.body);

@@ -69,7 +69,7 @@ function OffCanvas({
           ></i>
           <h1 className="text-2xl">Savatcha</h1>
         </header>
-        <main>
+        <main className="h-[80%] overflow-auto">
           {realCart?.length ? (
             realCart.map((e, i) => (
               <CartProduct key={i} count={e.count} product={e.id} />
