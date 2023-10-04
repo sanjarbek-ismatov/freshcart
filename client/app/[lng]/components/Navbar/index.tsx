@@ -23,7 +23,6 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
     const [showMenu, setShowMenu] = useState(false);
 
     const [show, setShow] = useState(false);
-    const [locationShow, setLocationShow] = useState(false);
     const [showOffCanvas, setOffCanvas] = useState(false);
     const handleShow = useCallback(() => {
       if (auth) setShow(!show);
@@ -71,9 +70,6 @@ const Navbar: FC<{ setShowModal: Dispatch<SetStateAction<boolean>> }> =
                           <ul className="absolute transition-all translate-y-2 right-3 ease-in duration-300  opacity-100 border text-slate-600 border-slate-300 p-3 w-20 rounded-md z-10 bg-white">
                             <li className="py-1">
                               <Link href="/account/personal">Hisob</Link>
-                            </li>
-                            <li className="py-1">
-                              <Link href="/">Yordam</Link>
                             </li>
                             <li className="py-1 text-red-500">
                               <button onClick={logOut}>chiqish</button>
