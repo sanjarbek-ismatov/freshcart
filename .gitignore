@@ -1,4 +1,4 @@
 .idea
-node/dist
+server/dist
 .vscode
 .hintrc

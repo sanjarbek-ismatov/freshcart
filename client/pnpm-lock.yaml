@@ -1051,7 +1051,7 @@ packages:
       '@typescript-eslint/parser': 5.62.0(eslint@8.36.0)(typescript@5.0.2)
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1)(eslint@8.36.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-server@0.3.9)(eslint-plugin-import@2.28.1)(eslint@8.36.0)
       eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
       eslint-plugin-jsx-a11y: 6.7.1(eslint@8.36.0)
       eslint-plugin-react: 7.33.2(eslint@8.36.0)
@@ -1082,7 +1082,7 @@ packages:
       debug: 4.3.4
       enhanced-resolve: 5.15.0
       eslint: 8.36.0
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-server@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
       eslint-plugin-import: 2.28.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
       fast-glob: 3.3.1
       get-tsconfig: 4.7.2
@@ -1090,7 +1090,7 @@ packages:
       is-glob: 4.0.3
     transitivePeerDependencies:
       - '@typescript-eslint/parser'
-      - eslint-import-resolver-node
+      - eslint-import-resolver-server
       - eslint-import-resolver-webpack
       - supports-color
     dev: true
@@ -1120,7 +1120,7 @@ packages:
       debug: 3.2.7
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.9
-      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-plugin-import@2.28.1)(eslint@8.36.0)
+      eslint-import-resolver-typescript: 3.6.1(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-server@0.3.9)(eslint-plugin-import@2.28.1)(eslint@8.36.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -1144,7 +1144,7 @@ packages:
       doctrine: 2.1.0
       eslint: 8.36.0
       eslint-import-resolver-node: 0.3.9
-      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-node@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
+      eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.62.0)(eslint-import-resolver-server@0.3.9)(eslint-import-resolver-typescript@3.6.1)(eslint@8.36.0)
       has: 1.0.3
       is-core-module: 2.13.0
       is-glob: 4.0.3
@@ -2846,7 +2846,7 @@ packages:
       resolve: 1.22.6
       sucrase: 3.34.0
     transitivePeerDependencies:
-      - ts-node
+      - ts-server
     dev: true
 
   /tapable@2.2.1:
