@@ -7,6 +7,8 @@ import { useLoginMutation } from "@/store/api/ecommerce";
 import { DefaultToastComponent, LoadingModal } from "@/app/components";
 import { toast } from "react-toastify";
 import { toastOptions } from "@/app/utils/constants";
+import Link from "next/link";
+import React from "react";
 
 function ModalFormLogin() {
   const [login, { isLoading }] = useLoginMutation();
@@ -66,6 +68,20 @@ function ModalFormLogin() {
         </div>
         <div className="w-full py-3 text-center">
           <Button type="submit">Kirish</Button>
+          <br />
+          <Link
+            className="text-green-500 text-sm cursor-pointer"
+            href="/register"
+          >
+            Hisob yaratish kerakmi?
+          </Link>
+          <br />
+          <Link
+            href="/dashboard"
+            className="text-green-500 text-sm cursor-pointer"
+          >
+            Sotuvchimisiz?
+          </Link>
         </div>
       </form>
     </>
