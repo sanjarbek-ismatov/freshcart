@@ -1,4 +1,4 @@
-Freshcart(Ecommerce project)
+Freshcart(Ecommerce project) (Unfinished)
 
 # IMPORTANT
 
